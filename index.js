@@ -8,5 +8,5 @@ app.use(router);
 app.use(logger.middleWare)
 
 app.listen(PORT, () => {
-  logger.info('Server running on port %d', PORT);
+  logger.info(`Server running on port ${PORT}`);
 });
