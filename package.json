@@ -1,0 +1,36 @@
+{
+  "name": "data-base-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "make-migration": "npx knex migrate:make init --migrations-directory ./db/migrations",
+    "dev": "nodemon index.js",
+    "seed": "npx knex seed:run --knexfile=./db/knexfile.js",
+    "make-seed": "npx knex seed:make new-seed --knexfile ./db/knexfile.js",
+    "migrate": "npx knex migrate:latest --knexfile ./db/knexfile.js",
+    "down": "npx knex migrate:down --knexfile ./db/knexfile.js",
+    "setup-eslint": "./node_modules/.bin/eslint --init",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^7.24.0",
+    "faker": "^5.5.3",
+    "jest": "^26.6.3",
+    "nodemon": "^2.0.7",
+    "pino-pretty": "^4.7.1"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-pino-logger": "^6.0.0",
+    "factory-bot": "^6.2.1",
+    "knex": "^0.21.16",
+    "objection": "^2.2.12",
+    "pg": "^8.5.1",
+    "pino": "^6.11.2",
+    "pino-debug": "^2.0.0"
+  }
+}
