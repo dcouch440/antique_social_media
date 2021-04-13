@@ -10,7 +10,7 @@ class User extends Model {
   static get relationMappings()
   {
 
-    const Antique = require('./antique');
+    const Antique = require('../antique/antique.model');
     return {
       users: {
         relation: Model.BelongsToOneRelation,

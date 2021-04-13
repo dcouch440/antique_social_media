@@ -1,6 +1,8 @@
 const antiqueDAO = require('./antique.doa');
-const { antiqueParams, queryParams } = require('./antique.yup');
-const objLength = require('../../lib/utils');
+const { antiqueParams, queryParams } = require('./antique.params');
+const { limitOffset } = require('./antique.constant');
+const { objLength } = require('../../lib/utils');
+
 class AntiqueService
 {
 
@@ -23,7 +25,7 @@ class AntiqueService
   {
     try
     {
-      const {LIMIT, OFFSET} = objLength(queries) > 2 ? queries : {LIMIT: '20', OFFSET: '0'}
+      const {LIMIT, OFFSET} = objLength(queries) === 2 ? queries : limitOffset
       const formatParams = { LIMIT: parseInt(LIMIT), OFFSET: parseInt(OFFSET) }
       await queryParams.validate(formatParams, {abortEarly: false})
       return antiqueDAO.limitedList(formatParams)
@@ -31,6 +33,7 @@ class AntiqueService
     catch (err)
     {
       console.error(err)
+      return err
     }
   }
 
@@ -45,6 +48,7 @@ class AntiqueService
     catch (err)
     {
       console.error(err)
+      return err
     }
   }
 
