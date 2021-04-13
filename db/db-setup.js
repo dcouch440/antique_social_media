@@ -2,7 +2,7 @@ const knex = require('knex');
 const knexfile = require('./knexfile');
 const { Model } = require('objection');
 
-function databaseConfig() {
+function configureDatabase() {
 
   const db = knex(knexfile.development);
 
@@ -10,4 +10,4 @@ function databaseConfig() {
 
 }
 
-module.exports = databaseConfig;
+module.exports = configureDatabase;
