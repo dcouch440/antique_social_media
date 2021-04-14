@@ -5,7 +5,7 @@ module.exports = {
     connection: {
       database: 'node_ant_development',
       user: 'HB',
-      password: '',
+      password: 'postgresPASS',
     },
     pool: {
       min: 2,

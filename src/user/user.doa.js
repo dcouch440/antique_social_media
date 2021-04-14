@@ -2,19 +2,19 @@ const User = require('./user.model');
 
 class UserDAO {
 
-  all()
-  {
-    return User.query();
-  }
-
   find(id)
   {
-    return User.query().findById(id);
+    return User.query().findById(parseInt(id));
   }
 
   destroy(id)
   {
     return User.query().deleteById(id);
+  }
+
+  exists(email)
+  {
+    return User.query().where(email).first();
   }
 
   create(username)

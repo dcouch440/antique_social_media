@@ -10,8 +10,7 @@ module.exports = {
         .lowercase(),
       year: yup
         .number()
-        .min(0)
-        .max(),
+        .min(-1000),
       user_id: yup
         .number()
         .required()

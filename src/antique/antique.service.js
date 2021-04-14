@@ -1,7 +1,8 @@
 const antiqueDAO = require('./antique.doa');
 const { antiqueParams, queryParams } = require('./antique.params');
 const { limitOffset } = require('./antique.constant');
-const { objLength } = require('../../lib/utils');
+const { objLength, parseObjectInts } = require('../../lib/utils');
+const { handleException } = require('../error/error.logger');
 
 class AntiqueService
 {
@@ -11,44 +12,43 @@ class AntiqueService
     return antiqueDAO.all();
   }
 
-  show({id})
+  show(id)
   {
-    return antiqueDAO.find({id});
+    return antiqueDAO.find(id);
   }
 
-  destroy({id})
+  destroy(id)
   {
-    return antiqueDAO.destroy({id});
+    return antiqueDAO.destroy(id);
   }
 
-  async limitOffset({...queries})
+  async limitOffset({res, ...query})
   {
     try
     {
-      const {LIMIT, OFFSET} = objLength(queries) === 2 ? queries : limitOffset
-      const formatParams = { LIMIT: parseInt(LIMIT), OFFSET: parseInt(OFFSET) }
-      await queryParams.validate(formatParams, {abortEarly: false})
-      return antiqueDAO.limitedList(formatParams)
+      const queries = objLength(query) == 2 ? query : limitOffset
+      const parsedQuery = parseObjectInts(queries)
+      await queryParams.validate(parsedQuery, {abortEarly: false})
+      return antiqueDAO.limitedList(parsedQuery)
+    }
+    catch (err)
+    {
+      handleException({res, status: 422, err})
+    }
+  }
+
+  async create({res, ...params})
+  {
+    try
+    {
+      const parsedParams = parseObjectInts(params)
+      await antiqueParams.validate(parsedParams, {abortEarly: false})
+      return antiqueDAO.create(parsedParams);
     }
     catch (err)
     {
       console.error(err)
-      return err
-    }
-  }
-
-  async create({year, ...params})
-  {
-    try
-    {
-      const formatParams = {year: parseInt(year), ...params}
-      await antiqueParams.validate(formatParams, {abortEarly: false})
-      return antiqueDAO.create({params});
-    }
-    catch (err)
-    {
-      console.error(err)
-      return err
+      handleException({res, status: 422, err})
     }
   }
 

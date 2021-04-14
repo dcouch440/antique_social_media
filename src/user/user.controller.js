@@ -2,20 +2,22 @@ const userService = require('./user.service');
 
 class UserController {
 
-  async index(req, res)
-  {
 
+  async signIn(req,res)
+  {
     try
     {
-      const users = await userService.all();
-      res.json(users);
+      const { username, password_digest, email } = req.body;
+      const payload = await userService.signIn({
+        username, password_digest, email
+      });
+      res.json(payload);
     }
-    catch (err)
+    catch(err)
     {
       console.error(err);
-      res.status(500).json(err);
+      res.status(403).json(err);
     }
-
   }
 
   async show(req,res)

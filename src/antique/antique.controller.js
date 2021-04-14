@@ -7,23 +7,23 @@ class AntiqueController
   {
     try
     {
-      console.log(req.query)
-      const antiques = await antiqueService.limitOffset(req.query);
+      const {query} = req
+      const antiques = await antiqueService.limitOffset({ res, ...query });
       res.json(antiques);
     }
     catch (err)
     {
       console.error(err);
-      res.json(500);
+      res.status(422).json(err);
     }
   }
 
-  async show(req,res)
+  async show(req, res)
   {
     try
     {
       const {id} = req.params
-      const antique = await antiqueService.show({id});
+      const antique = await antiqueService.show(id);
       res.json(antique)
     }
     catch (err)
@@ -33,12 +33,12 @@ class AntiqueController
     }
   }
 
-  async destroy(req,res)
+  async destroy(req, res)
   {
     try
     {
-      const {id} = req.params;
-      await antiqueService.destroy({id});
+      const {authentication} = req.header;
+      await antiqueService.destroy(authentication);
       res.status(204);
     }
     catch (err)
@@ -48,14 +48,14 @@ class AntiqueController
     }
   }
 
-  async create(req,res)
+  async create(req, res)
   {
     try
     {
-      const {name, year} = req.body;
-      const {user_id} = req.params;
-      await antiqueService.create({name,year,user_id});
-      res.json(201)
+      const { name, year } = req.body;
+      const { authentication } = req.headers;
+      const antique = await antiqueService.create({ res , name, year, user_id: authentication });
+      res.status(201).json(antique);
     }
     catch (err)
     {

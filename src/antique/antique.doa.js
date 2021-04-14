@@ -18,9 +18,9 @@ class AntiqueDAO
     return Antique.query().deleteById(id);
   }
 
-  create({...params})
+  create(params)
   {
-    return Antique.query().insert({params})
+    return Antique.query().insert(params)
   }
 
   limitedList({OFFSET, LIMIT})

@@ -1,13 +1,13 @@
 const express = require('express');
 const userController = require('./user.controller');
 const router = express.Router()
+// const auth = require('../auth/auth.middleware');
+// // users
 
-// users
-
-router.get('/', userController.index);
+// router.post('/signup', () => userController.signUp);
 router.get('/:id', userController.show);
-router.post('/', userController.create);
-router.delete('/:id', userController.destroy)
+router.post('/signin', userController.signIn);
+// router.delete('/', userController.destroy)
 
 // nested
 router.get('/:id/antiques', userController.antiquesAll)
