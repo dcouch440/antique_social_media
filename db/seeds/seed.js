@@ -8,7 +8,8 @@ exports.seed = async knex => {
   const users = 25;
   const antiques = 5;
 
-  for (let index = 0; index < users; index++){
+  for (let index = 0; index < users; index++)
+  {
 
     await knex('user').insert({
       email: faker.internet.email(),
@@ -17,7 +18,8 @@ exports.seed = async knex => {
     }).returning('id')
 
     .then(async userId => {
-      for (let i = 0; i < antiques; i++){
+      for (let i = 0; i < antiques; i++)
+      {
 
         await knex('antique').insert({
           name: faker.name.firstName(),

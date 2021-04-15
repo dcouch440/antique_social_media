@@ -2,6 +2,11 @@ const User = require('./user.model');
 
 class UserDAO {
 
+  all()
+  {
+    return User.query();
+  }
+
   find(id)
   {
     return User.query().findById(parseInt(id));
@@ -12,16 +17,14 @@ class UserDAO {
     return User.query().deleteById(id);
   }
 
-  exists(email)
+  findByEmail(email)
   {
-    return User.query().where(email).first();
+    return User.query().where('email', email).first();
   }
 
-  create(username)
+  create(hashedPasswordAndParams)
   {
-    return User.query().insert({
-      username: username
-    })
+    return User.query().insert(hashedPasswordAndParams)
   }
 
   select({LIMIT, OFFSET})

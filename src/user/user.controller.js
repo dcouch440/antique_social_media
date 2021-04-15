@@ -7,9 +7,9 @@ class UserController {
   {
     try
     {
-      const { username, password_digest, email } = req.body;
+      const {username, password, email} = req.body;
       const payload = await userService.signIn({
-        username, password_digest, email
+        res, username, password, email
       });
       res.json(payload);
     }
@@ -18,6 +18,39 @@ class UserController {
       console.error(err);
       res.status(403).json(err);
     }
+  }
+
+  async signUp(req,res)
+  {
+    try
+    {
+      const {username, password, email} = req.body;
+
+      const payload = await userService.signUp({
+        res, username, password, email
+      });
+      res.json(payload);
+    }
+    catch(err)
+    {
+      console.error(err);
+      res.status(403).json(err);
+    }
+  }
+
+  async all(req,res)
+  {
+
+    try
+    {
+      const users = await userService.all();
+      res.status(200).json(users)
+    }
+    catch (err)
+    {
+      ''
+    }
+
   }
 
   async show(req,res)

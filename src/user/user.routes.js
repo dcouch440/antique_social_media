@@ -7,6 +7,8 @@ const router = express.Router()
 // router.post('/signup', () => userController.signUp);
 router.get('/:id', userController.show);
 router.post('/signin', userController.signIn);
+router.post('/signup', userController.signUp);
+router.get('/', userController.all)
 // router.delete('/', userController.destroy)
 
 // nested

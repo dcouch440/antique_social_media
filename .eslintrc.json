@@ -11,6 +11,8 @@
         "ecmaVersion": 12
     },
     "rules": {
-        "node/no-process-env":["off", "always"]
+        "node/no-process-env":["off", "always"],
+        "no-undef":"off",
+        "no-unused-vars":"off"
     }
 }

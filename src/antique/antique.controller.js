@@ -52,9 +52,8 @@ class AntiqueController
   {
     try
     {
-      const { name, year } = req.body;
-      const { authentication } = req.headers;
-      const antique = await antiqueService.create({ res , name, year, user_id: authentication });
+      const { name, year, user:{id} } = req.body;
+      const antique = await antiqueService.create({ res , name, year, user_id: id });
       res.status(201).json(antique);
     }
     catch (err)

@@ -1,8 +1,8 @@
 const antiqueDAO = require('./antique.doa');
-const { antiqueParams, queryParams } = require('./antique.params');
 const { limitOffset } = require('./antique.constant');
-const { objLength, parseObjectInts } = require('../../lib/utils');
 const { handleException } = require('../error/error.logger');
+const { antiqueParams, queryParams } = require('./antique.params');
+const { objLength, parseObjectInts } = require('../../lib/utils');
 
 class AntiqueService
 {
@@ -47,7 +47,6 @@ class AntiqueService
     }
     catch (err)
     {
-      console.error(err)
       handleException({res, status: 422, err})
     }
   }

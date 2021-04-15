@@ -4,7 +4,7 @@ exports.up = async knex => {
       'user', table => {
         table.increments();
         table.string('email').notNullable().unique();
-        table.string('username').notNullable().unique();
+        table.string('username').notNullable();
         table.string('password_digest').notNullable();
         table.timestamps(true, true);
         table.datetime('deleted_at');
