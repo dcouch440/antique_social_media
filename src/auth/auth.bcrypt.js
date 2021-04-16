@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const { handleException } = require('../error/error.logger');
+const { handleException } = require('../../middleware/logger');
 
 const hashPassword = async ({res, username, email, password}) => {
 

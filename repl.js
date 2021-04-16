@@ -1,5 +1,4 @@
-(
-  () =>
+(() =>
   {
     const repl = require('repl');
     const configureDatabase = require('./db/db-setup');

@@ -3,18 +3,17 @@ const antiqueService = require('./antique.service');
 class AntiqueController
 {
 
-  async index(req, res)
+ async index(req, res)
   {
     try
     {
       const {query} = req
-      const antiques = await antiqueService.limitOffset({ res, ...query });
+      const antiques = await antiqueService.limitOffset({...query});
       res.json(antiques);
     }
     catch (err)
     {
-      console.error(err);
-      res.status(422).json(err);
+      console.error(err)
     }
   }
 

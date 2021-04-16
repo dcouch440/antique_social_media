@@ -5,13 +5,14 @@
   "main": "server.js",
   "scripts": {
     "make-migration": "npx knex migrate:make init --migrations-directory ./db/migrations",
-    "dev": "nodemon index.js",
+    "dev": "nodemon server.js",
     "seed": "npx knex seed:run --knexfile ./db/knexfile.js",
     "make-seed": "npx knex seed:make new-seed --knexfile ./db/knexfile.js",
     "migrate": "npx knex migrate:latest --knexfile ./db/knexfile.js",
     "down": "npx knex migrate:down --knexfile ./db/knexfile.js",
     "setup-eslint": "./node_modules/.bin/eslint --init",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "test-detect": "jest --runInBand --detectOpenHandles"
   },
   "keywords": [],
   "author": "",
@@ -21,7 +22,8 @@
     "faker": "^5.5.3",
     "jest": "^26.6.3",
     "nodemon": "^2.0.7",
-    "pino-pretty": "^4.7.1"
+    "pino-pretty": "^4.7.1",
+    "supertest": "^6.1.3"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",

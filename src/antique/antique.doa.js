@@ -1,3 +1,4 @@
+const P = require('pino');
 const Antique = require('./antique.model');
 
 class AntiqueDAO
