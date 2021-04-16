@@ -21,12 +21,19 @@ class AntiqueService
     return antiqueDAO.destroy(id);
   }
 
-  limitOffset({...query})
+  async limitOffset({...query})
   {
-    const queries = objLength(query) == 2 ? query : limitOffset
-    const parsedQuery = parseObjectInts(queries)
-    queryParams.validate(parsedQuery, {abortEarly: false})
-    return antiqueDAO.limitedList(parsedQuery)
+    try
+    {
+      const queries = objLength(query) == 2 ? query : limitOffset
+      const parsedQuery = parseObjectInts(queries)
+      queryParams.validate(parsedQuery, {abortEarly: false})
+      return antiqueDAO.limitedList(parsedQuery)
+    }
+    catch(err)
+    {
+      return new Error(err)
+    }
   }
 
   create({res, ...params})

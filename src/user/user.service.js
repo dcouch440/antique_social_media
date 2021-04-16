@@ -7,7 +7,7 @@ const { newUserParams } = require('./user.params');
 class UserService
 {
 
-  async signIn({res, password, email})
+  async signIn({password, email})
   {
 
     try
@@ -15,19 +15,12 @@ class UserService
       const user = await userDAO.findByEmail(email)
       if (!user)
       {
-        res.status(403);
-        throw new Error('bad login');
+        throw new Error('Invalid username or Password');
       }
 
       await compareHash({
-        res, inputPassword: password, userPassword: user.password_digest
+        inputPassword: password, userPassword: user.password_digest
       });
-
-      // if (!validPass)
-      // {
-      //   res.status(403);
-      //   throw new Error('bad login');
-      // }
 
       const payload = {
         id: user.id,

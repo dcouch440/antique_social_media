@@ -1,39 +1,49 @@
 const addToTable = require('../../lib/add-to-table')
 const {
   staticUser, randomUser, randomAntique
-} = require('../../constant/seed-data');
+} = require('../../lib/seed-data');
+
+const {hashPassword} = require('../../src/auth/auth.bcrypt');
 
 exports.seed = async knex => {
-
-  await knex.raw('TRUNCATE TABLE "user" CASCADE');
-  await knex.raw('TRUNCATE TABLE antique CASCADE');
-
-  const users = 100;
-  const antiques = 5;
-
-  await addToTable({table: 'user', obj: staticUser()})
-
-  for (let index = 0; index < users; index++)
+  try
   {
-    const id = await addToTable({table: 'user', obj: randomUser()})
+    await knex.raw('TRUNCATE TABLE "user" CASCADE');
+    await knex.raw('TRUNCATE TABLE antique CASCADE');
 
-    for (let index = 0; index < antiques; index++)
+    const users = 1;
+    const antiques = 5;
+
+    const staticUserHash = await hashPassword(staticUser())
+
+    await addToTable({table: 'user', obj: staticUserHash})
+
+    for (let index = 0; index < users; index++)
     {
-      await addToTable({table: 'antique', obj: randomAntique(id)});
+      const randomUserHash = await hashPassword(randomUser());
+      const id = await addToTable({table: 'user', obj: randomUserHash})
+
+      for (let index = 0; index < antiques; index++)
+      {
+        await addToTable({table: 'antique', obj: randomAntique(id)});
+      }
     }
+
+    const [userCount] = await knex.from('user').count('id');
+    const [antiquesCount] = await knex.from('antique').count('id');
+
+    console.log(`
+      ______________________________________________
+
+        SEED:
+          User Count: ${userCount.count}
+          Antique Count: ${antiquesCount.count}
+
+      _____________________________________________
+    `)
   }
-
-  const [userCount] = await knex.from('user').count('id');
-  const [antiquesCount] = await knex.from('antique').count('id');
-
-  console.log(`
-    ______________________________________________
-
-      SEED:
-        User Count: ${userCount.count}
-        Antique Count: ${antiquesCount.count}
-
-    _____________________________________________
-  `)
-
+  catch(err)
+  {
+    console.error(err)
+  }
 }

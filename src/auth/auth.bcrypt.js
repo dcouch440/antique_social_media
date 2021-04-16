@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const { handleException } = require('../../middleware/logger');
 
-const hashPassword = async ({res, username, email, password}) => {
+const hashPassword = async ({username, email, password}) => {
 
   try
   {
@@ -14,7 +14,7 @@ const hashPassword = async ({res, username, email, password}) => {
   }
   catch (err)
   {
-    handleException({res, status: 403, err});
+    console.log(err);
   }
 
 }
@@ -33,7 +33,7 @@ const compareHash = async ({res, inputPassword, userPassword}) => {
   }
   catch (err)
   {
-    handleException({res, status: 403, err})
+    console.log(err);
   }
 
 }
