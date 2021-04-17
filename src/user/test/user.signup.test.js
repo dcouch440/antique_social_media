@@ -2,6 +2,9 @@ const app = require('../../../app');
 const supertest = require('supertest');
 const routes = require('../../../constant/routes');
 const { testUser } = require('../../../lib/seed-data');
+/**
+ * @jest-environment ./environment
+ */
 
 describe('POST /users/signup', () => {
   it('Lets the user sign up if data is correct', async () => {

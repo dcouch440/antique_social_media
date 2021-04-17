@@ -4,6 +4,9 @@ const supertest = require('supertest');
 const routes = require('../../../constant/routes');
 const { staticUser } = require('../../../lib/seed-data');
 
+/**
+ * @jest-environment ./environment
+ */
 
 describe('POST /users/signin', () => {
 

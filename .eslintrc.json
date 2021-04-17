@@ -12,7 +12,7 @@
     },
     "rules": {
         "node/no-process-env":["off", "always"],
-        "no-undef":"off",
-        "no-unused-vars":"off"
+        // "no-undef":"off",
+        // "no-unused-vars":"off"
     }
 }

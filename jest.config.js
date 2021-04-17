@@ -1,12 +1,10 @@
-// For a detailed explanation regarding each configuration property, visit:
-// https://jestjs.io/docs/en/configuration.html
 
 module.exports = {
-
-  globalSetup: './db/test/test-setup.js',
-
-  globalTeardown: './db/test/test-teardown.js',
-
-  testEnvironment: 'node',
-
+  verbose: true,
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  projects: [
+    {
+      testEnvironment: '<rootDir>/environment.js',
+    }
+  ]
 };

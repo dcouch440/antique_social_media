@@ -11,8 +11,8 @@ exports.seed = async knex => {
     await knex.raw('TRUNCATE TABLE "user" CASCADE');
     await knex.raw('TRUNCATE TABLE antique CASCADE');
 
-    const users = 1;
-    const antiques = 5;
+    const users = process.env.NODE_ENV === 'test' ? 1 : 50;
+    const antiques = process.env.NODE_ENV === 'test' ? 5 : 50;
 
     const staticUserHash = await hashPassword(staticUser())
 
