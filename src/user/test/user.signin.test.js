@@ -1,41 +1,88 @@
 const app = require('../../../app');
-const db = require('../../../db');
 const supertest = require('supertest');
 const routes = require('../../../constant/routes');
-const { staticUser } = require('../../../lib/seed-data');
-
-/**
- * @jest-environment ./environment
- */
+const { randomUser, generateUuidUser } = require('../../../lib/seed-data');
 
 describe('POST /users/signin', () => {
 
+  const {users:{post_signin_path, post_signup_path}} = routes
+
+  let signInUser = randomUser()
+
+  beforeAll(async () => {
+
+    global.knex.insert({
+      signInUser
+    })
+
+    await supertest(app)
+      .post(post_signup_path)
+      .set('Content-type', 'application/json')
+      .send(JSON.stringify(signInUser))
+      .catch((err) => err);
+
+  })
+
   it('Lets the user login if they exist', async () => {
 
-    const {users:{post_signin_path}} = routes
-    const signInInfo = staticUser()
     const {
       email :userEmail,
       password :userPassword,
       username :userUsername
-    } = signInInfo;
+    } = signInUser;
 
     const response = await supertest(app)
+      .post(post_signin_path)
+      .set('Content-type', 'application/json')
+      .send({email: userEmail, password: userPassword})
+      .expect('Content-Type', /json/)
+      .expect(200)
 
-    .post(post_signin_path)
-    .set('Content-type', 'application/json')
-    .send({email: userEmail, password: userPassword})
-    .expect('Content-Type', /json/)
-    .expect(200)
+    const {
+      token,
+      password,
+      user:{username, id, email}
+    } = await response.body
 
-
-    const {token, user:{username, id, email}} = await response.body
     expect(username).toEqual(userUsername);
-    expect(response.body.password).not.toEqual(userPassword);
+    expect(password).not.toEqual(userPassword);
     expect(email).toEqual(userEmail);
     expect(token.length).toBeGreaterThan(0);
-    expect(id).toBeGreaterThanOrEqual(0);
+    expect(id).toBeGreaterThan(1);
 
   });
+
+
+  it('It rejects a non user username', async () => {
+
+    const input = {
+      ...signInUser,
+      username: generateUuidUser.username()
+    }
+
+    const response = await supertest(app)
+      .post(post_signup_path)
+      .set('Content-type', 'application/json')
+      .send(input)
+
+    expect(response.status).toEqual(403)
+
+  })
+
+  it('It rejects a non user email', async () => {
+
+    const input = {
+      ...signInUser,
+      username: generateUuidUser.email()
+    }
+
+    const response = await supertest(app)
+      .post(post_signup_path)
+      .set('Content-type', 'application/json')
+      .send(input)
+
+    expect(response.status).toEqual(403)
+
+  })
 
 });

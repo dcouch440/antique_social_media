@@ -7,7 +7,7 @@ const { newUserParams } = require('./user.params');
 class UserService
 {
 
-  async signIn({password, email})
+  async signIn({res, password, email})
   {
 
     try
@@ -34,7 +34,7 @@ class UserService
     }
     catch (err)
     {
-      console.log('error at sign in')
+      res.status(403).json(err);
     }
 
   }
@@ -48,7 +48,6 @@ class UserService
       if(user)
       {
         res.status(403);
-        console.log(user)
         throw new Error('email Found');
       }
 
@@ -66,7 +65,7 @@ class UserService
     }
     catch(err)
     {
-      console.error(err)
+      res.status(403).json(err);
     }
 
   }

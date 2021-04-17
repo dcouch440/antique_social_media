@@ -15,4 +15,15 @@ describe('GET /', () => {
     expect(await response.body.message).toEqual(routeConstants.message);
 
   });
+
+  it('it should not connect if the url is wrong', async () => {
+
+    await supertest(app)
+
+      .get('/NO_ROUTE')
+      .expect('Content-Type', /json/)
+      .expect(404)
+      .catch(err => console.error(err));
+
+  })
 });

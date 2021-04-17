@@ -5,31 +5,11 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "args": [
-        "-u",
-        "tdd",
-        "--timeout",
-        "999999",
-        "--colors",
-        "${workspaceFolder}/test"
-      ],
-      "internalConsoleOptions": "openOnSessionStart",
-      "name": "Mocha Tests",
-      "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
+      "command": "npm run test",
+      "name": "npm debugger",
       "request": "launch",
-      "skipFiles": [
-        "<node_internals>/**"
-      ],
-      "type": "pwa-node"
-    },
-    {
-      "type": "pwa-node",
-      "request": "launch",
-      "name": "Launch Program",
-      "skipFiles": [
-        "<node_internals>/**"
-      ],
-      "program": "${workspaceFolder}\\src\\user\\user.service.js"
+      "type": "node-terminal"
     }
+
   ]
 }

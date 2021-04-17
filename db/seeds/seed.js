@@ -14,10 +14,6 @@ exports.seed = async knex => {
     const users = process.env.NODE_ENV === 'test' ? 1 : 50;
     const antiques = process.env.NODE_ENV === 'test' ? 5 : 50;
 
-    const staticUserHash = await hashPassword(staticUser())
-
-    await addToTable({table: 'user', obj: staticUserHash})
-
     for (let index = 0; index < users; index++)
     {
       const randomUserHash = await hashPassword(randomUser());
@@ -32,15 +28,15 @@ exports.seed = async knex => {
     const [userCount] = await knex.from('user').count('id');
     const [antiquesCount] = await knex.from('antique').count('id');
 
-    console.log(`
-      ______________________________________________
+    // console.log(`
+    //   ______________________________________________
 
-        SEED:
-          User Count: ${userCount.count}
-          Antique Count: ${antiquesCount.count}
+    //     SEED:
+    //       User Count: ${userCount.count}
+    //       Antique Count: ${antiquesCount.count}
 
-      _____________________________________________
-    `)
+    //   _____________________________________________
+    // `)
   }
   catch(err)
   {

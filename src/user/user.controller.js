@@ -2,7 +2,6 @@ const userService = require('./user.service');
 
 class UserController {
 
-
   async signIn(req,res)
   {
     try
@@ -15,7 +14,6 @@ class UserController {
     }
     catch(err)
     {
-      console.error(err);
       res.status(403).json(err);
     }
   }
