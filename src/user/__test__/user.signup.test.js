@@ -22,7 +22,6 @@ describe('POST /users/signup', () => {
       .send(signUpInfo)
       .expect('Content-Type', /json/)
       .expect(200)
-      .catch(err => console.error(err));
 
     const {token, username, email } = await response.body
     expect(token.length).toBeGreaterThan(0);

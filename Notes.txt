@@ -1,0 +1,17 @@
+Liked Serialization format:
+  The liked function that is used in antiques uses the users_id to map through the array and query if the user is found along with the antique ID.
+
+Authorization:
+  about:  The JWT token that is stored within the Cookie should either have an option to send the cookie data (and get user features)
+  Providing the token gives access to the immutable req object attribute object, found in (get current user)
+
+  Currently theres a 2 step verification,
+
+    One:  :(get) the router verifies the user through the token.
+          This gives the req object the immutable attribute that are then sent through.
+          Its worth noting that it might be worth researching what a spread operator could do to these attributes.
+
+    two:  :(post) The request uses that same header value to re verify the token,
+          Then comparisons are made between the body user_id,
+          the original token user_id and the newly verified user_id. Overkill? Not sure.
+

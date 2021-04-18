@@ -5,7 +5,7 @@ module.exports = {
     connection: {
       database: 'node_ant_development',
       user: 'HB',
-      password: null,
+      password: '',
     },
     pool: {
       min: 2,
@@ -24,7 +24,7 @@ module.exports = {
     connection: {
       database: 'node_ant_test',
       user: 'HB',
-      password: null,
+      password: '',
     },
     pool: {
       min: 2,

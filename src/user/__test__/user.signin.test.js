@@ -7,7 +7,7 @@ describe('POST /users/signin', () => {
 
   const {users:{post_signin_path, post_signup_path}} = routes
 
-  let signInUser = randomUser()
+  const signInUser = randomUser()
 
   beforeAll(async () => {
 
@@ -19,7 +19,6 @@ describe('POST /users/signin', () => {
       .post(post_signup_path)
       .set('Content-type', 'application/json')
       .send(JSON.stringify(signInUser))
-      .catch((err) => err);
 
   })
 

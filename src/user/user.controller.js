@@ -38,7 +38,6 @@ class UserController {
 
   async all(req,res)
   {
-
     try
     {
       const users = await userService.all();
@@ -48,7 +47,6 @@ class UserController {
     {
       ''
     }
-
   }
 
   async show(req,res)
@@ -70,7 +68,6 @@ class UserController {
 
   async destroy(req,res)
   {
-
     try
     {
       const {id} = req.params;
@@ -82,12 +79,10 @@ class UserController {
       console.log(err);
       res.status(422)
     }
-
   }
 
   async create(req,res)
   {
-
     try
     {
       const {username} = req.body;
@@ -99,12 +94,10 @@ class UserController {
       console.error(err);
       res.json(422);
     }
-
   }
 
   async antiquesAll(req,res)
   {
-
     try
     {
       const {id} = req.params;
@@ -115,7 +108,6 @@ class UserController {
       console.error(err);
       res.json(404);
     }
-
   }
 
 }

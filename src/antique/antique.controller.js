@@ -1,19 +1,25 @@
 const antiqueService = require('./antique.service');
+const AntiqueSerializer = require('./antique.serializer');
 
 class AntiqueController
 {
-
  async index(req, res)
   {
     try
     {
-      const {query} = req
-      const antiques = await antiqueService.limitOffset({...query});
-      res.json(antiques);
+      const {query} = req;
+      const antiquesWithLiked = await AntiqueSerializer
+        .sendWithLiked({
+          req,
+          antiques: await antiqueService.limitOffset(query)
+        });
+
+      res.json(antiquesWithLiked).status(200);
     }
     catch (err)
     {
-      console.error(err)
+      console.error(err);
+      res.status(422).json(err);
     }
   }
 
@@ -21,14 +27,14 @@ class AntiqueController
   {
     try
     {
-      const {id} = req.params
+      const {id} = req.params;
       const antique = await antiqueService.show(id);
-      res.json(antique)
+      res.json(antique);
     }
     catch (err)
     {
       console.error(err);
-      res.status(422).json(err)
+      res.status(422).json(err);
     }
   }
 
@@ -43,7 +49,7 @@ class AntiqueController
     catch (err)
     {
       console.error(err);
-      res.status(422)
+      res.status(422);
     }
   }
 
@@ -52,7 +58,9 @@ class AntiqueController
     try
     {
       const { name, year, user:{id} } = req.body;
-      const antique = await antiqueService.create({ res , name, year, user_id: id });
+      const antique = await antiqueService.create({
+        name, year, user_id: id
+      });
       res.status(201).json(antique);
     }
     catch (err)
@@ -61,7 +69,6 @@ class AntiqueController
       res.json(422);
     }
   }
-
 }
 
 module.exports = new AntiqueController();

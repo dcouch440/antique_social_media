@@ -5,7 +5,6 @@ const { objLength, parseObjectInts } = require('../../lib/utils');
 
 class AntiqueService
 {
-
   all()
   {
     return antiqueDAO.all();
@@ -36,13 +35,12 @@ class AntiqueService
     }
   }
 
-  create({res, ...params})
+  create({...params})
   {
     const parsedParams = parseObjectInts(params)
     antiqueParams.validate(parsedParams, {abortEarly: false})
     return antiqueDAO.create(parsedParams);
   }
-
 }
 
 module.exports = new AntiqueService();

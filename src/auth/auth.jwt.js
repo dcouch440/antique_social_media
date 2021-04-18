@@ -1,15 +1,13 @@
-require('dotenv').config('.env');
-
 const jwt = require('jsonwebtoken');
 
 const sign = (payload) => {
-
+  'use strict'
   return new Promise((resolve, reject) => {
 
-    jwt.sign( payload, process.env.JWT_SECRET,
-      {
-        expiresIn: '1d',
-      },
+    jwt.sign(
+      payload,
+      process.env.JWT_SECRET,
+      {expiresIn: '1d'},
       (error, token) => {
         if (error) return reject(error);
         return resolve(token);

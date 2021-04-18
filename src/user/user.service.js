@@ -3,7 +3,6 @@ const jwt = require('../auth/auth.jwt');
 const { hashPassword , compareHash } = require('../auth/auth.bcrypt');
 const { newUserParams } = require('./user.params');
 
-
 class UserService
 {
 
@@ -68,6 +67,11 @@ class UserService
       res.status(403).json(err);
     }
 
+  }
+
+  async getCurrentUser()
+  {
+    
   }
 
   all()

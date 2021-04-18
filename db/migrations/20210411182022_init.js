@@ -19,6 +19,16 @@ exports.up = async knex => {
         table.timestamps(true, true);
         table.datetime('deleted_at');
       }
+    ),
+    knex.schema.createTable(
+      'like', table => {
+        table.increments();
+        table.integer('user_id').notNullable();
+        table.integer('antique_id').notNullable();
+        table.unique(['user_id', 'antique_id'])
+        table.timestamps(true, true);
+        table.datetime('deleted_at');
+      }
     )
   ]);
 };
@@ -26,5 +36,6 @@ exports.up = async knex => {
 exports.down = async knex => {
   return knex.schema
     .dropTableIfExists('user')
-    .dropTableIfExists('antique');
+    .dropTableIfExists('antique')
+    .dropTableIfExists('like');
 };

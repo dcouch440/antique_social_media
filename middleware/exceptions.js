@@ -28,7 +28,6 @@ const handleError = (error, req, res, next) => {
     errors: error.errors || undefined,
   });
 
-
 }
 
 module.exports = { notFound, handleError };

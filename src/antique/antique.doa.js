@@ -1,4 +1,3 @@
-const P = require('pino');
 const Antique = require('./antique.model');
 
 class AntiqueDAO
@@ -21,6 +20,7 @@ class AntiqueDAO
 
   create(params)
   {
+    console.log(params)
     return Antique.query().insert(params)
   }
 
