@@ -9,10 +9,10 @@ exports.seed = async knex => {
     await knex.raw('TRUNCATE TABLE "user" CASCADE');
     await knex.raw('TRUNCATE TABLE antique CASCADE');
 
-    const env = process.env.NODE_ENV
+    const ENV = process.env.NODE_ENV
 
-    const users = env === 'test' ? 1 : 50;
-    const antiques = env === 'test' ? 5 : 50;
+    const users = ENV === 'test' ? 1 : 50;
+    const antiques = ENV === 'test' ? 5 : 50;
 
     // static user for testing routes
     const staticUserHash = await hashPassword(staticUser());
@@ -20,7 +20,6 @@ exports.seed = async knex => {
 
     for (let index = 0; index < users; index++)
     {
-
       const randomUserHash = await hashPassword(randomUser());
       const user_id = await addToTable({table: 'user', obj: randomUserHash})
 
@@ -34,26 +33,23 @@ exports.seed = async knex => {
 
         await knex('like').insert({user_id: static_user_id, antique_id})
       }
-
     }
 
     const [userCount] = await knex.from('user').count('id');
     const [antiquesCount] = await knex.from('antique').count('id');
+    const [likesCount] = await knex.from('like').count('id');
 
-    if (env !== 'test')
-    {
-      console.info(`
-        ______________________________________________
+    ENV !== 'test' && console.info(`
+      ______________________________________________
 
-          SEED:
-            User Count: ${userCount.count}
-            Antique Count: ${antiquesCount.count}
+        SEED:
+          User Count:    - ${userCount.count}
+          Antique Count: - ${antiquesCount.count}
+          Like Count:    - ${likesCount.count}
+          [ENV]:         - ${process.env.NODE_ENV}
 
-            [ENV]: ${process.env.NODE_ENV}
-
-        _____________________________________________
-      `)
-    }
+      _____________________________________________
+    `)
   }
 
   catch(err)

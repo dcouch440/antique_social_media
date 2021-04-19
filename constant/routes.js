@@ -9,5 +9,9 @@ module.exports = {
   users: {
     post_signin_path: '/users/signin',
     post_signup_path: '/users/signup'
+  },
+  likes: {
+    post_like_path: '/likes/like',
+    post_unlike_path: '/likes/unlike',
   }
 }

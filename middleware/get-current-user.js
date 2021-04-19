@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-require('dotenv').config('.env')
 
 'use strict'
 const getCurrentUser = async (req, res, next) => {
@@ -8,7 +7,8 @@ const getCurrentUser = async (req, res, next) => {
   {
     // users validate once through the router for all request,
     // these validations will need to exist to continue later.
-    const authorization = req.headers.authentication;
+
+    const authorization = req.headers.authorization;
     const decryptedUser = jwt.verify(
       authorization, process.env.JWT_SECRET
     );

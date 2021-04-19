@@ -35,11 +35,20 @@ class AntiqueService
     }
   }
 
-  create({...params})
+  async create({...params})
   {
-    const parsedParams = parseObjectInts(params)
-    antiqueParams.validate(parsedParams, {abortEarly: false})
-    return antiqueDAO.create(parsedParams);
+    try
+    {
+      const parsedParams = parseObjectInts(params)
+      await antiqueParams.validate(parsedParams, {abortEarly: false})
+      return antiqueDAO.create(parsedParams);
+    }
+
+    catch (err)
+    {
+      console.error(err)
+    }
+
   }
 }
 

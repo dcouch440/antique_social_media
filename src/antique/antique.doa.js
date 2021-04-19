@@ -20,7 +20,6 @@ class AntiqueDAO
 
   create(params)
   {
-    console.log(params)
     return Antique.query().insert(params)
   }
 

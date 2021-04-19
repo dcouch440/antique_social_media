@@ -15,3 +15,5 @@ Authorization:
           Then comparisons are made between the body user_id,
           the original token user_id and the newly verified user_id. Overkill? Not sure.
 
+
+Image brainstorm, upload image > returning url? store url with antique posting.

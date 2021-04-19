@@ -1,18 +1,19 @@
 const jwt = require('jsonwebtoken');
-require('dotenv').config('.env')
+
 
 'use strict'
 module.exports = async (req, res, next) => {
 
   try
   {
+
     if (!req.currentUser) throw new Error();
 
     const {headers:{authorization}} = req;
     const {id :decryptedId} = jwt.verify(
       authorization, process.env.JWT_SECRET
     );
-    const userBodyId = req.body.user.id
+    const {id: userBodyId} = req.body.user
 
     if (req.currentUser.user_id !== userBodyId) throw new Error()
 
@@ -23,6 +24,7 @@ module.exports = async (req, res, next) => {
       next()
     }
   }
+
   catch
   {
     res.status(401).json({message: 'Unauthorized'});

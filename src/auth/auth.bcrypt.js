@@ -2,7 +2,6 @@ const bcrypt = require('bcrypt');
 const { handleException } = require('../../middleware/logger');
 
 const hashPassword = async ({username, email, password}) => {
-
   try
   {
     const hashedPassword = await bcrypt.hash(password, 12);
@@ -12,15 +11,14 @@ const hashPassword = async ({username, email, password}) => {
       password_digest: hashedPassword
     };
   }
+
   catch (err)
   {
     console.log(err);
   }
-
 }
 
 const compareHash = async ({res, inputPassword, userPassword}) => {
-
   try
   {
     const isValid = await bcrypt.compare(inputPassword, userPassword);
@@ -31,11 +29,11 @@ const compareHash = async ({res, inputPassword, userPassword}) => {
     }
     return isValid;
   }
+
   catch (err)
   {
     console.log(err);
   }
-
 }
 
 module.exports = { hashPassword , compareHash };

@@ -16,6 +16,7 @@ class AntiqueController
 
       res.json(antiquesWithLiked).status(200);
     }
+
     catch (err)
     {
       console.error(err);
@@ -31,6 +32,7 @@ class AntiqueController
       const antique = await antiqueService.show(id);
       res.json(antique);
     }
+
     catch (err)
     {
       console.error(err);
@@ -46,6 +48,7 @@ class AntiqueController
       await antiqueService.destroy(authentication);
       res.status(204);
     }
+
     catch (err)
     {
       console.error(err);
@@ -57,12 +60,14 @@ class AntiqueController
   {
     try
     {
-      const { name, year, user:{id} } = req.body;
+      const { image, name, year, user:{id} } = req.body;
       const antique = await antiqueService.create({
-        name, year, user_id: id
+        image, name, year, user_id: id
       });
+
       res.status(201).json(antique);
     }
+
     catch (err)
     {
       console.error(err);

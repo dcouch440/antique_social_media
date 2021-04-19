@@ -12,6 +12,7 @@ class AntiqueController
       })
       res.json(liked).status(200)
     }
+
     catch(err)
     {
       console.error(err)
@@ -28,6 +29,7 @@ class AntiqueController
       })
       res.json(liked).status(200)
     }
+
     catch(err)
     {
       console.error(err)
