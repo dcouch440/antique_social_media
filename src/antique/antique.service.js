@@ -2,6 +2,7 @@ const antiqueDAO = require('./antique.doa');
 const { limitOffset } = require('./antique.constant');
 const { antiqueParams, queryParams } = require('./antique.params');
 const { objLength, parseObjectInts } = require('../../lib/utils');
+const imageService = require('../image/image.service');
 
 class AntiqueService
 {
@@ -15,9 +16,15 @@ class AntiqueService
     return antiqueDAO.find(id);
   }
 
-  destroy(id)
+  async destroy(id)
   {
-    return antiqueDAO.destroy(id);
+    try
+    {
+      await imageService.destroyDependencyById(id);
+      return await antiqueDAO.destroy(id);
+    }
+
+    catch (err) { console.error(err); }
   }
 
   async limitOffset({...query})
@@ -26,13 +33,11 @@ class AntiqueService
     {
       const queries = objLength(query) == 2 ? query : limitOffset
       const parsedQuery = parseObjectInts(queries)
-      queryParams.validate(parsedQuery, {abortEarly: false})
+      await queryParams.validate(parsedQuery, {abortEarly: false})
       return antiqueDAO.limitedList(parsedQuery)
     }
-    catch(err)
-    {
-      return new Error(err)
-    }
+
+    catch(err) { return new Error(err) }
   }
 
   async create({...params})
@@ -44,11 +49,7 @@ class AntiqueService
       return antiqueDAO.create(parsedParams);
     }
 
-    catch (err)
-    {
-      console.error(err)
-    }
-
+    catch (err) { console.error(err) }
   }
 }
 

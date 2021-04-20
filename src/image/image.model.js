@@ -1,9 +1,9 @@
 const { Model } = require('objection');
 
-class Like extends Model {
+class Image extends Model {
   static get tableName()
   {
-    return 'like';
+    return 'image';
   }
 
   static relationMappings()
@@ -12,24 +12,24 @@ class Like extends Model {
     const Antique = require('../antique/antique.model');
 
     return {
-      liker: {
-        relation: Model.BelongsToOneRelation,
-        modelClass: User,
-        join: {
-          from: 'like.user_id',
-          to: 'user.id'
-        }
-      },
-      antiques: {
+      antique: {
         relation: Model.BelongsToOneRelation,
         modelClass: Antique,
         join: {
           from: 'like.antique_id',
-          to: 'antique.id'
+          to: 'image.id'
+        }
+      },
+      user: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: User,
+        join: {
+          from: 'like.user_id',
+          to: 'image.id'
         }
       },
     }
   }
 }
 
-module.exports = Like;
+module.exports = Image;

@@ -5,17 +5,22 @@ class AntiqueDAO
 
   all()
   {
-    return Antique.query();
+    return Antique.query()
   }
 
   find(id)
   {
-    return Antique.query().findById(id);
+    return Antique.query().findById(id).withGraphFetched('likes').withGraphFetched('images');
+  }
+  
+  getLikes(id)
+  {
+    return Antique.query().findById(id).withGraphFetched('like');
   }
 
   destroy(id)
   {
-    return Antique.query().deleteById(id);
+    return Antique.query().deleteById(id)
   }
 
   create(params)
@@ -26,8 +31,9 @@ class AntiqueDAO
   limitedList({OFFSET, LIMIT})
   {
     return Antique.query().offset(OFFSET).limit(LIMIT)
+
   }
 
 }
 
-module.exports = new AntiqueDAO()
+module.exports = new AntiqueDAO();

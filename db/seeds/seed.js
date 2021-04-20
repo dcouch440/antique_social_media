@@ -1,4 +1,6 @@
 const addToTable = require('../../lib/add-to-table')
+const imageService = require('../../src/image/image.service');
+const { cloudinary } = require('../../src/image/cloudinary.config');
 const { randomUser, randomAntique, staticUser } = require('../../lib/seed-data');
 const { hashPassword } = require('../../src/auth/auth.bcrypt');
 
@@ -8,11 +10,14 @@ exports.seed = async knex => {
   {
     await knex.raw('TRUNCATE TABLE "user" CASCADE');
     await knex.raw('TRUNCATE TABLE antique CASCADE');
+    await knex.raw('TRUNCATE TABLE "like" CASCADE');
+    // await knex.raw('TRUNCATE TABLE "image" CASCADE');
+    // await cloudinary.delete_resources();
 
     const ENV = process.env.NODE_ENV
 
-    const users = ENV === 'test' ? 1 : 50;
-    const antiques = ENV === 'test' ? 5 : 50;
+    const users = ENV === 'test' ? 1 : 1;
+    const antiques = ENV === 'test' ? 5 : 5;
 
     // static user for testing routes
     const staticUserHash = await hashPassword(staticUser());
@@ -29,6 +34,11 @@ exports.seed = async knex => {
           table: 'antique', obj: randomAntique(user_id)
         });
 
+        await imageService.upload({
+          fileStr: './db/seeds/seed-images/fairy.jpg',
+          antique_id
+        })
+
         await knex('like').insert({user_id, antique_id})
 
         await knex('like').insert({user_id: static_user_id, antique_id})
@@ -38,6 +48,7 @@ exports.seed = async knex => {
     const [userCount] = await knex.from('user').count('id');
     const [antiquesCount] = await knex.from('antique').count('id');
     const [likesCount] = await knex.from('like').count('id');
+    const [imageCount] = await knex.from('image').count('id');
 
     ENV !== 'test' && console.info(`
       ______________________________________________
@@ -46,6 +57,7 @@ exports.seed = async knex => {
           User Count:    - ${userCount.count}
           Antique Count: - ${antiquesCount.count}
           Like Count:    - ${likesCount.count}
+          Image Count:    - ${imageCount.count}
           [ENV]:         - ${process.env.NODE_ENV}
 
       _____________________________________________

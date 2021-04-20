@@ -9,7 +9,7 @@ class AntiqueController
     {
       const {query} = req;
       const antiquesWithLiked = await AntiqueSerializer
-        .sendWithLiked({
+        .serializeWithLikes({
           req,
           antiques: await antiqueService.limitOffset(query)
         });
@@ -29,7 +29,11 @@ class AntiqueController
     try
     {
       const {id} = req.params;
-      const antique = await antiqueService.show(id);
+      const antique = await AntiqueSerializer
+        .serializeWithLikes({
+          req,
+          antiques: await antiqueService.show(id)
+        })
       res.json(antique);
     }
 
@@ -44,9 +48,9 @@ class AntiqueController
   {
     try
     {
-      const {authentication} = req.header;
-      await antiqueService.destroy(authentication);
-      res.status(204);
+      const {id} = req.params
+      const deleted = await antiqueService.destroy(id);
+      res.status(204).json(deleted);
     }
 
     catch (err)

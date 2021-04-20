@@ -9,7 +9,7 @@ router.post('/', authorizeRequest , antiqueController.create);
 
 // antiques/:id
 router.get('/:id', antiqueController.show);
-router.delete('/:id', authorizeRequest, antiqueController.destroy);
+router.delete('/:id', antiqueController.destroy);
 
 
 module.exports = router;

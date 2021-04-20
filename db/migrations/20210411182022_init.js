@@ -1,5 +1,3 @@
-const { schema } = require("../../db");
-
 exports.up = async knex => {
   await Promise.all([
     knex.schema.createTable(
@@ -27,17 +25,7 @@ exports.up = async knex => {
         table.increments();
         table.integer('antique_id').notNullable();
         table.integer('user_id').notNullable();
-        table.unique(['antique_id', 'user_id'])
-        table.timestamps(true, true);
-        table.datetime('deleted_at');
-      }
-    ),
-    knex,schema.createTable(
-      'image', table => {
-        table.increments();
-        table.integer('antique_id').notNullable();
-        table.string('image_url').notNullable();
-        table.unique(['antique_id', 'image_url']);
+        table.unique(['antique_id', 'user_id']);
         table.timestamps(true, true);
         table.datetime('deleted_at');
       }
@@ -50,6 +38,4 @@ exports.down = async knex => {
     .dropTableIfExists('user')
     .dropTableIfExists('antique')
     .dropTableIfExists('like')
-    .dropTableIfExists('antiques_images');
-
 };
