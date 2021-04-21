@@ -2,6 +2,7 @@ const express = require("express");
 const users = require('../user/user.routes');
 const images = require('../image/image.routes');
 const antiques = require('../antique/antique.routes');
+const likes = require('../like/like.routes');
 const routesConstants = require('../../constant/routes');
 const getCurrentUser = require('../../middleware/get-current-user');
 const log = require('../../middleware/log');
@@ -16,5 +17,6 @@ router.get('/', (req,res) =>  res.json(routesConstants));
 router.use('/images', images);
 router.use('/users', users);
 router.use('/antiques', antiques);
+router.use('/likes', likes);
 
 module.exports = router;

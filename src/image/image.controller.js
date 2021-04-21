@@ -11,7 +11,7 @@ class ImageController
         const uploaded = await imageService.upload({
           fileStr, antique_id
         });
-        res.json(uploaded).status(200);
+        res.status(201).json(uploaded);
       }
 
       catch (err) { console.error(err); }
@@ -23,7 +23,7 @@ class ImageController
     try
     {
       await imageService.destroyFolderByAntiqueId(antique_id);
-      res.json({message: 'Deleted'}).status(204);
+      res.status(204).json({message: 'Deleted'});
     }
 
     catch (err) { console.error(err); }

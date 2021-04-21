@@ -9,14 +9,16 @@ class LikeService
     return liked ? true : false;
   }
 
-  async like(params)
+  like({req, antique_id, user_id})
   {
-    return LikeDAO.create(params);
+    const {username} = req.currentUser
+    return LikeDAO.create({username, antique_id, user_id});
   }
 
-  unlike(params)
+  unlike({req, antique_id, user_id})
   {
-    return LikeDAO.destroy(params);
+    const {username} = req.currentUser
+    return LikeDAO.destroy({username, antique_id, user_id});
   }
 }
 

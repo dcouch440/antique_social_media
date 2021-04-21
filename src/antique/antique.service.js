@@ -51,6 +51,13 @@ class AntiqueService
 
     catch (err) { console.error(err) }
   }
+
+
+  queryCategory({category})
+  {
+    console.log(category)
+    return antiqueDAO.showUniques({category});
+  }
 }
 
 module.exports = new AntiqueService();

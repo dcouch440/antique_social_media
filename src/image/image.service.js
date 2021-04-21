@@ -1,6 +1,6 @@
 const imageDAO = require('./image.dao');
 const { cloudinary } = require('./cloudinary.config')
-
+const folderName = require('../../constant/image-file');
 class ImageService
 {
   async upload({fileStr, antique_id})
@@ -15,7 +15,7 @@ class ImageService
       } = await cloudinary
         .uploader.upload( fileStr, {
           upload_preset: 'ml_default',
-          folder: `_ANTIQUE_${antique_id}_`
+          folder: folderName(antique_id)
         });
 
       return imageDAO.storeUrl({
@@ -31,7 +31,7 @@ class ImageService
   {
     try
     {
-      const folder = `_ANTIQUE_${antique_id}_`;
+      const folder = folderName(antique_id);
 
       await cloudinary.api.delete_resources_by_prefix(folder);
       await cloudinary.api.delete_folder(folder);

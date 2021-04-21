@@ -32,7 +32,7 @@ class AntiqueSerializer extends APIConcerns
           await this.getUserRelations({
             created_at, user_id, antique_id
           }),
-          await this.getOwnerRelations({user_id})
+          user_id && await this.getOwnerRelations({user_id})
         )
     }
 

@@ -22,5 +22,13 @@ module.exports = {
       .matches(/[a-z]/, 'password must contain a lowercase letter')
       .matches(/[0-9]/, 'password must contain a number')
       .required(),
-  })
+  }),
+  userIdParams: yup.object().shape(
+    {
+      id: yup
+        .number()
+        .min(1)
+        .required()
+    }
+  )
 }

@@ -7,6 +7,8 @@ const authorizeRequest = require('../../middleware/authorize-request');
 router.get('/', antiqueController.index);
 router.post('/', authorizeRequest , antiqueController.create);
 
+router.get('/:category', antiqueController.queryCategory);
+
 // antiques/:id
 router.get('/:id', antiqueController.show);
 router.delete('/:id', antiqueController.destroy);

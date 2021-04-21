@@ -10,7 +10,7 @@ class UserController {
       const payload = await userService.signIn({
         res, username, password, email
       });
-      res.json(payload);
+      res.status(200).json(payload);
     }
     catch(err)
     {
@@ -27,7 +27,7 @@ class UserController {
       const payload = await userService.signUp({
         res, username, password, email
       });
-      res.json(payload);
+      res.status(201).json(payload);
     }
     catch(err)
     {
@@ -36,6 +36,7 @@ class UserController {
     }
   }
 
+  // for dev
   async all(req,res)
   {
     try
@@ -58,6 +59,7 @@ class UserController {
       const user = await userService.show(id);
       res.json(user)
     }
+
     catch (err)
     {
       console.log(err);
@@ -74,25 +76,11 @@ class UserController {
       await userService.destroy(id);
       res.status(204);
     }
+
     catch (err)
     {
       console.log(err);
       res.status(422)
-    }
-  }
-
-  async create(req,res)
-  {
-    try
-    {
-      const {username} = req.body;
-      await userService.create(username);
-      res.json(201)
-    }
-    catch (err)
-    {
-      console.error(err);
-      res.json(422);
     }
   }
 
@@ -102,8 +90,9 @@ class UserController {
     {
       const {id} = req.params;
       const attachment = await userService.antiquesAll(id);
-      res.json(attachment)
+      res.status(200).json(attachment)
     }
+
     catch (err) {
       console.error(err);
       res.json(404);

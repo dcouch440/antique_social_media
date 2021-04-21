@@ -3,7 +3,15 @@ exports.up = async knex => {
     knex.schema.createTable(
       'image', table => {
         table.increments();
-        table.integer('antique_id').notNullable();
+        table
+          .integer('antique_id')
+          .notNullable()
+          .unsigned()
+          .references('id')
+          .inTable('antique')
+          .onDelete('CASCADE')
+          .onUpdate('CASCADE')
+          .notNullable();
         table.string('image_url').notNullable();
         table.string('public_id').notNullable();
         table.string('resource_type').notNullable();

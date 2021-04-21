@@ -6,7 +6,7 @@ class ImageDAO
   async storeUrl({...params})
   {
     try
-    {
+    { // attempt to change to image class when 
       return db('image').insert(params).returning('id')
         .then(id => console.log(id))
     }

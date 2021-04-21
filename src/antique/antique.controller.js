@@ -15,7 +15,7 @@ class AntiqueController
           antiques: await antiqueService.limitOffset(query)
         });
 
-      res.json(antiquesWithLiked).status(200);
+      res.status(200).json(antiquesWithLiked);
     }
 
     catch (err)
@@ -82,6 +82,13 @@ class AntiqueController
       console.error(err);
       res.json(422);
     }
+  }
+
+  async queryCategory(req,res)
+  {
+    const { category } = req.params
+    const response = await antiqueService.queryCategory({category});
+    res.status(200).json(response);
   }
 }
 

@@ -39,6 +39,12 @@ class AntiqueDAO
 
   }
 
+  showUniques({category})
+  {
+    return Antique.query()
+    .distinct(category, 'id');
+  }
+
 }
 
 module.exports = new AntiqueDAO();

@@ -17,7 +17,7 @@ const getCurrentUser = async (req, res, next) => {
       id :userBodyId,
       username :username,
       email :email
-    } = decryptedUser
+    } = decryptedUser;
 
     const user = {user_id: userBodyId, username, email}
     Object.freeze(user);

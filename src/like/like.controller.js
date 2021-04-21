@@ -6,16 +6,17 @@ class LikeController
   {
     try
     {
-      const {antique_id, user_id} = req;
-      const liked = likeService.like({
-        res, antique_id, user_id
+      const {antique_id, user_id} = req.body;
+      const liked = await likeService.like({
+        req, antique_id, user_id
       })
-      res.json(liked).status(200)
+      res.status(201).json(liked)
     }
 
     catch(err)
     {
-      console.error(err)
+      console.error(err);
+      res.status(422).json({message: 'unprocessable entity'});
     }
   }
 
@@ -23,16 +24,16 @@ class LikeController
   {
     try
     {
-      const {antique_id, user_id} = req;
-      const liked = likeService.unlike({
-        res, antique_id, user_id
+      const {antique_id, user_id} = req.body;
+      const liked = await likeService.unlike({
+        req, antique_id, user_id
       })
-      res.json(liked).status(200)
+      res.status(204).json(liked)
     }
 
     catch(err)
     {
-      console.error(err)
+      res.status(422).json({message: 'unprocessable entity'});
     }
   }
 }

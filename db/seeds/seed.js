@@ -39,9 +39,14 @@ exports.seed = async knex => {
           antique_id
         })
 
-        await knex('like').insert({user_id, antique_id})
+        await knex('like').insert({
+          user_id, antique_id, username: randomUserHash.username
+        })
 
-        await knex('like').insert({user_id: static_user_id, antique_id})
+        await knex('like').insert({
+          user_id: static_user_id, antique_id,
+          username: staticUserHash.username
+        })
       }
     }
 

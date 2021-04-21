@@ -1,7 +1,7 @@
 const userDAO = require('./user.doa');
 const jwt = require('../auth/auth.jwt');
 const { hashPassword , compareHash } = require('../auth/auth.bcrypt');
-const { newUserParams } = require('./user.params');
+const { newUserParams, userIdParams } = require('./user.params');
 
 class UserService
 {
@@ -74,19 +74,16 @@ class UserService
     return userDAO.all();
   }
 
-  show(id)
+  async show(id)
   {
+    await userIdParams.validate({id: id})
     return userDAO.find(id);
   }
 
-  destroy(id)
+  async destroy(id)
   {
+    await userIdParams.validate({id: id})
     return userDAO.destroy(id);
-  }
-
-  create(username)
-  {
-    return userDAO.create(username);
   }
 
   antiquesAll(id)
