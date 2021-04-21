@@ -1,5 +1,6 @@
 const antiqueService = require('./antique.service');
 const AntiqueSerializer = require('./antique.serializer');
+const imageService = require('../image/image.service');
 
 class AntiqueController
 {
@@ -9,7 +10,7 @@ class AntiqueController
     {
       const {query} = req;
       const antiquesWithLiked = await AntiqueSerializer
-        .serializeWithLikes({
+        .serializeWithRelations({
           req,
           antiques: await antiqueService.limitOffset(query)
         });
@@ -30,10 +31,11 @@ class AntiqueController
     {
       const {id} = req.params;
       const antique = await AntiqueSerializer
-        .serializeWithLikes({
+        .serializeWithRelations({
           req,
           antiques: await antiqueService.show(id)
         })
+
       res.json(antique);
     }
 
@@ -64,10 +66,13 @@ class AntiqueController
   {
     try
     {
-      const { image, name, year, user:{id} } = req.body;
+      const {name, year, user:{id}, fileStr } = req.body;
+
       const antique = await antiqueService.create({
-        image, name, year, user_id: id
-      });
+        name, year, user_id: id
+      })
+
+      await imageService.upload({fileStr, antique_id: antique.id })
 
       res.status(201).json(antique);
     }

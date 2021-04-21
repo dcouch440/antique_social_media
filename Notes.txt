@@ -17,3 +17,35 @@ Authorization:
 
 
 Image brainstorm, upload image > returning url? store url with antique posting.
+
+
+
+Antiques routes
+  get     /antiques
+    ?LIMIT= %OFFSET=
+  post    /antiques
+    name: str, year: int, user:{id: int}, fileStr: str < FROM body
+  destroy /antiques/:id
+    id (params)
+  show    /antiques/:id
+
+Like routes
+  post /like
+    antique_id: int
+    user_id: int
+
+  post /unlike
+    antique_id: int
+    user_id: int
+
+User Routes
+  post /users/signIn
+    username: str, password: str, email: str
+  post /users/signup
+    username: str, password: str, email: str
+  get /users/:id/antiques
+    (id) params
+
+Image routes
+  post /uploads
+    fileStr, antique_id

@@ -1,4 +1,5 @@
 const LikeDAO = require('./like.dao');
+// const UserDAO = require('../user/user.doa');
 
 class LikeService
 {
@@ -8,7 +9,7 @@ class LikeService
     return liked ? true : false;
   }
 
-  like(params)
+  async like(params)
   {
     return LikeDAO.create(params);
   }

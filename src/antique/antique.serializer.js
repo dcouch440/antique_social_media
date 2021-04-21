@@ -1,12 +1,12 @@
 const likeService = require('../like/like.service');
-const imageService = require('../image/image.service')
 const APIConcerns = require('../concerns/api.concerns');
 const moment = require('moment');
+const userService = require('../user/user.service');
 
 class AntiqueSerializer extends APIConcerns
 {
 
-  async serializeWithLikes({req, antiques})
+  async serializeWithRelations({req, antiques})
   {
     try
     {
@@ -32,7 +32,7 @@ class AntiqueSerializer extends APIConcerns
           await this.getUserRelations({
             created_at, user_id, antique_id
           }),
-          await this.attachImages(antique_id)
+          await this.getOwnerRelations({user_id})
         )
     }
 
@@ -49,25 +49,18 @@ class AntiqueSerializer extends APIConcerns
           await this.getUserRelations({
             created_at, user_id, antique_id
           }),
-          await this.attachOneImage(antique_id)
         )
     })
   }
 
-  async attachImages(antique_id)
+  async getOwnerRelations({user_id})
   {
-    const imagesArray = await imageService.getAllImages(antique_id)
-      .catch(err => console.error(err));
+    try
+    {
+      return await userService.show(user_id)
+    }
 
-    return { image: imagesArray };
-  }
-
-  async attachOneImage(antique_id)
-  {
-    const imageObject = await imageService.getFirstImage(antique_id)
-      .catch(err => console.error(err));
-
-    return { image: imageObject }
+    catch (err) {console.error(err)}
   }
 
   async getUserRelations({created_at, user_id, antique_id}) {

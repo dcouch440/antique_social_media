@@ -1,6 +1,5 @@
 const addToTable = require('../../lib/add-to-table')
 const imageService = require('../../src/image/image.service');
-const { cloudinary } = require('../../src/image/cloudinary.config');
 const { randomUser, randomAntique, staticUser } = require('../../lib/seed-data');
 const { hashPassword } = require('../../src/auth/auth.bcrypt');
 
@@ -11,8 +10,7 @@ exports.seed = async knex => {
     await knex.raw('TRUNCATE TABLE "user" CASCADE');
     await knex.raw('TRUNCATE TABLE antique CASCADE');
     await knex.raw('TRUNCATE TABLE "like" CASCADE');
-    // await knex.raw('TRUNCATE TABLE "image" CASCADE');
-    // await cloudinary.delete_resources();
+    await knex.raw('TRUNCATE TABLE "image" CASCADE');
 
     const ENV = process.env.NODE_ENV
 
@@ -21,7 +19,9 @@ exports.seed = async knex => {
 
     // static user for testing routes
     const staticUserHash = await hashPassword(staticUser());
-    const static_user_id = await addToTable({table: 'user', obj: staticUserHash})
+    const static_user_id = await addToTable({
+      table: 'user', obj: staticUserHash
+    })
 
     for (let index = 0; index < users; index++)
     {

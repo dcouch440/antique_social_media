@@ -1,6 +1,6 @@
 const likeService = require('./like.service');
 
-class AntiqueController
+class LikeController
 {
   async like(req,res)
   {
@@ -37,4 +37,4 @@ class AntiqueController
   }
 }
 
-module.exports = new AntiqueController();
+module.exports = new LikeController();

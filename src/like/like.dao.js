@@ -1,5 +1,4 @@
 const Like = require('./like.model');
-
 class LikeDAO
 {
   isPresent({user_id, antique_id: id})
@@ -14,7 +13,7 @@ class LikeDAO
     return Like.query().where(params).delete();
   }
 
-  create(params)
+  async create(params)
   {
     return Like.query().insert(params)
   }

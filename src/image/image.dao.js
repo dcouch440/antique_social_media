@@ -23,7 +23,6 @@ class ImageDAO
 
   async destroyAllRelations(antique_id)
   {
-    console.log('lol')
     return await db('image').where('antique_id', antique_id)
   }
 

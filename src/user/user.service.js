@@ -69,11 +69,6 @@ class UserService
 
   }
 
-  async getCurrentUser()
-  {
-    
-  }
-
   all()
   {
     return userDAO.all();
