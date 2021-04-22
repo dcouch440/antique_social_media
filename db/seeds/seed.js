@@ -7,6 +7,15 @@ exports.seed = async knex => {
 
   try
   {
+
+    // mass deletes left over images for re seeding.
+    const antique_ids = await knex('image').distinct('antique_id');
+    const destroyImages = await antique_ids.map(ids => {
+      return imageService.destroyDependencyById(ids.antique_id);
+    })
+
+    await Promise.all(destroyImages);
+
     await knex.raw('TRUNCATE TABLE "user" CASCADE');
     await knex.raw('TRUNCATE TABLE antique CASCADE');
     await knex.raw('TRUNCATE TABLE "like" CASCADE');

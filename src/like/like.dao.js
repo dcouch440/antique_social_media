@@ -20,7 +20,8 @@ class LikeDAO
 
   create(params)
   {
-    return Like.query().insert(params);
+    return Like.query()
+               .insert(params);
   }
 }
 

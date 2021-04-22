@@ -18,7 +18,7 @@ class AntiqueSerializer extends APIConcerns
       return mergedData
     }
 
-    catch (err) { console.error(err) }
+    catch (err) { console.error(err); }
   }
 
   async mergeObject({antiques, user_id})
@@ -57,10 +57,10 @@ class AntiqueSerializer extends APIConcerns
   {
     try
     {
-      return await userService.show(user_id)
+      return await userService.showOvert(user_id)
     }
 
-    catch (err) {console.error(err)}
+    catch (err) { console.error(err); }
   }
 
   async getUserRelations({created_at, user_id, antique_id}) {
@@ -70,7 +70,7 @@ class AntiqueSerializer extends APIConcerns
           liked: await likeService.liked({user_id, antique_id}),
           posted: moment(created_at).fromNow(),
           logged_in: super.isLoggedIn(user_id)
-      })
+      });
     }
 
     catch(err) { console.error(err); }

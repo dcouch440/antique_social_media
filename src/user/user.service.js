@@ -74,7 +74,7 @@ class UserService
     return userDAO.all();
   }
 
-  async show(id)
+  async showOvert(id)
   {
     await userIdParams.validate({id: id})
     return userDAO.find(id);

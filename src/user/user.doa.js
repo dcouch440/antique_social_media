@@ -7,10 +7,13 @@ class UserDAO {
     return User.query();
   }
 
-  find(id)
+  async find(id)
   {
-    return User.query().findById(parseInt(id));
+    const {username} = await User.query()
+                                 .findById(parseInt(id))
+    return ({username})
   }
+
 
   destroy(id)
   {

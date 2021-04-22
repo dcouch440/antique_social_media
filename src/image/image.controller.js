@@ -7,9 +7,10 @@ class ImageController
   {
       try
       {
-        const {fileStr, antique_id} = req.body
+        console.log(req.body)
+        const {file, antique_id} = req.body
         const uploaded = await imageService.upload({
-          fileStr, antique_id
+          file, antique_id: antique_id
         });
         res.status(201).json(uploaded);
       }

@@ -9,9 +9,9 @@ class User extends Model {
 
   static get relationMappings()
   {
-
     const Antique = require('../antique/antique.model');
     const Like = require('../like/like.model');
+
     return {
       users: {
         relation: Model.BelongsToOneRelation,
@@ -22,16 +22,11 @@ class User extends Model {
         }
       },
       likes: {
-        relation: Model.HasOneThroughRelation,
+        relation: Model.HasManyRelation,
         modelClass: Like,
         join: {
           from: 'user.id',
-          through: {
-            // persons_movies is the join table.
-            from: 'like.person_id',
-            to: 'user.movieId'
-          },
-          to: 'movies.id'
+          to: 'like.user_id'
         }
       }
     }
