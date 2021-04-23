@@ -9,27 +9,27 @@ class ImageDAO
     { // attempt to change to image class when
       return db('image').insert(params)
                         .returning('id')
-                        .then(id => console.log(id))
+                        .then(id => console.log(id));
     }
 
     catch (err)
     {
       // rollback
-      console.error(err)
+      console.error(err);
       await cloudinary.uploader.destroy(params.public_id, result => {
-        console.info(result)
+        console.info(result);
       });
     }
   }
   // remove async and test
   async destroyAllRelations(antique_id)
   {
-    return await db('image').where('antique_id', antique_id)
+    return await db('image').where('antique_id', antique_id);
   }
 
   findById(antique_id)
   {
-    return db('image').where('antique_id', antique_id)
+    return db('image').where('antique_id', antique_id);
   }
 
   findByIdLimitOne(antique_id)

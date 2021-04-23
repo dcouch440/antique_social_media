@@ -34,7 +34,7 @@ class AntiqueController
         .serializeWithRelations({
           req,
           antiques: await antiqueService.show(id)
-        })
+        });
 
       res.json(antique);
     }
@@ -50,7 +50,7 @@ class AntiqueController
   {
     try
     {
-      const {id} = req.params
+      const {id} = req.params;
       const deleted = await antiqueService.destroy(id);
       res.status(204).json(deleted);
     }
@@ -66,13 +66,13 @@ class AntiqueController
   {
     try
     {
-      const {name, year, user:{id}, fileStr } = req.body;
+      const {name, year, user:{id}, file64 } = req.body;
 
       const antique = await antiqueService.create({
         name, year, user_id: id
-      })
+      });
 
-      await imageService.upload({fileStr, antique_id: antique.id })
+      await imageService.upload({file64, antique_id: antique.id });
 
       res.status(201).json(antique);
     }
@@ -86,7 +86,7 @@ class AntiqueController
 
   async queryCategory(req,res)
   {
-    const { category } = req.params
+    const { category } = req.params;
     const response = await antiqueService.queryCategory({category});
     res.status(200).json(response);
   }

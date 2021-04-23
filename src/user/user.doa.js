@@ -10,8 +10,8 @@ class UserDAO {
   async find(id)
   {
     const {username} = await User.query()
-                                 .findById(parseInt(id))
-    return ({username})
+                                 .findById(parseInt(id));
+    return ({username});
   }
 
 
@@ -27,7 +27,7 @@ class UserDAO {
 
   create(hashedPasswordAndParams)
   {
-    return User.query().insert(hashedPasswordAndParams)
+    return User.query().insert(hashedPasswordAndParams);
   }
 
   select({LIMIT, OFFSET})
@@ -36,4 +36,4 @@ class UserDAO {
   }
 }
 
-module.exports = new UserDAO()
+module.exports = new UserDAO();

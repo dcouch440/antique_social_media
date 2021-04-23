@@ -7,8 +7,7 @@ class ImageController
   {
       try
       {
-        console.log(req.body)
-        const {file, antique_id} = req.body
+        const {file, antique_id} = req.body;
         const uploaded = await imageService.upload({
           file, antique_id: antique_id
         });
@@ -20,7 +19,7 @@ class ImageController
 
   async destroy(req,res)
   {
-    const {antiqueId :antique_id} = req.body
+    const {antiqueId :antique_id} = req.body;
     try
     {
       await imageService.destroyFolderByAntiqueId(antique_id);

@@ -3,7 +3,7 @@ const { cloudinary } = require('./cloudinary.config')
 const folderName = require('../../constant/image-file');
 class ImageService
 {
-  async upload({file, antique_id})
+  async upload({file64, antique_id})
   {
     try
     {
@@ -13,7 +13,7 @@ class ImageService
         height, format, resource_type
 
       } = await cloudinary
-                  .uploader.upload( file ,{
+                  .uploader.upload( file64 ,{
                     upload_preset: 'ml_default',
                     folder: folderName(antique_id)
                   });
@@ -21,7 +21,7 @@ class ImageService
       return imageDAO.storeUrl({
         image_url, antique_id, public_id, width,
         height, format, resource_type
-      })
+      });
     }
 
     catch (err) { console.error(err); }
