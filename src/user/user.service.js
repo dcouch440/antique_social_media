@@ -11,7 +11,9 @@ class UserService
 
     try
     {
+
       const user = await userDAO.findByEmail(email)
+
       if (!user)
       {
         throw new Error('Invalid username or Password');
@@ -26,10 +28,17 @@ class UserService
         username: user.username,
         email: user.email
       }
-
       const token = await jwt.sign(payload)
 
-      return {token, user: payload}
+      res.cookie("token", token, {
+        sameSite: 'strict',
+        path: '/',
+        expires: new Date(new Date().getTime() + 100 * 1000),
+        httpOnly: true,
+        // secure: true,
+      })
+
+      return {user: payload}
     }
     catch (err)
     {
@@ -49,18 +58,25 @@ class UserService
         res.status(403);
         throw new Error('email Found');
       }
-
       const userParams = {username, password, email};
       await newUserParams.validate(userParams, {abortEarly: false});
-
       const hashedPasswordUser = await hashPassword({res, username, email, password});
+
       const createdUser = await userDAO.create(hashedPasswordUser);
       delete createdUser.password_digest;
 
       const payload = {id: createdUser.id, username, email};
       const token = await jwt.sign(payload);
 
-      return {...payload, token}
+      res.cookie("token", token, {
+        sameSite: 'strict',
+        path: '/',
+        expires: new Date(new Date().getTime() + 100 * 1000),
+        httpOnly: true,
+        // secure: true,
+      })
+
+      return {user: payload}
     }
     catch(err)
     {

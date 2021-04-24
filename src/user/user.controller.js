@@ -12,10 +12,7 @@ class UserController {
       });
       res.status(200).json(payload);
     }
-    catch(err)
-    {
-      res.status(403).json(err);
-    }
+    catch(err) { res.status(403).json(err); }
   }
 
   async signUp(req,res)
@@ -23,7 +20,6 @@ class UserController {
     try
     {
       const {username, password, email} = req.body;
-
       const payload = await userService.signUp({
         res, username, password, email
       });
@@ -44,10 +40,7 @@ class UserController {
       const users = await userService.all();
       res.status(200).json(users)
     }
-    catch (err)
-    {
-      ''
-    }
+    catch (err) { console.error(err); }
   }
 
   async show(req,res)
@@ -66,6 +59,21 @@ class UserController {
       res.status(422).json(err)
     }
 
+  }
+
+  async signOut (req, res)
+  {
+    try
+    {
+      console.log('cats')
+      res
+        .status(202)
+        .clearCookie('token').send('cookie cleared');
+    }
+    catch (err)
+    {
+      console.error(err)
+    }
   }
 
   async destroy(req,res)

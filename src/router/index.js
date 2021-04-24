@@ -11,9 +11,7 @@ const router = express.Router();
 // ----------- first ---
 router.use(getCurrentUser)
 
-// router.use(log);
-
-router.get('/', (req,res) =>  res.json(routesConstants));
+router.use(log);
 router.use('/images', images);
 router.use('/users', users);
 router.use('/antiques', antiques);
