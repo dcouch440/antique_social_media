@@ -48,7 +48,6 @@
     "pg-escape": "^0.2.0",
     "pino": "^6.11.2",
     "pino-debug": "^2.0.0",
-    "serialize-javascript": "^5.0.1",
     "yup": "^0.32.9"
   }
 }

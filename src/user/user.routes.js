@@ -1,15 +1,17 @@
 const express = require('express');
 const userController = require('./user.controller');
-const router = express.Router()
+const router = express.Router();
 
-router.get('/', userController.all)
+
+router.get('/', userController.all);
 router.get('/signout', userController.signOut);
+router.get('/session', userController.session);
 router.get('/:id', userController.show);
 router.post('/signin', userController.signIn);
 router.post('/signup', userController.signUp);
 // router.delete('/', userController.destroy)
 
 // nested
-router.get('/:id/antiques', userController.antiquesAll)
+router.get('/:id/antiques', userController.antiquesAll);
 
 module.exports = router;

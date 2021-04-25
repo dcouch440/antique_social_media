@@ -61,12 +61,11 @@ class UserController {
 
   }
 
-  async signOut (req, res)
+  async signOut(req, res)
   {
     try
     {
-      console.log('cats')
-      res
+      await res
         .status(202)
         .clearCookie('token').send('cookie cleared');
     }
@@ -74,6 +73,16 @@ class UserController {
     {
       console.error(err)
     }
+  }
+
+  async session(req,res)
+  {
+    try
+    {
+      await res.status(200).json(req.currentUser);
+    }
+
+    catch (err) { res.status(401) }
   }
 
   async destroy(req,res)

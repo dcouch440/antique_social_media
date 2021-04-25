@@ -67,9 +67,9 @@ class AntiqueSerializer extends APIConcerns
     try
     {
       return ({
-          liked: await likeService.liked({user_id, antique_id}),
-          posted: moment(created_at).fromNow(),
-          logged_in: super.isLoggedIn(user_id)
+        liked: await likeService.liked({user_id, antique_id}),
+        posted: moment(created_at).fromNow(),
+        logged_in: super.isLoggedIn(user_id)
       });
     }
 

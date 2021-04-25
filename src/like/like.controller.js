@@ -6,9 +6,9 @@ class LikeController
   {
     try
     {
-      const {antique_id, user_id} = req.body;
+      const {antique_id} = req.body;
       const liked = await likeService.like({
-        req, antique_id, user_id
+        req, antique_id, user_id: req.currentUser.user_id
       })
       res.status(201).json(liked)
     }
@@ -24,9 +24,9 @@ class LikeController
   {
     try
     {
-      const {antique_id, user_id} = req.body;
+      const {antique_id} = req.body;
       const liked = await likeService.unlike({
-        req, antique_id, user_id
+        req, antique_id, user_id: req.currentUser.user_id
       })
       res.status(204).json(liked)
     }

@@ -2,13 +2,13 @@ const userDAO = require('./user.doa');
 const jwt = require('../auth/auth.jwt');
 const { hashPassword , compareHash } = require('../auth/auth.bcrypt');
 const { newUserParams, userIdParams } = require('./user.params');
+const cookieExpiration = require('../../constant/cookie-time');
 
 class UserService
 {
 
   async signIn({res, password, email})
   {
-
     try
     {
 
@@ -33,23 +33,19 @@ class UserService
       res.cookie("token", token, {
         sameSite: 'strict',
         path: '/',
-        expires: new Date(new Date().getTime() + 100 * 1000),
+        expires: cookieExpiration,
         httpOnly: true,
         // secure: true,
-      })
+      });
 
-      return {user: payload}
-    }
-    catch (err)
-    {
-      res.status(403).json(err);
+      return payload;
     }
 
+    catch (err){ res.status(403).json(err); }
   }
 
   async signUp({res, username, password, email})
   {
-
     try
     {
       const user = await userDAO.findByEmail(email);
@@ -71,18 +67,15 @@ class UserService
       res.cookie("token", token, {
         sameSite: 'strict',
         path: '/',
-        expires: new Date(new Date().getTime() + 100 * 1000),
+        expires: cookieExpiration,
         httpOnly: true,
         // secure: true,
       })
 
-      return {user: payload}
-    }
-    catch(err)
-    {
-      res.status(403).json(err);
+      return payload
     }
 
+    catch(err) { res.status(403).json(err); }
   }
 
   all()
