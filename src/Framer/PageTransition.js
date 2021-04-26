@@ -2,8 +2,8 @@ import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
 const Container = styled.div`
-  width: 100%;
-  height: 100%;
+  width: inherit;
+  height: inherit;
 `
 
 const transition = {

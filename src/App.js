@@ -4,6 +4,7 @@ import GlobalStyles from './GlobalStyles';
 import AntiqueMock from './antiques-mock/antiques';
 import AntiquesPage from "./pages/AntiquesPage";
 import AntiquePage from "./pages/AntiquePage";
+import Navbar from "./Nav/Navbar";
 
 const App = () => {
   const location = useLocation();
@@ -11,6 +12,7 @@ const App = () => {
   return (
     <>
       <GlobalStyles />
+      <Navbar />
       <AnimatePresence>
         <Switch location={location} key={location.key}>
           <Route exact path="/">

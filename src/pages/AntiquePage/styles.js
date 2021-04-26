@@ -12,7 +12,7 @@ export const GoBackButton = styled.button`
 
 export const Page = styled.div`
   position: relative;
-  height: 100%;
+  height: inherit;
   width: 100%;
   display: flex;
   flex-direction: column;

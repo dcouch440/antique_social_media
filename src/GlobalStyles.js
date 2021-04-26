@@ -5,7 +5,7 @@ const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
 	}
 	html, body {
-    height: 100%;
+    height: calc(100vh - 60px);
     width: 100%;
     margin: 0;
 	}
@@ -15,8 +15,8 @@ const GlobalStyles = createGlobalStyle`
     overflow: ${({stopScroll}) => stopScroll && 'hidden'};
 	}
   #root {
-    height: 100%;
-    width: 100%;
+    height: inherit;
+    width: inherit;
   }
 `;
 

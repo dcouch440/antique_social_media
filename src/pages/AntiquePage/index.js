@@ -1,7 +1,7 @@
 import React from 'react';
-import * as styled from './styles';
+import * as styles from './styles';
 import Loading from '../../Framer/Loading';
-import Antique from './Antique';
+import Antique from './AntiqueInfo';
 import { useParams , withRouter} from 'react-router-dom';
 import PageTransition from '../../Framer/PageTransition';
 import * as variants from './variants';
@@ -25,12 +25,12 @@ const AntiquePage = ({antique, ...props}) => {
 
   return (
     <PageTransition>
-      <styled.Page>
+      <styles.Page>
         <Loading
           loadingState={loading}
           render={
             <>
-              <styled.GoBackButton
+              <styles.GoBackButton
                 variants={variants.fromRightSide}
                 initial="hidden"
                 animate="visible"
@@ -41,12 +41,12 @@ const AntiquePage = ({antique, ...props}) => {
                 onClick={handleClick}
               >
                 Go Back
-              </styled.GoBackButton>
+              </styles.GoBackButton>
               <Antique antique={antique[id]} />
             </>
           }
         />
-      </styled.Page>
+      </styles.Page>
     </PageTransition>
   )
 

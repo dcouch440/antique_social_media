@@ -1,13 +1,28 @@
-import React from "react";
-
+import React, {useState, useEffect} from "react";
+import axios from 'axios';
 const Context = React.createContext();
 
-const ContextProvider = (props) => {
-    return (
-        <Context.Provider value={{}}>
-           {props.children}
-        </Context.Provider>
-    );
+const ContextProvider = props => {
+  const [currentUser, setCurrentUser] = useState({
+    user_id: undefined, username: undefined, email: undefined
+  });
+
+  useEffect(() => {
+    axios
+      .get('/users/session', { withCredentials: true })
+      .then(res => setCurrentUser(res.data))
+      .catch(err => console.error(err));
+  }, [])
+
+  return (
+    <Context.Provider value={{
+      currentUser,
+      setCurrentUser
+    }}>
+      {props.children}
+    </Context.Provider>
+  );
+
 }
 
 export {ContextProvider, Context};

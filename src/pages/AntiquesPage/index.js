@@ -6,11 +6,11 @@ const AntiquesPage = ({antiques}) => {
 
   return (
     <>
-    <PageTransition>
-      <styled.Grid>
-        <Antiques antiques={antiques} />
-      </styled.Grid>
-    </PageTransition>
+      <PageTransition>
+        <styled.Grid>
+          <Antiques antiques={antiques} />
+        </styled.Grid>
+      </PageTransition>
     </>
   )
 

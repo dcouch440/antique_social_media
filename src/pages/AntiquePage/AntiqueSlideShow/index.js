@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import wide from '../../../antiques-mock/img/bottle-wide.jpg'
 import tall from '../../../antiques-mock/img/bottle-tall.jpg'
 import { variants } from './variants';
 import { wrap } from "popmotion";
 import { AnimatePresence, motion } from 'framer-motion';
-import * as styled from './styles';
-
+import * as styles from './styles';
 
 
 const swipeConfidenceThreshold = 10000;
@@ -15,29 +14,39 @@ const swipePower = (offset, velocity) => {
 
 const AntiquesSlideShow = () => {
   const [[page, direction], setPage] = useState([0, 0]);
+  const [nextSlide, setNextSlide] = useState(0)
+  const isTapped = useRef(false)
   const images = [wide,tall]
   const imageIndex = wrap(0, images.length, page);
 
   useEffect(() => {
 
     const timer = setTimeout(() => {
-      paginate(1);
-    }, 2000)
+
+      if (!isTapped.current) paginate(1);
+      else setNextSlide(prev=> prev += 1);
+
+    }, 10000);
 
     return  () => clearTimeout(timer);
 
-  }, [page]);
+  }, [page, nextSlide]);
+
+  const handleMouseEnter = () => isTapped.current = true
+  const handleMouseLeave = () => isTapped.current = false
 
   const paginate = (newDirection) => {
     setPage([page + newDirection, newDirection]);
   }
 
   return (
-      <styled.SlideShow>
+      <styles.SlideShow>
         <AnimatePresence initial={true} custom={direction}>
           <motion.img
             key={page}
             src={images[imageIndex]}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
             custom={direction}
             variants={variants}
             initial="enter"
@@ -67,7 +76,7 @@ const AntiquesSlideShow = () => {
         <div className="prev" onClick={() => paginate(-1)}>
           {"‣"}
         </div>
-      </styled.SlideShow>
+      </styles.SlideShow>
   )
 }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
 const loadingContainerVariants = {
@@ -42,10 +42,11 @@ const pageVariants = {
 
 const LoadingContainer = styled.div`
   margin: auto;
-  width: 5rem;
-  height: 2rem;
+  width: 100%;
+  height: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
 `
 
 const LoadingCircle = styled.span`
@@ -86,6 +87,7 @@ const Loading = ({loadingState, render}) => (
 
     <motion.div
       variants={pageVariants}
+      style={{height: 'inherit', width: 'inherit'}}
       initial='hidden'
       animate='visible'
     >
