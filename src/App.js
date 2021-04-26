@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Switch, useLocation, Redirect } from "react-router";
+import { AnimatePresence } from 'framer-motion';
+import GlobalStyles from './GlobalStyles';
+import AntiqueMock from './antiques-mock/antiques';
+import AntiquesPage from "./pages/AntiquesPage";
+import AntiquePage from "./pages/AntiquePage";
 
-function App() {
+const App = () => {
+  const location = useLocation();
+  const antiqueData = AntiqueMock
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <GlobalStyles />
+      <AnimatePresence>
+        <Switch location={location} key={location.key}>
+          <Route exact path="/">
+            <Redirect to="/antiques" />
+          </Route>
+          <Route exact path='/antiques'>
+            <AntiquesPage antiques={antiqueData} />
+          </Route>
+          <Route exact path='/antiques/:id'>
+            <AntiquePage antique={antiqueData}/>
+          </Route>
+        </Switch>
+      </AnimatePresence>
+    </>
   );
 }
 
