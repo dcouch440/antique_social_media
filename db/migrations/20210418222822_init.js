@@ -1,6 +1,5 @@
 exports.up = async knex => {
-  await Promise.all([
-    knex.schema.createTable(
+    return knex.schema.createTable(
       'image', table => {
         table.increments();
         table
@@ -22,12 +21,10 @@ exports.up = async knex => {
         table.timestamps(true, true);
         table.datetime('deleted_at');
       }
-    )
-  ]);
+    );
 };
 
 exports.down = async knex => {
   return knex.schema
     .dropTableIfExists('image');
-
 };

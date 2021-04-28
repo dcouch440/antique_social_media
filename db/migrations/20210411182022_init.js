@@ -58,12 +58,12 @@ exports.up = async knex => {
         table.timestamps(true, true);
         table.datetime('deleted_at');
       }
-    )
+    );
 };
 
 exports.down = async knex => {
   return knex.schema
-  .dropTableIfExists('like')
-  .dropTableIfExists('antique')
-  .dropTableIfExists('user')
+    .dropTableIfExists('like')
+    .dropTableIfExists('antique')
+    .dropTableIfExists('user');
 };

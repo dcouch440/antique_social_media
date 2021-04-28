@@ -11,9 +11,10 @@ class AntiqueSerializer extends APIConcerns
     try
     {
       const {user_id} = req.currentUser;
+      const {user_id :owner_id} = antiques
       const mergedData = Array.isArray(antiques) ?
         Promise.all(this.mergeArray({antiques, user_id})):
-        this.mergeObject({antiques, user_id});
+        this.mergeObject({antiques, user_id, owner_id});
 
       return mergedData
     }
@@ -21,7 +22,7 @@ class AntiqueSerializer extends APIConcerns
     catch (err) { console.error(err); }
   }
 
-  async mergeObject({antiques, user_id})
+  async mergeObject({antiques, user_id, owner_id})
   {
     try
     {
@@ -32,7 +33,7 @@ class AntiqueSerializer extends APIConcerns
           await this.getUserRelations({
             created_at, user_id, antique_id
           }),
-          user_id && await this.getOwnerRelations({user_id})
+          user_id && await this.getOwnerRelations({owner_id})
         )
     }
 
@@ -53,11 +54,11 @@ class AntiqueSerializer extends APIConcerns
     })
   }
 
-  async getOwnerRelations({user_id})
+  async getOwnerRelations({owner_id})
   {
     try
     {
-      return await userService.showOvert(user_id)
+      return await userService.showOvert(owner_id)
     }
 
     catch (err) { console.error(err); }

@@ -7,9 +7,9 @@ class ImageController
   {
       try
       {
-        const {file, antique_id} = req.body;
+        const {file64, antique_id} = req.body;
         const uploaded = await imageService.upload({
-          file, antique_id: antique_id
+          file64, antique_id: antique_id
         });
         res.status(201).json(uploaded);
       }
@@ -24,6 +24,22 @@ class ImageController
     {
       await imageService.destroyFolderByAntiqueId(antique_id);
       res.status(204).json({message: 'Deleted'});
+    }
+
+    catch (err) { console.error(err); }
+  }
+
+  // AUTHORIZE IMAGE ROUTES
+  async uploadAvatar(req,res)
+  {
+    try
+    {
+      const {file64} = req.body
+      const uploaded = await imageService.uploadAvatar({
+        file64, user_id: req.currentUser.user_id
+      });
+
+      res.status(201).json(uploaded)
     }
 
     catch (err) { console.error(err); }

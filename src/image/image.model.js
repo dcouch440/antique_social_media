@@ -16,8 +16,8 @@ class Image extends Model {
         relation: Model.BelongsToOneRelation,
         modelClass: Antique,
         join: {
-          from: 'like.antique_id',
-          to: 'image.id'
+          from: 'image.antique_id',
+          to: 'antique.id'
         }
       },
       user: {
@@ -25,7 +25,7 @@ class Image extends Model {
         modelClass: User,
         join: {
           from: 'like.user_id',
-          to: 'image.id'
+          to: 'user.id'
         }
       },
     }

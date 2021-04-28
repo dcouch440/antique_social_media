@@ -1,5 +1,9 @@
-const db = require('../../db');
-const { cloudinary } = require('./cloudinary.config');
+const { cloudinary } = require('../config/cloudinary.config');
+const Image = require('./image.model');
+
+// NOTE THIS FILE WAS EDITED AWAY FROM USING DB('IMAGE') AND MOVED TO IMAG.QUERY()
+// TEST CASE THIS FOR ERRORS IN THE FUTURE
+
 
 class ImageDAO
 {
@@ -7,7 +11,7 @@ class ImageDAO
   {
     try
     { // attempt to change to image class when
-      return db('image').insert(params)
+      return Image.query().insert(params)
                         .returning('id')
                         .then(id => console.log(id));
     }
@@ -21,20 +25,21 @@ class ImageDAO
       });
     }
   }
+
   // remove async and test
   async destroyAllRelations(antique_id)
   {
-    return await db('image').where('antique_id', antique_id);
+    return await Image.query().where('antique_id', antique_id);
   }
 
   findById(antique_id)
   {
-    return db('image').where('antique_id', antique_id);
+    return Image.query().where('antique_id', antique_id);
   }
 
   findByIdLimitOne(antique_id)
   {
-    return db('image').where('antique_id', antique_id)
+    return Image.query().where('antique_id', antique_id)
                       .first();
   }
 

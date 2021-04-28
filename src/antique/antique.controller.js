@@ -66,7 +66,7 @@ class AntiqueController
   {
     try
     {
-      const {name, year, file64 } = req.body;
+      const {name, year, file64} = req.body;
 
       const antique = await antiqueService.create({
         name, year, user_id: req.currentUser.user_id
@@ -86,7 +86,7 @@ class AntiqueController
 
   async queryCategory(req,res)
   {
-    const { category } = req.params;
+    const {category} = req.params;
     const response = await antiqueService.queryCategory({category});
     res.status(200).json(response);
   }

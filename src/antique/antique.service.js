@@ -1,5 +1,5 @@
 const antiqueDAO = require('./antique.doa');
-const { limitOffset } = require('./antique.constant');
+const { limitOffset }  = require('./antique.constant');
 const { antiqueParams, queryParams } = require('./antique.params');
 const { objLength, parseObjectInts } = require('../../lib/utils');
 const imageService = require('../image/image.service');
