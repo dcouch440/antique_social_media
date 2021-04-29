@@ -10,7 +10,7 @@ export const SlideShow = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #151515;
+  background: #151515de;
   overflow: hidden;
   padding: 0;
   margin: 0;
@@ -43,7 +43,7 @@ export const SlideShow = styled.div`
         -webkit-repeating-radial-gradient( 50% 50%,100% 100%,hsla(0,0%,100%,0) 0%,hsla(0,0%,100%,0) 1.2%,hsla(0,0%,100%,.2) 2.2%),
         -webkit-radial-gradient( 50% 50%,200% 50%,hsla(0,0%,90%,1) 5%,hsla(0,0%,85%,1) 30%,hsla(0,0%,60%,1) 100%);
     &:hover {
-      box-shadow: inset 0px 0px 5px 1px black, 0px 0px 2px black, 0 0 5px blue;
+      box-shadow: inset 0px 0px 5px 1px black, 0px 0px 2px black, 0 0 3px 1px black;
       color: blue;
       text-shadow: 0 0 2px blue;
       transition: .2s;
@@ -52,9 +52,8 @@ export const SlideShow = styled.div`
       box-shadow: inset 0px 0px 5px 1px black, 0px 0px 2px black, 0 0 5px white;
       transition: .2s;
     }
-    
+    @media (max-width: 1000px) { display: none; }
   }
-
 
   .next {
     right: 10px;
@@ -71,5 +70,6 @@ export const SlideShow = styled.div`
     object-fit: cover;
     max-height: 100%;
     max-width: 100%;
+    @media (max-width: 1000px) { padding: 5px; }
   }
 `

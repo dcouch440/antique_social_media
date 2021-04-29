@@ -3,8 +3,7 @@ import styled from 'styled-components';
 export const Grid = styled.div`
   padding-top: 20px;
   display: grid;
-  justify-content: center;
-  grid-gap: 2px;
+  grid-gap: 5px;
   width: 1500px;
   margin: 0 auto;
   grid-auto-flow: dense;

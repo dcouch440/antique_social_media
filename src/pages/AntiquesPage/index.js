@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import * as styled from './styles';
 import Antiques from './Antiques'
 import PageTransition from '../../Framer/PageTransition';
-const AntiquesPage = ({antiques}) => {
+import axios from 'axios';
 
+const AntiquesPage = () => {
+  const [antiques, setAntiques] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get('/antiques', {withCredentials: true})
+      .then(resp => {
+        setAntiques(resp.data)
+      })
+      .catch(err => console.error(err));
+
+  }, [])
   return (
     <>
       <PageTransition>

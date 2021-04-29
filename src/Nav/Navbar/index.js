@@ -4,9 +4,8 @@ import DropDown from '../DropDown';
 import { Context } from '../../Context';
 
 
-
 const Navbar = () => {
-  const { currentUser } = useContext(Context)
+
   const [menu, setMenu] = useState('none');
   const menuButton = useRef()
 
@@ -19,7 +18,7 @@ const Navbar = () => {
       <styles.Menu className={'menu-button'} ref={menuButton} onClick={handleClick}>
         ☰
       </styles.Menu>
-      <DropDown currentUser={currentUser} display={menu} />
+      <DropDown display={menu} />
     </styles.Nav>
   )
 }

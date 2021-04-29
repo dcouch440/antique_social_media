@@ -1,21 +1,34 @@
 import React from 'react';
 import AntiquesSlideShow from '../AntiqueSlideShow';
-import * as styles from './styles';
+import User from '../User';
+import { About, Page, Tag, Blog} from './styles';
 
-const Antique = ({antique}) => {
+const AntiqueInfo = ({antique}) => {
 
   return (
-    <styles.Container>
+    <Page>
 
-      <AntiquesSlideShow  />
-      <div>
-        <styles.Attribute>{antique.name}</styles.Attribute>
-        <styles.Attribute>{antique.year}</styles.Attribute>
-        <styles.Attribute>{antique.body}</styles.Attribute>
-      </div>
+      <AntiquesSlideShow antiqueImages={antique.images} />
+      <About>
+        <User ownerInfo={antique.antique_owner}/>
+        <Blog>
+          <div>
+            <Tag>Name: </Tag>{antique.name}
+          </div>
+          <div>
+          <Tag>Year: </Tag>{antique.year}
+          </div>
+          <div>
+            <div>
+              <Tag>A Bit About This Item: </Tag>
+            </div>
+            {antique.body}
+          </div>
+        </Blog>
+      </About>
 
-    </styles.Container>
+    </Page>
   )
 }
 
-export default Antique;
+export default AntiqueInfo;

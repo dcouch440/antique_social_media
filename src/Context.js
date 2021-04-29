@@ -4,7 +4,7 @@ const Context = React.createContext();
 
 const ContextProvider = props => {
   const [currentUser, setCurrentUser] = useState({
-    user_id: undefined, username: undefined, email: undefined
+    id: undefined, username: undefined, email: undefined
   });
 
   useEffect(() => {
@@ -12,7 +12,7 @@ const ContextProvider = props => {
       .get('/users/session', { withCredentials: true })
       .then(res => setCurrentUser(res.data))
       .catch(err => console.error(err));
-  }, [])
+  }, [setCurrentUser])
 
   return (
     <Context.Provider value={{

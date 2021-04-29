@@ -5,8 +5,8 @@ export const Nav = styled.div`
   width: 100%;
   height: 60px;
   background: rgb(0,0,0);
-  background: linear-gradient(180deg,rgb(0 0 0 / 79%) 0%,rgb(0 0 0 / 84%) 74%);
-  box-shadow: 3px 2px 20px #000000e0;
+  background: linear-gradient(180deg ,rgb(0 0 0 / 35%) 0%,rgb(0 0 0 / 57%) 74%);
+  box-shadow: 0px 0px 20px 2px #0000008f, inset 0px -1px 90px -1px #ffffff29;
   color: whitesmoke;
   display: flex;
   align-items: center;

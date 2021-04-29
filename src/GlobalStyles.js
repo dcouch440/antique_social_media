@@ -1,6 +1,10 @@
 import { createGlobalStyle } from  'styled-components';
 
 const GlobalStyles = createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100&display=swap');
+  :root {
+    --max-page-width: 80%;
+  }
 	* {
     box-sizing: border-box;
 	}
@@ -8,6 +12,7 @@ const GlobalStyles = createGlobalStyle`
     height: calc(100vh - 60px);
     width: 100%;
     margin: 0;
+    background-color: antiquewhite;
 	}
 	body {
     -webkit-font-smoothing: antialiased;

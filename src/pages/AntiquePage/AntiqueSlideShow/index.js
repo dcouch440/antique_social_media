@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import wide from '../../../antiques-mock/img/bottle-wide.jpg'
 import tall from '../../../antiques-mock/img/bottle-tall.jpg'
 import { variants } from './variants';
@@ -7,17 +7,23 @@ import { AnimatePresence, motion } from 'framer-motion';
 import * as styles from './styles';
 
 
-const swipeConfidenceThreshold = 10000;
-const swipePower = (offset, velocity) => {
-  return Math.abs(offset) * velocity;
-};
 
-const AntiquesSlideShow = () => {
+const AntiquesSlideShow = ({antiqueImages}) => {
   const [[page, direction], setPage] = useState([0, 0]);
   const [nextSlide, setNextSlide] = useState(0)
   const isTapped = useRef(false)
-  const images = [wide,tall]
-  const imageIndex = wrap(0, images.length, page);
+  console.log(antiqueImages);
+  // IMAGES LOAD IN HERE WITH IMAGES TAG >>> SET API CALL IN PROPS
+  const imageIndex = wrap(0, antiqueImages.length, page);
+
+  const swipeConfidenceThreshold = 10000;
+  const swipePower = (offset, velocity) => {
+    return Math.abs(offset) * velocity;
+  };
+
+  const paginate = useCallback((newDirection) => {
+    setPage([page + newDirection, newDirection]);
+  }, [page])
 
   useEffect(() => {
 
@@ -30,21 +36,18 @@ const AntiquesSlideShow = () => {
 
     return  () => clearTimeout(timer);
 
-  }, [page, nextSlide]);
+  }, [page, paginate, nextSlide]);
 
   const handleMouseEnter = () => isTapped.current = true
   const handleMouseLeave = () => isTapped.current = false
 
-  const paginate = (newDirection) => {
-    setPage([page + newDirection, newDirection]);
-  }
 
   return (
       <styles.SlideShow>
         <AnimatePresence initial={true} custom={direction}>
           <motion.img
             key={page}
-            src={images[imageIndex]}
+            src={antiqueImages[imageIndex].image_url}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             custom={direction}
@@ -52,10 +55,7 @@ const AntiquesSlideShow = () => {
             initial="enter"
             animate="center"
             exit="exit"
-            transition={{
-              x: { type: "spring", stiffness: 300, damping: 30 },
-              opacity: { duration: 0.2 }
-            }}
+            transition='transition'
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
             dragElastic={1}

@@ -1,19 +1,14 @@
 import styled from 'styled-components';
 
-export const GoBackButton = styled.button`
-  all: unset;
-  border: 2px solid black;
-  padding: 5px;
-  cursor: pointer;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-`;
-
 export const Page = styled.div`
   position: relative;
   height: inherit;
-  width: 100%;
+  padding: 5px;
+  width: var(--max-page-width);
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
+  @media (max-width: 1400px) {
+    width: 100%;
+  }
 `;

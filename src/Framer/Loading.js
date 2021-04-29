@@ -41,7 +41,6 @@ const pageVariants = {
 }
 
 const LoadingContainer = styled.div`
-  margin: auto;
   width: 100%;
   height: 100%;
   display: flex;
@@ -50,11 +49,26 @@ const LoadingContainer = styled.div`
 `
 
 const LoadingCircle = styled.span`
-  display: block;
-  width: 2vw;
-  height: 2vh;
-  background-color: black;
-  border-radius: 1rem;
+  font-size: 3em;
+  width: 0.4em;
+  box-sizing: content-box;
+  height: 0.4em;
+  border: 0.1em solid black;
+  position: relative;
+  border-radius: 0.35em;
+  margin: 13px;
+    &:before {
+      content: "";
+      display: inline-block;
+      position: absolute;
+      right: -0.25em;
+      bottom: -0.1em;
+      border-width: 0;
+      background: black;
+      width: 0.35em;
+      height: 0.08em;
+      transform: rotate(45deg);
+    }
 `
 
 const Loading = ({loadingState, render}) => (
@@ -87,7 +101,7 @@ const Loading = ({loadingState, render}) => (
 
     <motion.div
       variants={pageVariants}
-      style={{height: 'inherit', width: 'inherit'}}
+      style={{height: '100%', width: '100%'}}
       initial='hidden'
       animate='visible'
     >

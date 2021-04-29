@@ -1,27 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import * as styles from './styles';
 import Loading from '../../Framer/Loading';
-import Antique from './AntiqueInfo';
+import AntiqueInfo from './AntiqueInfo';
 import { useParams , withRouter} from 'react-router-dom';
 import PageTransition from '../../Framer/PageTransition';
-import * as variants from './variants';
-import { motion } from 'framer-motion';
+import GoBackButton from './GoBackButton';
+import axios from 'axios';
 
-const AntiquePage = ({antique, ...props}) => {
+const AntiquePage = props => {
   const { id } = useParams();
-  console.log(props)
   const [loading, setLoading] = React.useState(true);
+  const [antique, setAntique] = React.useState({});
+  const handleClick = () => props.history.push('/antiques');
 
-  const handleClick = () => {
-    props.history.push('/antiques');
-  }
-
-
-  setTimeout(() => {
-    // API CALL
-    setLoading(false);
-  }, 1000)
-
+  useEffect(() => {
+    axios.get(`/antiques/${id}`, {withCredentials: true})
+    .then(res => {
+      setAntique(res.data)
+      setLoading(false);
+    })
+    .catch(err => console.error(err))
+  }, [id]);
 
   return (
     <PageTransition>
@@ -30,19 +29,8 @@ const AntiquePage = ({antique, ...props}) => {
           loadingState={loading}
           render={
             <>
-              <styles.GoBackButton
-                variants={variants.fromRightSide}
-                initial="hidden"
-                animate="visible"
-                timing="timing"
-                transition="transition"
-                exit="exit"
-                as={motion.button}
-                onClick={handleClick}
-              >
-                Go Back
-              </styles.GoBackButton>
-              <Antique antique={antique[id]} />
+              <GoBackButton handleClick={handleClick} text={'Back  ▶'} />
+              <AntiqueInfo antique={antique} />
             </>
           }
         />
