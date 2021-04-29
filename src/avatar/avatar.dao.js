@@ -8,29 +8,34 @@ class AvatarDAO
   {
     try
     {
-      return Avatar.query().insert(params)
-                           .returning('id')
-                           .then(id => console.log(id));
+      return Avatar.query()
+        .insert(params)
+        .returning('id')
+        .then(id => console.log(id));
     }
 
     catch (err)
     {
       // rollback
       console.error(err);
-      await cloudinary.uploader.destroy(params.public_id, result => {
-        console.info(result);
-      });
+      await cloudinary.uploader
+        .destroy(params.public_id, result => {
+          console.info(result);
+        });
     }
   }
 
   async destroyById (user_id)
   {
-    return Avatar.query().where('user_id', user_id).del()
+    return Avatar.query()
+      .where('user_id', user_id)
+      .del()
   }
 
   findById(user_id)
   {
-    return Avatar.query().where('user_id', user_id);
+    return Avatar.query()
+      .where('user_id', user_id);
   }
 
 }

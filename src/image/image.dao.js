@@ -11,36 +11,41 @@ class ImageDAO
   {
     try
     { // attempt to change to image class when
-      return Image.query().insert(params)
-                        .returning('id')
-                        .then(id => console.log(id));
+      return Image.query()
+        .insert(params)
+        .returning('id')
+        .then(id => console.log(id));
     }
 
     catch (err)
     {
       // rollback
       console.error(err);
-      await cloudinary.uploader.destroy(params.public_id, result => {
-        console.info(result);
-      });
+      await cloudinary.uploader
+        .destroy(params.public_id, result => {
+          console.info(result);
+        });
     }
   }
 
   // remove async and test
   async destroyAllRelations(antique_id)
   {
-    return await Image.query().where('antique_id', antique_id);
+    return await Image.query()
+      .where('antique_id', antique_id);
   }
 
   findById(antique_id)
   {
-    return Image.query().where('antique_id', antique_id);
+    return Image.query()
+      .where('antique_id', antique_id);
   }
 
   findByIdLimitOne(antique_id)
   {
-    return Image.query().where('antique_id', antique_id)
-                      .first();
+    return Image.query()
+      .where('antique_id', antique_id)
+      .first();
   }
 
 }

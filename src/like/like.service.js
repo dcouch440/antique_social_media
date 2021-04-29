@@ -1,5 +1,4 @@
 const LikeDAO = require('./like.dao');
-// const UserDAO = require('../user/user.doa');
 
 class LikeService
 {

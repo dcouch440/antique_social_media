@@ -1,7 +1,6 @@
 const imageDAO = require('./image.dao');
 const { cloudinary } = require('../config/cloudinary.config')
 const antiqueFolderFormat = require('../../constant/image-file');
-const avatarPublicIdFormat = require('../../constant/avatar-public-id')
 
 class ImageService
 {
@@ -56,34 +55,6 @@ class ImageService
       .catch(err => console.error(err));
   }
 
-  // avatar ---
-
-  async deleteAvatarByPublicId (user_id)
-  {
-    const avatarPublicId = avatarPublicIdFormat(user_id)
-
-    await cloudinary.uploader.destroy(avatarPublicId)
-      .catch(err => console.error(err));
-  }
-
-  async uploadAvatar({file64, user_id})
-  {
-    const avatarPublicId = avatarPublicIdFormat(user_id);
-
-    const {
-      secure_url :image_url, public_id, width,
-      height, format, resource_type
-    } = await cloudinary
-                .uploader.upload( file64 , {
-                  upload_preset: 'ml_default',
-                  public_id: avatarPublicId
-                });
-
-    return imageDAO.storeAvatarUrl({
-      image_url, public_id, width,
-      height, format, resource_type, user_id
-    });
-  }
 }
 
 module.exports = new ImageService();

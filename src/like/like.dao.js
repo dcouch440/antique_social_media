@@ -6,22 +6,22 @@ class LikeDAO
   {
     if (user_id && antique_id) {
       return Like.query()
-                 .where({user_id, antique_id})
-                 .first();
+        .where({user_id, antique_id})
+        .first();
     }
   }
 
   destroy({username, antique_id, user_id})
   {
     return Like.query()
-               .where({username, antique_id, user_id})
-               .delete();
+      .where({username, antique_id, user_id})
+      .delete();
   }
 
   create(params)
   {
     return Like.query()
-               .insert(params);
+      .insert(params);
   }
 }
 

@@ -5,7 +5,7 @@ const avatarPublicIdFormat = require('../../constant/avatar-public-id')
 class AvatarService
 {
 
-  async deleteByPublicId (user_id)
+  async deleteByPublicId(user_id)
   {
     const avatarPublicId = avatarPublicIdFormat(user_id)
 

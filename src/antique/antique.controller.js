@@ -14,7 +14,6 @@ class AntiqueController
           req,
           antiques: await antiqueService.limitOffset(query)
         });
-      console.log(req.currentUser);
       res.status(200).json(antiquesWithLiked);
     }
 

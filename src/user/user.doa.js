@@ -7,31 +7,40 @@ class UserDAO {
     return User.query();
   }
 
-  find(id)
+  async find(id)
   {
-    return User.query().findById(parseInt(id))
-                       .withGraphFetched('avatar');
+    const {username, avatar } = await User.query()
+      .findById(parseInt(id))
+      .withGraphFetched('avatar')
+      .catch(err => console.error(err));
+
+    return {antique_owner: {username, avatar}};
   }
 
   destroy(id)
   {
-    return User.query().deleteById(id);
+    return User.query()
+      .deleteById(id);
   }
 
   findByEmail(email)
   {
-    return User.query().where('email', email).first();
+    return User.query()
+      .where('email', email).first();
   }
 
   // add password error?
   create(hashedPasswordAndParams)
   {
-    return User.query().insert(hashedPasswordAndParams)
+    return User.query()
+      .insert(hashedPasswordAndParams)
   }
 
   select({LIMIT, OFFSET})
   {
-    return User.query().offset({OFFSET}).limit({LIMIT});
+    return User.query()
+      .offset({OFFSET})
+      .limit({LIMIT});
   }
 }
 

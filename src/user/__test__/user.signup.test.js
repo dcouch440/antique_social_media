@@ -23,7 +23,7 @@ describe('POST /users/signup', () => {
       .expect('Content-Type', /json/)
       .expect(200)
 
-    const {token, username, email } = await response.body
+    const {token, username, email} = await response.body
     expect(token.length).toBeGreaterThan(0);
     expect(username).toEqual(signUpInfo.username);
     expect(email).toEqual(signUpInfo.email);

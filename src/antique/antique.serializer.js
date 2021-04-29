@@ -13,8 +13,8 @@ class AntiqueSerializer extends APIConcerns
       const {user_id} = req.currentUser;
       const {user_id :owner_id} = antiques
       const mergedData = Array.isArray(antiques) ?
-        Promise.all(this.mergeArray({antiques, user_id})):
-        this.mergeObject({antiques, user_id, owner_id});
+        await Promise.all(this.mergeArray({antiques, user_id})):
+        await this.mergeObject({antiques, user_id, owner_id});
 
       return mergedData
     }
@@ -33,7 +33,7 @@ class AntiqueSerializer extends APIConcerns
           await this.getUserRelations({
             created_at, user_id, antique_id
           }),
-          user_id && await this.getOwnerRelations({owner_id})
+          await this.getOwnerRelations({owner_id})
         )
     }
 
@@ -67,6 +67,7 @@ class AntiqueSerializer extends APIConcerns
   async getUserRelations({created_at, user_id, antique_id}) {
     try
     {
+      // LOGGED IN IS FOR PREVIOUS INTENTIONS -> MIGHT DELETE -> REPLACED WITH LOCAL CONTEXT
       return ({
         liked: await likeService.liked({user_id, antique_id}),
         posted: moment(created_at).fromNow(),
