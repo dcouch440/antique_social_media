@@ -1,1 +1,1 @@
-module.exports = new Date(new Date().getTime() + 100 * 1000);
+module.exports = new Date(new Date().getTime() + 10000 * 1000);
