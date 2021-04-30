@@ -4,7 +4,7 @@ const routes = require('../../../constant/routes');
 
 describe('GET /antiques', () => {
 
-  const {antiques:{get_antiques_path}} = routes
+  const {antiques:{get_antiques_path}} = routes;
 
   it('gets 20 antiques when no query is present', async () => {
 

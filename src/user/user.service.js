@@ -12,7 +12,7 @@ class UserService
     try
     {
 
-      const user = await userDAO.findByEmail(email)
+      const user = await userDAO.findByEmail(email);
 
       if (!user)
       {
@@ -27,8 +27,9 @@ class UserService
         id: user.id,
         username: user.username,
         email: user.email
-      }
-      const token = await jwt.sign(payload)
+      };
+
+      const token = await jwt.sign(payload);
 
       res.cookie("token", token, {
         sameSite: 'strict',
@@ -70,12 +71,19 @@ class UserService
         expires: cookieExpiration,
         httpOnly: true,
         // secure: true,
-      })
+      });
 
-      return payload
+      return payload;
     }
 
     catch(err) { res.status(403).json(err); }
+  }
+
+  async changeOnlineState({id, online})
+  {
+    console.log(id);
+    return await userDAO.changeOnlineState({id, online})
+      .catch(err => console.error(err));
   }
 
   all()
@@ -85,13 +93,13 @@ class UserService
 
   async showOvert(id)
   {
-    await userIdParams.validate({id: id})
+    await userIdParams.validate({id: id});
     return userDAO.find(id);
   }
 
   async destroy(id)
   {
-    await userIdParams.validate({id: id})
+    await userIdParams.validate({id: id});
     return userDAO.destroy(id);
   }
 

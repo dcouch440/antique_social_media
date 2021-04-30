@@ -25,6 +25,6 @@ describe('GET /', () => {
       .expect(404)
       .catch(err => console.error(err));
 
-  })
+  });
 
 });

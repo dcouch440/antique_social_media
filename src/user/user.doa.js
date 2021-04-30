@@ -9,12 +9,17 @@ class UserDAO {
 
   async find(id)
   {
-    const {username, avatar } = await User.query()
+    const {username, avatar, online } = await User.query()
       .findById(parseInt(id))
       .withGraphFetched('avatar')
       .catch(err => console.error(err));
 
-    return {antique_owner: {username, avatar}};
+    return {antique_owner: {username, avatar, online}};
+  }
+
+  async changeOnlineState({id, online})
+  {
+    return await User.query().where('id', id).update({online});
   }
 
   destroy(id)
@@ -33,7 +38,7 @@ class UserDAO {
   create(hashedPasswordAndParams)
   {
     return User.query()
-      .insert(hashedPasswordAndParams)
+      .insert(hashedPasswordAndParams);
   }
 
   select({LIMIT, OFFSET})

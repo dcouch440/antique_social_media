@@ -31,31 +31,31 @@ class AntiqueService
   {
     try
     {
-      const queries = objLength(query) == 2 ? query : limitOffset
-      const parsedQuery = parseObjectInts(queries)
-      await queryParams.validate(parsedQuery, {abortEarly: false})
-      return antiqueDAO.limitedList(parsedQuery)
+      const queries = objLength(query) == 2 ? query : limitOffset;
+      const parsedQuery = parseObjectInts(queries);
+      await queryParams.validate(parsedQuery, {abortEarly: false});
+      return antiqueDAO.limitedList(parsedQuery);
     }
 
-    catch(err) { return new Error(err) }
+    catch(err) { return new Error(err); }
   }
 
   async create({...params})
   {
     try
     {
-      const parsedParams = parseObjectInts(params)
-      await antiqueParams.validate(parsedParams, {abortEarly: false})
+      const parsedParams = parseObjectInts(params);
+      await antiqueParams.validate(parsedParams, {abortEarly: false});
       return antiqueDAO.create(parsedParams);
     }
 
-    catch (err) { console.error(err) }
+    catch (err) { console.error(err); }
   }
 
 
   queryCategory({category})
   {
-    console.log(category)
+    console.log(category);
     return antiqueDAO.showUniques({category});
   }
 }

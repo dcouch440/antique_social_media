@@ -6,9 +6,9 @@ const handleException = ({res, status, err}) => {
     callStack: new Error()
       .stack.replace(/(\r\n|\n|\r)/gm, "")
       .replace(/\s+/g, ' ').trim()
-  })
+  });
 
-}
+};
 
 
-module.exports = { handleException }
+module.exports = { handleException };

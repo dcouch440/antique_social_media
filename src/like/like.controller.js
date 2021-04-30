@@ -9,8 +9,8 @@ class LikeController
       const {antique_id} = req.body;
       const liked = await likeService.like({
         req, antique_id, user_id: req.currentUser.user_id
-      })
-      res.status(201).json(liked)
+      });
+      res.status(201).json(liked);
     }
 
     catch(err)
@@ -27,8 +27,8 @@ class LikeController
       const {antique_id} = req.body;
       const liked = await likeService.unlike({
         req, antique_id, user_id: req.currentUser.user_id
-      })
-      res.status(204).json(liked)
+      });
+      res.status(204).json(liked);
     }
 
     catch(err)

@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 
-'use strict'
+'use strict';
 module.exports = async (req, res, next) => {
   try
   {
@@ -19,4 +19,4 @@ module.exports = async (req, res, next) => {
 
   catch { res.status(401).json({message: 'Unauthorized'}); }
 
-}
+};

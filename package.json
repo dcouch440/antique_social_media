@@ -9,6 +9,7 @@
     "seed": "npx knex seed:run --knexfile ./knexfile.js",
     "make-seed": "npx knex seed:make new-seed --knexfile ./knexfile.js",
     "migrate": "npx knex migrate:latest --knexfile ./knexfile.js",
+    "migrate-test": "npx knex migrate:latest --knexfile ./knexfile.js NODE_ENV=test",
     "down": "npx knex migrate:down --knexfile ./knexfile.js",
     "setup-eslint": "./node_modules/.bin/eslint --init",
     "test": "jest",

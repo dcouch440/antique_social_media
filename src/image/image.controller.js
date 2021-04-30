@@ -5,16 +5,16 @@ class ImageController
 {
   async upload(req,res)
   {
-      try
-      {
-        const {file64, antique_id} = req.body;
-        const uploaded = await imageService.upload({
-          file64, antique_id: antique_id
-        });
-        res.status(201).json(uploaded);
-      }
+    try
+    {
+      const {file64, antique_id} = req.body;
+      const uploaded = await imageService.upload({
+        file64, antique_id: antique_id
+      });
+      res.status(201).json(uploaded);
+    }
 
-      catch (err) { console.error(err); }
+    catch (err) { console.error(err); }
   }
 
   async destroy(req,res)
@@ -34,12 +34,12 @@ class ImageController
   {
     try
     {
-      const {file64} = req.body
+      const {file64} = req.body;
       const uploaded = await imageService.uploadAvatar({
         file64, user_id: req.currentUser.user_id
       });
 
-      res.status(201).json(uploaded)
+      res.status(201).json(uploaded);
     }
 
     catch (err) { console.error(err); }

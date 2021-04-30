@@ -4,7 +4,7 @@ class Antique extends Model
 {
   static get tableName()
   {
-    return 'antique'
+    return 'antique';
   }
 
   static get relationMappings()
@@ -38,7 +38,7 @@ class Antique extends Model
           to: 'image.antique_id'
         }
       }
-    }
+    };
 
   }
 

@@ -1,4 +1,5 @@
-require('dotenv').config()
+require('dotenv').config();
+
 module.exports = {
 
   development: {
@@ -20,6 +21,7 @@ module.exports = {
       directory: './db/seeds',
     },
   },
+
   test: {
     client: 'postgresql',
     connection: {

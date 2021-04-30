@@ -19,7 +19,7 @@ class Avatar extends Model {
           to: 'user.id'
         }
       }
-    }
+    };
   }
 }
 

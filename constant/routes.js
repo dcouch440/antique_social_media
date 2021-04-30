@@ -23,4 +23,4 @@ module.exports = {
     post_avatars_path: '/avatars/upload'
   }
 
-}
+};

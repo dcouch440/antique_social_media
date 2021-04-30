@@ -11,12 +11,12 @@ class AntiqueSerializer extends APIConcerns
     try
     {
       const {user_id} = req.currentUser;
-      const {user_id :owner_id} = antiques
+      const {user_id :owner_id} = antiques;
       const mergedData = Array.isArray(antiques) ?
         await Promise.all(this.mergeArray({antiques, user_id})):
         await this.mergeObject({antiques, user_id, owner_id});
 
-      return mergedData
+      return mergedData;
     }
 
     catch (err) { console.error(err); }
@@ -34,7 +34,7 @@ class AntiqueSerializer extends APIConcerns
             created_at, user_id, antique_id
           }),
           await this.getOwnerRelations({owner_id})
-        )
+        );
     }
 
     catch (err) { console.error(err); }
@@ -50,15 +50,15 @@ class AntiqueSerializer extends APIConcerns
           await this.getUserRelations({
             created_at, user_id, antique_id
           }),
-        )
-    })
+        );
+    });
   }
 
   async getOwnerRelations({owner_id})
   {
     try
     {
-      return await userService.showOvert(owner_id)
+      return await userService.showOvert(owner_id);
     }
 
     catch (err) { console.error(err); }
@@ -71,7 +71,6 @@ class AntiqueSerializer extends APIConcerns
       return ({
         liked: await likeService.liked({user_id, antique_id}),
         posted: moment(created_at).fromNow(),
-        logged_in: super.isLoggedIn(user_id)
       });
     }
 
