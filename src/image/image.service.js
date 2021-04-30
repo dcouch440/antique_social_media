@@ -14,10 +14,10 @@ class ImageService
         height, format, resource_type
 
       } = await cloudinary
-                  .uploader.upload( file64 , {
-                    upload_preset: 'ml_default',
-                    folder: antiqueFolderFormat(antique_id)
-                  });
+        .uploader.upload( file64 , {
+          upload_preset: 'ml_default',
+          folder: antiqueFolderFormat(antique_id)
+        });
 
       return imageDAO.storeUrl({
         image_url, antique_id, public_id, width,

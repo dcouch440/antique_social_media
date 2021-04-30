@@ -1,6 +1,7 @@
 const addToTable = require('../../lib/add-to-table');
 const imageService = require('../../src/image/image.service');
 const { randomUser, randomAntique, staticUser } = require('../../lib/seed-data');
+const avatarService = require('../../src/avatar/avatar.service');
 const { hashPassword } = require('../../src/auth/auth.bcrypt');
 
 exports.seed = async knex => {
@@ -9,11 +10,16 @@ exports.seed = async knex => {
   {
     // mass deletes left over images for re seeding.
     const antique_ids = await knex('image').distinct('antique_id');
-    const destroyImages = await antique_ids.map(ids => {
+    const destroyImages = antique_ids.map(ids => {
       return imageService.destroyDependencyById(ids.antique_id);
     });
-
     await Promise.all(destroyImages);
+
+    const public_ids = await knex('avatar').distinct('public_id');
+    const destroyAvatars = public_ids.map(ids_object => {
+      return avatarService.deleteByPublicId(ids_object.public_id);
+    });
+    await Promise.all(destroyAvatars);
 
     await knex.raw('TRUNCATE TABLE "user" CASCADE');
     await knex.raw('TRUNCATE TABLE antique CASCADE');
@@ -33,8 +39,13 @@ exports.seed = async knex => {
 
     for (let index = 0; index < users; index++)
     {
+
       const randomUserHash = await hashPassword(randomUser());
       const user_id = await addToTable({table: 'user', obj: randomUserHash});
+      await avatarService.upload({
+        file64: './db/seeds/seed-images/bottles.jpeg',
+        user_id
+      });
 
       for (let index = 0; index < antiques; index++)
       {
@@ -43,7 +54,7 @@ exports.seed = async knex => {
         });
 
         await imageService.upload({
-          fileStr: './db/seeds/seed-images/fairy.jpg',
+          file64: './db/seeds/seed-images/wall.jpeg',
           antique_id
         });
 

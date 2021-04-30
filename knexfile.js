@@ -21,6 +21,7 @@ module.exports = {
       directory: './db/seeds',
     },
   },
+
   test: {
     client: 'postgresql',
     connection: {
