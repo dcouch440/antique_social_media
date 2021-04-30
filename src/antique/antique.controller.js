@@ -4,7 +4,7 @@ const imageService = require('../image/image.service');
 
 class AntiqueController
 {
- async index(req, res)
+  async index(req, res)
   {
     try
     {

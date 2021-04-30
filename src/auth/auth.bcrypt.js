@@ -13,7 +13,7 @@ const hashPassword = async ({username, email, password}) => {
   }
 
   catch (err) { console.log(err); }
-}
+};
 
 const compareHash = async ({res, inputPassword, userPassword}) => {
   try
@@ -28,6 +28,6 @@ const compareHash = async ({res, inputPassword, userPassword}) => {
   }
 
   catch (err) { console.log(err); }
-}
+};
 
 module.exports = { hashPassword , compareHash };

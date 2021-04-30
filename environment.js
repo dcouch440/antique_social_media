@@ -1,5 +1,5 @@
 const NodeEnvironment = require('jest-environment-node');
-const knexfile = require('./db/knexfile');
+const knexfile = require('./knexfile');
 const knex = require('knex');
 
 class customEnvironment extends NodeEnvironment
@@ -10,7 +10,7 @@ class customEnvironment extends NodeEnvironment
 
     this._knex = knex(knexfile['test']);
 
-    const {database :dbname} = knexfile.test.connection
+    const {database :dbname} = knexfile.test.connection;
 
     console.info(
       `[ENV] migrating db ${dbname}`

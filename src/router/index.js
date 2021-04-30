@@ -10,7 +10,7 @@ const log = require('../../middleware/log');
 const router = express.Router();
 
 // ----------- first ---
-router.use(getCurrentUser)
+router.use(getCurrentUser);
 
 router.use(log);
 router.use('/images', images);

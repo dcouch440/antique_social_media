@@ -1,5 +1,6 @@
 const app = require('./app');
 const server = require('http').createServer(app);
+
 const io = require('socket.io')(server, {
   cors: {
     origin: "http://localhost:3000",
@@ -10,7 +11,8 @@ const io = require('socket.io')(server, {
 
 const users = {};
 
-io.on('connection', () => {console.log('connected')});
+
+io.on('connection', () => {console.log('connected');});
 
 io.on('connection', (socket) => {
 
@@ -26,4 +28,5 @@ io.on('connection', (socket) => {
 
 });
 
-module.exports = server
+
+module.exports = server;

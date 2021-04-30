@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
-'use strict'
+'use strict';
 const getCurrentUser = async (req, res, next) => {
 
   try
@@ -19,7 +19,7 @@ const getCurrentUser = async (req, res, next) => {
       email :email
     } = decryptedUser;
 
-    const user = {user_id: userBodyId, username, email}
+    const user = {user_id: userBodyId, username, email};
     Object.freeze(user);
     req.currentUser = user;
     next();
@@ -34,6 +34,6 @@ const getCurrentUser = async (req, res, next) => {
     next();
   }
 
-}
+};
 
 module.exports = getCurrentUser;

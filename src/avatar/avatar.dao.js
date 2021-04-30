@@ -29,7 +29,7 @@ class AvatarDAO
   {
     return Avatar.query()
       .where('user_id', user_id)
-      .del()
+      .del();
   }
 
   findById(user_id)

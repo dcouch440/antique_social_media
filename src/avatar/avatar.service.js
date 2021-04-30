@@ -1,6 +1,6 @@
 const avatarDAO = require('./avatar.dao');
-const { cloudinary } = require('../config/cloudinary.config')
-const avatarPublicIdFormat = require('../../constant/avatar-public-id')
+const { cloudinary } = require('../config/cloudinary.config');
+const avatarPublicIdFormat = require('../../constant/avatar-public-id');
 
 class AvatarService
 {

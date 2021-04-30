@@ -38,7 +38,7 @@ class UserController {
     try
     {
       const users = await userService.all();
-      res.status(200).json(users)
+      res.status(200).json(users);
     }
     catch (err) { console.error(err); }
   }
@@ -48,15 +48,15 @@ class UserController {
 
     try
     {
-      const {id} = req.params
+      const {id} = req.params;
       const user = await userService.show(id);
-      res.json(user)
+      res.json(user);
     }
 
     catch (err)
     {
       console.log(err);
-      res.status(422).json(err)
+      res.status(422).json(err);
     }
 
   }
@@ -69,10 +69,7 @@ class UserController {
         .status(202)
         .clearCookie('token').send('cookie cleared');
     }
-    catch (err)
-    {
-      console.error(err)
-    }
+    catch (err) { console.error(err); }
   }
 
   async session(req,res)
@@ -82,7 +79,7 @@ class UserController {
       await res.status(200).json(req.currentUser);
     }
 
-    catch (err) { res.status(401) }
+    catch (err) { res.status(401); }
   }
 
   async destroy(req,res)
@@ -97,7 +94,7 @@ class UserController {
     catch (err)
     {
       console.log(err);
-      res.status(422)
+      res.status(422);
     }
   }
 
@@ -107,7 +104,7 @@ class UserController {
     {
       const {id} = req.params;
       const attachment = await userService.antiquesAll(id);
-      res.status(200).json(attachment)
+      res.status(200).json(attachment);
     }
 
     catch (err) {

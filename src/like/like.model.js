@@ -28,7 +28,7 @@ class Like extends Model {
           to: 'antique.id'
         }
       },
-    }
+    };
   }
 }
 

@@ -33,7 +33,7 @@ class UserDAO {
   create(hashedPasswordAndParams)
   {
     return User.query()
-      .insert(hashedPasswordAndParams)
+      .insert(hashedPasswordAndParams);
   }
 
   select({LIMIT, OFFSET})

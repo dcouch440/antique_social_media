@@ -8,7 +8,7 @@ const { notFound, handleError } = require('./middleware/exceptions');
 const { Model } = require('objection');
 // const fileupload = require('express-fileupload');
 
-Model.knex(db)
+Model.knex(db);
 
 app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 app.use(express.json({ limit: '50mb' }));

@@ -26,4 +26,4 @@ module.exports = {
         .min(0),
     }
   )
-}
+};

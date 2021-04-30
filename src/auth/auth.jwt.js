@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 
 const sign = (payload) => {
-  'use strict'
+  'use strict';
   return new Promise((resolve, reject) => {
 
     jwt.sign(
@@ -16,6 +16,6 @@ const sign = (payload) => {
 
   });
 
-}
+};
 
 module.exports = { sign };

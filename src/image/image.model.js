@@ -28,7 +28,7 @@ class Image extends Model {
           to: 'user.id'
         }
       },
-    }
+    };
   }
 }
 

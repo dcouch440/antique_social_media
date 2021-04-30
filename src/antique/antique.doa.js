@@ -27,13 +27,13 @@ class AntiqueDAO
   destroy(id)
   {
     return Antique.query()
-      .deleteById(id)
+      .deleteById(id);
   }
 
   create(params)
   {
     return Antique.query()
-      .insert(params)
+      .insert(params);
   }
 
   limitedList({OFFSET, LIMIT})
@@ -42,13 +42,13 @@ class AntiqueDAO
       .offset(OFFSET)
       .limit(LIMIT)
       .withGraphFetched('images')
-      .limit(2);
+      .limit(1);
   }
 
   showUniques({category})
   {
     return Antique.query()
-    .distinct(category, 'id');
+      .distinct(category, 'id');
   }
 
 }
