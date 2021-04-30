@@ -65,10 +65,10 @@ class AntiqueController
   {
     try
     {
-      const {name, year, file64} = req.body;
+      const {file64, ...params} = req.body;
 
       const antique = await antiqueService.create({
-        name, year, user_id: req.currentUser.user_id
+        user_id: req.currentUser.user_id, ...params
       });
 
       await imageService.upload({file64, antique_id: antique.id });

@@ -41,8 +41,7 @@ class AntiqueDAO
     return Antique.query()
       .offset(OFFSET)
       .limit(LIMIT)
-      .withGraphFetched('images')
-      .limit(1);
+      .withGraphFetched('images');
   }
 
   showUniques({category})

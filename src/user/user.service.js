@@ -79,6 +79,13 @@ class UserService
     catch(err) { res.status(403).json(err); }
   }
 
+  async changeOnlineState({id, online})
+  {
+    console.log(id);
+    return await userDAO.changeOnlineState({id, online})
+      .catch(err => console.error(err));
+  }
+
   all()
   {
     return userDAO.all();

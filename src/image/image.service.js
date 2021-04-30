@@ -1,5 +1,5 @@
 const imageDAO = require('./image.dao');
-const { cloudinary } = require('../config/cloudinary.config')
+const { cloudinary } = require('../config/cloudinary.config');
 const antiqueFolderFormat = require('../../constant/image-file');
 
 class ImageService

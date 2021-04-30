@@ -13,7 +13,13 @@ module.exports = {
         .min(-1000),
       user_id: yup
         .number()
-        .required()
+        .required(),
+      body: yup
+        .string()
+        .trim(),
+      title: yup
+        .string()
+        .trim()
     }
   ),
   queryParams: yup.object().shape(
