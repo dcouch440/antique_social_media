@@ -6,6 +6,7 @@ const avatarService = require('../../src/avatar/avatar.service');
 const { hashPassword } = require('../../src/auth/auth.bcrypt');
 const truncateTables = require('./utils/truncate-tables');
 const times = require('./utils/times');
+
 exports.seed = async knex => {
 
   try
@@ -58,8 +59,6 @@ exports.seed = async knex => {
       });
 
     });
-
-
 
     const [userCount] = await knex.from('user').count('id');
     const [antiquesCount] = await knex.from('antique').count('id');
