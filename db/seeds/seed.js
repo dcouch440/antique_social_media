@@ -1,33 +1,21 @@
 const addToTable = require('../../lib/add-to-table');
 const imageService = require('../../src/image/image.service');
 const { randomUser, randomAntique, staticUser } = require('../../lib/seed-data');
+const { cleanupAvatarImages, cleanupAntiqueImages } = require('./utils/cleanup-cloudinary-images');
 const avatarService = require('../../src/avatar/avatar.service');
 const { hashPassword } = require('../../src/auth/auth.bcrypt');
-
+const truncateTables = require('./utils/truncate-tables');
+const times = require('./utils/times');
 exports.seed = async knex => {
 
   try
   {
-    // mass deletes left over images for re seeding.
-    const antique_ids = await knex('image').distinct('antique_id');
-    const destroyImages = antique_ids.map(ids => {
-      return imageService.destroyDependencyById(ids.antique_id);
-    });
-    await Promise.all(destroyImages);
-
-    const public_ids = await knex('avatar').distinct('public_id');
-    const destroyAvatars = public_ids.map(ids_object => {
-      return avatarService.deleteByPublicId(ids_object.public_id);
-    });
-    await Promise.all(destroyAvatars);
-
-    await knex.raw('TRUNCATE TABLE "user" CASCADE');
-    await knex.raw('TRUNCATE TABLE antique CASCADE');
-    await knex.raw('TRUNCATE TABLE "like" CASCADE');
-    await knex.raw('TRUNCATE TABLE "image" CASCADE');
+    // cleanup
+    await cleanupAntiqueImages(knex);
+    await cleanupAvatarImages(knex);
+    await truncateTables(knex);
 
     const ENV = process.env.NODE_ENV;
-
     const users = ENV === 'test' ? 1 : 1;
     const antiques = ENV === 'test' ? 5 : 5;
 
@@ -37,8 +25,8 @@ exports.seed = async knex => {
       table: 'user', obj: staticUserHash
     });
 
-    for (let index = 0; index < users; index++)
-    {
+
+    await times(users)( async () => {
 
       const randomUserHash = await hashPassword(randomUser());
       const user_id = await addToTable({table: 'user', obj: randomUserHash});
@@ -47,8 +35,8 @@ exports.seed = async knex => {
         user_id
       });
 
-      for (let index = 0; index < antiques; index++)
-      {
+      await times(antiques)(async () => {
+
         const antique_id = await addToTable({
           table: 'antique', obj: randomAntique(user_id)
         });
@@ -66,8 +54,12 @@ exports.seed = async knex => {
           user_id: static_user_id, antique_id,
           username: staticUserHash.username
         });
-      }
-    }
+
+      });
+
+    });
+
+
 
     const [userCount] = await knex.from('user').count('id');
     const [antiquesCount] = await knex.from('antique').count('id');
