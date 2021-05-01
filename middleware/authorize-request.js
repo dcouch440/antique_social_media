@@ -10,8 +10,8 @@ module.exports = async (req, res, next) => {
     const user_id = parseInt(userIdString);
     const {token} = cookieParser.JSONCookies(req.cookies);
     const {id :decryptedId} = jwt.verify(
-                                token, process.env.JWT_SECRET
-                              );
+      token, process.env.JWT_SECRET
+    );
     if (user_id !== decryptedId) throw new Error({message: 'Unauthorized'});
     else { next(); }
 
