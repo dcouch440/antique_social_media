@@ -12,6 +12,7 @@ class UserController {
       });
       res.status(200).json(payload);
     }
+
     catch(err) { res.status(403).json(err); }
   }
 
@@ -40,6 +41,7 @@ class UserController {
       const users = await userService.all();
       res.status(200).json(users);
     }
+
     catch (err) { console.error(err); }
   }
 
@@ -69,6 +71,7 @@ class UserController {
         .status(202)
         .clearCookie('token').send('cookie cleared');
     }
+
     catch (err) { console.error(err); }
   }
 

@@ -14,6 +14,5 @@ app.use(cookieParser());
 app.use(router);
 app.use(notFound);
 app.use(handleError);
-// app.use(fileupload({useTempFiles: true}))
 
 module.exports = app;
