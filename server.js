@@ -18,7 +18,7 @@ io.on('connection', (socket) => {
 
   socket.on('login', async data => {
     console.log('a user ' + data.id + ' connected');
-    await userService.changeOnlineState({id: data.id, online: true});
+    data.id  && await userService.changeOnlineState({id: data.id, online: true});
     SOCKET_USER_IDS[socket.id] = data.id;
   });
 
