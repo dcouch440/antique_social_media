@@ -79,7 +79,8 @@ class UserController {
   {
     try
     {
-      await res.status(200).json(req.currentUser);
+      const {user_id :id, ...currentUser} = req.currentUser;
+      await res.status(200).json({id, ...currentUser});
     }
 
     catch (err) { res.status(401); }
