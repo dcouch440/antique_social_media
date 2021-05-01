@@ -1,9 +1,7 @@
 import React, {useState, useEffect, useRef, useContext} from 'react'
-import styled from 'styled-components';
 import axios from 'axios';
-import { Context } from '../Context';
-
-const StyledInput = styled.input``;
+import { Context } from '../../Context';
+import { StyledInput, SubmitButton, ButtonContainer, SignIngTitle } from './styles'
 
 const SignIn = () => {
   const [payload, setPayload] = useState({});
@@ -42,7 +40,7 @@ const SignIn = () => {
 
   return (
     <>
-      <p>Please Sign In</p>
+      <SignIngTitle>Please Sign In</SignIngTitle>
       <form onSubmit={onSubmit}>
         <StyledInput
           onChange={handleChange}
@@ -56,7 +54,9 @@ const SignIn = () => {
           placeholder={'password'}
           value={password}
         />
-        <button type={'submit'}>SUBMIT</button>
+        <ButtonContainer>
+          <SubmitButton type={'submit'}>SUBMIT</SubmitButton>
+        </ButtonContainer>
       </form>
     </>
   );

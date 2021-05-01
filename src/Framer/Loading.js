@@ -15,7 +15,7 @@ const loadingContainerVariants = {
   },
 };
 
-const loadingCircleVariants = {
+const loadingVariants = {
   start: {
     y: "0%",
   },
@@ -24,7 +24,7 @@ const loadingCircleVariants = {
   },
 };
 
-const loadingCircleTransition = {
+const loadingTransition = {
   duration: 0.5,
   yoyo: Infinity,
   ease: "easeInOut",
@@ -41,20 +41,20 @@ const pageVariants = {
 };
 
 const LoadingContainer = styled.div`
-  width: 100%;
-  height: 100%;
+  position: fixed;
   display: flex;
+  width: inherit;
+  height: inherit;
   justify-content: center;
   align-items: center;
-`
+`;
 
-const LoadingCircle = styled.span`
+const HourGlass = styled.span`
   font-size: 3em;
   width: 0.4em;
   box-sizing: content-box;
   height: 0.4em;
   border: 0.1em solid black;
-  position: relative;
   border-radius: 0.35em;
   margin: 13px;
     &:before {
@@ -71,9 +71,29 @@ const LoadingCircle = styled.span`
     }
 `;
 
-const Loading = ({loadingState, render}) => (
+const LoadingCircle = styled.span`
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #c0c0c0;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
 
-  loadingState ?
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+`;
+
+const Loading = ({loadingState, render, version}) => (
+
+  loadingState?
 
     <LoadingContainer
       as={motion.div}
@@ -81,24 +101,47 @@ const Loading = ({loadingState, render}) => (
       initial="start"
       animate="end"
     >
-      <LoadingCircle
-        as={motion.span}
-        variants={loadingCircleVariants}
-        transition={loadingCircleTransition}
-      />
-      <LoadingCircle
-        as={motion.span}
-        variants={loadingCircleVariants}
-        transition={loadingCircleTransition}
-      />
-      <LoadingCircle
-        as={motion.span}
-        variants={loadingCircleVariants}
-        transition={loadingCircleTransition}
-      />
+
+    {
+
+      version === 'hourglass' ?
+
+        <>
+          <HourGlass
+            as={motion.span}
+            variants={loadingVariants}
+            transition={loadingTransition}
+          />
+          <HourGlass
+            as={motion.span}
+            variants={loadingVariants}
+            transition={loadingTransition}
+          />
+          <HourGlass
+            as={motion.span}
+            variants={loadingVariants}
+            transition={loadingTransition}
+          />
+        </>
+
+      :
+
+      version === 'circle' ?
+
+        <>
+          <LoadingCircle
+            as={motion.span}
+            variants={loadingVariants}
+            transition={loadingTransition}
+          />
+        </>
+
+      :null
+
+    }
     </LoadingContainer>
 
-    :
+    : // done loading
 
     <motion.div
       variants={pageVariants}

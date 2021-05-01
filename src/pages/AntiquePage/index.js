@@ -6,6 +6,7 @@ import { useParams , withRouter} from 'react-router-dom';
 import PageTransition from '../../Framer/PageTransition';
 import GoBackButton from './GoBackButton';
 import axios from 'axios';
+import LoadingSequence from '../../utils/loadingSequence';
 
 const AntiquePage = props => {
   const { id } = useParams();
@@ -14,27 +15,11 @@ const AntiquePage = props => {
   const [antique, setAntique] = React.useState({});
   const handleClick = () => props.history.push('/antiques');
 
-  setTimeout(() => {
-    sequence.current = true;
-  }, 1000)
-
   useEffect(() => {
     axios.get(`/antiques/${id}`, {withCredentials: true})
     .then(res => {
-
       setAntique(res.data);
-
-      if(sequence.current === false)
-      {
-        const interval = setInterval(() => {
-          if (sequence.current === true) {
-            clearInterval(interval);
-            setLoading(false)
-          }
-        }, 300);
-      }
-      else setLoading(false);
-
+      LoadingSequence({condition: setLoading, ref: sequence})
     })
     .catch(err => console.error(err))
   }, [id, setAntique, setLoading]);
@@ -44,6 +29,7 @@ const AntiquePage = props => {
       <Page>
         <Loading
           loadingState={loading}
+          version="hourglass"
           render={
             <>
               <GoBackButton handleClick={handleClick} text={'Back  ▶'} />
