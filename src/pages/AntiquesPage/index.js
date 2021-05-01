@@ -10,12 +10,10 @@ const AntiquesPage = () => {
   useEffect(() => {
     axios
       .get('/antiques', {withCredentials: true})
-      .then(resp => {
-        setAntiques(resp.data)
-      })
+      .then(resp => setAntiques(resp.data))
       .catch(err => console.error(err));
-
   }, [])
+
   return (
     <>
       <PageTransition>

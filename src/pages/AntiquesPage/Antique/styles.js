@@ -17,9 +17,7 @@ export const Antique = styled.div`
   }
 `;
 
-export const Image = styled.img`
-  
-`
+export const Image = styled.img``
 
 export const AntiqueOverlay = styled.div`
   position: absolute;

@@ -22,6 +22,8 @@ const AntiquePage = props => {
     .catch(err => console.error(err))
   }, [id]);
 
+
+
   return (
     <PageTransition>
       <styles.Page>

@@ -4,7 +4,6 @@ import User from '../User';
 import { About, Page, Tag, Blog} from './styles';
 
 const AntiqueInfo = ({antique}) => {
-
   return (
     <Page>
 

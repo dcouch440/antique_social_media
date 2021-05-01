@@ -12,7 +12,7 @@ const AntiquesSlideShow = ({antiqueImages}) => {
   const [[page, direction], setPage] = useState([0, 0]);
   const [nextSlide, setNextSlide] = useState(0)
   const isTapped = useRef(false)
-  console.log(antiqueImages);
+
   // IMAGES LOAD IN HERE WITH IMAGES TAG >>> SET API CALL IN PROPS
   const imageIndex = wrap(0, antiqueImages.length, page);
 

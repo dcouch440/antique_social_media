@@ -36,7 +36,7 @@ const pageVariants = {
   },
   visible: {
     opacity: 1,
-    transition: {duration: .5}
+    transition: {duration: 1}
   }
 }
 
@@ -72,6 +72,7 @@ const LoadingCircle = styled.span`
 `
 
 const Loading = ({loadingState, render}) => (
+
   loadingState ?
 
     <LoadingContainer

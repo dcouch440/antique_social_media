@@ -6,10 +6,10 @@ import AntiquePage from "./pages/AntiquePage";
 import Navbar from "./nav/Navbar";
 import Socket from './Socket';
 
-
 const App = () => {
-  Socket();
   const location = useLocation();
+  Socket();
+
   return (
     <>
       <GlobalStyles />
