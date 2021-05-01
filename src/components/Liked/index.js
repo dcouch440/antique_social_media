@@ -11,26 +11,28 @@ const Liked = ({isLiked, antiqueId}) => {
     e.stopPropagation();
     if (!liked){
       axios
-      .post(
-        `/likes/${antiqueId}`,
-        { withCredentials: true }
-      )
-      .then(res => { console.log(res)
-        if (res.status === 201) setLiked(true);
-      })
-      .catch(err => console.log(err))
+        .post(
+          `/likes/${antiqueId}`,
+          {},
+          { withCredentials: true }
+        )
+        .then(res => { console.log(res)
+          if (res.status === 201) setLiked(true);
+        })
+        .catch(err => console.log(err))
     }
     if (liked)
     {
       axios
-      .delete(
-        `/likes/${antiqueId}`,
-        { withCredentials: true }
-      )
-      .then(res => {  console.log(res)
-        if (res.status === 204) setLiked(false)
-      })
-      .catch(err => console.log(err))
+        .delete(
+          `/likes/${antiqueId}`,
+          {},
+          { withCredentials: true }
+        )
+        .then(res => {  console.log(res)
+          if (res.status === 204) setLiked(false)
+        })
+        .catch(err => console.log(err))
     }
   }
 
