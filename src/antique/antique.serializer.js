@@ -1,9 +1,8 @@
 const likeService = require('../like/like.service');
-const APIConcerns = require('../concerns/api.concerns');
 const moment = require('moment');
 const userService = require('../user/user.service');
 
-class AntiqueSerializer extends APIConcerns
+class AntiqueSerializer
 {
 
   async serializeWithRelations({req, antiques})
