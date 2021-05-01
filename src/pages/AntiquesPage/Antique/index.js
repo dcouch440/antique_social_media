@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 const Antique = ({antique}) => {
   const history = useHistory()
-  console.log(antique);
+
   const handleClick = (id) => {
     history.push(`/antiques/${id}`);
   }

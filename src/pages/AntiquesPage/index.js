@@ -12,18 +12,16 @@ const AntiquesPage = () => {
       .get('/antiques', {withCredentials: true})
       .then(resp => setAntiques(resp.data))
       .catch(err => console.error(err));
-  }, [setAntiques])
+  }, [setAntiques]);
 
   return (
-    <>
-      <PageTransition>
-        <styled.Grid>
-          <Antiques antiques={antiques} />
-        </styled.Grid>
-      </PageTransition>
-    </>
-  )
+    <PageTransition>
+      <styled.Grid>
+        <Antiques antiques={antiques} />
+      </styled.Grid>
+    </PageTransition>
+  );
 
-}
+};
 
 export default AntiquesPage;

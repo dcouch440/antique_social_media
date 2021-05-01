@@ -1,4 +1,4 @@
-import React, { useState, useRef }  from 'react'
+import React, {useState, useRef }  from 'react'
 import * as styles from './styles';
 import DropDown from '../DropDown';
 
@@ -6,11 +6,11 @@ import DropDown from '../DropDown';
 const Navbar = () => {
 
   const [menu, setMenu] = useState('none');
-  const menuButton = useRef();
+  const menuButton = useRef()
 
   const handleClick = () => {
     setMenu(prev => prev === 'none' ? 'initial' : 'none');
-  };
+  }
 
   return  (
     <styles.Nav>
@@ -19,7 +19,7 @@ const Navbar = () => {
       </styles.Menu>
       <DropDown display={menu} />
     </styles.Nav>
-  );
-};
+  )
+}
 
 export default Navbar;

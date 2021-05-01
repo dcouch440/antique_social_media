@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import axios from 'axios';
 const Context = React.createContext();
 
@@ -12,7 +12,7 @@ const ContextProvider = props => {
       .get('/users/session', { withCredentials: true })
       .then(res => setCurrentUser(res.data))
       .catch(err => console.error(err));
-  }, [currentUser])
+  }, [])
 
   return (
     <Context.Provider value={{
@@ -23,6 +23,6 @@ const ContextProvider = props => {
     </Context.Provider>
   );
 
-}
+};
 
 export {ContextProvider, Context};
