@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 
 export const Nav = styled.div`
-  position: relative;
+  position: fixed;
   width: 100%;
   height: 60px;
-  background: rgb(0,0,0);
-  background: linear-gradient(180deg ,rgb(0 0 0 / 35%) 0%,rgb(0 0 0 / 57%) 74%);
+  z-index: 9999999;
+  top: 0;
+  /* background: linear-gradient(180deg ,rgb(0 0 0 / 35%) 0%,rgb(0 0 0 / 57%) 74%); */
+  background: linear-gradient(180deg ,rgb(131 122 109) 0%,rgb(96 90 81) 74%);
   box-shadow: 0px 0px 20px 2px #0000008f, inset 0px -1px 90px -1px #ffffff29;
   color: whitesmoke;
   display: flex;

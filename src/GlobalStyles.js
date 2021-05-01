@@ -15,16 +15,18 @@ const GlobalStyles = createGlobalStyle`
 	}
 	body {
     -webkit-font-smoothing: antialiased;
+    overflow-y: scroll;
     overflow-x: hidden;
     overflow: ${({stopScroll}) => stopScroll && 'hidden'};
 	}
   #root {
+    margin-top: 60px;
     height: inherit;
     width: inherit;
   }
   ::-webkit-scrollbar {
     width: 7px;
-    background-color: transparent;
+    background-color: #00000036;
   }
 
   ::-webkit-scrollbar-thumb {

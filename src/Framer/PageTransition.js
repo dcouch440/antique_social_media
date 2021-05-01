@@ -8,7 +8,7 @@ const Container = styled.div`
 
 const transition = {
   hidden: {
-    opacity: 0
+    opacity: 0,
   },
   visible: {
     opacity: 1,

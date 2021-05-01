@@ -24,17 +24,15 @@ const AntiquesSlideShow = ({antiqueImages}) => {
   }, [page, setPage])
 
   useEffect(() => {
+    if (antiqueImages.length === 1) return
 
     const timer = setTimeout(() => {
-
       if (!isTapped.current) paginate(1);
       else setNextSlide(prev=> prev += 1);
-
     }, 10000);
-
     return  () => clearTimeout(timer);
 
-  }, [page, paginate, nextSlide]);
+  }, [page, paginate, nextSlide, antiqueImages.length]);
 
   const handleMouseEnter = () => isTapped.current = true
   const handleMouseLeave = () => isTapped.current = false

@@ -10,13 +10,13 @@ const Antique = ({antique}) => {
   const handleClick = (id) => {
     history.push(`/antiques/${id}`);
   }
-
+  const image = antique.images[0]
   return (
     <styled.Antique
       onClick={(e) => handleClick(antique.id)}
-      dimensions={{height: antique.height, width: antique.width}}
+      dimensions={{height: image.height, width: image.width}}
     >
-      <styled.Image src={antique.images[0].image_url} alt={antique.name} />
+      <styled.Image src={image.image_url} alt={antique.name} />
       <styled.AntiqueOverlay >
         <div>{antique.name}</div>
         <div>{antique.year}</div>

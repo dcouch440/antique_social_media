@@ -1,10 +1,11 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import { Context } from '../../Context';
+import React, { useContext, useState } from 'react';
 import { Check } from './styles';
 
 const Liked = ({isLiked, antiqueId}) => {
   const [liked, setLiked] = useState(isLiked);
-
+  const { currentUser } = useContext(Context);
   const display = liked ? '✔' : '✗'
 
   const handleClick = (e) => {
@@ -36,10 +37,13 @@ const Liked = ({isLiked, antiqueId}) => {
     }
   }
 
-  return (
-    <Check onClick={handleClick}>
-      {display}
-    </Check>
+  return  (
+    currentUser.id ?
+      <Check onClick={handleClick}>
+        {display}
+      </Check>
+      :
+      null
   )
 }
 

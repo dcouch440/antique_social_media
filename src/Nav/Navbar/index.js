@@ -1,5 +1,5 @@
 import React, {useState, useRef }  from 'react'
-import * as styles from './styles';
+import { Nav, Menu } from './styles';
 import DropDown from '../DropDown';
 
 
@@ -13,12 +13,12 @@ const Navbar = () => {
   }
 
   return  (
-    <styles.Nav>
-      <styles.Menu className={'menu-button'} ref={menuButton} onClick={handleClick}>
+    <Nav>
+      <Menu className={'menu-button'} ref={menuButton} onClick={handleClick}>
         ☰
-      </styles.Menu>
+      </Menu>
       <DropDown display={menu} />
-    </styles.Nav>
+    </Nav>
   )
 }
 

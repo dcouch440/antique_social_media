@@ -5,7 +5,6 @@ import { Online, AvatarContainer, AboutMe, Avatar  } from './styles';
 
 const User = ({ownerInfo}) => {
   const { currentUser: {id} } = useContext(Context);
-  console.log(ownerInfo.avatar)
   const isCurrentUserPost = id === ownerInfo.avatar.user_id ? true : ownerInfo.online;
 
   return (
