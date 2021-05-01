@@ -12,19 +12,21 @@ const io = require('socket.io')(server, {
 
 const SOCKET_USER_IDS = {};
 
-io.on('connection', () => {console.log('connected');});
-
 io.on('connection', (socket) => {
 
   socket.on('login', async data => {
     console.log('a user ' + data.id + ' connected');
-    data.id  && await userService.changeOnlineState({id: data.id, online: true});
+    data.id && (
+      await userService.changeOnlineState({id: data.id, online: true})
+    );
     SOCKET_USER_IDS[socket.id] = data.id;
   });
 
   socket.on('disconnect', async () => {
     console.log('user ' + SOCKET_USER_IDS[socket.id] + ' disconnected');
-    await userService.changeOnlineState({id: SOCKET_USER_IDS[socket.id], online: false});
+    SOCKET_USER_IDS[socket.id] && (
+      await userService.changeOnlineState({id: SOCKET_USER_IDS[socket.id], online: false})
+    );
     delete SOCKET_USER_IDS[socket.id];
   });
 
