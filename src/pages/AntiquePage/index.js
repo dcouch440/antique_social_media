@@ -20,9 +20,7 @@ const AntiquePage = props => {
       setLoading(false);
     })
     .catch(err => console.error(err))
-  }, [id]);
-
-
+  }, [id, setAntique, setLoading]);
 
   return (
     <PageTransition>

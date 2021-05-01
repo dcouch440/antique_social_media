@@ -1,6 +1,4 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
-import wide from '../../../antiques-mock/img/bottle-wide.jpg'
-import tall from '../../../antiques-mock/img/bottle-tall.jpg'
 import { variants } from './variants';
 import { wrap } from "popmotion";
 import { AnimatePresence, motion } from 'framer-motion';
@@ -23,7 +21,7 @@ const AntiquesSlideShow = ({antiqueImages}) => {
 
   const paginate = useCallback((newDirection) => {
     setPage([page + newDirection, newDirection]);
-  }, [page])
+  }, [page, setPage])
 
   useEffect(() => {
 
@@ -40,7 +38,6 @@ const AntiquesSlideShow = ({antiqueImages}) => {
 
   const handleMouseEnter = () => isTapped.current = true
   const handleMouseLeave = () => isTapped.current = false
-
 
   return (
       <styles.SlideShow>

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, {useEffect, useState, useContext} from 'react'
+import React, { useContext } from 'react'
 import { SignOutButton } from './styles';
 import { Context } from '../../Context';
 
@@ -13,13 +13,13 @@ const SignOut = () => {
         id: undefined, username: undefined, email: undefined
       }))
       .catch(err => console.error(err));
-  }
+  };
 
   return (
     <SignOutButton type="button" onClick={requestLogout} >
       SIGNOUT
     </SignOutButton>
-  )
-}
+  );
+};
 
 export default SignOut;

@@ -13,7 +13,7 @@ const loadingContainerVariants = {
       staggerChildren: 0.1,
     },
   },
-}
+};
 
 const loadingCircleVariants = {
   start: {
@@ -22,13 +22,13 @@ const loadingCircleVariants = {
   end: {
     y: "75%",
   },
-}
+};
 
 const loadingCircleTransition = {
   duration: 0.5,
   yoyo: Infinity,
   ease: "easeInOut",
-}
+};
 
 const OnlineContainer = styled.div`
   width: 100%;
@@ -36,7 +36,7 @@ const OnlineContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`
+`;
 
 const OnlineCircle = styled.span`
   font-size: 3em;
@@ -49,7 +49,7 @@ const OnlineCircle = styled.span`
   border-radius: 50%;
   color: green;
   background-color: green;
-`
+`;
 
 const OnlineAnimation = ({status}) => (
   status&&
@@ -65,6 +65,6 @@ const OnlineAnimation = ({status}) => (
         transition={loadingCircleTransition}
       />
     </OnlineContainer>
-)
+);
 
-export default OnlineAnimation
+export default OnlineAnimation;

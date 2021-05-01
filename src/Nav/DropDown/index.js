@@ -13,7 +13,7 @@ const DropDown = ({display}) => {
       <SignIn />
       <SignOut />
     </styles.DropMenuPlate>
-  )
-}
+  );
+};
 
 export default DropDown;

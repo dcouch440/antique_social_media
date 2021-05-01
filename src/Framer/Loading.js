@@ -13,7 +13,7 @@ const loadingContainerVariants = {
       staggerChildren: 0.2,
     },
   },
-}
+};
 
 const loadingCircleVariants = {
   start: {
@@ -22,13 +22,13 @@ const loadingCircleVariants = {
   end: {
     y: "100%",
   },
-}
+};
 
 const loadingCircleTransition = {
   duration: 0.5,
   yoyo: Infinity,
   ease: "easeInOut",
-}
+};
 
 const pageVariants = {
   hidden: {
@@ -38,7 +38,7 @@ const pageVariants = {
     opacity: 1,
     transition: {duration: 1}
   }
-}
+};
 
 const LoadingContainer = styled.div`
   width: 100%;
@@ -69,7 +69,7 @@ const LoadingCircle = styled.span`
       height: 0.08em;
       transform: rotate(45deg);
     }
-`
+`;
 
 const Loading = ({loadingState, render}) => (
 
@@ -109,6 +109,6 @@ const Loading = ({loadingState, render}) => (
       {render}
     </motion.div>
 
-)
+);
 
-export default Loading
+export default Loading;

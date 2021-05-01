@@ -12,7 +12,7 @@ const ContextProvider = props => {
       .get('/users/session', { withCredentials: true })
       .then(res => setCurrentUser(res.data))
       .catch(err => console.error(err));
-  }, [])
+  }, [currentUser])
 
   return (
     <Context.Provider value={{

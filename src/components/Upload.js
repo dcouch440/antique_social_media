@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import axios from 'axios'
-//  UPLOAD ON ITS OWNN -------------------------
+import axios from 'axios';
+
+//  UPLOAD ON ITS OWN -------------------------
 const Upload = ({antiqueId}) => {
   const [fileInputState, setFileInputState] = useState('');
   const [selectedFile, setSelectedFile] = useState('');
@@ -32,9 +33,9 @@ const Upload = ({antiqueId}) => {
       uploadImage(reader.result);
     };
 
-    setSelectedFile('')
-    setPreviewSource('')
-    setFileInputState('')
+    setSelectedFile('');
+    setPreviewSource('');
+    setFileInputState('');
 
   }
 
@@ -44,7 +45,7 @@ const Upload = ({antiqueId}) => {
       await axios.post('/images/upload',{
           file: base64EncodedImage,
           antique_id: antiqueId
-      })
+      });
     }
 
     catch (err) { console.error(err); }
@@ -67,8 +68,8 @@ const Upload = ({antiqueId}) => {
       </form>
       {previewSource&& <img src={previewSource} alt="zap" />}
     </div>
-  )
-}
+  );
+};
 
 
 export default Upload;

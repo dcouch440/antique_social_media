@@ -20,7 +20,7 @@ const transition = {
     x: '100vw',
     transition: { duration: .5, ease: 'easeInOut' }
   }
-}
+};
 
 const NewPage = (props) => (
   <motion.button
@@ -33,6 +33,6 @@ const NewPage = (props) => (
   >
     {props.children}
   </motion.button>
-)
+);
 
 export default NewPage;

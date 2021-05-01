@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const Container = styled.div`
   width: inherit;
   height: inherit;
-`
+`;
 
 const transition = {
   hidden: {
@@ -24,7 +24,7 @@ const transition = {
     x: '100vw',
     transition: { duration: .5, ease: 'easeInOut' }
   }
-}
+};
 
 const NewPage = (props) => (
   <Container as={motion.div}
@@ -37,7 +37,6 @@ const NewPage = (props) => (
   >
     {props.children}
   </Container>
-
-)
+);
 
 export default NewPage;

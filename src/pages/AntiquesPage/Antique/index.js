@@ -1,21 +1,19 @@
 import * as styled from './styles';
 import Liked from '../../../components/Liked';
-import React, { useRef } from 'react';
-import { withRouter } from 'react-router-dom';
+import React from 'react';
+import { useHistory, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const Antique = ({antique, ...props}) => {
-
-  const ref = useRef()
-
-  const handleClick = (e,id) => {
-    if (e.target.class === ref.current.class){
-      props.history.push(`/antiques/${id}`);
-    }
+const Antique = ({antique}) => {
+  const history = useHistory()
+  console.log(antique);
+  const handleClick = (id) => {
+    history.push(`/antiques/${id}`);
   }
+
   return (
-    <styled.Antique ref={ref}
-      onClick={(e) => handleClick(e,antique.id)}
+    <styled.Antique
+      onClick={(e) => handleClick(antique.id)}
       dimensions={{height: antique.height, width: antique.width}}
     >
       <styled.Image src={antique.images[0].image_url} alt={antique.name} />
@@ -30,7 +28,7 @@ const Antique = ({antique, ...props}) => {
 }
 
 Antique.propTypes = {
-  name: PropTypes.object
+  antique: PropTypes.object
 };
 
 export default withRouter(Antique);

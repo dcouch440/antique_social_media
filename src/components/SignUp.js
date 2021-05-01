@@ -2,22 +2,21 @@ import React, {useState, useEffect} from 'react'
 import styled from 'styled-components';
 import axios from 'axios';
 
-const StyledInput = styled.input``
+const StyledInput = styled.input``;
 
 const SignUp = () => {
-  const [payload, setPayload] = useState()
-  const [message, setMessage] = useState('Sign Up')
+  const [payload, setPayload] = useState();
+  const [message, setMessage] = useState('Sign Up');
   const [
     {password, email, username, passwordConfirmation}, setCredentials
   ] = useState({password: '', email: '', username: '', passwordConfirmation: ''});
-
 
   const handleChange = (e) => {
     const {name, value} = e.target;
     setCredentials(Object.assign({password, email, username},
       {[name]:value}
-    ))
-  }
+    ));
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -25,7 +24,7 @@ const SignUp = () => {
       setPayload({password,email,username});
     }
     else { setMessage('Passwords Do Not Match'); }
-  }
+  };
 
   useEffect(() => {
     axios.post('/users/signup',
@@ -74,7 +73,7 @@ const SignUp = () => {
         <button type={'submit'}>SUBMIT</button>
       </form>
     </>
-  )
-}
+  );
+};
 
 export default SignUp;

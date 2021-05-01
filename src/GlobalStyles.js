@@ -23,6 +23,15 @@ const GlobalStyles = createGlobalStyle`
     height: inherit;
     width: inherit;
   }
+  ::-webkit-scrollbar {
+    width: 7px;
+    background-color: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background: linear-gradient(180deg ,rgb(0 0 0 / 35%) 0%,rgb(0 0 0 / 57%) 74%);
+  }
 `;
 
 export default GlobalStyles;

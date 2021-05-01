@@ -12,7 +12,7 @@ const AntiquesPage = () => {
       .get('/antiques', {withCredentials: true})
       .then(resp => setAntiques(resp.data))
       .catch(err => console.error(err));
-  }, [])
+  }, [setAntiques])
 
   return (
     <>

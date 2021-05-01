@@ -13,5 +13,4 @@ export default function Socket() {
       return () => socket.disconnect();
     }
   }, [currentUser, currentUser.user_id]);
-
 }

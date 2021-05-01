@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
 export const GoBackButton = styled.button`
-  all: unset;
+  z-index: 2;
+  background-color: transparent;
+  border: none;
   color: black;
   cursor: pointer;
   position: absolute;

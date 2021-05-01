@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { Context } from '../Context';
 
-const StyledInput = styled.input``
+const StyledInput = styled.input``;
 
 const SignIn = () => {
-  const [payload, setPayload] = useState({})
+  const [payload, setPayload] = useState({});
   const [{password, email}, setCredentials] = useState({password: '', email: ''});
   const isMounted = useRef(false)
 
@@ -16,14 +16,14 @@ const SignIn = () => {
     const {name, value} = e.target;
     setCredentials(Object.assign({password, email},
       {[name]:value}
-    ))
-  }
+    ));
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
     isMounted.current = true;
     setPayload({password,email});
-  }
+  };
 
   useEffect(() => {
     if (!isMounted.current) return
@@ -59,7 +59,7 @@ const SignIn = () => {
         <button type={'submit'}>SUBMIT</button>
       </form>
     </>
-  )
-}
+  );
+};
 
 export default SignIn;
