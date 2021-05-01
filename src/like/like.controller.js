@@ -6,7 +6,7 @@ class LikeController
   {
     try
     {
-      const {antique_id} = req.body;
+      const {antique_id} = req.params;
       const liked = await likeService.like({
         req, antique_id, user_id: req.currentUser.user_id
       });
@@ -24,7 +24,7 @@ class LikeController
   {
     try
     {
-      const {antique_id} = req.body;
+      const {antique_id} = req.params;
       const liked = await likeService.unlike({
         req, antique_id, user_id: req.currentUser.user_id
       });

@@ -9,7 +9,6 @@ router.get('/session', userController.session);
 router.get('/:id', userController.show);
 router.post('/signin', userController.signIn);
 router.post('/signup', userController.signUp);
-// router.delete('/', userController.destroy)
 
 // nested
 router.get('/:id/antiques', userController.antiquesAll);

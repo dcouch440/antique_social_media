@@ -81,7 +81,6 @@ class UserService
 
   async changeOnlineState({id, online})
   {
-    console.log(id);
     return await userDAO.changeOnlineState({id, online})
       .catch(err => console.error(err));
   }
