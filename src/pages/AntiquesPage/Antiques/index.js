@@ -7,6 +7,6 @@ const Antiques = ({antiques}) => antiques.map((antique, i) => (
 ));
 
 Antiques.propTypes = {
-  name: PropTypes.string
+  antiques: PropTypes.array
 };
 export default Antiques;

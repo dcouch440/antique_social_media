@@ -12,7 +12,7 @@ const transition = {
   },
   visible: {
     opacity: 1,
-    transition: {duration: 1}
+    transition: {duration: .5, delay: .2}
   },
   timing: {
     duration: 2
@@ -26,7 +26,7 @@ const transition = {
   }
 };
 
-const NewPage = (props) => (
+const PageTransition = (props) => (
   <Container as={motion.div}
     variants={transition}
     initial="hidden"
@@ -39,4 +39,4 @@ const NewPage = (props) => (
   </Container>
 );
 
-export default NewPage;
+export default PageTransition;

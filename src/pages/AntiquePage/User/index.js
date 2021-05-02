@@ -5,8 +5,9 @@ import { Online, AvatarContainer, AboutMe, Avatar  } from './styles';
 
 const User = ({ownerInfo}) => {
   const { currentUser: {id} } = useContext(Context);
-  const isCurrentUserPost = id === ownerInfo.avatar.user_id ? true : ownerInfo.online;
-  const onlineOfflineText = isCurrentUserPost ? 'Online' : 'Offline'
+  const isCurrentUserPostOrUserOnline = (id === ownerInfo.avatar.user_id && id) ? true : ownerInfo.online;
+  const onlineOfflineText = isCurrentUserPostOrUserOnline ? 'Online' : 'Offline'
+
   return (
     <AvatarContainer>
       <AboutMe>{ownerInfo.username}</AboutMe>
@@ -15,8 +16,8 @@ const User = ({ownerInfo}) => {
         src={ownerInfo.avatar?.image_url}
         alt={'avatar'}
       />
-      <Online status={isCurrentUserPost}>
-        <OnlineAnimation status={isCurrentUserPost}/>
+      <Online status={isCurrentUserPostOrUserOnline}>
+        <OnlineAnimation status={isCurrentUserPostOrUserOnline}/>
         {onlineOfflineText}
       </Online>
     </AvatarContainer>

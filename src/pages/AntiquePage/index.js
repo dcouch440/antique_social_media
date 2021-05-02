@@ -16,12 +16,14 @@ const AntiquePage = props => {
   const handleClick = () => props.history.push('/antiques');
 
   useEffect(() => {
+
     axios.get(`/antiques/${id}`, {withCredentials: true})
-    .then(res => {
-      setAntique(res.data);
-      LoadingSequence({condition: setLoading, ref: sequence})
-    })
-    .catch(err => console.error(err))
+      .then(res => {
+        setAntique(res.data);
+        LoadingSequence({condition: setLoading, ref: sequence})
+      })
+      .catch(err => console.error(err));
+
   }, [id, setAntique, setLoading]);
 
   return (
@@ -39,8 +41,8 @@ const AntiquePage = props => {
         />
       </Page>
     </PageTransition>
-  )
+  );
 
-}
+};
 
 export default withRouter(AntiquePage)

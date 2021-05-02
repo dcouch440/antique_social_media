@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 
-export const Antique = styled.div`
+
+export const AntiqueContainer = styled.div`
   color: white;
   position: relative;
   margin: 0;
+  overflow: hidden;
   grid-row: ${ (({dimensions}) => {
     const {height, width} = dimensions;
     return width > height ? 'span 2' : 'span 4'
@@ -12,12 +14,12 @@ export const Antique = styled.div`
   img {
     width: 100%;
     height: 100%;
-    box-shadow: 0 0 5px black;
     object-fit: cover;
   }
 `;
 
-export const Image = styled.img``
+export const Image = styled.img`
+`
 
 export const AntiqueOverlay = styled.div`
   position: absolute;

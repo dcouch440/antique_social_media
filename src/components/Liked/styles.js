@@ -11,4 +11,4 @@ export const Check = styled.div`
     position: absolute;
     bottom: 5px;
     right: 5px
-`
+`;

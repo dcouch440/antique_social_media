@@ -24,7 +24,7 @@ export const Menu = styled.div`
     font-size: 17px;
     border-radius: 5px;
     padding: 11px;
-    box-shadow: inset 0px 0px 5px 1px black, 0px 0px 2px black;
+    box-shadow: inset 0px 0px 3px 1px black, 0px 0px 2px black;
     border: 1px solid #000000ba;
     background-image:
       -webkit-radial-gradient( 50% 0%,8% 50%,hsla(0,0%,100%,.5) 0%,hsla(0,0%,100%,0) 100%),
@@ -42,5 +42,6 @@ export const Menu = styled.div`
   &:active {
     color: blue;
     text-shadow: -1px -1px 3px rgb(255 255 255 / 20%), 1px 1px 1px rgb(0 0 0), 0px 0px 15px white;
+    box-shadow: inset 0px 0px 5px 1px black, 0px 0px 2px black, 0 0 5px white;
   }
 `;

@@ -17,6 +17,8 @@ export const AvatarContainer = styled.div`
   position: relative;
   margin: 20px 0;
   display: flex;
+  align-items: flex-end;
+  flex: 1;
   padding: 5px 10px;
   border-bottom: 2px solid black;
 `;

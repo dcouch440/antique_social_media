@@ -32,7 +32,7 @@ export const SlideShow = styled.div`
     font-size: 18px;
     z-index: 2;
     color: blue;
-    box-shadow: inset 0px 0px 5px 1px black, 0px 0px 2px black;
+    box-shadow: inset 0px 0px 3px 1px black, 0px 0px 2px black;
     background-image:
         -webkit-radial-gradient( 50% 0%,8% 50%,hsla(0,0%,100%,.5) 0%,hsla(0,0%,100%,0) 100%),
         -webkit-radial-gradient( 50% 100%,12% 50%,hsla(0,0%,100%,.6) 0%,hsla(0,0%,100%,0) 100%),
@@ -43,7 +43,7 @@ export const SlideShow = styled.div`
         -webkit-repeating-radial-gradient( 50% 50%,100% 100%,hsla(0,0%,100%,0) 0%,hsla(0,0%,100%,0) 1.2%,hsla(0,0%,100%,.2) 2.2%),
         -webkit-radial-gradient( 50% 50%,200% 50%,hsla(0,0%,90%,1) 5%,hsla(0,0%,85%,1) 30%,hsla(0,0%,60%,1) 100%);
     &:hover {
-      box-shadow: inset 0px 0px 5px 1px black, 0px 0px 2px black, 0 0 3px 1px black;
+      box-shadow: inset 0px 0px 3px 1px black, 0px 0px 1px black, 0 0 2px 1px black;
       color: blue;
       text-shadow: 0 0 2px blue;
       transition: .2s;

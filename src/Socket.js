@@ -1,10 +1,11 @@
 import { useContext, useEffect } from 'react';
-import {Context} from './Context';
+import { Context } from './Context';
 const io = require('socket.io-client');
 
 
 export default function Socket() {
-  const {currentUser} = useContext(Context);
+  const { currentUser } = useContext(Context);
+
   useEffect(() => {
     if (currentUser.id !== undefined)
     {

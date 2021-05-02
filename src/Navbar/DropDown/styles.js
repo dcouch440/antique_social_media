@@ -9,9 +9,9 @@ export const DropMenuPlate = styled.div`
   width: 300px;
   display: ${({display}) => display};
   top: 55px;
+  font-family: 'Courier New', Courier, monospace;
   right: 31px;
-  border-radius: 12px;
+  border-radius: 6px;
+  background-color: #dbcebc;
   border: 1px solid black;
-  background-color: #e7d5bb;
-  border: 2px solid black;
 `;

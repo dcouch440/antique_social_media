@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import * as include from '../../../styled-mixens';
 
 export const Page = styled.div`
   position: inherit;
@@ -25,10 +26,16 @@ export const About = styled.div`
 `;
 
 export const Blog = styled.div`
- > * {
-  font-family: monospace;
-  margin: 15px 0px;
- }
+  ${include.scrollBarStyles};
+  flex: 5;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+
+  > * {
+    font-family: monospace;
+    margin: 15px 0px;
+  }
 `
 
 export const Tag = styled.span`

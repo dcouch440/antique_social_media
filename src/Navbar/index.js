@@ -1,6 +1,6 @@
 import React, {useState, useRef }  from 'react'
 import { Nav, Menu } from './styles';
-import DropDown from '../DropDown';
+import DropDown from './DropDown';
 
 
 const Navbar = () => {

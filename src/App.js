@@ -3,7 +3,7 @@ import { AnimatePresence } from 'framer-motion';
 import GlobalStyles from './GlobalStyles';
 import AntiquesPage from "./pages/AntiquesPage";
 import AntiquePage from "./pages/AntiquePage";
-import Navbar from "./nav/Navbar";
+import Navbar from "./Navbar";
 import Socket from './Socket';
 
 const App = () => {

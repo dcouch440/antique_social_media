@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import * as styled from './styles';
+import { Grid, Header } from './styles';
 import Antiques from './Antiques'
 import PageTransition from '../../Framer/PageTransition';
 import axios from 'axios';
@@ -16,9 +16,10 @@ const AntiquesPage = () => {
 
   return (
     <PageTransition>
-      <styled.Grid>
+      <Header>Antiques</Header>
+      <Grid>
         <Antiques antiques={antiques} />
-      </styled.Grid>
+      </Grid>
     </PageTransition>
   );
 
