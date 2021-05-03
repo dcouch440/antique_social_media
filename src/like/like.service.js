@@ -19,6 +19,12 @@ class LikeService
     const {username, user_id} = req.currentUser;
     return LikeDAO.destroy({username, antique_id, user_id});
   }
+
+  likes({req})
+  {
+    const {user_id} = req.currentUser;
+    return LikeDAO.likes(user_id);
+  }
 }
 
 module.exports = new LikeService();

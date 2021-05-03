@@ -7,12 +7,10 @@ const getCurrentUser = async (req, res, next) => {
   {
     // users validate once through the router for all request,
     // these validations will need to exist to continue later.
-
     const {token} = cookieParser.JSONCookies(req.cookies);
     const decryptedUser = jwt.verify(
       token, process.env.JWT_SECRET
     );
-
     const {
       id :userBodyId,
       username :username,

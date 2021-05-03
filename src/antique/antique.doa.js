@@ -44,6 +44,11 @@ class AntiqueDAO
       .withGraphFetched('images');
   }
 
+  findManyById(id)
+  {
+    return Antique.query().where(builder => builder.whereIn('id', id)).withGraphFetched('images');
+  }
+
   showUniques({category})
   {
     return Antique.query()

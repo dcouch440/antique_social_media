@@ -19,9 +19,11 @@ class UserService
         throw new Error('Invalid username or Password');
       }
 
-      await compareHash({
+      const isValid = await compareHash({
         inputPassword: password, userPassword: user.password_digest
       });
+
+      if (!isValid) { throw new Error({ message: 'Bad Username or Password' });}
 
       const payload = {
         id: user.id,

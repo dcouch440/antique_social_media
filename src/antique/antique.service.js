@@ -31,6 +31,7 @@ class AntiqueService
   {
     try
     {
+      console.log(query);
       const queries = objLength(query) == 2 ? query : limitOffset;
       const parsedQuery = parseObjectInts(queries);
       await queryParams.validate(parsedQuery, {abortEarly: false});
@@ -57,6 +58,11 @@ class AntiqueService
   {
     console.log(category);
     return antiqueDAO.showUniques({category});
+  }
+
+  async findManyById(id)
+  {
+    return antiqueDAO.findManyById(id);
   }
 }
 

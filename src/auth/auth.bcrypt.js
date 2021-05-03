@@ -1,5 +1,4 @@
 const bcrypt = require('bcrypt');
-const { handleException } = require('../../middleware/logger');
 
 const hashPassword = async ({username, email, password}) => {
   try
@@ -15,16 +14,10 @@ const hashPassword = async ({username, email, password}) => {
   catch (err) { console.log(err); }
 };
 
-const compareHash = async ({res, inputPassword, userPassword}) => {
+const compareHash = async ({inputPassword, userPassword}) => {
   try
   {
-    const isValid = await bcrypt.compare(inputPassword, userPassword);
-    if (!isValid)
-    {
-      handleException({res, status: 403, err: {message: 'Password or username incorrect'}});
-      throw new Error('bad password');
-    }
-    return isValid;
+    return bcrypt.compare(inputPassword, userPassword);
   }
 
   catch (err) { console.log(err); }
