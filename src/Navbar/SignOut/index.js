@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useContext } from 'react'
-import { SignOutButton } from './styles';
+import { SignOutDiv } from './styles';
 import { Context } from '../../Context';
 
 const SignOut = () => {
@@ -16,9 +16,9 @@ const SignOut = () => {
   };
 
   return (
-    <SignOutButton type="button" onClick={requestLogout} >
-      SIGNOUT
-    </SignOutButton>
+    <SignOutDiv type="button" onClick={requestLogout} >
+      Sign-Out
+    </SignOutDiv>
   );
 };
 

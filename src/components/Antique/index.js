@@ -1,12 +1,11 @@
 import {AntiqueContainer, Image, AntiqueOverlay} from './styles';
-import Liked from '../../../components/Liked';
+import Liked from '../Liked';
 import React from 'react';
-import { useHistory, withRouter } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const Antique = ({antique}) => {
   const history = useHistory()
-
   const handleClick = (id) => history.push(`/antiques/${id}`);
 
   const [image] = antique.images
@@ -31,4 +30,4 @@ Antique.propTypes = {
   antique: PropTypes.object
 };
 
-export default withRouter(Antique);
+export default Antique

@@ -9,7 +9,7 @@ export const LoadingContainer = styled.div`
   align-items: center;
 `;
 
-export const HourGlass = styled.span`
+export const MagnaGlass = styled.span`
   font-size: 3em;
   width: 0.4em;
   box-sizing: content-box;

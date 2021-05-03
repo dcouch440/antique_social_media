@@ -1,28 +1,40 @@
 import styled from 'styled-components';
 
-export const SignedInContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0 0 30px 0;
-  height: 100%;
-  width: 100%;
-  > * {
-    margin: 5px;
-  }
-`
-
 export const Username = styled.div`
+  font-family: 'Pacifico', cursive;
+  grid-row: span 3;
   text-align: center;
+  color: black;
+  border: 1px solid black;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 5px;
   font-size: 24px;
 `;
 
-export const SignOutButton =styled.button`
-  justify-self: flex-end;
-  padding: 5px;
-  border-radius: 7px;
-  box-shadow: 0 0 2px black;
-  color: black;
-  font-weight: bold;
-`;
+export const HubLink = styled.div`
+  display: flex;
+  align-items: center;
+  border: 1px solid black;
+  a {
+    transition: .5s;
+    padding: 5px;
+    padding-left: 20px;
+    width: 100%;
+  }
+  :hover {
+    a {
+      color: white;
+      background-color: black;
+      padding-left: 30px;
+    }
+  }
+  a {
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+`

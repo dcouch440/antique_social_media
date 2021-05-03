@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { LoadingCircle, LoadingContainer, HourGlass } from './styles'
+import { LoadingCircle, LoadingContainer, MagnaGlass } from './styles'
 import {
   loadingContainerVariants, loadingVariants, loadingTransition, pageVariants
 } from './variants'
@@ -18,20 +18,20 @@ const Loading = ({loadingState, render, version}) => (
     >
       {
 
-        version === 'hourglass' ?
+        version === 'MagnaGlass' ?
 
           <>
-            <HourGlass
+            <MagnaGlass
               as={motion.span}
               variants={loadingVariants}
               transition={loadingTransition}
             />
-            <HourGlass
+            <MagnaGlass
               as={motion.span}
               variants={loadingVariants}
               transition={loadingTransition}
             />
-            <HourGlass
+            <MagnaGlass
               as={motion.span}
               variants={loadingVariants}
               transition={loadingTransition}

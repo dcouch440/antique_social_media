@@ -31,7 +31,7 @@ const AntiquePage = props => {
       <Page>
         <Loading
           loadingState={loading}
-          version="hourglass"
+          version="MagnaGlass"
           render={
             <>
               <GoBackButton handleClick={handleClick} text={'Back  ▶'} />

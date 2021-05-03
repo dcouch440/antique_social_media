@@ -2,16 +2,15 @@ import styled from 'styled-components';
 
 export const DropMenuPlate = styled.div`
   z-index: 9999;
-  padding: 5px;
   position: absolute;
   color: black;
-  height: 300px;
+  overflow: hidden;
   width: 300px;
   display: ${({display}) => display};
   top: 55px;
   font-family: 'Courier New', Courier, monospace;
   right: 31px;
   border-radius: 6px;
-  background-color: #dbcebc;
-  border: 1px solid black;
+  box-shadow: inset 0 0 2px 1px #00000099;
+  background-color: #e0e0e0;
 `;

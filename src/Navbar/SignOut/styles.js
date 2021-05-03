@@ -1,13 +1,17 @@
 import styled from 'styled-components';
 
-export const SignOutButton =styled.button`
-  justify-self: flex-end;
-  position: absolute;
-  bottom: 5px;
-  right: 5px;
-  padding: 5px;
-  border-radius: 7px;
-  box-shadow: 0 0 2px black;
+export const SignOutDiv = styled.div`
+  cursor: pointer;
   color: black;
+  height: 100%;
+  grid-row: span 2;
+  text-align: center;
+  font-family: 18px;
+  padding: 5px;
   font-weight: bold;
+  :hover {
+    color: white;
+    background-color: black;
+    transition: .3s;
+  }
 `;

@@ -1,8 +1,9 @@
 import { Route, Switch, useLocation, Redirect } from "react-router";
 import { AnimatePresence } from 'framer-motion';
 import GlobalStyles from './GlobalStyles';
-import AntiquesPage from "./pages/AntiquesPage";
-import AntiquePage from "./pages/AntiquePage";
+import Antiques from "./pages/Antiques";
+import Antique from "./pages/Antique";
+import Likes from './pages/Likes';
 import Navbar from "./Navbar";
 import Socket from './Socket';
 
@@ -16,14 +17,14 @@ const App = () => {
       <Navbar />
       <AnimatePresence>
         <Switch location={location} key={location.key}>
-          <Route exact path="/">
-            <Redirect to="/antiques" />
-          </Route>
-          <Route exact path='/antiques'>
-            <AntiquesPage />
+          <Route path='/antiques'>
+            <Antiques />
           </Route>
           <Route exact path='/antiques/:id'>
-            <AntiquePage />
+            <Antique />
+          </Route>
+          <Route exact path='/likes'>
+            <Likes />
           </Route>
         </Switch>
       </AnimatePresence>
