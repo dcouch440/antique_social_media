@@ -5,7 +5,7 @@ import { Form, SignUpTitle } from './styles';
 import { StyledInput, DropDownButtonContainer, DropDownButton } from '../styled';
 
 
-const SignUp = () => {
+const SignUp = ({toggle}) => {
   const [payload, setPayload] = useState({});
   const [message, setMessage] = useState('Sign Up');
   const isRequest = useRef(false);
@@ -81,8 +81,8 @@ const SignUp = () => {
       />
 
       <DropDownButtonContainer>
+        <DropDownButton type="submit" onClick={toggle}>Sign In</DropDownButton>
         <DropDownButton >Sign In</DropDownButton>
-        <DropDownButton type="submit" onClick={() => console.log('clicked')}>Sign Up</DropDownButton>
       </DropDownButtonContainer>
 
     </Form>
