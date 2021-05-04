@@ -1,12 +1,16 @@
 import React, {useState, useEffect, useRef, useContext} from 'react'
 import axios from 'axios';
 import { Context } from '../../Context';
-import { StyledInput, SubmitButton, ButtonContainer, SignIngTitle } from './styles'
+import {
+   ButtonContainer, SignIngTitle, SignedOut
+} from './styles'
+import { StyledInput, DropDownButton, DropDownButtonContainer } from '../styled';
 
-const SignIn = () => {
+const SignIn = ({toggle}) => {
   const [payload, setPayload] = useState({});
+  const [error, setError] = useState(false);
   const [{password, email}, setCredentials] = useState({password: '', email: ''});
-  const isMounted = useRef(false)
+  const isRequest = useRef(false)
 
   const { setCurrentUser } = useContext(Context)
 
@@ -19,28 +23,34 @@ const SignIn = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    isMounted.current = true;
-    setPayload({password,email});
+    isRequest.current = true;
+    setPayload({password, email});
   };
 
   useEffect(() => {
-    if (!isMounted.current) return
+    if (!isRequest.current) return
+    isRequest.current = false;
     axios.post(
       '/users/signin',
       { email, password },
       { withCredentials: true }
     )
     .then(res => {
+      console.log(res)
       setCurrentUser(res.data)
     })
-    .catch(error => console.log(error));
+    .catch(error => {
+      setError(true);
+      console.log(error)
+    });
 
-  }, [email, password, payload, setCurrentUser]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [payload]);
 
 
   return (
-    <>
-      <SignIngTitle>Please Sign In</SignIngTitle>
+    <SignedOut>
+      <SignIngTitle>{error ? 'Something went wrong.. try again' : 'Please Sign In'}</SignIngTitle>
       <form onSubmit={onSubmit}>
         <StyledInput
           onChange={handleChange}
@@ -54,11 +64,12 @@ const SignIn = () => {
           placeholder={'password'}
           value={password}
         />
-        <ButtonContainer>
-          <SubmitButton type={'submit'}>SUBMIT</SubmitButton>
-        </ButtonContainer>
+        <DropDownButtonContainer>
+          <DropDownButton type='button' onClick={toggle}>Sign Up</DropDownButton>
+          <DropDownButton type={'submit'}>Sign In</DropDownButton>
+        </DropDownButtonContainer>
       </form>
-    </>
+    </SignedOut>
   );
 };
 

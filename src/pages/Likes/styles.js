@@ -10,6 +10,8 @@ export const Page = styled.div`
 
 export const AntiqueRows = styled.div`
   width: 100%;
-  display: flex;
-  height: 400px;
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: 100%;
+  grid-auto-rows: auto;
 `

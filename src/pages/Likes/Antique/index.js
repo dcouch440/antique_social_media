@@ -1,12 +1,17 @@
 import React from 'react';
 import { AntiqueRow, Image, About } from './styles';
 import moment from 'moment';
+import { useHistory } from 'react-router';
+
 const Antique = ({antique}) => {
-  console.log(antique);
+  const history = useHistory();
   const [image] = antique.images
+
+  const handleClick = () => history.push(`/antiques/${antique.id}`)
+
   return (
     <AntiqueRow>
-      <Image src={image.image_url} alt={antique.name} />
+      <Image onClick={handleClick} src={image.image_url} alt={antique.name} />
       <About>
         <div>
           Name: {antique.name}

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-
+import * as include from '../../styled-mixens/index';
 export const Page = styled.div`
+  ${include.screenAdapt}
   position: relative;
   height: inherit;
   padding: 5px;

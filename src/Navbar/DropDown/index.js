@@ -3,6 +3,7 @@ import { Context } from '../../Context';
 import { DropMenuPlate } from './styles';
 import SignIn from '../SignIn';
 import SignedIn from '../SignedIn';
+import Access from '../Access';
 
 const DropDown = ({display}) => {
   const { currentUser } = useContext(Context)
@@ -14,7 +15,7 @@ const DropDown = ({display}) => {
         signedIn ?
           <SignedIn user={currentUser.username}/>
           :
-          <SignIn />
+          <Access />
       }
     </DropMenuPlate>
   );

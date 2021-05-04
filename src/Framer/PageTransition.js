@@ -8,11 +8,12 @@ const Container = styled.div`
 
 const transition = {
   hidden: {
+    position: 'absolute',
     opacity: 0,
   },
   visible: {
     opacity: 1,
-    transition: {duration: .5, delay: .2}
+    transition: {duration: .8, delay: 1}
   },
   timing: {
     duration: 2
@@ -22,7 +23,8 @@ const transition = {
   },
   exit: {
     x: '100vw',
-    transition: { duration: .5, ease: 'easeInOut' }
+    position: 'absolute',
+    transition: { duration: .6, ease: 'easeInOut' }
   }
 };
 

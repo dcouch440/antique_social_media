@@ -8,7 +8,6 @@ export const Grid = styled.div`
   margin: 0 auto;
   grid-auto-flow: dense;
   grid-template-columns: repeat(${({columns}) => columns},  1fr);
-
   @media (max-width: 900px) {
     grid-template-columns: repeat(1,  1fr);
   }
@@ -16,28 +15,16 @@ export const Grid = styled.div`
 
 export const Header = styled.div`
   ${include.screenAdapt};
-  font-family: 'Pangolin', cursive;
-  height: 60px;
+  font-family: 'Pacifico', cursive;
+  text-shadow: -1px -1px #455a64;
+  height: 70px;
   text-align: center;
   font-size: 40px;
-  background-color: whitesmoke;
-  border: 1px solid black;
   margin: 5px auto;
 `;
 
-export const SliderContainer = styled.div`
-  width: 50px;
-  background-color: black;
-  .rc-slider-track {
-    background-color: red;
-  }
-  .rc-slider-step {
-    background-color: red;
-  }
-  .rc-slider-rail {
-    background-color: red;
-  }
-  .rc-slider-handle {
-    background-color: red;
-  }
-`
+export const PageContainer = styled.div`
+  width: inherit;
+  height: inherit;
+  position: relative;
+`;

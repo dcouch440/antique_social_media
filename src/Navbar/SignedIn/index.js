@@ -15,9 +15,9 @@ const SingedIn = ({user}) => {
   return (
     <Grid>
       <Username>Welcome {user.charAt(0).toUpperCase() + user.slice(1)} </Username>
-      <HubLink><Link>antiques</Link></HubLink>
-      <HubLink><Link>post</Link></HubLink>
-      <HubLink><Link>likes</Link></HubLink>
+      <HubLink><Link to='/antiques'>antiques</Link></HubLink>
+      <HubLink><Link to='/antiques/new'>post</Link></HubLink>
+      <HubLink><Link to='/likes'>likes</Link></HubLink>
       <HubLink><Link>profile</Link></HubLink>
       <SignOut />
     </Grid>

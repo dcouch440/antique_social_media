@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
 const Liked = ({isLiked, antiqueId}) => {
   const [liked, setLiked] = useState(isLiked);
   const { currentUser } = useContext(Context);
-  const display = liked ? '✔' : '✗'
+  const display = liked ? 'F' : 'add'
 
   const handleClick = e => {
     e.stopPropagation();

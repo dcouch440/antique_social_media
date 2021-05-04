@@ -5,13 +5,18 @@ export const SignOutDiv = styled.div`
   color: black;
   height: 100%;
   grid-row: span 2;
-  text-align: center;
+  display: flex;
+  align-items: center;
   font-family: 18px;
-  padding: 5px;
+  padding: 20px;
   font-weight: bold;
+  box-shadow: inset 0px -1px 1px 1px black;
   :hover {
     color: white;
     background-color: black;
-    transition: .3s;
+    transition: .5s;
+    color: white;
+    background-color: #000000ad;
+    padding-left: 30px;
   }
 `;

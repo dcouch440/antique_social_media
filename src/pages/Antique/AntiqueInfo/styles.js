@@ -31,6 +31,10 @@ export const Blog = styled.div`
   overflow-x: hidden;
   overflow-y: auto;
   scroll-behavior: smooth;
+  background-color: #cec1b0cc;
+  border-radius: 5px;
+  font-size: 20px;
+  white-space: pre-line;
 
   > * {
     font-family: monospace;

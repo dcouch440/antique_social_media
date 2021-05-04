@@ -12,7 +12,7 @@ export const screenAdapt = `
   }
 
   @media (max-width: 1000px) {
-    width: 700px;
+    width: 850px;
   }
   @media (max-width: 900px) {
     width: 95%;
@@ -40,7 +40,7 @@ export const maxCenter = `
 
 export const scrollBarStyles = `
   ::-webkit-scrollbar {
-    width: 7px;
+    width: 8px;
     background-color: #00000036;
   }
 
@@ -49,3 +49,27 @@ export const scrollBarStyles = `
     background: linear-gradient(180deg ,rgb(0 0 0 / 35%) 0%,rgb(0 0 0 / 57%) 74%);
   }
 `;
+
+export const inputFocus = `
+  :focus {
+    outline: none;
+    box-shadow: 0 0 0 4px black;
+  }
+`
+
+export const DropdownButtonStyle = `
+  justify-self: flex-end;
+  background-color: white;
+  padding: 5px;
+  border-radius: 7px;
+  box-shadow: 0 0 2px black;
+  font-family: 'Pacifico', cursive;
+  color: black;
+  font-weight: bold;
+`
+
+export const DropdownInputStyle = `
+  
+`
+
+export const cursiveFont = `font-family: 'Pacifico', cursive;`

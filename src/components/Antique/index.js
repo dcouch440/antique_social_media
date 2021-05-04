@@ -11,18 +11,18 @@ const Antique = ({antique}) => {
   const [image] = antique.images
 
   return (
-      <AntiqueContainer
-        onClick={() => handleClick(antique.id)}
-        dimensions={{height: image.height, width: image.width}}
-      >
-        <Image src={image.image_url} alt={antique.name} />
-        <AntiqueOverlay >
-          <div>{antique.name}</div>
-          <div>{antique.year}</div>
-          <Liked isLiked={antique.liked} antiqueId={antique.id}/>
-        </AntiqueOverlay>
+    <AntiqueContainer
+      onClick={() => handleClick(antique.id)}
+      dimensions={{height: image.height, width: image.width}}
+    >
+      <Image src={image.image_url} alt={antique.name} />
+      <AntiqueOverlay >
+        <div>{antique.name}</div>
+        <div>{antique.year}</div>
+        <Liked isLiked={antique.liked} antiqueId={antique.id}/>
+      </AntiqueOverlay>
 
-      </AntiqueContainer>
+    </AntiqueContainer>
   )
 }
 
