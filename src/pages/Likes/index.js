@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import Antiques from '../../components/Antiques';
+import ApiMapper from '../../components/ApiMapper';
 import PageTransition from '../../Framer/PageTransition';
 import Antique from './Antique';
 import { AntiqueRows, Page } from './styles';
@@ -15,15 +15,13 @@ const Likes = () => {
       .catch(err => console.log(err));
   }, [])
 
-  console.log(antiques);
-
   return (
     <PageTransition>
       <Page>
         <AntiqueRows>
           {
             antiques.length >= 1 ?
-              <Antiques antiques={antiques} Component={Antique} />:
+              <ApiMapper callData={antiques} component={Antique} />:
               <h1>No Antiques?  Get liking..</h1>
           }
         </AntiqueRows>

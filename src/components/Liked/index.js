@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Context } from '../../Context';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import likedVariants from './variants';
 import { Check } from './styles';
 import { motion } from 'framer-motion';
@@ -9,6 +9,8 @@ const Liked = ({isLiked, antiqueId}) => {
   const [liked, setLiked] = useState(isLiked);
   const { currentUser } = useContext(Context);
   const display = liked ? 'F' : 'add'
+
+  useEffect(() => setLiked(isLiked), [isLiked])
 
   const handleClick = e => {
     e.stopPropagation();

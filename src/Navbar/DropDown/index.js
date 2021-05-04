@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { Context } from '../../Context';
 import { DropMenuPlate } from './styles';
-import SignIn from '../SignIn';
 import SignedIn from '../SignedIn';
 import Access from '../Access';
 

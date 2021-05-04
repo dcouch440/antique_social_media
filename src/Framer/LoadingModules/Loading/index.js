@@ -1,12 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { LoadingCircle, LoadingContainer, MagnaGlass } from './styles'
+import { LoadingCircle, LoadingContainer, MagnaGlass } from '../styles'
 import {
   loadingContainerVariants, loadingVariants, loadingTransition, pageVariants
-} from './variants'
+} from '../variants'
 
 
-const Loading = ({loadingState, render, version}) => (
+const Loading = ({loadingState, afterLoad, version}) => (
 
   loadingState ?
 
@@ -61,7 +61,7 @@ const Loading = ({loadingState, render, version}) => (
       initial='hidden'
       animate='visible'
     >
-      {render}
+      {afterLoad}
     </motion.div>
 
 );

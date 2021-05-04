@@ -1,22 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Grid, Header, PageContainer } from './styles';
-import Antiques from '../../components/Antiques'
+import ApiMapper from '../../components/ApiMapper'
 import PageTransition from '../../Framer/PageTransition';
 import axios from 'axios';
 import Antique from '../../components/Antique';
 import Controls from './Controls';
+import { Context } from '../../Context';
 
 const AntiquesPage = () => {
+  const { currentUser } = useContext(Context);
   const [antiques, setAntiques] = useState([]);
   const [slider, setSlider] = useState(3);
 
 
   useEffect(() => {
+    console.log('lol')
     axios
       .get(`/antiques?LIMIT=${15}&OFFSET=${0}`, {withCredentials: true})
       .then(resp => setAntiques(resp.data))
       .catch(err => console.error(err));
-  }, [setAntiques]);
+  }, [setAntiques, currentUser.id]);
 
   return (
     <PageTransition>
@@ -24,7 +27,7 @@ const AntiquesPage = () => {
         <Controls setSlider={setSlider} count={slider}/>
         <Header>Antiques</Header>
         <Grid columns={slider}>
-          <Antiques antiques={antiques} Component={Antique}/>
+          <ApiMapper callData={antiques} component={Antique} />
         </Grid>
       </PageContainer>
     </PageTransition>

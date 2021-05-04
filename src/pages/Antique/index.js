@@ -1,12 +1,12 @@
 import React, { useEffect, useRef } from 'react';
 import { Page } from './styles';
-import Loading from '../../Framer/Loading';
+import Loading from '../../Framer/LoadingModules/Loading';
 import AntiqueInfo from './AntiqueInfo';
 import { useHistory, useParams } from 'react-router-dom';
 import PageTransition from '../../Framer/PageTransition';
 import GoBackButton from './GoBackButton';
 import axios from 'axios';
-import LoadingSequence from '../../utils/loadingSequence';
+import loadingSequence from '../../utils/loadingSequence';
 
 const AntiquePage = props => {
   const { id } = useParams();
@@ -22,7 +22,7 @@ const AntiquePage = props => {
     axios.get(`/antiques/${id}`, {withCredentials: true})
       .then(res => {
         setAntique(res.data);
-        LoadingSequence({condition: setLoading, ref: sequence})
+        loadingSequence({condition: setLoading, ref: sequence, timeBeforeCheck: 1500})
       })
       .catch(err => console.error(err));
 
@@ -31,15 +31,11 @@ const AntiquePage = props => {
   return (
     <PageTransition>
       <Page>
+        <GoBackButton handleClick={handleClick} text={'Back  ▶'} />
         <Loading
           loadingState={loading}
           version="MagnaGlass"
-          render={
-            <>
-              <GoBackButton handleClick={handleClick} text={'Back  ▶'} />
-              <AntiqueInfo antique={antique} />
-            </>
-          }
+          afterLoad={ <AntiqueInfo antique={antique} /> }
         />
       </Page>
     </PageTransition>

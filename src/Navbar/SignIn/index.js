@@ -1,9 +1,7 @@
 import React, {useState, useEffect, useRef, useContext} from 'react'
 import axios from 'axios';
 import { Context } from '../../Context';
-import {
-   ButtonContainer, SignIngTitle, SignedOut
-} from './styles'
+import { SignIngTitle, SignedIn } from './styles'
 import { StyledInput, DropDownButton, DropDownButtonContainer } from '../styled';
 
 const SignIn = ({toggle}) => {
@@ -49,7 +47,7 @@ const SignIn = ({toggle}) => {
 
 
   return (
-    <SignedOut>
+    <SignedIn>
       <SignIngTitle>{error ? 'Something went wrong.. try again' : 'Please Sign In'}</SignIngTitle>
       <form onSubmit={onSubmit}>
         <StyledInput
@@ -69,7 +67,7 @@ const SignIn = ({toggle}) => {
           <DropDownButton type={'submit'}>Sign In</DropDownButton>
         </DropDownButtonContainer>
       </form>
-    </SignedOut>
+    </SignedIn>
   );
 };
 

@@ -9,6 +9,7 @@ const Antique = ({antique}) => {
   const handleClick = (id) => history.push(`/antiques/${id}`);
 
   const [image] = antique.images
+  console.log(antique)
 
   return (
     <AntiqueContainer
