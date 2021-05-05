@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { LoadingCircle, LoadingContainer } from '../styles'
+import { LoadingCircle, LoadingContainer } from '../styles';
 import {
   loadingContainerVariants, loadingVariants, loadingTransition, pageVariants
-} from '../variants'
+} from '../variants';
 
 
 const SimulateLoading = ({render, time = 1000}) => {
 
-  const [loadingState, setLoadingState] = useState(true)
+  const [loadingState, setLoadingState] = useState(true);
 
   setTimeout(() => {
     setLoadingState(false);
-  }, time)
+  }, time);
 
   return loadingState ?
 
@@ -38,8 +38,8 @@ const SimulateLoading = ({render, time = 1000}) => {
       animate='visible'
     >
       {render}
-    </motion.div>
+    </motion.div>;
 
-}
+};
 
 export default SimulateLoading;

@@ -14,6 +14,7 @@ export const StyledInput = styled.input`
 `;
 
 export const DropDownButton = styled.button`
+  cursor: pointer;
   justify-self: flex-end;
   z-index: 5000;
   background-color: white;
@@ -23,6 +24,10 @@ export const DropDownButton = styled.button`
   font-family: 'Pacifico', cursive;
   color: black;
   font-weight: bold;
+  :hover {
+    background-color: black;
+    color: white;
+  }
 `;
 
 export const DropDownButtonContainer = styled.div`

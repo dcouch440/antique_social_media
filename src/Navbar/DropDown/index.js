@@ -5,7 +5,7 @@ import SignedIn from '../SignedIn';
 import Access from '../Access';
 
 const DropDown = ({display}) => {
-  const { currentUser } = useContext(Context)
+  const { currentUser } = useContext(Context);
   const signedIn = currentUser.username;
 
   return (

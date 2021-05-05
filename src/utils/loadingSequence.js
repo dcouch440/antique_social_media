@@ -3,7 +3,7 @@
 const loadingSequence = ({condition, ref, timeBeforeCheck = 1000}) => {
   setTimeout(() => {
     ref.current = true;
-  }, timeBeforeCheck)
+  }, timeBeforeCheck);
 
   if(ref.current === false)
   {
@@ -15,6 +15,6 @@ const loadingSequence = ({condition, ref, timeBeforeCheck = 1000}) => {
     }, 300);
   }
   else condition(false);
-}
+};
 
 export default loadingSequence;

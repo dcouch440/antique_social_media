@@ -8,8 +8,8 @@ import * as styles from './styles';
 
 const AntiquesSlideShow = ({antiqueImages}) => {
   const [[page, direction], setPage] = useState([0, 0]);
-  const [nextSlide, setNextSlide] = useState(0)
-  const isTapped = useRef(false)
+  const [nextSlide, setNextSlide] = useState(0);
+  const isTapped = useRef(false);
 
   // IMAGES LOAD IN HERE WITH IMAGES TAG >>> SET API CALL IN PROPS
   const imageIndex = wrap(0, antiqueImages.length, page);
@@ -21,10 +21,10 @@ const AntiquesSlideShow = ({antiqueImages}) => {
 
   const paginate = useCallback((newDirection) => {
     setPage([page + newDirection, newDirection]);
-  }, [page, setPage])
+  }, [page, setPage]);
 
   useEffect(() => {
-    if (antiqueImages.length === 1) return
+    if (antiqueImages.length === 1) return;
 
     const timer = setTimeout(() => {
       if (!isTapped.current) paginate(1);
@@ -34,45 +34,45 @@ const AntiquesSlideShow = ({antiqueImages}) => {
 
   }, [page, paginate, nextSlide, antiqueImages.length]);
 
-  const handleMouseEnter = () => isTapped.current = true
-  const handleMouseLeave = () => isTapped.current = false
+  const handleMouseEnter = () => isTapped.current = true;
+  const handleMouseLeave = () => isTapped.current = false;
 
   return (
-      <styles.SlideShow>
-        <AnimatePresence initial={true} custom={direction}>
-          <motion.img
-            key={page}
-            src={antiqueImages[imageIndex].image_url}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            custom={direction}
-            variants={variants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            transition='transition'
-            drag="x"
-            dragConstraints={{ left: 0, right: 0 }}
-            dragElastic={1}
-            onDragEnd={(e, { offset, velocity }) => {
-              const swipe = swipePower(offset.x, velocity.x);
+    <styles.SlideShow>
+      <AnimatePresence initial={true} custom={direction}>
+        <motion.img
+          key={page}
+          src={antiqueImages[imageIndex].image_url}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          custom={direction}
+          variants={variants}
+          initial="enter"
+          animate="center"
+          exit="exit"
+          transition='transition'
+          drag="x"
+          dragConstraints={{ left: 0, right: 0 }}
+          dragElastic={1}
+          onDragEnd={(e, { offset, velocity }) => {
+            const swipe = swipePower(offset.x, velocity.x);
 
-              if (swipe < -swipeConfidenceThreshold) {
-                paginate(1);
-              } else if (swipe > swipeConfidenceThreshold) {
-                paginate(-1);
-              }
-            }}
-          />
-        </AnimatePresence>
-        <div className="next" onClick={() => paginate(1)}>
-          {"‣"}
-        </div>
-        <div className="prev" onClick={() => paginate(-1)}>
-          {"‣"}
-        </div>
-      </styles.SlideShow>
-  )
-}
+            if (swipe < -swipeConfidenceThreshold) {
+              paginate(1);
+            } else if (swipe > swipeConfidenceThreshold) {
+              paginate(-1);
+            }
+          }}
+        />
+      </AnimatePresence>
+      <div className="next" onClick={() => paginate(1)}>
+        {"‣"}
+      </div>
+      <div className="prev" onClick={() => paginate(-1)}>
+        {"‣"}
+      </div>
+    </styles.SlideShow>
+  );
+};
 
-export default AntiquesSlideShow
+export default AntiquesSlideShow;

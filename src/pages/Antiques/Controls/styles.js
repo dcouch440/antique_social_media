@@ -35,7 +35,7 @@ export const Slide = styled.div`
 export const Count = styled.div`
   padding-left: 5px;
   font-family: Pacifico, cursive;
-`
+`;
 
 export const SliderContainer = styled.div`
   top: 200px;

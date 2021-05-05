@@ -11,7 +11,7 @@ export const Page = styled.div`
   @media (max-width: 1000px) {
     grid-template-columns: repeat(1,1fr);
   }
-`
+`;
 
 export const About = styled.div`
   font-family: 'New Tegomin', serif;
@@ -40,9 +40,9 @@ export const Blog = styled.div`
     font-family: monospace;
     margin: 15px 0px;
   }
-`
+`;
 
 export const Tag = styled.span`
   font-weight: 900;
   font: message-box;
-`
+`;

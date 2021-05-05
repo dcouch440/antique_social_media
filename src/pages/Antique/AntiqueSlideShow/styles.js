@@ -80,4 +80,4 @@ export const SlideShow = styled.div`
     max-width: 100%;
     @media (max-width: 1000px) { padding: 5px; }
   }
-`
+`;

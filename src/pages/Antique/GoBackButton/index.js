@@ -15,5 +15,5 @@ const GoBack = ({handleClick, text}) => (
   >
     {text}
   </GoBackButton>
-)
+);
 export default GoBack;

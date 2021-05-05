@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useContext } from 'react'
+import React, { useContext } from 'react';
 import { SignOutDiv } from './styles';
 import { Context } from '../../Context';
 

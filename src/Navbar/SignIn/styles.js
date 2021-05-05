@@ -15,4 +15,4 @@ export const SignedIn = styled.div`
     font-family: 'Pacifico', cursive;
     margin: 10px 0;
   }
-`
+`;

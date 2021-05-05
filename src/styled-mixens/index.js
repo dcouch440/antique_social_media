@@ -55,7 +55,7 @@ export const inputFocus = `
     outline: none;
     box-shadow: 0 0 0 4px black;
   }
-`
+`;
 
 export const DropdownButtonStyle = `
   justify-self: flex-end;
@@ -66,10 +66,9 @@ export const DropdownButtonStyle = `
   font-family: 'Pacifico', cursive;
   color: black;
   font-weight: bold;
-`
+`;
 
 export const DropdownInputStyle = `
-  
-`
+`;
 
-export const cursiveFont = `font-family: 'Pacifico', cursive;`
+export const cursiveFont = `font-family: 'Pacifico', cursive;`;

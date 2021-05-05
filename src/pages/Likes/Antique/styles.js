@@ -2,14 +2,13 @@ import styled from 'styled-components';
 
 export const AntiqueRow = styled.div`
   display: flex;
-`
+`;
 
 export const Image = styled.img`
   border: 1px solid black;
   height: auto;
   object-fit: cover;
-  width: 240px;
-  box-shadow: inset 0 0 50px black;
+  width: 300px;
 `;
 
 export const About = styled.div`
@@ -22,4 +21,4 @@ export const About = styled.div`
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
-`
+`;

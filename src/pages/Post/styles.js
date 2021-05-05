@@ -18,7 +18,7 @@ export const PreviewImage = styled.img`
   height: auto;
   max-height: 90%;
   object-fit: cover;
-`
+`;
 
 export const ImageInput = styled.input`
   top: 15px;
@@ -36,13 +36,14 @@ export const NoImage = styled.div`
   color: whitesmoke;
   font-size: 84px;
   text-align: center;
-`
+`;
+
 export const NoImageCaption = styled.div`
   font-size: 18px;
   padding: 20px;
   justify-content: center;
   color: whitesmoke;
-`
+`;
 
 export const ImagePreview = styled.div`
   position: relative;
@@ -53,7 +54,7 @@ export const ImagePreview = styled.div`
   justify-content: center;
   flex: 1;
   background-color: #1b1b1b;
-`
+`;
 
 export const FormContainer = styled.div`
   flex: 1;

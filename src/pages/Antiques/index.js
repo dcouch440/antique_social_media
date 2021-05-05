@@ -1,25 +1,14 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Grid, Header, PageContainer } from './styles';
-import ApiMapper from '../../components/ApiMapper'
+import ApiMapper from '../../components/ApiMapper';
 import PageTransition from '../../Framer/PageTransition';
-import axios from 'axios';
-import Antique from '../../components/Antique';
+import Antique from './Antique';
 import Controls from './Controls';
-import { Context } from '../../Context';
+import useEverScroll from '../../hooks/useEverScroll';
 
 const AntiquesPage = () => {
-  const { currentUser } = useContext(Context);
-  const [antiques, setAntiques] = useState([]);
+  const [bottomBoundaryRef, lazyRef, antiques] = useEverScroll({limit: 15, route: '/antiques'});
   const [slider, setSlider] = useState(3);
-
-
-  useEffect(() => {
-    console.log('lol')
-    axios
-      .get(`/antiques?LIMIT=${15}&OFFSET=${0}`, {withCredentials: true})
-      .then(resp => setAntiques(resp.data))
-      .catch(err => console.error(err));
-  }, [setAntiques, currentUser.id]);
 
   return (
     <PageTransition>
@@ -27,7 +16,8 @@ const AntiquesPage = () => {
         <Controls setSlider={setSlider} count={slider}/>
         <Header>Antiques</Header>
         <Grid columns={slider}>
-          <ApiMapper callData={antiques} component={Antique} />
+          <ApiMapper callData={antiques} lazyRef={lazyRef} component={Antique} />
+          <div ref={bottomBoundaryRef} style={{background: 'red', width: '200px', height: '500px'}}></div>
         </Grid>
       </PageContainer>
     </PageTransition>

@@ -13,7 +13,7 @@ const AntiqueInfo = ({antique}) => (
           <Tag>Name: </Tag>{antique.name}
         </div>
         <div>
-        <Tag>Year: </Tag>{antique.year}
+          <Tag>Year: </Tag>{antique.year}
         </div>
         <div>
           <div>
@@ -23,7 +23,7 @@ const AntiqueInfo = ({antique}) => (
         </div>
       </Blog>
     </About>
-  </Page>
+  </Page> 
 );
 
 

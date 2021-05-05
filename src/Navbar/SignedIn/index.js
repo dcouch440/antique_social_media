@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import styled from 'styled-components';
 import { Username, HubLink } from './styles';
 import {Link} from 'react-router-dom';
@@ -9,7 +9,7 @@ const Grid = styled.div`
   grid-template-columns: repeat(1, 1fr);
   grid-auto-rows: 40px;
   font-family: 'Pacifico', cursive;
-`
+`;
 
 const SingedIn = ({user}) => {
   return (
@@ -21,7 +21,7 @@ const SingedIn = ({user}) => {
       <HubLink><Link>profile</Link></HubLink>
       <SignOut />
     </Grid>
-  )
-}
+  );
+};
 
 export default SingedIn;

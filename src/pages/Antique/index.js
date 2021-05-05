@@ -10,9 +10,9 @@ import loadingSequence from '../../utils/loadingSequence';
 
 const AntiquePage = props => {
   const { id } = useParams();
-  const history = useHistory()
+  const history = useHistory();
   const [loading, setLoading] = React.useState(true);
-  const sequence = useRef(false)
+  const sequence = useRef(false);
   const [antique, setAntique] = React.useState({});
 
   const handleClick = () => history.goBack();
@@ -22,7 +22,7 @@ const AntiquePage = props => {
     axios.get(`/antiques/${id}`, {withCredentials: true})
       .then(res => {
         setAntique(res.data);
-        loadingSequence({condition: setLoading, ref: sequence, timeBeforeCheck: 1500})
+        loadingSequence({condition: setLoading, ref: sequence, timeBeforeCheck: 1500});
       })
       .catch(err => console.error(err));
 
@@ -43,4 +43,4 @@ const AntiquePage = props => {
 
 };
 
-export default AntiquePage
+export default AntiquePage;

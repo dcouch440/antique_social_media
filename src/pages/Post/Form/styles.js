@@ -22,21 +22,23 @@ export const LabelsTitleYear = styled.div`
   display: flex;
   > div:nth-child(1) { width: 80%;}
   > div:nth-child(2) { width: 20%;}
-`
+`;
 
 export const TitleYear = styled.div`
-  display: flex;
   ${include.inputFocus}
-`
+  display: flex;
+`;
 
 export const YearInput = styled.input`
+  ${include.inputFocus}
   font-size: 29px;
   width: 20%;
   margin-bottom: 10px;
   border-radius: 5px;
-`
+`;
 
 export const TitleInput = styled.input`
+  ${include.inputFocus}
   margin-bottom: 10px;
   font-size: 29px;
   width: 80%;
@@ -71,4 +73,4 @@ export const Button = styled.button`
   border-radius: 5px;
   padding: 5px 15px;
   color: black;
-`
+`;

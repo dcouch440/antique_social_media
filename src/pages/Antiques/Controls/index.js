@@ -24,7 +24,7 @@ const Controls = ({setSlider, count}) => {
         </Slide>
       </SliderContainer>
     </ControlsPanel>
-  )
-}
+  );
+};
 
-export default Controls
+export default Controls;

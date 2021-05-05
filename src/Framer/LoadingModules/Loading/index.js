@@ -1,9 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { LoadingCircle, LoadingContainer, MagnaGlass } from '../styles'
+import { LoadingCircle, LoadingContainer, MagnaGlass } from '../styles';
 import {
   loadingContainerVariants, loadingVariants, loadingTransition, pageVariants
-} from '../variants'
+} from '../variants';
 
 
 const Loading = ({loadingState, afterLoad, version}) => (
@@ -38,17 +38,17 @@ const Loading = ({loadingState, afterLoad, version}) => (
             />
           </>
 
-        :
+          :
 
-        version === 'circle' ?
+          version === 'circle' ?
 
-          <LoadingCircle
-            as={motion.span}
-            variants={loadingVariants}
-            transition={loadingTransition}
-          />
+            <LoadingCircle
+              as={motion.span}
+              variants={loadingVariants}
+              transition={loadingTransition}
+            />
 
-        :null
+            :null
 
       }
     </LoadingContainer>

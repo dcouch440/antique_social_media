@@ -6,14 +6,14 @@ import Antique from './Antique';
 import { AntiqueRows, Page } from './styles';
 
 const Likes = () => {
-  const [antiques, setAntiques] = useState([])
+  const [antiques, setAntiques] = useState([]);
 
-  useEffect(() =>{
+  useEffect(() => {
     axios
       .get('/likes', {withCredentials: true})
       .then(res => setAntiques(res.data))
       .catch(err => console.log(err));
-  }, [])
+  }, []);
 
   return (
     <PageTransition>
@@ -27,7 +27,8 @@ const Likes = () => {
         </AntiqueRows>
       </Page>
     </PageTransition>
-  )
+  );
 
-}
+};
+
 export default Likes;

@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef, useContext} from 'react'
+import React, {useState, useEffect, useRef, useContext} from 'react';
 import axios from 'axios';
 import { Context } from '../../Context';
 import { Form, SignUpTitle } from './styles';
@@ -10,7 +10,7 @@ const SignUp = ({toggle}) => {
   const [message, setMessage] = useState('Sign Up');
   const isRequest = useRef(false);
   const [credentials, setCredentials] = useState({password: '', email: '', username: '', passwordConfirmation: ''});
-  const { setCurrentUser } = useContext(Context)
+  const { setCurrentUser } = useContext(Context);
 
   const handleChange = (e) => {
     const {name, value} = e.target;
@@ -27,7 +27,7 @@ const SignUp = ({toggle}) => {
     e.preventDefault();
 
     if (password === passwordConfirmation) {
-      isRequest.current = true
+      isRequest.current = true;
       setPayload({password,email,username});
     }
     else { setMessage('Passwords Must Match'); }
@@ -41,10 +41,10 @@ const SignUp = ({toggle}) => {
       payload,
       {withCredentials: true}
     )
-    .then(res => res.status === 201 && setCurrentUser(res.data))
-    .catch(error => console.log(error));
+      .then(res => res.status === 201 && setCurrentUser(res.data))
+      .catch(error => console.log(error));
 
-  }, [payload]);
+  }, [payload, setCurrentUser]);
 
 
   return (
@@ -57,6 +57,7 @@ const SignUp = ({toggle}) => {
         name={'email'}
         placeholder={'Email'}
         value={credentials.email}
+        required
       />
 
       <StyledInput
@@ -64,6 +65,7 @@ const SignUp = ({toggle}) => {
         name={'username'}
         placeholder={'Username'}
         value={credentials.username}
+        required
       />
 
       <StyledInput
@@ -71,6 +73,7 @@ const SignUp = ({toggle}) => {
         name={'password'}
         placeholder={'password'}
         value={credentials.password}
+        required
       />
 
       <StyledInput
@@ -78,6 +81,7 @@ const SignUp = ({toggle}) => {
         name={'passwordConfirmation'}
         placeholder={'password Confirmation'}
         value={credentials.passwordConfirmation}
+        required
       />
 
       <DropDownButtonContainer>

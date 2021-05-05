@@ -18,4 +18,4 @@ export const fromRightSide = {
     x: '100vw',
     transition: { duration: .5, ease: 'easeInOut' }
   }
-}
+};

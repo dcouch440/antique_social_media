@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
-
 export const AntiqueContainer = styled.div`
   color: white;
   position: relative;
+  background-color: whitesmoke;
   margin: 0;
   overflow: hidden;
   grid-row: ${ (({dimensions}) => {
     const {height, width} = dimensions;
-    return width > height ? 'span 2' : 'span 4'
+    return width > height ? 'span 2' : 'span 4';
   })};
   grid-column: span 1;
   box-shadow: 0 0 1px black;
@@ -20,8 +20,7 @@ export const AntiqueContainer = styled.div`
   }
 `;
 
-export const Image = styled.img`
-`
+export const Image = styled.img``;
 
 export const AntiqueOverlay = styled.div`
   position: absolute;

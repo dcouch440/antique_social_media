@@ -5,9 +5,9 @@ import { useHistory } from 'react-router';
 
 const Antique = ({antique}) => {
   const history = useHistory();
-  const [image] = antique.images
+  const [image] = antique.images;
 
-  const handleClick = () => history.push(`/antiques/${antique.id}`)
+  const handleClick = () => history.push(`/antiques/${antique.id}`);
 
   return (
     <AntiqueRow>
@@ -24,7 +24,7 @@ const Antique = ({antique}) => {
         </div>
       </About>
     </AntiqueRow>
-  )
-}
+  );
+};
 
 export default Antique;

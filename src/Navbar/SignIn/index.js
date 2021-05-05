@@ -1,16 +1,16 @@
-import React, {useState, useEffect, useRef, useContext} from 'react'
+import React, {useState, useEffect, useRef, useContext} from 'react';
 import axios from 'axios';
 import { Context } from '../../Context';
-import { SignIngTitle, SignedIn } from './styles'
+import { SignIngTitle, SignedIn } from './styles';
 import { StyledInput, DropDownButton, DropDownButtonContainer } from '../styled';
 
 const SignIn = ({toggle}) => {
   const [payload, setPayload] = useState({});
   const [error, setError] = useState(false);
   const [{password, email}, setCredentials] = useState({password: '', email: ''});
-  const isRequest = useRef(false)
+  const isRequest = useRef(false);
 
-  const { setCurrentUser } = useContext(Context)
+  const { setCurrentUser } = useContext(Context);
 
   const handleChange = (e) => {
     const {name, value} = e.target;
@@ -26,21 +26,21 @@ const SignIn = ({toggle}) => {
   };
 
   useEffect(() => {
-    if (!isRequest.current) return
+    if (!isRequest.current) return;
     isRequest.current = false;
     axios.post(
       '/users/signin',
       { email, password },
       { withCredentials: true }
     )
-    .then(res => {
-      console.log(res)
-      setCurrentUser(res.data)
-    })
-    .catch(error => {
-      setError(true);
-      console.log(error)
-    });
+      .then(res => {
+        console.log(res);
+        setCurrentUser(res.data);
+      })
+      .catch(error => {
+        setError(true);
+        console.log(error);
+      });
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [payload]);

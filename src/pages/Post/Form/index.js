@@ -10,19 +10,19 @@ const Form = ({onSubmit}) => {
   });
 
   const handleChange = e => {
-    const {name, value} = e.target
+    const {name, value} = e.target;
     setFormData(prev => ({...prev,
       [name] : value
-    }))
-  }
+    }));
+  };
 
   const handleSubmit = e => {
     e.preventDefault();
     onSubmit(formData);
-  }
+  };
 
   return (
-    <FormData onSubmit={handleSubmit}>
+    <FormData autoComplete='off' onSubmit={handleSubmit}>
 
       <LabelsTitleYear>
         <div>Title</div>
@@ -33,14 +33,14 @@ const Form = ({onSubmit}) => {
         <TitleInput
           required='true'
           onChange={handleChange}
-          autocomplete="off"
+          autoComplete='off'
           name='title'
         />
 
         <YearInput
           required='true'
           onChange={handleChange}
-          autocomplete="off"
+          autoComplete='off'
           name='year'
         />
       </TitleYear>
@@ -49,7 +49,7 @@ const Form = ({onSubmit}) => {
       <NameInput
         required='true'
         onChange={handleChange}
-        autocomplete="off"
+        autoComplete='off'
         name='name'
       />
 
@@ -57,13 +57,13 @@ const Form = ({onSubmit}) => {
       <TextArea
         required='true'
         onChange={handleChange}
-        autocomplete="off"
+        autoComplete='off'
         name='body'
       />
 
       <Button>Submit</Button>
     </FormData>
-  )
-}
+  );
+};
 
 export default Form;
