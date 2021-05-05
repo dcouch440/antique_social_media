@@ -2,6 +2,19 @@ const likeService = require('./like.service');
 
 class LikeController
 {
+  async liked(req,res)
+  {
+    try
+    {
+      const {antique_id} = req.params;
+      const isLiked =  await likeService.liked({
+        antique_id, user_id: req.currentUser.user_id
+      });
+      res.status(200).json({isLiked});
+    }
+
+    catch(err) { console.error(err); }
+  }
   async like(req,res)
   {
     try

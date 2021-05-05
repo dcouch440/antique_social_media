@@ -31,7 +31,6 @@ class AntiqueService
   {
     try
     {
-      console.log(query);
       const queries = objLength(query) == 2 ? query : limitOffset;
       const parsedQuery = parseObjectInts(queries);
       await queryParams.validate(parsedQuery, {abortEarly: false});

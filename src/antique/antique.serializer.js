@@ -1,19 +1,17 @@
-const likeService = require('../like/like.service');
 const moment = require('moment');
 const userService = require('../user/user.service');
 
 class AntiqueSerializer
 {
 
-  async serializeWithRelations({req, antiques})
+  async serializeWithRelations({antiques})
   {
     try
     {
-      const {user_id} = req.currentUser;
       const {user_id :owner_id} = antiques;
       const mergedData = Array.isArray(antiques) ?
-        await Promise.all(this.mergeArray({antiques, user_id})):
-        await this.mergeObject({antiques, user_id, owner_id});
+        await Promise.all(this.mergeArray({antiques})):
+        await this.mergeObject({antiques, owner_id});
 
       return mergedData;
     }
@@ -21,16 +19,16 @@ class AntiqueSerializer
     catch (err) { console.error(err); }
   }
 
-  async mergeObject({antiques, user_id, owner_id})
+  async mergeObject({antiques, owner_id})
   {
     try
     {
-      const {id :antique_id, created_at} = antiques;
+      const {created_at} = antiques;
       return Object
         .assign(
           antiques,
           await this.getUserRelations({
-            created_at, user_id, antique_id
+            created_at
           }),
           await this.getOwnerRelations({owner_id})
         );
@@ -39,15 +37,15 @@ class AntiqueSerializer
     catch (err) { console.error(err); }
   }
 
-  mergeArray({antiques, user_id})
+  mergeArray({antiques})
   {
     return antiques.map(async antique => {
-      const {id :antique_id, created_at} = antique;
+      const {created_at} = antique;
       return Object
         .assign(
           antique,
           await this.getUserRelations({
-            created_at, user_id, antique_id
+            created_at
           }),
         );
     });
@@ -63,13 +61,12 @@ class AntiqueSerializer
     catch (err) { console.error(err); }
   }
 
-  async getUserRelations({created_at, user_id, antique_id}) {
+  async getUserRelations({created_at}) {
     try
     {
-      // LOGGED IN IS FOR PREVIOUS INTENTIONS -> MIGHT DELETE -> REPLACED WITH LOCAL CONTEXT
+      // PREVIOUS FEATURES MOVED TO OTHER AREAS OF APPLICATION
       return ({
-        liked: await likeService.liked({user_id, antique_id}),
-        posted: moment(created_at).fromNow(),
+        posted: moment(created_at).fromNow()
       });
     }
 

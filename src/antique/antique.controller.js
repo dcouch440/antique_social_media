@@ -13,7 +13,6 @@ class AntiqueController
       const {query} = req;
       const antiquesWithLiked = await AntiqueSerializer
         .serializeWithRelations({
-          req,
           antiques: await antiqueService.limitOffset(query)
         });
       res.status(200).json(antiquesWithLiked);
@@ -33,7 +32,6 @@ class AntiqueController
       const {id} = req.params;
       const antique = await AntiqueSerializer
         .serializeWithRelations({
-          req,
           antiques: await antiqueService.show(id)
         });
 

@@ -1,5 +1,6 @@
 const imageService = require('./image.service');
 
+// ADD DELETE IMAGE
 
 class ImageController
 {
@@ -29,21 +30,6 @@ class ImageController
     catch (err) { console.error(err); }
   }
 
-  // AUTHORIZE IMAGE ROUTES
-  async uploadAvatar(req,res)
-  {
-    try
-    {
-      const {file64} = req.body;
-      const uploaded = await imageService.uploadAvatar({
-        file64, user_id: req.currentUser.user_id
-      });
-
-      res.status(201).json(uploaded);
-    }
-
-    catch (err) { console.error(err); }
-  }
 
 }
 
