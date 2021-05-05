@@ -2,8 +2,6 @@ const antiqueService = require('./antique.service');
 const AntiqueSerializer = require('./antique.serializer');
 const imageService = require('../image/image.service');
 
-
-
 class AntiqueController
 {
   async index(req, res)
