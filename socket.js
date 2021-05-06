@@ -1,13 +1,11 @@
 const app = require('./app');
 const socket = require('http').createServer(app);
-const store = require('./src/socket-reducer/store');
 const {
-  userAdded,
-  userRemoved,
-  getUserId
+  userCameOnline,
+  userWentOffline,
+  getUserIdBySocketId
 
-} = require('./src/socket-reducer/actions');
-
+} = require('./src/online-status-reducer/actions');
 
 const io = require('socket.io')(socket, {
   cors: {
@@ -17,29 +15,35 @@ const io = require('socket.io')(socket, {
   }
 });
 
-
 io.on('connection', (socket) => {
+  socket.emit('connection', 'lol');
 
   socket.on( 'login',  data => {
+    socket.emit('login', 'lol');
 
     const { id :user_id} = data;
     const { id :socket_id} = socket;
 
     data.id && console.log('a user ' + data.id + ' connected');
-    data.id && userAdded({ socket_id, user_id });
-
+    data.id && userCameOnline({ socket_id, user_id });
   });
 
   socket.on( 'disconnect', () => {
 
     const { id :socket_id } = socket;
-    const user_id = getUserId({socket_id});
+    const user_id = getUserIdBySocketId({socket_id});
 
     {
       console.log('user ' + user_id + ' disconnected');
 
-      user_id && userRemoved({ socket_id, user_id });
+      user_id && userWentOffline({ socket_id, user_id });
     }
+
+  });
+
+  socket.on( 'test', data => {
+    console.log('received', data);
+    socket.emit('test', 'received ' +  data);
 
   });
 

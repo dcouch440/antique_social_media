@@ -1,11 +1,11 @@
 const {
-  ADD_USER,
-  REMOVE_USER,
+  USER_ONLINE,
+  USER_OFFLINE,
 } = require('./types');
 
 module.exports = action => payload => state => ({
 
-  [ADD_USER]: () => {
+  [USER_ONLINE]: () => {
 
     const { socket_id, user_id } = payload;
     return {
@@ -15,7 +15,7 @@ module.exports = action => payload => state => ({
 
   },
 
-  [REMOVE_USER]: () => {
+  [USER_OFFLINE]: () => {
 
     const { socket_id } = payload;
 
