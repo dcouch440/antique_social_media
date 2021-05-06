@@ -9,7 +9,7 @@ const ContextProvider = props => {
     id: undefined, username: undefined, email: undefined
   });
 
-  const [ users, messages, setRoom, setChatting, setNewMessage ] = Socket({currentUser});
+  Socket({currentUser});
 
   useEffect(() => {
     axios
@@ -20,13 +20,6 @@ const ContextProvider = props => {
 
   return (
     <Context.Provider value={{
-      Socket: {
-        users,
-        messages,
-        setRoom,
-        setChatting,
-        setNewMessage
-      },
       currentUser,
       setCurrentUser
     }}>
