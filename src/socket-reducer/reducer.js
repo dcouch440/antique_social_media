@@ -26,7 +26,7 @@ module.exports = action => payload => state => ({
 
   [REMOVE_USER]: () => {
 
-    console.log('REMOVE_USER', state);
+    // console.log('REMOVE_USER', state);
 
     const { socket_id } = payload;
 
@@ -39,7 +39,6 @@ module.exports = action => payload => state => ({
   },
 
   [ADD_USER_ROOM]: () => {
-
 
     return {
       ...state,
@@ -102,10 +101,10 @@ module.exports = action => payload => state => ({
       rooms: {
         ...state.rooms,
         [payload.room_id]: {
-          ...roomId,
+          ...state.rooms[payload.room_id],
           users: {
             ...roomId.users,
-            [roomId.users[payload.socket_id]]: {
+            [payload.user_id]: {
               ...Object.assign({},
                 { socket_id: payload.socket_id },
                 { username: payload.username },

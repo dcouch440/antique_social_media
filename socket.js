@@ -9,7 +9,6 @@ const {
   roomMessageAdded,
   roomUserRemoved,
   userCurrentRoomAdded,
-  userCurrentRoomRemoved,
   getUserFromSocketId
 
 } = require('./src/socket-reducer/actions');
@@ -48,7 +47,7 @@ io.on('connection', (socket) => {
       const {user_id, current_room :room_id} = prev_user;
 
 
-      console.log('PREV_USER' , prev_user);
+      // console.log('PREV_USER' , prev_user);
       room_id && roomUserRemoved({ socket_id, room_id, user_id });
 
       console.log('user ' + user_id + ' disconnected');
@@ -60,7 +59,7 @@ io.on('connection', (socket) => {
 
   socket.on( 'join-room' , data => {
 
-    console.log('JOIN-room', data.user_id);
+    // console.log('JOIN-room', data.user_id);
     const { room_id, user_id, username } = data;
     const {id :socket_id} = socket;
     const isRoom = store()['rooms'][room_id];
@@ -72,6 +71,8 @@ io.on('connection', (socket) => {
     userCurrentRoomAdded({room_id, user_id, socket_id});
 
     const room = store()['rooms'][room_id];
+
+    console.log(room);
 
     socket.emit('room-updated', room);
 
@@ -90,6 +91,8 @@ io.on('connection', (socket) => {
 
   socket.on( 'new-message' , data => {
     const { room_id, username, message } = data;
+
+    console.log(data);
 
     roomMessageAdded({
       room_id,
