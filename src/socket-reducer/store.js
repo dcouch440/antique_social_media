@@ -1,5 +1,5 @@
 const createStore = () => {
-  let currentState = {rooms: {}, users: {}};
+  let currentState = {rooms: {}, users: []};
 
   return (stateChangeFunction = state => state) => {
     const newState = stateChangeFunction(currentState);
