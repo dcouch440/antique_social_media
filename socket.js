@@ -1,11 +1,12 @@
 const app = require('./app');
 const socket = require('http').createServer(app);
+
 const {
   userCameOnline,
   userWentOffline,
   getUserIdBySocketId
+} = require('./src/online-status/actions');
 
-} = require('./src/online-status-reducer/actions');
 
 const io = require('socket.io')(socket, {
   cors: {
@@ -26,6 +27,7 @@ io.on('connection', (socket) => {
 
     data.id && console.log('a user ' + data.id + ' connected');
     data.id && userCameOnline({ socket_id, user_id });
+
   });
 
   socket.on( 'disconnect', () => {
@@ -33,18 +35,14 @@ io.on('connection', (socket) => {
     const { id :socket_id } = socket;
     const user_id = getUserIdBySocketId({socket_id});
 
-    {
-      console.log('user ' + user_id + ' disconnected');
-
-      user_id && userWentOffline({ socket_id, user_id });
-    }
+    console.log('user ' + user_id + ' disconnected');
+    user_id && userWentOffline({ socket_id, user_id });
 
   });
 
   socket.on( 'test', data => {
     console.log('received', data);
     socket.emit('test', 'received ' +  data);
-
   });
 
 });

@@ -1,5 +1,5 @@
 const reducer = require('./reducer');
-const store = require('./store');
+const onlineState = require('./onlineState');
 const userService = require('../user/user.service');
 
 const {
@@ -13,7 +13,7 @@ const userCameOnline = async payload => {
   await userService.changeOnlineState({id: payload.user_id, online: true})
     .catch(err => console.error(err));
 
-  store(addUser);
+  onlineState(addUser);
 };
 
 const userWentOffline =  async payload => {
@@ -23,11 +23,11 @@ const userWentOffline =  async payload => {
   await userService.changeOnlineState({id: payload.user_id, online: false})
     .catch(err => console.error(err));
 
-  store(removeUser);
+  onlineState(removeUser);
 };
 
 const getUserIdBySocketId = payload => {
-  return store()[payload.socket_id];
+  return onlineState()[payload.socket_id];
 };
 
 module.exports = {
