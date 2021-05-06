@@ -7,13 +7,18 @@ module.exports = action => payload => state => ({
 
   [ADD_USER]: () => {
     return { ...state,
-      [payload.socket_id]: payload.user_id
+      users: {
+        ...state.users,
+        [payload.socket_id]: payload.user_id
+      }
     };
   },
 
   [REMOVE_USER]: () => {
     const prev = {...state};
-    delete prev[payload.socket_id];
+    console.log(prev);
+    delete prev.users[payload.socket_id];
+    console.log(prev);
     return prev;
   },
 
@@ -31,7 +36,7 @@ module.exports = action => payload => state => ({
   },
 
   [UPDATE_ROOM_USERS]: () => {
-    console.log( 'PAYLOAD PAYLOAD PAYLOAD PAYLOAD ',payload);
+
     return { ...state,
       rooms: {
         ...state.rooms,

@@ -17,7 +17,6 @@ const userAdded = async payload => {
 
 const userRemoved = async payload => {
   const removeUser = reducer(REMOVE_USER)(payload);
-
   await userService.changeOnlineState({id: payload.user_id, online: false})
     .catch(err => console.error(err));
 

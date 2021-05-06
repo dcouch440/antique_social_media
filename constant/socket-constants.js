@@ -1,0 +1,15 @@
+const LOGIN = 'LOGIN';
+const JOIN_ROOM = 'JOIN_ROOM';
+const ROOM_UPDATED = 'ROOM_UPDATED';
+const NEW_MESSAGE = 'NEW_MESSAGE';
+const LEAVE_ROOM = 'LEAVE_ROOM';
+const DISCONNECT = 'disconnect';
+
+module.exports = {
+  LOGIN,
+  JOIN_ROOM,
+  ROOM_UPDATED,
+  NEW_MESSAGE,
+  LEAVE_ROOM,
+  DISCONNECT
+};
