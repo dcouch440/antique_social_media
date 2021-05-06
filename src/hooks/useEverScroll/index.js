@@ -8,7 +8,7 @@ const useEverScroll = ({limit, route}) => {
   const BBRef = useRef(null);
   const lazyRef = useRef([]);
 
-  const [{data}, AntiqueDispatch] = useReducer(reducer, { data:[], fetching: false });
+  const [{data, fetching}, AntiqueDispatch] = useReducer(reducer, { data:[], fetching: false });
   const [CallDB] = PaginateDatabase({route, limit, page});
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const useEverScroll = ({limit, route}) => {
 
   AdvancePage({setPage, BBRef, lazyRef, data});
 
-  return [BBRef, lazyRef, data];
+  return [BBRef, lazyRef, data, fetching];
 };
 
 export default useEverScroll;

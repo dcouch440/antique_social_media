@@ -18,7 +18,7 @@ const SingedIn = ({user}) => {
       <HubLink><Link to='/antiques'>antiques</Link></HubLink>
       <HubLink><Link to='/antiques/new'>post</Link></HubLink>
       <HubLink><Link to='/likes'>likes</Link></HubLink>
-      <HubLink><Link>profile</Link></HubLink>
+      <HubLink><Link to='/'>profile</Link></HubLink>
       <SignOut />
     </Grid>
   );

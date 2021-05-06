@@ -31,14 +31,14 @@ const Form = ({onSubmit}) => {
 
       <TitleYear>
         <TitleInput
-          required='true'
+          required
           onChange={handleChange}
           autoComplete='off'
           name='title'
         />
 
         <YearInput
-          required='true'
+          required
           onChange={handleChange}
           autoComplete='off'
           name='year'
@@ -47,7 +47,7 @@ const Form = ({onSubmit}) => {
 
       <div>Name of Antique</div>
       <NameInput
-        required='true'
+        required
         onChange={handleChange}
         autoComplete='off'
         name='name'
@@ -55,7 +55,7 @@ const Form = ({onSubmit}) => {
 
       <div>Tell us about this antique..</div>
       <TextArea
-        required='true'
+        required
         onChange={handleChange}
         autoComplete='off'
         name='body'

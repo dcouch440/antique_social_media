@@ -5,13 +5,11 @@ import Antiques from "./pages/Antiques";
 import Antique from "./pages/Antique";
 import Likes from './pages/Likes';
 import Navbar from "./Navbar";
-import Socket from './Socket';
 import Post from "./pages/Post";
+import ChatWindow from "./components/Chat";
 
 const App = () => {
   const location = useLocation();
-  Socket();
-
   return (
     <>
       <GlobalStyles />
@@ -32,6 +30,9 @@ const App = () => {
           </Route>
           <Route exact path='/likes'>
             <Likes />
+          </Route>
+          <Route exact path='/chat'>
+            <ChatWindow antiqueId={4} chatting={true} />
           </Route>
 
         </Switch>
