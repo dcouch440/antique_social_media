@@ -10,11 +10,7 @@ const ChatInput = ({sendMessage}) => {
 
     if (message.trim().split("<br>").join("") === "") return;
 
-    const newMessage = Object.assign( {},  {message}, {
-      timestamp: new Date()
-    });
-
-    sendMessage(newMessage);
+    sendMessage(message);
     setMessage({message: ''});
 
   };

@@ -25,12 +25,7 @@ const ChatRows = ({users, messages}) => {
   };
 
   const chatRow = messages.map(message => {
-
-    const indexOfUser = users => {
-      return users.username === message.username;
-    };
-
-    const user = users[users.findIndex(indexOfUser)];
+    console.log(message);
     return (
       <Row
         as={motion.div}
@@ -42,7 +37,7 @@ const ChatRows = ({users, messages}) => {
         exit="exit"
       >
         <MessageContainer>
-          <Avatar src={user.avatar.image_url} alt={'avatar'}/>
+          <Avatar src={message.avatar.image_url} alt={'avatar'}/>
           <Username>{message.username}: </Username>
           <Message>{message.message}</Message>
           <Time>{ moment(message.timestamp).fromNow() }</Time>
