@@ -24,11 +24,22 @@ class UserDAO {
 
   async getUsersByUsername(usernames)
   {
-
     const users = await User.query().where(builder => builder.whereIn('username', usernames))
-      .withGraphFetched('avatar');
+      .withGraphFetched('avatar')
+      .catch(err => console.error(err));
 
     return users.map(user => ({username: user.username, avatar: user.avatar}));
+  }
+
+  async getUserByUsername(username)
+  {
+
+    const user = await User.query().where('username', username)
+      .withGraphFetched('avatar')
+      .first()
+      .catch(err => console.error(err));
+
+    return {username: user.username, avatar: user.avatar};
 
   }
 

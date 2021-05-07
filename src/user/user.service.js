@@ -92,6 +92,11 @@ class UserService
     return userDAO.getUsersByUsername(usernames);
   }
 
+  async getUserByUsername(username)
+  {
+    return userDAO.getUserByUsername(username);
+  }
+
   all()
   {
     return userDAO.all();

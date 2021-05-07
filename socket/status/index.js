@@ -18,10 +18,10 @@ const io_users = require('socket.io')( socket, {
 
 
 io_users.on('connection', (socket) => {
-  socket.emit('connection', 'lol');
+  socket.emit('connection', 'online - connection');
 
   socket.on( 'login',  data => {
-    socket.emit('login', 'lol');
+    socket.emit('login', 'online - login');
 
     const { id :user_id} = data;
     const { id :socket_id} = socket;
