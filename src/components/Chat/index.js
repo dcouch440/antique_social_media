@@ -1,20 +1,15 @@
-import { useState } from "react";
 import {MessageRow} from './styles';
 import Socket from "../Socket";
 import ChatRows from "./ChatRow";
+import ChatInput from "./ChatInput";
 
 const Chat = () => {
-  const [message, setMessage] = useState({message: ''});
   const { messages, users, socketRef }  = Socket({roomId: 4});
 
-  const handleSubmit = () => {
+  const sendMessage = (message) => {
     socketRef.current.emit('message', message);
   };
 
-  const handleChange = e => {
-    const { name, value } = e.target;
-    setMessage(prev => ({...prev, [name]: value}));
-  };
 
   console.log('messages', messages);
   console.log('users' ,users);
@@ -25,10 +20,7 @@ const Chat = () => {
         Hello
       </h1>
 
-      <input name='message' onChange={handleChange} value={message.message} />
-      <button onClick={handleSubmit}>
-        CLICK
-      </button>
+      <ChatInput sendMessage={sendMessage} />
       <MessageRow>
         <ChatRows messages={messages} users={users} />
       </MessageRow>

@@ -1,31 +1,11 @@
-import { motion } from 'framer-motion';
 import React from 'react';
-import { Row, Avatar, Username, Message, MessageContainer } from './styles';
-
-const transition = {
-  hidden: {
-    x: '100vw',
-    opacity: 0
-  },
-  visible: {
-    x: 0,
-    opacity: 1,
-    transition: {duration: .3}
-  },
-  timing: {
-    duration: 1
-  },
-  transition: {
-    type: 'spring'
-  },
-  exit: {
-    x: '100vw',
-    transition: { duration: .5, ease: 'easeInOut' }
-  }
-};
+import PropTypes from 'prop-types';
+import { motion } from 'framer-motion';
+import { Row, Avatar, Username, Message, MessageContainer, Time } from './styles';
+import { variants } from './variants';
+import moment from 'moment';
 
 const ChatRows = ({users, messages}) => {
-
 
   const chatRow = messages.map(message => {
 
@@ -34,10 +14,11 @@ const ChatRows = ({users, messages}) => {
     };
 
     const user = users[users.findIndex(indexOfUser)];
+    console.log(message);
     return (
       <Row
         as={motion.div}
-        variants={transition}
+        variants={variants}
         initial="hidden"
         animate="visible"
         timing="timing"
@@ -48,6 +29,7 @@ const ChatRows = ({users, messages}) => {
           <Avatar src={user.avatar.image_url} alt={'avatar'}/>
           <Username>{message.username}: </Username>
           <Message>{message.message}</Message>
+          <Time>{ moment(message.time).fromNow() }</Time>
         </MessageContainer>
       </Row>
     );
@@ -55,6 +37,11 @@ const ChatRows = ({users, messages}) => {
   });
   return chatRow;
 
+};
+
+ChatRows.PropTypes = {
+  users: PropTypes.array,
+  message: PropTypes.object
 };
 
 export default ChatRows;

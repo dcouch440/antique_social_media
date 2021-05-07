@@ -21,10 +21,19 @@ export const Username = styled.span`
 `;
 
 export const Message = styled.span`
+  font-size: 14px;
   font-family: Arial, Helvetica, sans-serif;
 `;
 
 export const MessageContainer = styled.div`
   width: 90%;
   display: flex;
+  align-items: center;
+  > * { margin: 2px; }
+`;
+
+export const Time = styled.span`
+  color: dimgray;
+  font-size: 14px;
+  margin: 5px;
 `;
