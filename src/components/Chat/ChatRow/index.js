@@ -5,8 +5,19 @@ import {
 } from './styles';
 import { variants } from './variants';
 import moment from 'moment';
+import { useEffect, useRef } from 'react';
 
 const ChatRows = ({users, messages}) => {
+
+  const messagesEndRef = useRef();
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   const chatRow = messages.map(message => {
 
@@ -39,6 +50,7 @@ const ChatRows = ({users, messages}) => {
   return (
     <Rows>
       {chatRow}
+      <div ref={messagesEndRef}></div>
     </Rows>
   );
 

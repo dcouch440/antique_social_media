@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 export const Rows = styled.div`
   width: 100%;
-  height: 80%;
+  height: 79%;
+  background-color: black;
   display: flex;
   flex-direction: column;
   position: fixed;
