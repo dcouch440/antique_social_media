@@ -9,16 +9,21 @@
   This is a front end application for a node.js backend Current Features
 
   - Framer Motion Slideshow and screen transitions
-  - User Online status
+  - Socket servers for
+    - User online status
+    - Chat messages / rooms
+  - Picture upload through cloudinary
   - HTTP Only session call on startup through Context
 
 # `Tech Used`
 - axios
-- faker `5.5.3`
+- socket io `4.0.1`
 - framer-motion `4.1.9`
 - react-router-dom `5.2.0`
-- socket.io `4.0.1`
 - styled-components `5.2.3`
+
+## `Dev Depends`
+- faker `5.5.3`
 
 
 The Link Provided below can be found at (https://github.com/dcouch440/antique-frontend) after Clicking the green button
