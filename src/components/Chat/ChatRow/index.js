@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 import { Row, Avatar, Username, Message, MessageContainer, Time } from './styles';
@@ -29,7 +29,7 @@ const ChatRows = ({users, messages}) => {
           <Avatar src={user.avatar.image_url} alt={'avatar'}/>
           <Username>{message.username}: </Username>
           <Message>{message.message}</Message>
-          <Time>{ moment(message.time).fromNow() }</Time>
+          <Time>{ moment(message.timestamp).fromNow() }</Time>
         </MessageContainer>
       </Row>
     );

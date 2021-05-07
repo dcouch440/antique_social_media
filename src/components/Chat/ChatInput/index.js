@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { SubmitButton, ChatWindow } from './styles';
+import moment from 'moment';
 
 const ChatInput = ({sendMessage}) => {
-  const [message, setMessage] = useState({message: '', time: ''});
+  const [message, setMessage] = useState({message: ''});
 
   const handleSubmit = e => {
     e.preventDefault();
-    setMessage(prev => Object.assign({}, prev, {time: new Date()}));
-    sendMessage(message);
+    const newMessage = Object.assign( {},  message, {
+      timestamp: new Date()
+    });
+    sendMessage(newMessage);
   };
 
   const handleChange = e => {
