@@ -9,7 +9,6 @@ const ContextProvider = props => {
     id: undefined, username: undefined, email: undefined
   });
 
-  const [roomId, setRoomId] = useState();
   const [inTransition, setInTransition] = useState(false);
 
   OnlineStatus({currentUser});
@@ -25,8 +24,6 @@ const ContextProvider = props => {
     <Context.Provider value={{
       inTransition,
       setInTransition,
-      roomId,
-      setRoomId,
       currentUser,
       setCurrentUser
     }}>

@@ -3,16 +3,14 @@ import { Page } from './styles';
 import Loading from '../../Framer/LoadingModules/Loading';
 import AntiqueInfo from './AntiqueInfo';
 import { useHistory, useParams } from 'react-router-dom';
-import PageTransition from '../../Framer/PageTransition';
+import PageTransition from '../../Framer/PageTrasition';
 import GoBackButton from '../../components/GoBackButton';
 import axios from 'axios';
 import loadingSequence from '../../utils/loadingSequence';
-import { Context } from '../../Context';
 
-const AntiquePage = () => {
+const AntiquePage = ({setRoomId}) => {
   const { id } = useParams();
   const history = useHistory();
-  const { setRoomId } = useContext(Context);
   const [loading, setLoading] = React.useState(true);
   const [antique, setAntique] = React.useState({});
   const directionRef = useRef('right');
@@ -20,7 +18,8 @@ const AntiquePage = () => {
 
   const handleClick = () => history.goBack();
 
-  const handleRoomChange = id => {
+  const handleRoomChange = () => {
+    console.log('setting room id', id);
     setRoomId(id);
     directionRef.current = 'top';
     history.push('/chat');

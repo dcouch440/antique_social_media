@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
-import PageTransition from '../../Framer/PageTransition';
+import PageTransition from '../../Framer/PageTrasition';
 import Form from './Form';
 import {
   Page, ImagePreview, FormContainer, NoImage,

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import ApiMapper from '../../components/ApiMapper';
-import PageTransition from '../../Framer/PageTransition';
+import PageTransition from '../../Framer/PageTrasition';
 import Antique from './Antique';
 import { AntiqueRows, Page } from './styles';
 

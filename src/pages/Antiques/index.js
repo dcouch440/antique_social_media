@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Grid, Header, PageContainer } from './styles';
 import ApiMapper from '../../components/ApiMapper';
-import PageTransition from '../../Framer/PageTransition';
+import PageTransition from '../../Framer/PageTrasition';
 import Antique from './Antique';
 import Controls from './Controls';
 import useEverScroll from '../../hooks/useEverScroll';
