@@ -1,4 +1,5 @@
 import { Route, Switch, useLocation, Redirect } from "react-router";
+import { useEffect, useRef } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { Context } from './Context';
 import GlobalStyles from './GlobalStyles';
@@ -12,11 +13,15 @@ import { useContext } from "react";
 
 const App = () => {
   const location = useLocation();
-  const { inTransition } = useContext(Context);
+  const { inTransition, setInTransition } = useContext(Context);
+
+  useEffect(() => {
+    setInTransition(true);
+  }, [location.key, setInTransition]);
 
   return (
     <>
-      <GlobalStyles attr={inTransition} />
+      <GlobalStyles attr={{inTransition}} />
       <Navbar />
       <AnimatePresence>
         <Switch location={location} key={location.key}>

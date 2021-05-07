@@ -12,7 +12,7 @@ import { Context } from '../../Context';
 const AntiquePage = () => {
   const { id } = useParams();
   const history = useHistory();
-  const { setRoomId, setInTransition } = useContext(Context);
+  const { setRoomId } = useContext(Context);
   const [loading, setLoading] = React.useState(true);
   const [antique, setAntique] = React.useState({});
   const directionRef = useRef('right');
@@ -23,7 +23,6 @@ const AntiquePage = () => {
   const handleRoomChange = id => {
     setRoomId(id);
     directionRef.current = 'top';
-    setInTransition(true);
     history.push('/chat');
   };
 

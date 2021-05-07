@@ -1,12 +1,14 @@
 import {AntiqueContainer, Image, AntiqueOverlay} from './styles';
 import Liked from '../Liked';
-import React from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const Antique = ({antique, lazyRef, index}) => {
   const history = useHistory();
-  const handleClick = id => history.push(`/antiques/${id}`);
+
+  const handleClick = id => {
+    history.push(`/antiques/${id}`);
+  };
 
   const [image] = antique.images;
 

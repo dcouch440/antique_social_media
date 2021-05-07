@@ -7,7 +7,9 @@ import Controls from './Controls';
 import useEverScroll from '../../hooks/useEverScroll';
 
 const AntiquesPage = () => {
-  const [bottomBoundaryRef, lazyRef, antiques] = useEverScroll({limit: 15, route: '/antiques'});
+  const [bottomBoundaryRef, lazyRef, antiques] = useEverScroll(
+    {limit: 15, route: '/antiques'}
+  );
   const [slider, setSlider] = useState(3);
 
   return (

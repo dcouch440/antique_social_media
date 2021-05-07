@@ -15,11 +15,13 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
     background-color: antiquewhite;
 	}
+  html {
+
+  }
 	body {
     -webkit-font-smoothing: antialiased;
     overflow-y: scroll;
     overflow-x: hidden;
-    overflow: ${({attr: {inTransition}}) => inTransition && 'hidden'};
 	}
   #root {
     margin-top: 55px;
