@@ -1,14 +1,14 @@
-const app = require('./app');
+const app = require('../../app');
 const socket = require('http').createServer(app);
 
 const {
   userCameOnline,
   userWentOffline,
   getUserIdBySocketId
-} = require('./src/online-status/actions');
+} = require('./online-state/actions');
 
 
-const io = require('socket.io')(socket, {
+const io_users = require('socket.io')( socket, {
   cors: {
     origin: "http://localhost:3000",
     methods: ["GET", "POST"],
@@ -16,7 +16,8 @@ const io = require('socket.io')(socket, {
   }
 });
 
-io.on('connection', (socket) => {
+
+io_users.on('connection', (socket) => {
   socket.emit('connection', 'lol');
 
   socket.on( 'login',  data => {
@@ -40,12 +41,9 @@ io.on('connection', (socket) => {
 
   });
 
-  socket.on( 'test', data => {
-    console.log('received', data);
-    socket.emit('test', 'received ' +  data);
-  });
-
 });
+
+
 
 
 module.exports = socket;

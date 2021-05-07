@@ -33,6 +33,22 @@ class UserController {
     }
   }
 
+  async showByUsername(req,res)
+  {
+    try
+    {
+      const { usernames } = req.body;
+      console.log(req.body);
+      const users = await userService.getUsersByUsername({
+        usernames
+      });
+      console.log(users);
+      res.status(200).json(users);
+    }
+
+    catch(err) {console.error(err);}
+  }
+
   // for dev
   async all(req,res)
   {

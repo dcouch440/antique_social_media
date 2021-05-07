@@ -87,6 +87,11 @@ class UserService
       .catch(err => console.error(err));
   }
 
+  async getUsersByUsername({usernames})
+  {
+    return userDAO.getUsersByUsername(usernames);
+  }
+
   all()
   {
     return userDAO.all();

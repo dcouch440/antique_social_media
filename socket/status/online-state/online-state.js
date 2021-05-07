@@ -1,4 +1,4 @@
-const createState = require('../../lib/createState');
+const createState = require('../../../lib/createState');
 
 const onlineState = createState();
 

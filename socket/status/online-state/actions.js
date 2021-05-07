@@ -1,6 +1,6 @@
 const reducer = require('./reducer');
-const onlineState = require('./onlineState');
-const userService = require('../user/user.service');
+const onlineState = require('./online-state');
+const userService = require('../../../src/user/user.service');
 
 const {
   USER_ONLINE,

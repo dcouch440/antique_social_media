@@ -22,6 +22,16 @@ class UserDAO {
     return await User.query().where('id', id).update({online});
   }
 
+  async getUsersByUsername(usernames)
+  {
+
+    const users = await User.query().where(builder => builder.whereIn('username', usernames))
+      .withGraphFetched('avatar');
+
+    return users.map(user => ({username: user.username, avatar: user.avatar}));
+
+  }
+
   destroy(id)
   {
     return User.query()
