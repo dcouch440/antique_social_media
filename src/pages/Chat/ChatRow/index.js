@@ -1,14 +1,15 @@
 import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 import {
-  Row, Rows, Avatar, Username, Message, MessageContainer, Time
+  Row, Rows, Avatar, Username, Message, MessageContainer, Time,GoBack
 } from './styles';
 import { variants } from './variants';
 import moment from 'moment';
 import { useEffect, useRef } from 'react';
+import { useHistory } from 'react-router';
 
 const ChatRows = ({users, messages}) => {
-
+  const history = useHistory();
   const messagesEndRef = useRef();
 
   useEffect(() => {
@@ -17,6 +18,10 @@ const ChatRows = ({users, messages}) => {
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const handleClick = () => {
+    history.goBack();
   };
 
   const chatRow = messages.map(message => {
@@ -49,6 +54,9 @@ const ChatRows = ({users, messages}) => {
 
   return (
     <Rows>
+      <GoBack onClick={handleClick}>
+        Go Back
+      </GoBack>
       {chatRow}
       <div ref={messagesEndRef}></div>
     </Rows>

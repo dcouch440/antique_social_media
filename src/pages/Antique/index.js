@@ -1,21 +1,31 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import { Page } from './styles';
 import Loading from '../../Framer/LoadingModules/Loading';
 import AntiqueInfo from './AntiqueInfo';
 import { useHistory, useParams } from 'react-router-dom';
 import PageTransition from '../../Framer/PageTransition';
-import GoBackButton from './GoBackButton';
+import GoBackButton from '../../components/GoBackButton';
 import axios from 'axios';
 import loadingSequence from '../../utils/loadingSequence';
+import { Context } from '../../Context';
 
 const AntiquePage = props => {
   const { id } = useParams();
   const history = useHistory();
+  const { setRoomId, setInTransition } = useContext(Context);
   const [loading, setLoading] = React.useState(true);
-  const sequence = useRef(false);
   const [antique, setAntique] = React.useState({});
+  const directionRef = useRef('right');
+  const sequence = useRef(false);
 
   const handleClick = () => history.goBack();
+
+  const handleRoomChange = id => {
+    setRoomId(id);
+    directionRef.current = 'top';
+    setInTransition(true);
+    history.push('/chat');
+  };
 
   useEffect(() => {
 
@@ -29,13 +39,13 @@ const AntiquePage = props => {
   }, [id, setAntique, setLoading]);
 
   return (
-    <PageTransition>
+    <PageTransition attr={{direction: directionRef.current}}>
       <Page>
         <GoBackButton handleClick={handleClick} text={'Back  ▶'} />
         <Loading
           loadingState={loading}
           version="MagnaGlass"
-          afterLoad={ <AntiqueInfo antique={antique} /> }
+          afterLoad={ <AntiqueInfo setRoom={handleRoomChange} antique={antique} /> }
         />
       </Page>
     </PageTransition>

@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const Rows = styled.div`
   width: 100%;
-  height: 79%;
-  background-color: black;
+  height: 80%;
+  background-color: #141414;
   display: flex;
   flex-direction: column;
   position: fixed;
@@ -14,12 +14,24 @@ export const Rows = styled.div`
 export const Row = styled.div`
   display: flex;
   align-items: center;
-  background-color: #111111;
   color: white;
   padding: 10px 10px;
   > * { margin: 2px; }
 `;
 
+export const GoBack = styled.button`
+  all: unset;
+  color: whitesmoke;
+  font-family: monospace;
+  cursor: pointer;
+  position: fixed;
+  right: 15px;
+  margin-top: 15px;
+  background-color: transparent;
+  :hover {
+    text-shadow: 0 0 3px whitesmoke;
+  }
+`;
 
 export const Avatar = styled.img`
   width: 42px;

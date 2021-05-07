@@ -19,7 +19,7 @@ const GlobalStyles = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     overflow-y: scroll;
     overflow-x: hidden;
-    overflow: ${({stopScroll}) => stopScroll && 'hidden'};
+    overflow: ${({attr: {inTransition}}) => inTransition && 'hidden'};
 	}
   #root {
     margin-top: 55px;

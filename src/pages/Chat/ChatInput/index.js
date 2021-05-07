@@ -7,11 +7,16 @@ const ChatInput = ({sendMessage}) => {
 
   const handleSubmit = e => {
     e.preventDefault();
+
+    if (message.trim().split("<br>").join("") === "") return;
+
     const newMessage = Object.assign( {},  {message}, {
       timestamp: new Date()
     });
+
     sendMessage(newMessage);
     setMessage({message: ''});
+
   };
 
   const onEnterPress = (e) => {

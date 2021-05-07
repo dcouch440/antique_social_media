@@ -46,3 +46,24 @@ export const Tag = styled.span`
   font-weight: 900;
   font: message-box;
 `;
+
+export const StartChatting = styled.button`
+  z-index: 9999;
+  position: absolute;
+  top: 50px;
+  right: 10px;
+  cursor: pointer;
+  background-color: transparent;
+  border-radius: 7px;
+  border: none;
+  font-family: 'Pacifico', cursive;
+  color: black;
+  font-weight: bold;
+  @media (max-width: 1000px) {
+    top: calc(50px + 100%);
+  }
+  :hover {
+    background-color: black;
+    color: white;
+  }
+`;

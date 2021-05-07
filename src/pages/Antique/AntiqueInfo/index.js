@@ -1,12 +1,15 @@
 import React from 'react';
 import AntiquesSlideShow from '../AntiqueSlideShow';
 import User from '../User';
-import { About, Page, Tag, Blog} from './styles';
+import { About, Page, Tag, Blog, StartChatting} from './styles';
 
-const AntiqueInfo = ({antique}) => (
+const AntiqueInfo = ({antique, setRoom}) => (
   <Page>
     <AntiquesSlideShow antiqueImages={antique.images} />
     <About>
+      <StartChatting onClick={setRoom}>
+        Start Chatting ?
+      </StartChatting>
       <User ownerInfo={antique.antique_owner}/>
       <Blog>
         <div>
@@ -23,7 +26,7 @@ const AntiqueInfo = ({antique}) => (
         </div>
       </Blog>
     </About>
-  </Page> 
+  </Page>
 );
 
 

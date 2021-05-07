@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { MessageRow, ChatWindow } from './styles';
-import Socket from "../Socket";
+import Socket from "../../components/Socket";
 import ChatRows from "./ChatRow";
 import ChatInput from "./ChatInput";
+import PageTransition from '../../Framer/PageTransition';
 
 const Chat = () => {
   const [refresh, setRefresh] = useState(true);
@@ -20,13 +21,16 @@ const Chat = () => {
   }, [refresh, messages]);
 
   return (
-    <ChatWindow>
-      <ChatInput sendMessage={sendMessage} />
-      <MessageRow>
-        <ChatRows messages={messages} users={users} />
-      </MessageRow>
+    <PageTransition attr={{direction: 'top'}}>
 
-    </ChatWindow>
+      <ChatWindow>
+        <ChatInput sendMessage={sendMessage} />
+        <MessageRow>
+          <ChatRows messages={messages} users={users} />
+        </MessageRow>
+
+      </ChatWindow>
+    </PageTransition>
   );
 
 };

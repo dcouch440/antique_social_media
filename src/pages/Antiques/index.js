@@ -11,7 +11,7 @@ const AntiquesPage = () => {
   const [slider, setSlider] = useState(3);
 
   return (
-    <PageTransition>
+    <PageTransition attr={{direction: 'right'}}>
       <PageContainer>
         <Controls setSlider={setSlider} count={slider}/>
         <Header>Antiques</Header>
