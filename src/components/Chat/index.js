@@ -25,6 +25,7 @@ const Chat = () => {
       <MessageRow>
         <ChatRows messages={messages} users={users} />
       </MessageRow>
+
     </ChatWindow>
   );
 

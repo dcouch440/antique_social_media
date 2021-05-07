@@ -1,5 +1,15 @@
 import styled from 'styled-components';
 
+export const Rows = styled.div`
+  width: 100%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  overflow-x: hidden;
+  overflow-y: auto;
+`;
+
 export const Row = styled.div`
   display: flex;
   align-items: center;
@@ -8,6 +18,7 @@ export const Row = styled.div`
   padding: 10px 10px;
   > * { margin: 2px; }
 `;
+
 
 export const Avatar = styled.img`
   width: 42px;

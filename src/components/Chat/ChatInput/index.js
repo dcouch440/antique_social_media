@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { SubmitButton, ChatWindow } from './styles';
-import moment from 'moment';
+import { SubmitButton, ChatWindow, ChatBox } from './styles';
 
 const ChatInput = ({sendMessage}) => {
   const [message, setMessage] = useState({message: ''});
@@ -20,14 +19,12 @@ const ChatInput = ({sendMessage}) => {
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <ChatWindow name="message" onChange={handleChange} />
-        <SubmitButton>
-          Send Message
-        </SubmitButton>
-      </form>
-    </>
+    <ChatBox>
+      <ChatWindow name="message" onChange={handleChange} />
+      <SubmitButton onClick={handleSubmit}>
+        Send Message
+      </SubmitButton>
+    </ChatBox>
   );
 };
 

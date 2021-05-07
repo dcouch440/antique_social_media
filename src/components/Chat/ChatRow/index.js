@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
-import { Row, Avatar, Username, Message, MessageContainer, Time } from './styles';
+import {
+  Row, Rows, Avatar, Username, Message, MessageContainer, Time
+} from './styles';
 import { variants } from './variants';
 import moment from 'moment';
 
@@ -14,7 +15,6 @@ const ChatRows = ({users, messages}) => {
     };
 
     const user = users[users.findIndex(indexOfUser)];
-    console.log(message);
     return (
       <Row
         as={motion.div}
@@ -35,13 +35,18 @@ const ChatRows = ({users, messages}) => {
     );
 
   });
-  return chatRow;
+
+  return (
+    <Rows>
+      {chatRow}
+    </Rows>
+  );
 
 };
 
-ChatRows.PropTypes = {
+ChatRows.propTypes = {
   users: PropTypes.array,
-  message: PropTypes.object
+  messages: PropTypes.array
 };
 
 export default ChatRows;
