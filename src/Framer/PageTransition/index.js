@@ -5,7 +5,7 @@ import { Context } from '../../Context';
 import { Container } from './styles';
 
 
-const PageTransition = ({attr, transitionTime, ...props}) => {
+const PageTransition = ({attr, transitionTime, exitTime, ...props}) => {
   const { setInTransition } = useContext(Context);
 
   useEffect(() => {
@@ -39,6 +39,7 @@ PageTransition.defaultProps = {
   attr: {
     direction: 'right'
   },
+  exitTime: .6,
   transitionTime: 2
 };
 

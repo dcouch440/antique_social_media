@@ -8,16 +8,15 @@ const Socket = (roomId) => {
   const { currentUser } = useContext(Context);
   const socketRef = useRef();
 
-
-
   useEffect(() => {
 
     if (!currentUser.username) return;
     socketRef.current = io("http://localhost:4001", { withCredentials: true});
     socketRef.current.on('message', msg => {
-      console.log(msg);
-      setMessages(prevMsgs => [...prevMsgs, msg]
-      );});
+      console.log('message - ', msg);
+      setMessages(prevMsgs => [...prevMsgs, msg.message]
+      );
+    });
     socketRef.current.on('disconnection', data => {
       setUsers(data.users);
       setMessages(prevMsgs => [...prevMsgs, data.message]);
@@ -30,7 +29,8 @@ const Socket = (roomId) => {
     if (!currentUser.username) return;
     socketRef.current.emit('join-room', {roomId, ...currentUser});
     socketRef.current.on('join-room', data => {
-      console.log(data);
+      console.log('lsdklfmnskjdmfksdkjfm');
+      console.log('join - room' ,data);
       setUsers(data.users);
       setMessages(prevMsgs => [...prevMsgs, data.message]);
     });

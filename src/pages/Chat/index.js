@@ -3,11 +3,10 @@ import { MessageRow, ChatWindow } from './styles';
 import Socket from "../../components/Socket";
 import ChatRows from "./ChatRow";
 import ChatInput from "./ChatInput";
-import PageTransition from '../../Framer/PageTrasition';
+import PageTransition from '../../Framer/PageTransition';
 
 const Chat = ({roomId}) => {
   const [refresh, setRefresh] = useState(true);
-  console.log('roomid before socket', roomId);
   const { messages, users, socketRef }  = Socket(roomId);
 
   const sendMessage = (message) => {

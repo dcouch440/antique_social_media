@@ -1,4 +1,4 @@
-export const variants = ({attr, transitionTime}) => ({
+export const variants = ({attr, transitionTime, exitTime}) => ({
   hidden: {
     position: 'absolute',
     opacity: 0,
@@ -19,6 +19,6 @@ export const variants = ({attr, transitionTime}) => ({
     y:attr.direction === 'bottom'    ? '100vh'  :
       attr.direction === 'top' ? '-100vh' :null,
     position: 'absolute',
-    transition: { duration: .6, ease: 'easeInOut' }
+    transition: { duration: exitTime, ease: 'easeInOut' }
   }
 });

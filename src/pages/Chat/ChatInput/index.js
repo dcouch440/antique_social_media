@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { SubmitButton, ChatWindow, ChatBox } from './styles';
 

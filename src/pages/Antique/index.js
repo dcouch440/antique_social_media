@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Page } from './styles';
 import Loading from '../../Framer/LoadingModules/Loading';
 import AntiqueInfo from './AntiqueInfo';
 import { useHistory, useParams } from 'react-router-dom';
-import PageTransition from '../../Framer/PageTrasition';
+import PageTransition from '../../Framer/PageTransition';
 import GoBackButton from '../../components/GoBackButton';
 import axios from 'axios';
 import loadingSequence from '../../utils/loadingSequence';
@@ -37,7 +37,7 @@ const AntiquePage = ({setRoomId}) => {
   }, [id, setAntique, setLoading]);
 
   return (
-    <PageTransition attr={{direction: directionRef.current}}>
+    <PageTransition attr={{direction: directionRef.current, exitTime: 2}}>
       <Page>
         <GoBackButton handleClick={handleClick} text={'Back  ▶'} />
         <Loading
