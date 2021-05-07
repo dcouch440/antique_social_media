@@ -21,6 +21,7 @@ export const Row = styled.div`
 
 export const GoBack = styled.button`
   all: unset;
+  z-index: 999;
   color: whitesmoke;
   font-family: monospace;
   cursor: pointer;

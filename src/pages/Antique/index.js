@@ -9,7 +9,7 @@ import axios from 'axios';
 import loadingSequence from '../../utils/loadingSequence';
 import { Context } from '../../Context';
 
-const AntiquePage = props => {
+const AntiquePage = () => {
   const { id } = useParams();
   const history = useHistory();
   const { setRoomId, setInTransition } = useContext(Context);
@@ -45,7 +45,12 @@ const AntiquePage = props => {
         <Loading
           loadingState={loading}
           version="MagnaGlass"
-          afterLoad={ <AntiqueInfo setRoom={handleRoomChange} antique={antique} /> }
+          afterLoad={
+            <AntiqueInfo
+              setRoom={handleRoomChange}
+              antique={antique}
+            />
+          }
         />
       </Page>
     </PageTransition>

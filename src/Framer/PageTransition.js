@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useContext } from 'react';
+import { useContext, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { Context } from '../Context';
 
@@ -33,16 +33,19 @@ const transition = ({attr, transitionTime}) => ({
   }
 });
 
-const PageTransition = ({attr, ...props}) => {
+const PageTransition = ({attr, transitionTime, ...props}) => {
   const { inTransition, setInTransition } = useContext(Context);
-  const transitionTime = 2;
 
-  if (inTransition)
-  {
-    setTimeout(() => {
-      setInTransition(false);
-    }, (transitionTime * 1000));
-  }
+  useEffect(() => {
+
+    const transitioning = setTimeout(
+      () => setInTransition(false), (transitionTime * 1000)
+    );
+
+    return () => clearTimeout(transitioning);
+
+  }, [inTransition, setInTransition, transitionTime]);
+
 
   return (
     <Container as={motion.div}
@@ -56,6 +59,13 @@ const PageTransition = ({attr, ...props}) => {
       {props.children}
     </Container>
   );
+};
+
+PageTransition.defaultProps = {
+  attr: {
+    direction: 'right'
+  },
+  transitionTime: 2
 };
 
 export default PageTransition;
