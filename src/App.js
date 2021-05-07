@@ -6,7 +6,7 @@ import Antique from "./pages/Antique";
 import Likes from './pages/Likes';
 import Navbar from "./Navbar";
 import Post from "./pages/Post";
-import ChatWindow from "./components/Chat";
+import Chat from "./components/Chat";
 
 const App = () => {
   const location = useLocation();
@@ -32,9 +32,8 @@ const App = () => {
             <Likes />
           </Route>
           <Route exact path='/chat'>
-            <ChatWindow antiqueId={4} chatting={true} />
+            <Chat />
           </Route>
-
         </Switch>
       </AnimatePresence>
     </>

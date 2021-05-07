@@ -1,41 +1,40 @@
-import React, { useEffect, useContext, useState } from 'react';
-import { Context } from '../../Context';
-import { ChatWindow } from './styles';
+import { useState } from "react";
+import {MessageRow} from './styles';
+import Socket from "../Socket";
+import ChatRows from "./ChatRow";
 
-const Chat = ({antiqueId, chatting}) => {
-  const { Socket: { setChatting, setRoom, users, messages, setNewMessage } } = useContext(Context);
-  const [form, setForm] = useState({message: 'this is a message to you'});
+const Chat = () => {
+  const [message, setMessage] = useState({message: ''});
+  const { messages, users, socketRef }  = Socket({roomId: 4});
 
-  useEffect(() => {
-    setChatting(chatting);
-    setRoom(prev => ({...prev, room: 4, inRoom: false}));
+  const handleSubmit = () => {
+    socketRef.current.emit('message', message);
+  };
 
-    return () => {
-      setChatting(false);
-      setRoom(prev => ({...prev, leaving: true}));
-    };
-  }, [antiqueId, chatting, setChatting, setRoom]);
-
-  const handleChange = (e) => {
+  const handleChange = e => {
     const { name, value } = e.target;
-    setForm(prev => Object.assign({}, prev, {[name]: value}));
+    setMessage(prev => ({...prev, [name]: value}));
   };
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    setNewMessage({message: form.message, newMessage: true});
-  };
+  console.log('messages', messages);
+  console.log('users' ,users);
 
-  console.log(users);
   return (
-    <ChatWindow>
-      { users.map(d => <h1> Welcome {d.username} </h1>) }
-      <form onSubmit={handleSubmit}>
-        <input onChange={handleChange} name='message' type='text' />
-        <button>SUBMIT</button>
-      </form>
-    </ChatWindow>
+    <>
+      <h1>
+        Hello
+      </h1>
+
+      <input name='message' onChange={handleChange} value={message.message} />
+      <button onClick={handleSubmit}>
+        CLICK
+      </button>
+      <MessageRow>
+        <ChatRows messages={messages} users={users} />
+      </MessageRow>
+    </>
   );
+
 };
 
 export default Chat;

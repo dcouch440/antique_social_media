@@ -12,15 +12,15 @@ const Upload = ({antiqueId}) => {
     previewPicture(file);
     setSelectedFile(file);
     setFileInputState(e.target.value);
-  }
+  };
 
   const previewPicture = (file) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onloadend = () => {
       setPreviewSource(reader.result);
-    }
-  }
+    };
+  };
 
   const handleFileSubmit = (e) => {
 
@@ -37,19 +37,19 @@ const Upload = ({antiqueId}) => {
     setPreviewSource('');
     setFileInputState('');
 
-  }
+  };
 
   const uploadImage = async (base64EncodedImage) => {
     try
     {
       await axios.post('/images/upload',{
-          file: base64EncodedImage,
-          antique_id: antiqueId
+        file: base64EncodedImage,
+        antique_id: antiqueId
       });
     }
 
     catch (err) { console.error(err); }
-  }
+  };
 
   return (
     <div className="image-upload">

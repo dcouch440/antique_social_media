@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import Socket from './Socket';
+import OnlineStatus from "./components/OnlineStatus";
 const Context = React.createContext();
 
 const ContextProvider = props => {
@@ -9,7 +9,7 @@ const ContextProvider = props => {
     id: undefined, username: undefined, email: undefined
   });
 
-  Socket({currentUser});
+  OnlineStatus({currentUser});
 
   useEffect(() => {
     axios
