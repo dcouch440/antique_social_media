@@ -4,7 +4,7 @@ import wide from './img/bottle-wide.jpg';
 
 const images = [tall, wide];
 
-const randomizer = (max) => Math.floor(Math.random() * max);
+const randomizer = max => Math.floor(Math.random() * max);
 
 export default [...Array(10)].map((u, i) => {
   const randomNumber = randomizer(2);

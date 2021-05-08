@@ -1,4 +1,4 @@
-const input = ({className, text, name, onChange}) => (
+const input = ({ className, text, name, onChange }) => (
   <input onChange={onChange} className={className} name={name}>
     {text}
   </input>

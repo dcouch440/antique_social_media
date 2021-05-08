@@ -23,18 +23,17 @@ export default function Chat ({ roomId })
   }, [refresh, messages]);
 
   return (
-    <PageTransition attr={{ direction: 'top' }}>
-
+    <PageTransition attr={{ direction: 'bottom' }}>
       <ChatWindow>
         <ChatInput sendMessage={sendMessage} />
         <MessageRow>
           <ChatRows messages={messages} users={users} />
         </MessageRow>
-
       </ChatWindow>
     </PageTransition>
   );
 }
+
 Chat.propTypes = {
   roomId: PropTypes.string
 };

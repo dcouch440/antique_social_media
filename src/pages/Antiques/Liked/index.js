@@ -55,6 +55,7 @@ export default function Liked ({ antiqueId })
       null
   );
 }
+
 Liked.propTypes = {
   antiqueId: PropTypes.number
 };

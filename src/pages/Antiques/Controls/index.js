@@ -8,7 +8,6 @@ import { motion } from 'framer-motion';
 
 export default function Controls ({ setSlider, count })
 {
-
   return (
     <ControlsPanel
       as={motion.div}
