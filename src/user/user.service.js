@@ -6,7 +6,6 @@ const cookieExpiration = require('../../constant/cookie-time');
 
 class UserService
 {
-
   async signIn ({ res, password, email })
   {
     try
@@ -118,7 +117,6 @@ class UserService
   {
     return userDAO.find(id).withGraphFetched('antique');
   }
-
 }
 
 module.exports = new UserService();

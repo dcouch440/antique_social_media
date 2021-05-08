@@ -2,7 +2,6 @@ const Antique = require('./antique.model');
 
 class AntiqueDAO
 {
-
   all ()
   {
     return Antique.query()
@@ -54,7 +53,6 @@ class AntiqueDAO
     return Antique.query()
       .distinct(category, 'id');
   }
-
 }
 
 module.exports = new AntiqueDAO();

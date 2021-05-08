@@ -1,6 +1,7 @@
 const { Model } = require('objection');
 
-class Avatar extends Model {
+class Avatar extends Model
+{
   static get tableName ()
   {
     return 'avatar';

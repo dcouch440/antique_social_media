@@ -1,7 +1,7 @@
 const User = require('./user.model');
 
-class UserDAO {
-
+class UserDAO
+{
   all ()
   {
     return User.query();

@@ -3,7 +3,6 @@ const Avatar = require('./avatar.model');
 
 class AvatarDAO
 {
-
   async storeUrl ({ ...params })
   {
     try
@@ -37,7 +36,6 @@ class AvatarDAO
     return Avatar.query()
       .where('user_id', user_id);
   }
-
 }
 
 module.exports = new AvatarDAO();

@@ -1,7 +1,7 @@
 const userService = require('./user.service');
 
-class UserController {
-
+class UserController
+{
   async signIn (req,res)
   {
     try
@@ -132,7 +132,6 @@ class UserController {
       res.json(404);
     }
   }
-
 }
 
 module.exports = new UserController();

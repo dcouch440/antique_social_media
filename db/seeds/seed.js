@@ -27,7 +27,7 @@ exports.seed = async knex => {
     });
 
 
-    await times(users)( async () => {
+    await times(users)(async () => {
 
       const randomUserHash = await hashPassword(randomUser());
       const user_id = await addToTable({ table: 'user', obj: randomUserHash });

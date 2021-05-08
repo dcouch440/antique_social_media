@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 
-const hashPassword = async ({ username, email, password }) => {
+async function hashPassword ({ username, email, password })
+{
   try
   {
     const hashedPassword = await bcrypt.hash(password, 12);
@@ -12,15 +13,16 @@ const hashPassword = async ({ username, email, password }) => {
   }
 
   catch (err) { console.log(err); }
-};
+}
 
-const compareHash = async ({ inputPassword, userPassword }) => {
+async function compareHash ({ inputPassword, userPassword })
+{
   try
   {
     return bcrypt.compare(inputPassword, userPassword);
   }
 
   catch (err) { console.log(err); }
-};
+}
 
 module.exports = { hashPassword , compareHash };

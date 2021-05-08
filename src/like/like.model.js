@@ -1,6 +1,7 @@
 const { Model } = require('objection');
 
-class Like extends Model {
+class Like extends Model
+{
   static get tableName ()
   {
     return 'like';

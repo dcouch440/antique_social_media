@@ -3,7 +3,6 @@ const userService = require('../user/user.service');
 
 class AntiqueSerializer
 {
-
   async serializeWithRelations ({ antiques })
   {
     try
@@ -72,7 +71,6 @@ class AntiqueSerializer
 
     catch (err) { console.error(err); }
   }
-
 }
 
 module.exports = new AntiqueSerializer();

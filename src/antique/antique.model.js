@@ -41,7 +41,6 @@ class Antique extends Model
     };
 
   }
-
 }
 
 module.exports = Antique;

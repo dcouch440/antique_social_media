@@ -29,7 +29,6 @@ class customEnvironment extends NodeEnvironment
     await this._knex.destroy();
     await super.teardown();
   }
-
 }
 
 module.exports = customEnvironment;

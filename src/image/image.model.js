@@ -1,6 +1,7 @@
 const { Model } = require('objection');
 
-class Image extends Model {
+class Image extends Model
+{
   static get tableName ()
   {
     return 'image';

@@ -4,7 +4,6 @@ const Image = require('./image.model');
 // NOTE THIS FILE WAS EDITED AWAY FROM USING DB('IMAGE') AND MOVED TO IMAG.QUERY()
 // TEST CASE THIS FOR ERRORS IN THE FUTURE
 
-
 class ImageDAO
 {
   async storeUrl ({ ...params })

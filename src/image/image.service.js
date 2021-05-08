@@ -54,7 +54,6 @@ class ImageService
     return imageDAO.findById(antique_id)
       .catch(err => console.error(err));
   }
-
 }
 
 module.exports = new ImageService();
