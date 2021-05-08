@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, createContext } from 'react';
 import axios from 'axios';
-import OnlineStatus from "./components/OnlineStatus";
-const Context = React.createContext();
+import OnlineStatus from './components/OnlineStatus';
+const Context = createContext();
 
-const ContextProvider = props => {
-
+function ContextProvider (props)
+{
   const [currentUser, setCurrentUser] = useState({
     id: undefined, username: undefined, email: undefined
   });
@@ -30,7 +30,6 @@ const ContextProvider = props => {
       {props.children}
     </Context.Provider>
   );
+}
 
-};
-
-export {ContextProvider, Context};
+export { ContextProvider, Context };

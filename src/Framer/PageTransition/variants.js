@@ -14,9 +14,9 @@ export const variants = ({attr, transitionTime, exitTime}) => ({
     type: 'tween'
   },
   exit: {
-    x:attr.direction === 'right'  ? '100vw'  :
-      attr.direction === 'left'   ? '-100vw' :null,
-    y:attr.direction === 'bottom'    ? '100vh'  :
+    x:attr.direction === 'right' ? '100vw' :
+      attr.direction === 'left' ? '-100vw' :null,
+    y:attr.direction === 'bottom' ? '100vh' :
       attr.direction === 'top' ? '-100vh' :null,
     position: 'absolute',
     transition: { duration: exitTime, ease: 'easeInOut' }

@@ -8,7 +8,8 @@ import moment from 'moment';
 import { useEffect, useRef } from 'react';
 import { useHistory } from 'react-router';
 
-const ChatRows = ({users, messages}) => {
+export default function ChatRows ({messages})
+{
   const history = useHistory();
   const messagesEndRef = useRef();
 
@@ -17,7 +18,7 @@ const ChatRows = ({users, messages}) => {
   }, [messages]);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const handleClick = () => {
@@ -56,12 +57,8 @@ const ChatRows = ({users, messages}) => {
       <div ref={messagesEndRef}></div>
     </Rows>
   );
-
-};
+}
 
 ChatRows.propTypes = {
-  users: PropTypes.array,
   messages: PropTypes.array
 };
-
-export default ChatRows;

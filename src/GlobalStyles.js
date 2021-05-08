@@ -1,4 +1,4 @@
-import { createGlobalStyle } from  'styled-components';
+import { createGlobalStyle } from 'styled-components';
 import * as include from './styled-mixens';
 
 const GlobalStyles = createGlobalStyle`

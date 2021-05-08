@@ -19,7 +19,7 @@ export const variants = {
   },
   transition: {
     x: {
-      type: "spring",
+      type: 'spring',
       stiffness: 300,
       damping: 30
     },

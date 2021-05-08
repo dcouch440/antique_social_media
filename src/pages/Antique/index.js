@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Page } from './styles';
 import Loading from '../../Framer/LoadingModules/Loading';
 import AntiqueInfo from './AntiqueInfo';
@@ -8,11 +8,12 @@ import GoBackButton from '../../components/GoBackButton';
 import axios from 'axios';
 import loadingSequence from '../../utils/loadingSequence';
 
-const AntiquePage = ({setRoomId}) => {
+export default function AntiquePage ({setRoomId})
+{
   const { id } = useParams();
   const history = useHistory();
-  const [loading, setLoading] = React.useState(true);
-  const [antique, setAntique] = React.useState({});
+  const [loading, setLoading] = useState(true);
+  const [antique, setAntique] = useState({});
   const directionRef = useRef('right');
   const sequence = useRef(false);
 
@@ -53,7 +54,4 @@ const AntiquePage = ({setRoomId}) => {
       </Page>
     </PageTransition>
   );
-
-};
-
-export default AntiquePage;
+}

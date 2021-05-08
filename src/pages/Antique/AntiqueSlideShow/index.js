@@ -1,12 +1,11 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { variants } from './variants';
-import { wrap } from "popmotion";
+import { wrap } from 'popmotion';
 import { AnimatePresence, motion } from 'framer-motion';
 import * as styles from './styles';
 
-
-
-const AntiquesSlideShow = ({antiqueImages}) => {
+export default function AntiquesSlideShow ({antiqueImages})
+{
   const [[page, direction], setPage] = useState([0, 0]);
   const [nextSlide, setNextSlide] = useState(0);
   const isTapped = useRef(false);
@@ -23,14 +22,21 @@ const AntiquesSlideShow = ({antiqueImages}) => {
     setPage([page + newDirection, newDirection]);
   }, [page, setPage]);
 
-  useEffect(() => {
-    if (antiqueImages.length === 1) return;
 
-    const timer = setTimeout(() => {
-      if (!isTapped.current) paginate(1);
-      else setNextSlide(prev=> prev += 1);
-    }, 10000);
-    return  () => clearTimeout(timer);
+  useEffect(() => {
+    if (antiqueImages.length === 1) { return; }
+
+    const timer = setTimeout(
+
+      () => !isTapped.current ?
+        paginate(1) :
+        setNextSlide(prev=> prev += 1),
+
+      10000
+
+    );
+
+    return () => clearTimeout(timer);
 
   }, [page, paginate, nextSlide, antiqueImages.length]);
 
@@ -66,13 +72,11 @@ const AntiquesSlideShow = ({antiqueImages}) => {
         />
       </AnimatePresence>
       <div className="next" onClick={() => paginate(1)}>
-        {"‣"}
+        {'‣'}
       </div>
       <div className="prev" onClick={() => paginate(-1)}>
-        {"‣"}
+        {'‣'}
       </div>
     </styles.SlideShow>
   );
-};
-
-export default AntiquesSlideShow;
+}

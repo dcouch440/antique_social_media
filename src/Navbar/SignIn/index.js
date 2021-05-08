@@ -1,10 +1,11 @@
-import React, {useState, useEffect, useRef, useContext} from 'react';
+import {useState, useEffect, useRef, useContext} from 'react';
 import axios from 'axios';
 import { Context } from '../../Context';
 import { SignIngTitle, SignedIn } from './styles';
 import { StyledInput, DropDownButton, DropDownButtonContainer } from '../styled';
 
-const SignIn = ({toggle}) => {
+export default function SignIn ({toggle})
+{
   const [payload, setPayload] = useState({});
   const [error, setError] = useState(false);
   const [{password, email}, setCredentials] = useState({password: '', email: ''});
@@ -26,7 +27,7 @@ const SignIn = ({toggle}) => {
   };
 
   useEffect(() => {
-    if (!isRequest.current) return;
+    if (!isRequest.current) { return; }
     isRequest.current = false;
     axios.post(
       '/users/signin',
@@ -69,6 +70,4 @@ const SignIn = ({toggle}) => {
       </form>
     </SignedIn>
   );
-};
-
-export default SignIn;
+}

@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { LoadingCircle, LoadingContainer, MagnaGlass } from '../styles';
 import {
@@ -6,64 +5,63 @@ import {
 } from '../variants';
 
 
-const Loading = ({loadingState, afterLoad, version}) => (
+export default function Loading ({loadingState, afterLoad, version})
+{
+  return (
+    loadingState ?
 
-  loadingState ?
+      <LoadingContainer
+        as={motion.div}
+        variants={loadingContainerVariants}
+        initial="start"
+        animate="end"
+      >
+        {
 
-    <LoadingContainer
-      as={motion.div}
-      variants={loadingContainerVariants}
-      initial="start"
-      animate="end"
-    >
-      {
+          version === 'MagnaGlass' ?
 
-        version === 'MagnaGlass' ?
+            <>
+              <MagnaGlass
+                as={motion.span}
+                variants={loadingVariants}
+                transition={loadingTransition}
+              />
+              <MagnaGlass
+                as={motion.span}
+                variants={loadingVariants}
+                transition={loadingTransition}
+              />
+              <MagnaGlass
+                as={motion.span}
+                variants={loadingVariants}
+                transition={loadingTransition}
+              />
+            </>
 
-          <>
-            <MagnaGlass
-              as={motion.span}
-              variants={loadingVariants}
-              transition={loadingTransition}
-            />
-            <MagnaGlass
-              as={motion.span}
-              variants={loadingVariants}
-              transition={loadingTransition}
-            />
-            <MagnaGlass
-              as={motion.span}
-              variants={loadingVariants}
-              transition={loadingTransition}
-            />
-          </>
+            :
 
-          :
+            version === 'circle' ?
 
-          version === 'circle' ?
+              <LoadingCircle
+                as={motion.span}
+                variants={loadingVariants}
+                transition={loadingTransition}
+              />
 
-            <LoadingCircle
-              as={motion.span}
-              variants={loadingVariants}
-              transition={loadingTransition}
-            />
+              :null
 
-            :null
+        }
+      </LoadingContainer>
 
-      }
-    </LoadingContainer>
+      : // done loading
 
-    : // done loading
-
-    <motion.div
-      variants={pageVariants}
-      style={{height: '100%', width: '100%'}}
-      initial='hidden'
-      animate='visible'
-    >
-      {afterLoad}
-    </motion.div>
-
-);
-
-export default Loading;
+      <motion.div
+        variants={pageVariants}
+        style={{height: '100%', width: '100%'}}
+        initial='hidden'
+        animate='visible'
+      >
+        {afterLoad}
+      </motion.div>
+  );
+}

@@ -11,7 +11,8 @@ const Grid = styled.div`
   font-family: 'Pacifico', cursive;
 `;
 
-const SingedIn = ({user}) => {
+export default function SingedIn ({user})
+{
   return (
     <Grid>
       <Username>Welcome {user.charAt(0).toUpperCase() + user.slice(1)} </Username>
@@ -22,6 +23,4 @@ const SingedIn = ({user}) => {
       <SignOut />
     </Grid>
   );
-};
-
-export default SingedIn;
+}

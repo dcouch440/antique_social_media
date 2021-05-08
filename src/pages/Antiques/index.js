@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Grid, Header, PageContainer } from './styles';
 import ApiMapper from '../../components/ApiMapper';
 import PageTransition from '../../Framer/PageTransition';
@@ -6,7 +6,8 @@ import Antique from './Antique';
 import Controls from './Controls';
 import useEverScroll from '../../hooks/useEverScroll';
 
-const AntiquesPage = () => {
+export default function AntiquesPage ()
+{
   const [bottomBoundaryRef, lazyRef, antiques] = useEverScroll(
     {limit: 15, route: '/antiques'}
   );
@@ -24,7 +25,4 @@ const AntiquesPage = () => {
       </PageContainer>
     </PageTransition>
   );
-
-};
-
-export default AntiquesPage;
+}

@@ -1,11 +1,12 @@
-import React, {useState, useEffect, useRef, useContext} from 'react';
+import {useState, useEffect, useRef, useContext} from 'react';
 import axios from 'axios';
 import { Context } from '../../Context';
 import { Form, SignUpTitle } from './styles';
 import { StyledInput, DropDownButtonContainer, DropDownButton } from '../styled';
 
 
-const SignUp = ({toggle}) => {
+export default function SignUp ({toggle})
+{
   const [payload, setPayload] = useState({});
   const [message, setMessage] = useState('Sign Up');
   const isRequest = useRef(false);
@@ -34,7 +35,7 @@ const SignUp = ({toggle}) => {
   };
 
   useEffect(() => {
-    if (isRequest.current === false) return;
+    if (isRequest.current === false) { return; }
     isRequest.current = false;
     axios.post(
       '/users/signup',
@@ -91,6 +92,4 @@ const SignUp = ({toggle}) => {
 
     </Form>
   );
-};
-
-export default SignUp;
+}

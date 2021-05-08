@@ -1,9 +1,9 @@
-import React from 'react';
 import { AntiqueRow, Image, About } from './styles';
 import moment from 'moment';
 import { useHistory } from 'react-router';
 
-const Antique = ({antique}) => {
+export default function Antique ({antique})
+{
   const history = useHistory();
   const [image] = antique.images;
 
@@ -25,6 +25,5 @@ const Antique = ({antique}) => {
       </About>
     </AntiqueRow>
   );
-};
 
-export default Antique;
+}

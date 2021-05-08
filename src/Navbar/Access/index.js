@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import SignIn from '../SignIn';
 import SignUp from '../SignUp';
 
-const Access = () => {
+export default function Access ()
+{
   const [accessChoice, setAccessChoice] = useState(true);
 
   const handleToggle = () => {
@@ -10,15 +11,11 @@ const Access = () => {
   };
 
   return (
-    <>
-      {
-        accessChoice ?
-          <SignIn  toggle={handleToggle}/>
-          :
-          <SignUp toggle={handleToggle} />
-      }
-    </>
-  );
-};
 
-export default Access;
+    accessChoice ?
+      <SignIn toggle={handleToggle} />
+      :
+      <SignUp toggle={handleToggle} />
+
+  );
+}

@@ -13,17 +13,17 @@ export const loadingContainerVariants = {
 
 export const loadingVariants = {
   start: {
-    y: "0%",
+    y: '0%',
   },
   end: {
-    y: "100%",
+    y: '100%',
   },
 };
 
 export const loadingTransition = {
   duration: 0.5,
   yoyo: Infinity,
-  ease: "easeInOut",
+  ease: 'easeInOut',
 };
 
 export const pageVariants = {

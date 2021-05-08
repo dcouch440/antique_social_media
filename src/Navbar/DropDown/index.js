@@ -4,7 +4,8 @@ import { DropMenuPlate } from './styles';
 import SignedIn from '../SignedIn';
 import Access from '../Access';
 
-const DropDown = ({display}) => {
+export default function DropDown ({display})
+{
   const { currentUser } = useContext(Context);
   const signedIn = currentUser.username;
 
@@ -18,6 +19,5 @@ const DropDown = ({display}) => {
       }
     </DropMenuPlate>
   );
-};
 
-export default DropDown;
+}

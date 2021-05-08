@@ -1,17 +1,18 @@
-import { Route, Switch, useLocation, Redirect } from "react-router";
+import { Route, Switch, useLocation, Redirect } from 'react-router';
 import { useEffect, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { Context } from './Context';
 import GlobalStyles from './GlobalStyles';
-import Antiques from "./pages/Antiques";
-import Antique from "./pages/Antique";
+import Antiques from './pages/Antiques';
+import Antique from './pages/Antique';
 import Likes from './pages/Likes';
-import Navbar from "./Navbar";
-import Post from "./pages/Post";
-import Chat from "./pages/Chat";
-import { useContext } from "react";
+import Navbar from './Navbar';
+import Post from './pages/Post';
+import Chat from './pages/Chat';
+import { useContext } from 'react';
 
-const App = () => {
+export default function App ()
+{
   const location = useLocation();
   const [roomId, setRoomId] = useState('GLOBAL CHAT');
   const { inTransition, setInTransition } = useContext(Context);
@@ -36,7 +37,7 @@ const App = () => {
             <Post />
           </Route>
           <Route exact path='/antiques/:id'>
-            <Antique setRoomId={setRoomId}  />
+            <Antique setRoomId={setRoomId} />
           </Route>
           <Route exact path='/likes'>
             <Likes />
@@ -48,6 +49,4 @@ const App = () => {
       </AnimatePresence>
     </>
   );
-};
-
-export default App;
+}

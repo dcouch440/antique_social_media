@@ -3,7 +3,8 @@ import Liked from '../Liked';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const Antique = ({antique, lazyRef, index}) => {
+export default function Antique ({antique, lazyRef, index})
+{
   const history = useHistory();
 
   const handleClick = id => {
@@ -26,10 +27,8 @@ const Antique = ({antique, lazyRef, index}) => {
 
     </AntiqueContainer>
   );
-};
+}
 
 Antique.propTypes = {
   antique: PropTypes.object
 };
-
-export default Antique;

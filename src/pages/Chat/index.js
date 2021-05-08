@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
 import { MessageRow, ChatWindow } from './styles';
-import Socket from "../../components/Socket";
-import ChatRows from "./ChatRow";
-import ChatInput from "./ChatInput";
+import Socket from '../../components/Socket';
+import ChatRows from './ChatRow';
+import ChatInput from './ChatInput';
 import PageTransition from '../../Framer/PageTransition';
 
-const Chat = ({roomId}) => {
+export default function Chat ({roomId})
+{
   const [refresh, setRefresh] = useState(true);
-  const { messages, users, socketRef }  = Socket(roomId);
+  const { messages, users, socketRef } = Socket(roomId);
 
   const sendMessage = (message) => {
     socketRef.current.emit('message', message);
@@ -17,7 +18,7 @@ const Chat = ({roomId}) => {
     const refresher = setTimeout(() => {
       setRefresh(prev => !prev);
     }, 20000);
-    return () =>  clearTimeout(refresher);
+    return () => clearTimeout(refresher);
   }, [refresh, messages]);
 
   return (
@@ -32,7 +33,4 @@ const Chat = ({roomId}) => {
       </ChatWindow>
     </PageTransition>
   );
-
-};
-
-export default Chat;
+}

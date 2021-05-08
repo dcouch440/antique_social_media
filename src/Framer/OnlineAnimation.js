@@ -17,17 +17,17 @@ const loadingContainerVariants = {
 
 const loadingCircleVariants = {
   start: {
-    y: "45%",
+    y: '45%',
   },
   end: {
-    y: "80%",
+    y: '80%',
   },
 };
 
 const loadingCircleTransition = {
   duration: 0.5,
   yoyo: Infinity,
-  ease: "easeInOut",
+  ease: 'easeInOut',
 };
 
 const OnlineContainer = styled.div`

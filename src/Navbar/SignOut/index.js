@@ -1,15 +1,16 @@
 import axios from 'axios';
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { SignOutDiv } from './styles';
 import { Context } from '../../Context';
 
-const SignOut = () => {
+export default function SignOut ()
+{
   const { setCurrentUser } = useContext(Context);
 
   const requestLogout = async () => {
     await axios
       .get('/users/signout', {withCredentials: true})
-      .then(res =>  res.status === 202 && setCurrentUser({
+      .then(res => res.status === 202 && setCurrentUser({
         id: undefined, username: undefined, email: undefined
       }))
       .catch(err => console.error(err));
@@ -20,6 +21,4 @@ const SignOut = () => {
       Sign-Out
     </SignOutDiv>
   );
-};
-
-export default SignOut;
+}

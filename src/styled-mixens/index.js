@@ -71,4 +71,4 @@ export const DropdownButtonStyle = `
 export const DropdownInputStyle = `
 `;
 
-export const cursiveFont = `font-family: 'Pacifico', cursive;`;
+export const cursiveFont = 'font-family: \'Pacifico\', cursive;';

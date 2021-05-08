@@ -1,11 +1,12 @@
 // gives a default time for animation loading
 
-const loadingSequence = ({condition, ref, timeBeforeCheck = 1000}) => {
+export default function loadingSequence ({condition, ref, timeBeforeCheck = 1000})
+{
   setTimeout(() => {
     ref.current = true;
   }, timeBeforeCheck);
 
-  if(ref.current === false)
+  if (ref.current === false)
   {
     const interval = setInterval(() => {
       if (ref.current === true) {
@@ -14,7 +15,6 @@ const loadingSequence = ({condition, ref, timeBeforeCheck = 1000}) => {
       }
     }, 300);
   }
-  else condition(false);
-};
 
-export default loadingSequence;
+  else { condition(false); }
+}

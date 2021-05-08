@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 //  UPLOAD ON ITS OWN -------------------------
-const Upload = ({antiqueId}) => {
+export default function Upload ({antiqueId})
+{
   const [fileInputState, setFileInputState] = useState('');
   const [selectedFile, setSelectedFile] = useState('');
   const [previewSource, setPreviewSource] = useState('');
@@ -25,7 +26,7 @@ const Upload = ({antiqueId}) => {
   const handleFileSubmit = (e) => {
 
     e.preventDefault();
-    if (!selectedFile) return;
+    if (!selectedFile) { return; }
     const reader = new FileReader();
 
     reader.readAsDataURL(selectedFile);
@@ -69,7 +70,4 @@ const Upload = ({antiqueId}) => {
       {previewSource&& <img src={previewSource} alt="zap" />}
     </div>
   );
-};
-
-
-export default Upload;
+}

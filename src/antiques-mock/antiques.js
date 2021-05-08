@@ -12,7 +12,7 @@ export default [...Array(10)].map((u, i) => {
   const dimensions = {
     height: randomNumber !== 0 ? 2000 : 1600,
     width: randomNumber !== 0 ? 3000 : 1200
-  }
+  };
 
   return {
     name: faker.commerce.productAdjective(),
@@ -21,5 +21,5 @@ export default [...Array(10)].map((u, i) => {
     body: faker.lorem.words(200),
     ...dimensions,
     image: images[randomNumber]
-  }
+  };
 });

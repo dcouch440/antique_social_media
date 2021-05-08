@@ -1,4 +1,3 @@
-import React from 'react';
 import { ControlsPanel } from './styles';
 import Slider from '../../../components/Slider';
 import {SliderContainer, Slide, GridTitle,Count} from './styles';
@@ -6,7 +5,8 @@ import { controlVariants } from './variants';
 import { motion } from 'framer-motion';
 
 
-const Controls = ({setSlider, count}) => {
+export default function Controls ({setSlider, count})
+{
 
   return (
     <ControlsPanel
@@ -25,6 +25,4 @@ const Controls = ({setSlider, count}) => {
       </SliderContainer>
     </ControlsPanel>
   );
-};
-
-export default Controls;
+}

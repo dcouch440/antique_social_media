@@ -6,9 +6,20 @@
       "jsx": true
     }
   },
+  "extends": "eslint:recommended",
   "rules": {
     "semi": "error",
     "semi-spacing": "error",
-    "indent": ["error", 2]
+    "indent": ["error", 2],
+    "quotes": ["error", "single"],
+    "no-multiple-empty-lines": "error",
+    "no-unused-vars": "error",
+    "keyword-spacing": "error",
+    "no-multi-spaces": "error",
+    "space-before-function-paren": "error",
+    "eqeqeq": "error",
+    "curly": "error",
+    "block-spacing": "error"
+
   }
 }

@@ -5,7 +5,8 @@ import { Context } from '../../Context';
 import { Container } from './styles';
 
 
-const PageTransition = ({attr, transitionTime, exitTime, ...props}) => {
+export default function PageTransition ({attr, transitionTime, exitTime, ...props})
+{
   const { setInTransition } = useContext(Context);
 
   useEffect(() => {
@@ -33,7 +34,7 @@ const PageTransition = ({attr, transitionTime, exitTime, ...props}) => {
       {props.children}
     </Container>
   );
-};
+}
 
 PageTransition.defaultProps = {
   attr: {
@@ -42,5 +43,3 @@ PageTransition.defaultProps = {
   exitTime: .6,
   transitionTime: 2
 };
-
-export default PageTransition;

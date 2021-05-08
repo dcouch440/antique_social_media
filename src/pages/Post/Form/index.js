@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   TextArea, TitleInput, FormData, YearInput,
   TitleYear, LabelsTitleYear, NameInput, Button
 } from './styles';
 
-const Form = ({onSubmit}) => {
+export default function Form ({onSubmit})
+{
   const [formData, setFormData] = useState({
     title: '', body: '', year: 0, name: ''
   });
@@ -64,6 +65,4 @@ const Form = ({onSubmit}) => {
       <Button>Submit</Button>
     </FormData>
   );
-};
-
-export default Form;
+}
