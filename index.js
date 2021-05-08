@@ -3,9 +3,9 @@ const statusSocket = require('./socket/status');
 const chatSocket = require('./socket/chat');
 
 const PORT = process.env.PORT || 8080;
-const STATUS_SOCKET = 4000;
-const CHAT_SOCKET = 4001;
+const STATUS_PORT = 4000;
+const CHAT_PORT = 4001;
 
-statusSocket.listen(STATUS_SOCKET, () => console.log('socket listening on %d', STATUS_SOCKET));
-chatSocket.listen(CHAT_SOCKET, () => console.log('socket listening on %d', CHAT_SOCKET));
+statusSocket.listen(STATUS_PORT, () => console.log('socket listening on %d', STATUS_PORT));
+chatSocket.listen(CHAT_PORT, () => console.log('socket listening on %d', CHAT_PORT));
 app.listen(PORT, () => console.log('Updated : Server listening at port %d', PORT));

@@ -7,21 +7,25 @@ const {
   getUserIdBySocketId
 } = require('./online-state/actions');
 
+const {
+  CONNECTION,
+  LOGIN,
+  DISCONNECT,
+} = require('../socket-events');
 
-const io_users = require('socket.io')( socket, {
+const io = require('socket.io')( socket, {
   cors: {
-    origin: "http://localhost:3000",
-    methods: ["GET", "POST"],
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'POST'],
     credentials: true
   }
 });
 
+io.on( CONNECTION, (socket) => {
+  socket.emit( CONNECTION, 'online - connection');
 
-io_users.on('connection', (socket) => {
-  socket.emit('connection', 'online - connection');
-
-  socket.on( 'login',  data => {
-    socket.emit('login', 'online - login');
+  socket.on( LOGIN, data => {
+    socket.emit( LOGIN, 'online - login');
 
     const { id :user_id} = data;
     const { id :socket_id} = socket;
@@ -31,7 +35,7 @@ io_users.on('connection', (socket) => {
 
   });
 
-  socket.on( 'disconnect', () => {
+  socket.on( DISCONNECT, () => {
 
     const { id :socket_id } = socket;
     const user_id = getUserIdBySocketId({socket_id});
@@ -42,8 +46,6 @@ io_users.on('connection', (socket) => {
   });
 
 });
-
-
 
 
 module.exports = socket;
