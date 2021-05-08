@@ -1,3 +1,5 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 
 const transition = {
@@ -8,7 +10,7 @@ const transition = {
   visible: {
     x: 0,
     opacity: 1,
-    transition: {delay: 5, duration: 1}
+    transition: { delay: 5, duration: 1 }
   },
   timing: {
     duration: 1
@@ -22,17 +24,21 @@ const transition = {
   }
 };
 
-const NewPage = (props) => (
-  <motion.button
-    variants={transition}
-    initial="hidden"
-    animate="visible"
-    timing="timing"
-    transition="transition"
-    exit="exit"
-  >
-    {props.children}
-  </motion.button>
-);
+export default function NewPage (props) {
+  return (
+    <motion.button
+      variants={transition}
+      initial="hidden"
+      animate="visible"
+      timing="timing"
+      transition="transition"
+      exit="exit"
+    >
+      {props.children}
+    </motion.button>
+  );
+}
 
-export default NewPage;
+NewPage.propTypes = {
+  children: PropTypes.object.isRequired
+};

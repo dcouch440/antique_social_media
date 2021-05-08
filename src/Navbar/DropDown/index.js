@@ -1,10 +1,11 @@
+import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
 import { Context } from '../../Context';
 import { DropMenuPlate } from './styles';
 import SignedIn from '../SignedIn';
 import Access from '../Access';
 
-export default function DropDown ({display})
+export default function DropDown ({ display })
 {
   const { currentUser } = useContext(Context);
   const signedIn = currentUser.username;
@@ -19,5 +20,8 @@ export default function DropDown ({display})
       }
     </DropMenuPlate>
   );
-
 }
+
+DropDown.propTypes = {
+  display: PropTypes.string
+};

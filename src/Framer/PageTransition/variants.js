@@ -1,11 +1,11 @@
-export const variants = ({attr, transitionTime, exitTime}) => ({
+export const variants = ({ attr, transitionTime, exitTime }) => ({
   hidden: {
     position: 'absolute',
     opacity: 0,
   },
   visible: {
     opacity: 1,
-    transition: {duration: .8, delay: 1}
+    transition: { duration: .3, delay: 1 }
   },
   timing: {
     duration: transitionTime

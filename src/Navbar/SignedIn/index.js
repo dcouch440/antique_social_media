@@ -1,7 +1,8 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 import { Username, HubLink } from './styles';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import SignOut from '../SignOut';
 
 const Grid = styled.div`
@@ -11,7 +12,7 @@ const Grid = styled.div`
   font-family: 'Pacifico', cursive;
 `;
 
-export default function SingedIn ({user})
+export default function SingedIn ({ user })
 {
   return (
     <Grid>
@@ -24,3 +25,7 @@ export default function SingedIn ({user})
     </Grid>
   );
 }
+
+SingedIn.propTypes = {
+  user: PropTypes.string
+};

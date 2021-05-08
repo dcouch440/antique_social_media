@@ -1,11 +1,12 @@
 import { motion } from 'framer-motion';
+import { PropTypes } from 'prop-types';
 import { LoadingCircle, LoadingContainer, MagnaGlass } from '../styles';
 import {
   loadingContainerVariants, loadingVariants, loadingTransition, pageVariants
 } from '../variants';
 
 
-export default function Loading ({loadingState, afterLoad, version})
+export default function Loading ({ loadingState, afterLoad, version })
 {
   return (
     loadingState ?
@@ -57,7 +58,7 @@ export default function Loading ({loadingState, afterLoad, version})
 
       <motion.div
         variants={pageVariants}
-        style={{height: '100%', width: '100%'}}
+        style={{ height: '100%', width: '100%' }}
         initial='hidden'
         animate='visible'
       >
@@ -65,3 +66,13 @@ export default function Loading ({loadingState, afterLoad, version})
       </motion.div>
   );
 }
+
+Loading.propTypes = {
+  loadingState: PropTypes.bool.isRequired,
+  afterLoad: PropTypes.object.isRequired,
+  version: PropTypes.string
+};
+
+Loading.defaultProps = {
+  version: 'MagnaGlass'
+};

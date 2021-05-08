@@ -1,11 +1,12 @@
+import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import { Context } from '../../../Context';
 import OnlineAnimation from '../../../Framer/OnlineAnimation';
 import { Online, AvatarContainer, AboutMe, Avatar } from './styles';
 
-export default function User ({ownerInfo})
+export default function User ({ ownerInfo })
 {
-  const { currentUser: {id} } = useContext(Context);
+  const { currentUser: { id } } = useContext(Context);
   const isCurrentUserPostOrUserOnline = (id === ownerInfo.avatar.user_id && id) ? true : ownerInfo.online;
   const onlineOfflineText = isCurrentUserPostOrUserOnline ? 'Online' : 'Offline';
 
@@ -24,3 +25,14 @@ export default function User ({ownerInfo})
     </AvatarContainer>
   );
 }
+
+User.propTypes = {
+  ownerInfo: PropTypes.shape({
+    avatar: PropTypes.shape({
+      image_url: PropTypes.string,
+      user_id: PropTypes.number
+    }),
+    online: PropTypes.bool,
+    username: PropTypes.string
+  })
+};

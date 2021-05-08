@@ -6,7 +6,7 @@ export const DropMenuPlate = styled.div`
   color: black;
   overflow: hidden;
   width: 300px;
-  display: ${({display}) => display};
+  display: ${({ display }) => display};
   top: 62px;
   font-family: 'Courier New', Courier, monospace;
   right: 34px;

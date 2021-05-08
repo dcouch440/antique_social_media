@@ -33,7 +33,7 @@ export default function Post ()
   const uploadImage = async uploadData => {
     await axios.post(
       '/antiques', uploadData,
-      {withCredentials: true}
+      { withCredentials: true }
     )
       .then(res => res.status === 201 && history.push(
         `/antiques/${res.data.id}`

@@ -7,7 +7,7 @@ export const Grid = styled.div`
   grid-gap: 5px;
   margin: 0 auto;
   grid-auto-flow: dense;
-  grid-template-columns: repeat(${({columns}) => columns},  1fr);
+  grid-template-columns: repeat(${({ columns }) => columns},  1fr);
   @media (max-width: 900px) {
     grid-template-columns: repeat(1,  1fr);
   }

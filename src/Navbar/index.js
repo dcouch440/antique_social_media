@@ -1,4 +1,4 @@
-import React, {useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { Nav, Menu } from './styles';
 import DropDown from './DropDown';
 

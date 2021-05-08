@@ -13,12 +13,11 @@ export default function Socket (roomId)
   useEffect(() => {
     if (!currentUser.username) { return; }
 
-    socketRef.current = io('http://localhost:4001', { withCredentials: true});
+    socketRef.current = io('http://localhost:4001', { withCredentials: true });
 
     socketRef.current.on( MESSAGE, msg => {
       console.log('message - ', msg);
-      setMessages(prevMsgs => [...prevMsgs, msg.message]
-      );
+      setMessages(prevMsgs => [...prevMsgs, msg.message]);
     });
 
     socketRef.current.on( DISCONNECTION, data => {
@@ -31,7 +30,7 @@ export default function Socket (roomId)
   useEffect(() => {
     if (!currentUser.username) { return; }
 
-    socketRef.current.emit( JOIN_ROOM, {roomId, ...currentUser});
+    socketRef.current.emit( JOIN_ROOM, { roomId, ...currentUser });
     socketRef.current.on( JOIN_ROOM, data => {
       console.log('join - room' ,data);
       setUsers(data.users);

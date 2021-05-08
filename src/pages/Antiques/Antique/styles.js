@@ -6,8 +6,8 @@ export const AntiqueContainer = styled.div`
   background-color: whitesmoke;
   margin: 0;
   overflow: hidden;
-  grid-row: ${ (({dimensions}) => {
-    const {height, width} = dimensions;
+  grid-row: ${ (({ dimensions }) => {
+    const { height, width } = dimensions;
     return width > height ? 'span 2' : 'span 4';
   })};
   grid-column: span 1;

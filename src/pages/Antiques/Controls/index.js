@@ -1,11 +1,12 @@
+import PropTypes from 'prop-types';
 import { ControlsPanel } from './styles';
 import Slider from '../../../components/Slider';
-import {SliderContainer, Slide, GridTitle,Count} from './styles';
+import { SliderContainer, Slide, GridTitle,Count } from './styles';
 import { controlVariants } from './variants';
 import { motion } from 'framer-motion';
 
 
-export default function Controls ({setSlider, count})
+export default function Controls ({ setSlider, count })
 {
 
   return (
@@ -13,7 +14,7 @@ export default function Controls ({setSlider, count})
       as={motion.div}
       variants={controlVariants}
       initial='start'
-      whileHover={{x: 0}}
+      whileHover={{ x: 0 }}
     >
       <GridTitle>
         Set Grid Count
@@ -26,3 +27,7 @@ export default function Controls ({setSlider, count})
     </ControlsPanel>
   );
 }
+Controls.propTypes = {
+  count: PropTypes.number,
+  setSlider: PropTypes.func
+};

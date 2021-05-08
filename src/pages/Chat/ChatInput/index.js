@@ -2,9 +2,9 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { SubmitButton, ChatWindow, ChatBox } from './styles';
 
-export default function ChatInput ({sendMessage})
+export default function ChatInput ({ sendMessage })
 {
-  const [{message}, setMessage] = useState({message: ''});
+  const [{ message }, setMessage] = useState({ message: '' });
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -12,11 +12,11 @@ export default function ChatInput ({sendMessage})
     if (message.trim().split('<br>').join('') === '') { return; }
 
     sendMessage(message);
-    setMessage({message: ''});
+    setMessage({ message: '' });
 
   };
 
-  const onEnterPress = (e) => {
+  const onEnterPress = e => {
     if (e.keyCode === 13 && e.shiftKey === false) {
       handleSubmit(e);
     }
@@ -24,7 +24,7 @@ export default function ChatInput ({sendMessage})
 
   const handleChange = e => {
     const { name, value } = e.target;
-    setMessage(prev => Object.assign({}, prev, {[name]: value}));
+    setMessage(prev => Object.assign({}, prev, { [name]: value }));
   };
 
   return (

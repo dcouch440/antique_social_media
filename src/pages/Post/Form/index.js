@@ -1,18 +1,19 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import {
   TextArea, TitleInput, FormData, YearInput,
   TitleYear, LabelsTitleYear, NameInput, Button
 } from './styles';
 
-export default function Form ({onSubmit})
+export default function Form ({ onSubmit })
 {
   const [formData, setFormData] = useState({
     title: '', body: '', year: 0, name: ''
   });
 
   const handleChange = e => {
-    const {name, value} = e.target;
-    setFormData(prev => ({...prev,
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev,
       [name] : value
     }));
   };
@@ -66,3 +67,6 @@ export default function Form ({onSubmit})
     </FormData>
   );
 }
+Form.propTypes = {
+  onSubmit: PropTypes.func
+};

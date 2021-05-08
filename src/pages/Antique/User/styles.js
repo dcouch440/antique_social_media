@@ -3,10 +3,10 @@ import styled from 'styled-components';
 export const Online = styled.div`
   position: absolute;
   bottom: 5px;
-  opacity: ${({status}) => status ? '1' : '.4'};;
+  opacity: ${({ status }) => status ? '1' : '.4'};;
   right: 95px;
   font-family: monospace;
-  color: ${({status}) => status ? '#00ae42' : 'dimgray'};
+  color: ${({ status }) => status ? '#00ae42' : 'dimgray'};
 `;
 
 export const AboutMe = styled.div`

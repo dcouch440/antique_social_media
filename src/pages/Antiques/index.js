@@ -9,7 +9,7 @@ import useEverScroll from '../../hooks/useEverScroll';
 export default function AntiquesPage ()
 {
   const [bottomBoundaryRef, lazyRef, antiques] = useEverScroll(
-    {limit: 15, route: '/antiques'}
+    { limit: 15, route: '/antiques' }
   );
   const [slider, setSlider] = useState(3);
 
@@ -20,7 +20,7 @@ export default function AntiquesPage ()
         <Header>Antiques</Header>
         <Grid columns={slider}>
           <ApiMapper callData={antiques} lazyRef={lazyRef} component={Antique} />
-          <div ref={bottomBoundaryRef} style={{background: 'red', width: '200px', height: '500px'}}></div>
+          <div ref={bottomBoundaryRef} style={{ background: 'red', width: '200px', height: '500px' }}></div>
         </Grid>
       </PageContainer>
     </PageTransition>

@@ -1,8 +1,9 @@
+import PropTypes from 'prop-types';
 import { AntiqueRow, Image, About } from './styles';
 import moment from 'moment';
 import { useHistory } from 'react-router';
 
-export default function Antique ({antique})
+export default function Antique ({ antique })
 {
   const history = useHistory();
   const [image] = antique.images;
@@ -27,3 +28,12 @@ export default function Antique ({antique})
   );
 
 }
+Antique.propTypes = {
+  antique: PropTypes.shape({
+    created_at: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    images: PropTypes.isRequired,
+    name: PropTypes.isRequired,
+    title: PropTypes.string.isRequired
+  })
+};

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import { Context } from '../../../Context';
 import React, { useContext, useEffect, useState } from 'react';
@@ -5,7 +6,7 @@ import likedVariants from './variants';
 import { Check } from './styles';
 import { motion } from 'framer-motion';
 
-export default function Liked ({antiqueId})
+export default function Liked ({ antiqueId })
 {
   const [liked, setLiked] = useState(false);
   const { currentUser } = useContext(Context);
@@ -54,3 +55,6 @@ export default function Liked ({antiqueId})
       null
   );
 }
+Liked.propTypes = {
+  antiqueId: PropTypes.number
+};

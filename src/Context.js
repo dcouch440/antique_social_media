@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useState, useEffect, createContext } from 'react';
 import axios from 'axios';
 import OnlineStatus from './components/OnlineStatus';
@@ -11,7 +12,7 @@ function ContextProvider (props)
 
   const [inTransition, setInTransition] = useState(false);
 
-  OnlineStatus({currentUser});
+  OnlineStatus({ currentUser });
 
   useEffect(() => {
     axios
@@ -31,5 +32,9 @@ function ContextProvider (props)
     </Context.Provider>
   );
 }
+
+ContextProvider.propTypes = {
+  children: PropTypes.any
+};
 
 export { ContextProvider, Context };

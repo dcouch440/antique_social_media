@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react';
 
-export default function AdvancePage ({setPage, BBRef, lazyRef, data})
+export default function AdvancePage ({ setPage, BBRef, lazyRef, data })
 {
   const scrollObserver = useCallback(node => {
 

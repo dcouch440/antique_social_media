@@ -32,6 +32,6 @@ export const pageVariants = {
   },
   visible: {
     opacity: 1,
-    transition: {duration: 1}
+    transition: { duration: 1 }
   }
 };

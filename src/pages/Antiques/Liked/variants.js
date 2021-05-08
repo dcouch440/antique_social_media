@@ -6,7 +6,7 @@ const likedVariants = {
   visible: {
     opacity: 1,
     x: 0,
-    transition: {duration: .3, delay: .5}
+    transition: { duration: .3, delay: .5 }
   }
 };
 export default likedVariants;

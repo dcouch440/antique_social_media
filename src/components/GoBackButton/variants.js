@@ -6,7 +6,7 @@ export const fromRightSide = {
   visible: {
     x: 0,
     opacity: 1,
-    transition: {delay: 1.2, duration: 1}
+    transition: { delay: 1.2, duration: 1 }
   },
   timing: {
     duration: 1

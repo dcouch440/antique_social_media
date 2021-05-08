@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-export default function ApiMapper ({callData, component :Component, lazyRef = null})
+export default function ApiMapper ({ callData, component :Component, lazyRef = null })
 {
   return callData.map((antique, i) => (
     <Component key={i} lazyRef={lazyRef} index={i} antique={antique} />
@@ -8,5 +8,14 @@ export default function ApiMapper ({callData, component :Component, lazyRef = nu
 }
 
 ApiMapper.propTypes = {
-  callData: PropTypes.array
+  callData: PropTypes.array,
+  component: PropTypes.any,
+  lazyRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.object,
+    PropTypes.shape({
+      current: PropTypes.instanceOf(Element)
+    })
+  ])
 };
+

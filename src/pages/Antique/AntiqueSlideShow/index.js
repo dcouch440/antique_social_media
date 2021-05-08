@@ -1,10 +1,11 @@
+import PropTypes from 'prop-types';
 import { useEffect, useState, useRef, useCallback } from 'react';
 import { variants } from './variants';
 import { wrap } from 'popmotion';
 import { AnimatePresence, motion } from 'framer-motion';
 import * as styles from './styles';
 
-export default function AntiquesSlideShow ({antiqueImages})
+export default function AntiquesSlideShow ({ antiqueImages })
 {
   const [[page, direction], setPage] = useState([0, 0]);
   const [nextSlide, setNextSlide] = useState(0);
@@ -18,21 +19,19 @@ export default function AntiquesSlideShow ({antiqueImages})
     return Math.abs(offset) * velocity;
   };
 
-  const paginate = useCallback((newDirection) => {
+  const paginate = useCallback(newDirection => {
     setPage([page + newDirection, newDirection]);
   }, [page, setPage]);
-
 
   useEffect(() => {
     if (antiqueImages.length === 1) { return; }
 
     const timer = setTimeout(
 
-      () => !isTapped.current ?
-        paginate(1) :
-        setNextSlide(prev=> prev += 1),
-
-      10000
+      () => {
+        if (!isTapped.current) { paginate(1); }
+        else { setNextSlide(prev=> prev += 1); }
+      }, 10000
 
     );
 
@@ -80,3 +79,7 @@ export default function AntiquesSlideShow ({antiqueImages})
     </styles.SlideShow>
   );
 }
+
+AntiquesSlideShow.propTypes = {
+  antiqueImages: PropTypes.array
+};

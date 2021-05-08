@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 import {
-  Row, Rows, Avatar, Username, Message, MessageContainer, Time,GoBack
+  Row, Rows, Avatar, Username, Message, MessageContainer, Time, GoBack
 } from './styles';
 import { variants } from './variants';
 import moment from 'moment';
 import { useEffect, useRef } from 'react';
 import { useHistory } from 'react-router';
 
-export default function ChatRows ({messages})
+export default function ChatRows ({ messages })
 {
   const history = useHistory();
   const messagesEndRef = useRef();
@@ -25,10 +25,10 @@ export default function ChatRows ({messages})
     history.goBack();
   };
 
-  const chatRow = messages.map(message => {
-    console.log(message);
+  const chatRow = messages.map((message, key) => {
     return (
       <Row
+        Key={key}
         as={motion.div}
         variants={variants}
         initial="hidden"

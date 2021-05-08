@@ -1,41 +1,43 @@
-import {useState, useEffect, useRef, useContext} from 'react';
+import PropTypes from 'prop-types';
+import { useState, useEffect, useRef, useContext } from 'react';
 import axios from 'axios';
 import { Context } from '../../Context';
 import { SignIngTitle, SignedIn } from './styles';
 import { StyledInput, DropDownButton, DropDownButtonContainer } from '../styled';
 
-export default function SignIn ({toggle})
+export default function SignIn ({ toggle })
 {
+  const { setCurrentUser } = useContext(Context);
+  const [{ password, email }, setCredentials] = useState({ password: '', email: '' });
   const [payload, setPayload] = useState({});
   const [error, setError] = useState(false);
-  const [{password, email}, setCredentials] = useState({password: '', email: ''});
+
   const isRequest = useRef(false);
 
-  const { setCurrentUser } = useContext(Context);
-
-  const handleChange = (e) => {
-    const {name, value} = e.target;
-    setCredentials(Object.assign({password, email},
-      {[name]:value}
+  const handleChange = e => {
+    const { name, value } = e.target;
+    setCredentials(Object.assign({ password, email },
+      { [name]:value }
     ));
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = e => {
     e.preventDefault();
     isRequest.current = true;
-    setPayload({password, email});
+    setPayload({ password, email });
   };
 
   useEffect(() => {
     if (!isRequest.current) { return; }
     isRequest.current = false;
-    axios.post(
-      '/users/signin',
-      { email, password },
-      { withCredentials: true }
-    )
+
+    axios
+      .post(
+        '/users/signin',
+        { email, password },
+        { withCredentials: true }
+      )
       .then(res => {
-        console.log(res);
         setCurrentUser(res.data);
       })
       .catch(error => {
@@ -43,8 +45,7 @@ export default function SignIn ({toggle})
         console.log(error);
       });
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [payload]);
+  }, [email, password, payload, setCurrentUser]);
 
 
   return (
@@ -71,3 +72,7 @@ export default function SignIn ({toggle})
     </SignedIn>
   );
 }
+
+SignIn.propTypes = {
+  toggle: PropTypes.func
+};

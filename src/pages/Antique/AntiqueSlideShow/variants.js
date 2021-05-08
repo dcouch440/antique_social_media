@@ -1,5 +1,5 @@
 export const variants = {
-  enter: (direction) => {
+  enter: direction => {
     return {
       x: direction > 0 ? 1000 : -1000,
       opacity: 0
@@ -10,7 +10,7 @@ export const variants = {
     x: 0,
     opacity: 1
   },
-  exit: (direction) => {
+  exit: direction => {
     return {
       zIndex: 0,
       x: direction < 0 ? 1000 : -1000,
