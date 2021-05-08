@@ -4,11 +4,11 @@ const imageService = require('../image/image.service');
 
 class AntiqueController
 {
-  async index(req, res)
+  async index (req, res)
   {
     try
     {
-      const {query} = req;
+      const { query } = req;
       const antiquesWithLiked = await AntiqueSerializer
         .serializeWithRelations({
           antiques: await antiqueService.limitOffset(query)
@@ -23,11 +23,11 @@ class AntiqueController
     }
   }
 
-  async show(req, res)
+  async show (req, res)
   {
     try
     {
-      const {id} = req.params;
+      const { id } = req.params;
       const antique = await AntiqueSerializer
         .serializeWithRelations({
           antiques: await antiqueService.show(id)
@@ -43,11 +43,11 @@ class AntiqueController
     }
   }
 
-  async destroy(req, res)
+  async destroy (req, res)
   {
     try
     {
-      const {id} = req.params;
+      const { id } = req.params;
       const deleted = await antiqueService.destroy(id);
       res.status(204).json(deleted);
     }
@@ -59,17 +59,17 @@ class AntiqueController
     }
   }
 
-  async create(req, res)
+  async create (req, res)
   {
     try
     {
-      const {file64, ...params} = req.body;
+      const { file64, ...params } = req.body;
 
       const antique = await antiqueService.create({
         user_id: req.currentUser.user_id, ...params
       });
 
-      await imageService.upload({file64, antique_id: antique.id });
+      await imageService.upload({ file64, antique_id: antique.id });
 
       res.status(201).json(antique);
     }
@@ -81,10 +81,10 @@ class AntiqueController
     }
   }
 
-  async queryCategory(req,res)
+  async queryCategory (req,res)
   {
-    const {category} = req.params;
-    const response = await antiqueService.queryCategory({category});
+    const { category } = req.params;
+    const response = await antiqueService.queryCategory({ category });
     res.status(200).json(response);
   }
 }

@@ -10,17 +10,17 @@ const {
 const userCameOnline = async payload => {
   const addUser = reducer(USER_ONLINE)(payload);
 
-  await userService.changeOnlineState({id: payload.user_id, online: true})
+  await userService.changeOnlineState({ id: payload.user_id, online: true })
     .catch(err => console.error(err));
 
   onlineState(addUser);
 };
 
-const userWentOffline =  async payload => {
+const userWentOffline = async payload => {
 
   const removeUser = reducer(USER_OFFLINE)(payload);
 
-  await userService.changeOnlineState({id: payload.user_id, online: false})
+  await userService.changeOnlineState({ id: payload.user_id, online: false })
     .catch(err => console.error(err));
 
   onlineState(removeUser);

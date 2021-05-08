@@ -4,14 +4,14 @@ const userService = require('../user/user.service');
 class AntiqueSerializer
 {
 
-  async serializeWithRelations({antiques})
+  async serializeWithRelations ({ antiques })
   {
     try
     {
-      const {user_id :owner_id} = antiques;
+      const { user_id :owner_id } = antiques;
       const mergedData = Array.isArray(antiques) ?
-        await Promise.all(this.mergeArray({antiques})):
-        await this.mergeObject({antiques, owner_id});
+        await Promise.all(this.mergeArray({ antiques })):
+        await this.mergeObject({ antiques, owner_id });
 
       return mergedData;
     }
@@ -19,28 +19,28 @@ class AntiqueSerializer
     catch (err) { console.error(err); }
   }
 
-  async mergeObject({antiques, owner_id})
+  async mergeObject ({ antiques, owner_id })
   {
     try
     {
-      const {created_at} = antiques;
+      const { created_at } = antiques;
       return Object
         .assign(
           antiques,
           await this.getUserRelations({
             created_at
           }),
-          await this.getOwnerRelations({owner_id})
+          await this.getOwnerRelations({ owner_id })
         );
     }
 
     catch (err) { console.error(err); }
   }
 
-  mergeArray({antiques})
+  mergeArray ({ antiques })
   {
     return antiques.map(async antique => {
-      const {created_at} = antique;
+      const { created_at } = antique;
       return Object
         .assign(
           antique,
@@ -51,7 +51,7 @@ class AntiqueSerializer
     });
   }
 
-  async getOwnerRelations({owner_id})
+  async getOwnerRelations ({ owner_id })
   {
     try
     {
@@ -61,7 +61,7 @@ class AntiqueSerializer
     catch (err) { console.error(err); }
   }
 
-  async getUserRelations({created_at}) {
+  async getUserRelations ({ created_at }) {
     try
     {
       // PREVIOUS FEATURES MOVED TO OTHER AREAS OF APPLICATION
@@ -70,7 +70,7 @@ class AntiqueSerializer
       });
     }
 
-    catch(err) { console.error(err); }
+    catch (err) { console.error(err); }
   }
 
 }

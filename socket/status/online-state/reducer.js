@@ -19,7 +19,7 @@ module.exports = action => payload => state => ({
 
     const { socket_id } = payload;
 
-    const prev = {...state};
+    const prev = { ...state };
     delete prev[socket_id];
 
     return prev;

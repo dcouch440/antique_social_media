@@ -7,7 +7,7 @@ const cookieExpiration = require('../../constant/cookie-time');
 class UserService
 {
 
-  async signIn({res, password, email})
+  async signIn ({ res, password, email })
   {
     try
     {
@@ -23,7 +23,7 @@ class UserService
         inputPassword: password, userPassword: user.password_digest
       });
 
-      if (!isValid) { throw new Error({ message: 'Bad Username or Password' });}
+      if (!isValid) { throw new Error({ message: 'Bad Username or Password' }); }
 
       const payload = {
         id: user.id,
@@ -33,7 +33,7 @@ class UserService
 
       const token = await jwt.sign(payload);
 
-      res.cookie("token", token, {
+      res.cookie('token', token, {
         sameSite: 'strict',
         path: '/',
         expires: cookieExpiration,
@@ -47,27 +47,27 @@ class UserService
     catch (err){ res.status(403).json(err); }
   }
 
-  async signUp({res, username, password, email})
+  async signUp ({ res, username, password, email })
   {
     try
     {
       const user = await userDAO.findByEmail(email);
-      if(user)
+      if (user)
       {
         res.status(403);
         throw new Error('email Found');
       }
-      const userParams = {username, password, email};
-      await newUserParams.validate(userParams, {abortEarly: false});
-      const hashedPasswordUser = await hashPassword({res, username, email, password});
+      const userParams = { username, password, email };
+      await newUserParams.validate(userParams, { abortEarly: false });
+      const hashedPasswordUser = await hashPassword({ res, username, email, password });
 
       const createdUser = await userDAO.create(hashedPasswordUser);
       delete createdUser.password_digest;
 
-      const payload = {id: createdUser.id, username, email};
+      const payload = { id: createdUser.id, username, email };
       const token = await jwt.sign(payload);
 
-      res.cookie("token", token, {
+      res.cookie('token', token, {
         sameSite: 'strict',
         path: '/',
         expires: cookieExpiration,
@@ -78,43 +78,43 @@ class UserService
       return payload;
     }
 
-    catch(err) { res.status(403).json(err); }
+    catch (err) { res.status(403).json(err); }
   }
 
-  async changeOnlineState({id, online})
+  async changeOnlineState ({ id, online })
   {
-    return await userDAO.changeOnlineState({id, online})
+    return await userDAO.changeOnlineState({ id, online })
       .catch(err => console.error(err));
   }
 
-  async getUsersByUsername({usernames})
+  async getUsersByUsername ({ usernames })
   {
     return userDAO.getUsersByUsername(usernames);
   }
 
-  async getUserByUsername(username)
+  async getUserByUsername (username)
   {
     return userDAO.getUserByUsername(username);
   }
 
-  all()
+  all ()
   {
     return userDAO.all();
   }
 
-  async showOvert(id)
+  async showOvert (id)
   {
-    await userIdParams.validate({id: id});
+    await userIdParams.validate({ id: id });
     return userDAO.find(id);
   }
 
-  async destroy(id)
+  async destroy (id)
   {
-    await userIdParams.validate({id: id});
+    await userIdParams.validate({ id: id });
     return userDAO.destroy(id);
   }
 
-  antiquesAll(id)
+  antiquesAll (id)
   {
     return userDAO.find(id).withGraphFetched('antique');
   }

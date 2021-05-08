@@ -21,14 +21,14 @@ const io = require('socket.io')( socket, {
   }
 });
 
-io.on( CONNECTION, (socket) => {
+io.on( CONNECTION, socket => {
   socket.emit( CONNECTION, 'online - connection');
 
   socket.on( LOGIN, data => {
     socket.emit( LOGIN, 'online - login');
 
-    const { id :user_id} = data;
-    const { id :socket_id} = socket;
+    const { id :user_id } = data;
+    const { id :socket_id } = socket;
 
     data.id && console.log('a user ' + data.id + ' connected');
     data.id && userCameOnline({ socket_id, user_id });
@@ -38,7 +38,7 @@ io.on( CONNECTION, (socket) => {
   socket.on( DISCONNECT, () => {
 
     const { id :socket_id } = socket;
-    const user_id = getUserIdBySocketId({socket_id});
+    const user_id = getUserIdBySocketId({ socket_id });
 
     console.log('user ' + user_id + ' disconnected');
     user_id && userWentOffline({ socket_id, user_id });

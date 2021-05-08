@@ -1,5 +1,5 @@
 module.exports = {
-  message: "ROUTES",
+  message: 'ROUTES',
   antiques: {
     get_antiques_path: '/antiques',
     post_antique_path: '/antiques',

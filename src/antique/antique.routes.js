@@ -10,7 +10,7 @@ router.post('/', antiqueController.create);
 // router.get('/:category', antiqueController.queryCategory);
 
 // antiques/:id
-router.get('/:id',  antiqueController.show);
+router.get('/:id', antiqueController.show);
 router.delete('/:id', antiqueController.destroy);
 
 

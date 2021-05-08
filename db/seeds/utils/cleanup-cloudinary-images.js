@@ -17,4 +17,4 @@ const cleanupAvatarImages = async knex => {
   return Promise.all(destroyAvatars);
 };
 
-module.exports = {cleanupAntiqueImages, cleanupAvatarImages};
+module.exports = { cleanupAntiqueImages, cleanupAvatarImages };

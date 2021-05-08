@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 
-const hashPassword = async ({username, email, password}) => {
+const hashPassword = async ({ username, email, password }) => {
   try
   {
     const hashedPassword = await bcrypt.hash(password, 12);
@@ -14,7 +14,7 @@ const hashPassword = async ({username, email, password}) => {
   catch (err) { console.log(err); }
 };
 
-const compareHash = async ({inputPassword, userPassword}) => {
+const compareHash = async ({ inputPassword, userPassword }) => {
   try
   {
     return bcrypt.compare(inputPassword, userPassword);

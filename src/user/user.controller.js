@@ -2,38 +2,38 @@ const userService = require('./user.service');
 
 class UserController {
 
-  async signIn(req,res)
+  async signIn (req,res)
   {
     try
     {
-      const {username, password, email} = req.body;
+      const { username, password, email } = req.body;
       const payload = await userService.signIn({
         res, username, password, email
       });
       res.status(200).json(payload);
     }
 
-    catch(err) { res.status(403).json(err); }
+    catch (err) { res.status(403).json(err); }
   }
 
-  async signUp(req,res)
+  async signUp (req,res)
   {
     try
     {
-      const {username, password, email} = req.body;
+      const { username, password, email } = req.body;
       const payload = await userService.signUp({
         res, username, password, email
       });
       res.status(201).json(payload);
     }
-    catch(err)
+    catch (err)
     {
       console.error(err);
       res.status(403).json(err);
     }
   }
 
-  async showByUsername(req,res)
+  async showByUsername (req,res)
   {
     try
     {
@@ -46,11 +46,11 @@ class UserController {
       res.status(200).json(users);
     }
 
-    catch(err) {console.error(err);}
+    catch (err) { console.error(err); }
   }
 
   // for dev
-  async all(req,res)
+  async all (req,res)
   {
     try
     {
@@ -61,12 +61,12 @@ class UserController {
     catch (err) { console.error(err); }
   }
 
-  async show(req,res)
+  async show (req,res)
   {
 
     try
     {
-      const {id} = req.params;
+      const { id } = req.params;
       const user = await userService.show(id);
       res.json(user);
     }
@@ -79,7 +79,7 @@ class UserController {
 
   }
 
-  async signOut(req, res)
+  async signOut (req, res)
   {
     try
     {
@@ -91,22 +91,22 @@ class UserController {
     catch (err) { console.error(err); }
   }
 
-  async session(req,res)
+  async session (req,res)
   {
     try
     {
-      const {user_id :id, ...currentUser} = req.currentUser;
-      await res.status(200).json({id, ...currentUser});
+      const { user_id :id, ...currentUser } = req.currentUser;
+      await res.status(200).json({ id, ...currentUser });
     }
 
     catch (err) { res.status(401); }
   }
 
-  async destroy(req,res)
+  async destroy (req,res)
   {
     try
     {
-      const {id} = req.params;
+      const { id } = req.params;
       await userService.destroy(id);
       res.status(204);
     }
@@ -118,11 +118,11 @@ class UserController {
     }
   }
 
-  async antiquesAll(req,res)
+  async antiquesAll (req,res)
   {
     try
     {
-      const {id} = req.params;
+      const { id } = req.params;
       const attachment = await userService.antiquesAll(id);
       res.status(200).json(attachment);
     }

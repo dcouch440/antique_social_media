@@ -1,1 +1,1 @@
-module.exports = (antique_id) => `_ANTIQUE_${antique_id}_`;
+module.exports = antique_id => `_ANTIQUE_${antique_id}_`;

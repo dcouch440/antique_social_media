@@ -12,17 +12,20 @@
     },
     "rules": {
         "node/no-process-env":["off", "always"],
-        "semi": "error",
-        "semi-spacing": "error",
         "indent": ["error", 2],
         "quotes": ["error", "single"],
+        "no-multi-spaces": "error",
+        "semi": "error",
+        "semi-spacing": "error",
         "no-multiple-empty-lines": "error",
         "no-unused-vars": "error",
         "keyword-spacing": "error",
-        "no-multi-spaces": "error",
         "space-before-function-paren": "error",
+        "object-curly-spacing": ["warn", "always"],
+        "react/react-in-jsx-scope": "off",
         "eqeqeq": "error",
         "curly": "error",
-        "block-spacing": "error"
+        "block-spacing": "error",
+        "arrow-parens": ["error", "as-needed"]
     }
 }

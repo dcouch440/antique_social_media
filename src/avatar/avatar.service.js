@@ -5,7 +5,7 @@ const avatarPublicIdFormat = require('../../constant/avatar-public-id');
 class AvatarService
 {
 
-  async deleteByPublicId(public_id)
+  async deleteByPublicId (public_id)
   {
 
     await cloudinary.api.delete_resources(public_id)
@@ -15,7 +15,7 @@ class AvatarService
   }
 
   //  CALL AVATAR ON CREATION
-  async upload({file64, user_id})
+  async upload ({ file64, user_id })
   {
     const avatarPublicId = avatarPublicIdFormat(user_id);
 

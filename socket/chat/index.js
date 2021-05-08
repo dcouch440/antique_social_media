@@ -18,10 +18,10 @@ const io = require('socket.io')( socket, {
   }
 });
 
-io.on( CONNECTION , (socket) => {
+io.on( CONNECTION , socket => {
   socket.emit( CONNECTION, 'connected to chat');
 
-  socket.on( JOIN_ROOM, async ({roomId, ...currentUser}) => {
+  socket.on( JOIN_ROOM, async ({ roomId, ...currentUser }) => {
 
     console.log('from join room', roomId);
 
@@ -32,25 +32,25 @@ io.on( CONNECTION , (socket) => {
     const clients = io.sockets.adapter.rooms.get(roomId);
 
     clients.forEach( clientId => {
-      const {username} = io.sockets.sockets.get(clientId);
+      const { username } = io.sockets.sockets.get(clientId);
       USERS.push(username);
     });
 
-    io.to(roomId).emit( USER_JOINED, {users: await getUsers(USERS) });
+    io.to(roomId).emit( USER_JOINED, { users: await getUsers(USERS) });
 
     io.to(roomId).emit( JOIN_ROOM , {
       users: await getUsers(USERS),
       roomId,
-      message: await messageWithAttachedUser({
+      ...await messageWithAttachedUser({
         message: 'Joined The Room', username: currentUser.username
       })
     });
 
     socket.on( MESSAGE, async message => {
       io.to(roomId).emit( 'message', {
-        message: await messageWithAttachedUser({
+        ...await messageWithAttachedUser({
           message, username: currentUser.username }
-        )}
+        ) }
       );
     });
 
@@ -60,7 +60,7 @@ io.on( CONNECTION , (socket) => {
 
       io.to(roomId).emit( DISCONNECTION, {
         users: await getUsers(USERS),
-        message: await messageWithAttachedUser({
+        ...await messageWithAttachedUser({
           message: `${socket.username} has left the room`,
           username: socket.username
         }),

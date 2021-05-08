@@ -4,7 +4,7 @@ const antiqueFolderFormat = require('../../constant/image-file');
 
 class ImageService
 {
-  async upload({file64, antique_id})
+  async upload ({ file64, antique_id })
   {
     try
     {
@@ -28,7 +28,7 @@ class ImageService
     catch (err) { console.error(err); }
   }
 
-  async destroyDependencyById(antique_id)
+  async destroyDependencyById (antique_id)
   {
     try
     {
@@ -43,13 +43,13 @@ class ImageService
     catch (err) { console.error(err); }
   }
 
-  async getFirstImage(antique_id)
+  async getFirstImage (antique_id)
   {
     return imageDAO.findByIdLimitOne(antique_id)
       .catch(err => console.error(err));
   }
 
-  async getAllImages(antique_id)
+  async getAllImages (antique_id)
   {
     return imageDAO.findById(antique_id)
       .catch(err => console.error(err));

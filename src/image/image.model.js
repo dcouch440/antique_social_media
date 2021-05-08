@@ -1,12 +1,12 @@
 const { Model } = require('objection');
 
 class Image extends Model {
-  static get tableName()
+  static get tableName ()
   {
     return 'image';
   }
 
-  static relationMappings()
+  static relationMappings ()
   {
     const User = require('../user/user.model');
     const Antique = require('../antique/antique.model');

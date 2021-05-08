@@ -7,7 +7,7 @@ const getCurrentUser = async (req, res, next) => {
   {
     // users validate once through the router for all request,
     // these validations will need to exist to continue later.
-    const {token} = cookieParser.JSONCookies(req.cookies);
+    const { token } = cookieParser.JSONCookies(req.cookies);
     const decryptedUser = jwt.verify(
       token, process.env.JWT_SECRET
     );
@@ -17,7 +17,7 @@ const getCurrentUser = async (req, res, next) => {
       email :email
     } = decryptedUser;
 
-    const user = {user_id: userBodyId, username, email};
+    const user = { user_id: userBodyId, username, email };
     Object.freeze(user);
     req.currentUser = user;
     next();
@@ -26,7 +26,7 @@ const getCurrentUser = async (req, res, next) => {
 
   catch
   {
-    const noUser = {user_id: undefined, username: undefined, email: undefined};
+    const noUser = { user_id: undefined, username: undefined, email: undefined };
     Object.freeze(noUser);
     req.currentUser = noUser;
     next();

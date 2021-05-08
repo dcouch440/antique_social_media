@@ -4,7 +4,7 @@ const Avatar = require('./avatar.model');
 class AvatarDAO
 {
 
-  async storeUrl({...params})
+  async storeUrl ({ ...params })
   {
     try
     {
@@ -32,7 +32,7 @@ class AvatarDAO
       .del();
   }
 
-  findById(user_id)
+  findById (user_id)
   {
     return Avatar.query()
       .where('user_id', user_id);
