@@ -1,6 +1,7 @@
 import { useContext, useEffect, useRef, useState, } from 'react';
 import { io } from 'socket.io-client';
 import { Context } from '../../Context';
+import { JOIN_ROOM, USER_JOINED, MESSAGE, DISCONNECTION } from '../../constant';
 
 export default function Socket (roomId)
 {
@@ -14,13 +15,13 @@ export default function Socket (roomId)
 
     socketRef.current = io('http://localhost:4001', { withCredentials: true});
 
-    socketRef.current.on('message', msg => {
+    socketRef.current.on( MESSAGE, msg => {
       console.log('message - ', msg);
       setMessages(prevMsgs => [...prevMsgs, msg.message]
       );
     });
 
-    socketRef.current.on('disconnection', data => {
+    socketRef.current.on( DISCONNECTION, data => {
       setUsers(data.users);
       setMessages(prevMsgs => [...prevMsgs, data.message]);
     });
@@ -30,14 +31,14 @@ export default function Socket (roomId)
   useEffect(() => {
     if (!currentUser.username) { return; }
 
-    socketRef.current.emit('join-room', {roomId, ...currentUser});
-    socketRef.current.on('join-room', data => {
+    socketRef.current.emit( JOIN_ROOM, {roomId, ...currentUser});
+    socketRef.current.on( JOIN_ROOM, data => {
       console.log('join - room' ,data);
       setUsers(data.users);
       setMessages(prevMsgs => [...prevMsgs, data.message]);
     });
 
-    socketRef.current.on('user-joined', data => setUsers(data.users));
+    socketRef.current.on( USER_JOINED, data => setUsers(data.users));
 
   }, [currentUser, roomId]);
 

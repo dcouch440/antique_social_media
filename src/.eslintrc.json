@@ -20,6 +20,5 @@
     "eqeqeq": "error",
     "curly": "error",
     "block-spacing": "error"
-
   }
 }
