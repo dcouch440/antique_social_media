@@ -1,69 +1,69 @@
 const fs = require('fs');
+const times = require('./times');
 
 const saveDirectory = './db/seeds/utils/mapped-image-data.js';
 const source = './db/seeds/image-map-folder';
 const folderExtension = source + '/';
 
-const imageFileDirectoryMapper = async getDirectoryData => {
+const imageFileDirectoryMapper = new Promise( resolve => {
 
-  const getFolders = getFiles => {
+  const getFolders = new Promise( (resolve, reject) => {
     fs.readdir('./db/seeds/image-map-folder', (err, folder) => {
       if (err) {
-        return getFiles(err);
+        reject(err);
       }
-      getFiles(null,folder);
+      resolve(folder);
     });
-  };
+  });
 
-  getFolders( (err, folders) => {
-
-    folders.forEach(folder => {
-      const extractFiles = extractor => {
-        fs.readdir( folderExtension + folder, (err,file) => {
+  return getFolders.then(folders => {
+    return folders.map(folder => {
+      return new Promise((resolve, reject) => {
+        fs.readdir( folderExtension + folder, (err, extractedFile) => {
           if (err) {
-            return extractor(err);
+            return reject(err);
           }
-          extractor(null,file);
-        });
-      };
-
-      extractFiles( (err, extractedFile) => {
-        getDirectoryData({
-          arrayOfArrayImages: extractedFile,
-          folder: folder,
-          extension: folderExtension
+          resolve({
+            arrayOfImages: extractedFile,
+            folder: folder,
+            extension: folderExtension
+          });
         });
       });
     });
-
-  });
-};
-
-try {
-  fs.writeFileSync(saveDirectory, '');
-  fs.writeFileSync(saveDirectory, 'module.exports = [', { flag: 'a+' });
-
-  imageFileDirectoryMapper( data => {
-    const { arrayOfArrayImages, folder, extension } = data;
-    fs.writeFileSync(saveDirectory, '[', { flag: 'a+' });
-
-    arrayOfArrayImages.forEach( async (img, i, array) => {
-      if (i === array.length - 1) {
-        fs.writeFileSync(saveDirectory, `'${extension}${folder}/${img}'`, { flag: 'a+' } );
-      } else {
-        fs.writeFileSync(saveDirectory, `'${extension}${folder}/${img}',`, { flag: 'a+' } );
-      }
+  })
+    .then(data => {
+      resolve(data);
     });
+});
 
-    fs.writeFileSync(saveDirectory, '],', { flag: 'a+' });
-  });
-} catch (err) {
-  console.error(err);
-}
+imageFileDirectoryMapper.then( data => {
+  Promise.all(data).then( arrayOfArrays => {
+    console.log(arrayOfArrays);
 
-setTimeout(() => {
-  // something about the writeFileSync causes this to fire first.
-  // this is a simple fix to something thats purely made to build a static file.
-  fs.writeFileSync(saveDirectory, '];', { flag: 'a+' });
-}, 2000 );
+    fs.writeFileSync(saveDirectory, '');
+    fs.writeFileSync(saveDirectory, 'module.exports = [', { flag: 'a+' });
 
+    times(arrayOfArrays.length)( ind => {
+      const { arrayOfImages, folder, extension } = arrayOfArrays[ind];
+      fs.writeFileSync(saveDirectory, '[', { flag: 'a+' });
+      arrayOfImages.forEach((img, i) => {
+        if (i === arrayOfImages.length - 1) {
+          fs.writeFileSync(saveDirectory, `'${extension}${folder}/${img}'`, { flag: 'a+' } );
+        } else {
+          fs.writeFileSync(saveDirectory, `'${extension}${folder}/${img}',`, { flag: 'a+' } );
+        }
+
+      });
+      if (ind === arrayOfArrays.length - 1) {
+        fs.writeFileSync(saveDirectory, ']', { flag: 'a+' });
+      } else {
+        fs.writeFileSync(saveDirectory, '],', { flag: 'a+' });
+      }
+
+    });
+  })
+    .then(() => {
+      fs.writeFileSync(saveDirectory, '];', { flag: 'a+' });
+    });
+});
