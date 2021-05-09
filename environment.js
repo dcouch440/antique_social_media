@@ -1,6 +1,6 @@
 const NodeEnvironment = require('jest-environment-node');
 const knexfile = require('./knexfile');
-const knex = require('knex');
+const db = require('./db');
 
 class customEnvironment extends NodeEnvironment
 {
@@ -8,7 +8,7 @@ class customEnvironment extends NodeEnvironment
   {
     await super.setup();
 
-    this._knex = knex(knexfile['test']);
+    this._knex = db;
 
     const { database :dbname } = knexfile.test.connection;
 

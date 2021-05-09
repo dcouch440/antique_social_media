@@ -4,7 +4,7 @@ const images = require('../image/image.routes');
 const antiques = require('../antique/antique.routes');
 const likes = require('../like/like.routes');
 const avatars = require('../avatar/avatar.routes');
-// const routesConstants = require('../../constant/routes');
+const routesConstants = require('../../constant/routes');
 const getCurrentUser = require('../../middleware/get-current-user');
 const log = require('../../middleware/log');
 const router = express.Router();
@@ -13,6 +13,7 @@ const router = express.Router();
 router.use(getCurrentUser);
 
 router.use(log);
+router.use('/', (req, res) => res.json(routesConstants));
 router.use('/images', images);
 router.use('/avatars', avatars);
 router.use('/users', users);

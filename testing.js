@@ -1,0 +1,1 @@
+[['./db/seeds/antiques/test-bottles.jpeg','./db/seeds/antiques/test-bottlescopy.jpeg']['./db/seeds/antiques/test-bottles.jpeg','./db/seeds/antiques/test-wall.jpeg']]

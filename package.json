@@ -4,6 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "gen-image-array": "npx node ./db/seeds/utils/image-directory-mapper.js",
     "make-migration": "npx knex migrate:make init --migrations-directory ./db/migrations",
     "dev": "nodemon index.js",
     "seed": "npx knex seed:run --knexfile ./knexfile.js",

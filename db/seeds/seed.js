@@ -8,7 +8,6 @@ const truncateTables = require('./utils/truncate-tables');
 const times = require('./utils/times');
 
 exports.seed = async knex => {
-
   try
   {
     // cleanup
@@ -26,9 +25,7 @@ exports.seed = async knex => {
       table: 'user', obj: staticUserHash
     });
 
-
     await times(users)(async () => {
-
       const randomUserHash = await hashPassword(randomUser());
       const user_id = await addToTable({ table: 'user', obj: randomUserHash });
       await avatarService.upload({
@@ -37,27 +34,21 @@ exports.seed = async knex => {
       });
 
       await times(antiques)(async () => {
-
         const antique_id = await addToTable({
           table: 'antique', obj: randomAntique(user_id)
         });
-
         await imageService.upload({
           file64: './db/seeds/seed-images/wall.jpeg',
           antique_id
         });
-
         await knex('like').insert({
           user_id, antique_id, username: randomUserHash.username
         });
-
         await knex('like').insert({
           user_id: static_user_id, antique_id,
           username: staticUserHash.username
         });
-
       });
-
     });
 
     const [userCount] = await knex.from('user').count('id');
@@ -80,5 +71,4 @@ exports.seed = async knex => {
   }
 
   catch (err) { console.error(err); }
-
 };
