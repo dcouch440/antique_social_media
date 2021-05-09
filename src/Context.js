@@ -4,8 +4,7 @@ import axios from 'axios';
 import OnlineStatus from './components/OnlineStatus';
 const Context = createContext();
 
-function ContextProvider (props)
-{
+function ContextProvider (props) {
   const [currentUser, setCurrentUser] = useState({
     id: undefined, username: undefined, email: undefined
   });

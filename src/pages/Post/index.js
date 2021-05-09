@@ -8,8 +8,7 @@ import {
   NoImageCaption, ImageInput, PreviewImage
 } from './styles';
 
-export default function Post ()
-{
+export default function Post () {
   const [fileInputState, setFileInputState] = useState('');
   const [previewImage, setPreviewImage] = useState('');
   const [selectedFile, setSelectedFile] = useState('');
@@ -42,7 +41,9 @@ export default function Post ()
   };
 
   const handleSubmit = formData => {
-    if (!selectedFile) { return; }
+    if (!selectedFile) {
+      return;
+    }
     const reader = new FileReader();
     reader.readAsDataURL(selectedFile);
     setSelectedFile(undefined);

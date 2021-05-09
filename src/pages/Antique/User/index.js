@@ -4,8 +4,7 @@ import { Context } from '../../../Context';
 import OnlineAnimation from '../../../Framer/OnlineAnimation';
 import { Online, AvatarContainer, AboutMe, Avatar } from './styles';
 
-export default function User ({ ownerInfo })
-{
+export default function User ({ ownerInfo }) {
   const { currentUser: { id } } = useContext(Context);
   const isCurrentUserPostOrUserOnline = (id === ownerInfo.avatar.user_id && id) ? true : ownerInfo.online;
   const onlineOfflineText = isCurrentUserPostOrUserOnline ? 'Online' : 'Offline';

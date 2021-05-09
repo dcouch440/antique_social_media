@@ -3,8 +3,7 @@ import { useContext } from 'react';
 import { SignOutDiv } from './styles';
 import { Context } from '../../Context';
 
-export default function SignOut ()
-{
+export default function SignOut () {
   const { setCurrentUser } = useContext(Context);
 
   const requestLogout = async () => {

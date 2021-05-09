@@ -6,8 +6,7 @@ import { Form, SignUpTitle } from './styles';
 import { StyledInput, DropDownButtonContainer, DropDownButton } from '../styled';
 
 
-export default function SignUp ({ toggle })
-{
+export default function SignUp ({ toggle }) {
   const [payload, setPayload] = useState({});
   const [message, setMessage] = useState('Sign Up');
   const isRequest = useRef(false);
@@ -31,12 +30,15 @@ export default function SignUp ({ toggle })
     if (password === passwordConfirmation) {
       isRequest.current = true;
       setPayload({ password,email,username });
+    } else {
+      setMessage('Passwords Must Match');
     }
-    else { setMessage('Passwords Must Match'); }
   };
 
   useEffect(() => {
-    if (isRequest.current === false) { return; }
+    if (isRequest.current === false) {
+       return;
+    }
     isRequest.current = false;
     axios.post(
       '/users/signup',

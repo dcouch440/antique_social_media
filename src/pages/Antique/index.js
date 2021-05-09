@@ -9,8 +9,7 @@ import GoBackButton from '../../components/GoBackButton';
 import axios from 'axios';
 import loadingSequence from '../../utils/loadingSequence';
 
-export default function AntiquePage ({ setRoomId })
-{
+export default function AntiquePage ({ setRoomId }) {
   const { id } = useParams();
   const history = useHistory();
   const [loading, setLoading] = useState(true);

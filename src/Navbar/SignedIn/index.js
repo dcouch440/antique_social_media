@@ -12,8 +12,7 @@ const Grid = styled.div`
   font-family: 'Pacifico', cursive;
 `;
 
-export default function SingedIn ({ user })
-{
+export default function SingedIn ({ user }) {
   return (
     <Grid>
       <Username>Welcome {user.charAt(0).toUpperCase() + user.slice(1)} </Username>

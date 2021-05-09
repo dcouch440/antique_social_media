@@ -13,28 +13,33 @@ export default function Liked ({ antiqueId })
   const display = liked ? 'F' : 'add';
 
   useEffect(() => {
-    axios.get(
-      `/likes/${antiqueId}`, {},
-      { withCredentials: true }
-    )
+
+    axios
+      .get(
+        `/likes/${antiqueId}`, {},
+        { withCredentials: true }
+      )
       .then(res => res.status === 200 && setLiked(res.data.isLiked))
       .catch(err => console.log(err));
+
   }, [antiqueId, currentUser]);
 
   const handleClick = e => {
     e.stopPropagation();
 
-    !liked && axios.post(
-      `/likes/${antiqueId}`, {},
-      { withCredentials: true }
-    )
+    !liked && axios
+      .post(
+        `/likes/${antiqueId}`, {},
+        { withCredentials: true }
+      )
       .then(res => res.status === 201 && setLiked(true))
       .catch(err => console.log(err));
 
-    liked && axios.delete(
-      `/likes/${antiqueId}`, {},
-      { withCredentials: true }
-    )
+    liked && axios
+      .delete(
+        `/likes/${antiqueId}`, {},
+        { withCredentials: true }
+      )
       .then(res => res.status === 204 && setLiked(false))
       .catch(err => console.log(err));
   };

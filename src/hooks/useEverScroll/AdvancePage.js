@@ -1,7 +1,6 @@
 import { useCallback, useEffect } from 'react';
 
-export default function AdvancePage ({ setPage, BBRef, lazyRef, data })
-{
+export default function AdvancePage ({ setPage, BBRef, lazyRef, data }) {
   const scrollObserver = useCallback(node => {
 
     new IntersectionObserver(entries => entries.forEach(en => {
@@ -18,17 +17,17 @@ export default function AdvancePage ({ setPage, BBRef, lazyRef, data })
 
     const intObs = new IntersectionObserver(entries => entries
       .forEach(en => {
-        if (en.intersectionRatio > 0)
-        {
-
+        if (en.intersectionRatio > 0) {
           let currentImg = en.target;
           const newImgSrc = currentImg.src;
 
-          if (!newImgSrc) { console.error('Image source is invalid'); }
-          else { currentImg.src = newImgSrc; }
+          if (!newImgSrc) {
+          console.error('Image source is invalid');
+          } else {
+          currentImg.src = newImgSrc;
+          }
 
           intObs.unobserve(node);
-
         }
       })
     );
@@ -38,6 +37,8 @@ export default function AdvancePage ({ setPage, BBRef, lazyRef, data })
   }, []);
 
   useEffect(() => {
-    if (lazyRef.current) { lazyRef.current.forEach(data => observer(data)); }
+    if (lazyRef.current) {
+      lazyRef.current.forEach(data => observer(data));
+    }
   }, [observer, lazyRef, data]);
 }

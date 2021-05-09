@@ -11,8 +11,7 @@ import Post from './pages/Post';
 import Chat from './pages/Chat';
 import { useContext } from 'react';
 
-export default function App ()
-{
+export default function App () {
   const location = useLocation();
   const [roomId, setRoomId] = useState('GLOBAL CHAT');
   const { inTransition, setInTransition } = useContext(Context);

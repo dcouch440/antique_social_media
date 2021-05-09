@@ -5,8 +5,7 @@ import {
   loadingContainerVariants, loadingVariants, loadingTransition, pageVariants
 } from '../variants';
 
-export default function SimulateLoading ({render, time = 1000})
-{
+export default function SimulateLoading ({ render, time = 1000 }) {
   const [loadingState, setLoadingState] = useState(true);
 
   setTimeout(() => {

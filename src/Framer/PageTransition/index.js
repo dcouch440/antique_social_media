@@ -6,8 +6,7 @@ import { Container } from './styles';
 import PropTypes from 'prop-types';
 
 
-export default function PageTransition ({ attr, transitionTime, exitTime, ...props })
-{
+export default function PageTransition ({ attr, transitionTime, exitTime, ...props }) {
   const { setInTransition } = useContext(Context);
 
   useEffect(() => {

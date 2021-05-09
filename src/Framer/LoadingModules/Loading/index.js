@@ -6,8 +6,7 @@ import {
 } from '../variants';
 
 
-export default function Loading ({ loadingState, afterLoad, version })
-{
+export default function Loading ({ loadingState, afterLoad, version }) {
   return (
     loadingState ?
 

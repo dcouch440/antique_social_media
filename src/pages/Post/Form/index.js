@@ -5,8 +5,7 @@ import {
   TitleYear, LabelsTitleYear, NameInput, Button
 } from './styles';
 
-export default function Form ({ onSubmit })
-{
+export default function Form ({ onSubmit }) {
   const [formData, setFormData] = useState({
     title: '', body: '', year: 0, name: ''
   });

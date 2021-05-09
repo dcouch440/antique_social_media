@@ -5,8 +5,7 @@ import PageTransition from '../../Framer/PageTransition';
 import Antique from './Antique';
 import { AntiqueRows, Page } from './styles';
 
-export default function Likes ()
-{
+export default function Likes () {
   const [antiques, setAntiques] = useState([]);
 
   useEffect(() => {

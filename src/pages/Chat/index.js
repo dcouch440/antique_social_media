@@ -6,8 +6,7 @@ import ChatRows from './ChatRow';
 import ChatInput from './ChatInput';
 import PageTransition from '../../Framer/PageTransition';
 
-export default function Chat ({ roomId })
-{
+export default function Chat ({ roomId }) {
   const [refresh, setRefresh] = useState(true);
   const { messages, users, socketRef } = Socket(roomId);
 

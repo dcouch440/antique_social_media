@@ -3,8 +3,7 @@ import { Nav, Menu } from './styles';
 import DropDown from './DropDown';
 
 
-export default function Navbar ()
-{
+export default function Navbar () {
   const [menu, setMenu] = useState('none');
   const menuButton = useRef();
 

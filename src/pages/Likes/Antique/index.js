@@ -3,8 +3,7 @@ import { AntiqueRow, Image, About } from './styles';
 import moment from 'moment';
 import { useHistory } from 'react-router';
 
-export default function Antique ({ antique })
-{
+export default function Antique ({ antique }) {
   const history = useHistory();
   const [image] = antique.images;
 

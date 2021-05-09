@@ -3,15 +3,16 @@ import { io } from 'socket.io-client';
 import { Context } from '../../Context';
 import { JOIN_ROOM, USER_JOINED, MESSAGE, DISCONNECTION } from '../../constant';
 
-export default function Socket (roomId)
-{
+export default function Socket (roomId) {
   const [messages, setMessages] = useState([]);
   const [users, setUsers] = useState([]);
   const { currentUser } = useContext(Context);
   const socketRef = useRef();
 
   useEffect(() => {
-    if (!currentUser.username) { return; }
+    if (!currentUser.username) {
+      return;
+    }
 
     socketRef.current = io('http://localhost:4001', { withCredentials: true });
 
@@ -28,7 +29,9 @@ export default function Socket (roomId)
   }, [currentUser, setMessages]);
 
   useEffect(() => {
-    if (!currentUser.username) { return; }
+    if (!currentUser.username) {
+      return;
+    }
 
     socketRef.current.emit( JOIN_ROOM, { roomId, ...currentUser });
     socketRef.current.on( JOIN_ROOM, data => {

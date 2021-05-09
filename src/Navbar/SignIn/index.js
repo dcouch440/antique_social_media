@@ -5,8 +5,7 @@ import { Context } from '../../Context';
 import { SignIngTitle, SignedIn } from './styles';
 import { StyledInput, DropDownButton, DropDownButtonContainer } from '../styled';
 
-export default function SignIn ({ toggle })
-{
+export default function SignIn ({ toggle }) {
   const { setCurrentUser } = useContext(Context);
   const [{ password, email }, setCredentials] = useState({ password: '', email: '' });
   const [payload, setPayload] = useState({});
@@ -28,7 +27,9 @@ export default function SignIn ({ toggle })
   };
 
   useEffect(() => {
-    if (!isRequest.current) { return; }
+    if (!isRequest.current) {
+      return;
+    }
     isRequest.current = false;
 
     axios

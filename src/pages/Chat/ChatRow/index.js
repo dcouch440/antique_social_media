@@ -8,8 +8,7 @@ import moment from 'moment';
 import { useEffect, useRef } from 'react';
 import { useHistory } from 'react-router';
 
-export default function ChatRows ({ messages })
-{
+export default function ChatRows ({ messages }) {
   const history = useHistory();
   const messagesEndRef = useRef();
 

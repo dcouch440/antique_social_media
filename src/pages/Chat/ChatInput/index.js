@@ -2,14 +2,15 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { SubmitButton, ChatWindow, ChatBox } from './styles';
 
-export default function ChatInput ({ sendMessage })
-{
+export default function ChatInput ({ sendMessage }) {
   const [{ message }, setMessage] = useState({ message: '' });
 
   const handleSubmit = e => {
     e.preventDefault();
 
-    if (message.trim().split('<br>').join('') === '') { return; }
+    if (message.trim().split('<br>').join('') === '') {
+      return;
+    }
 
     sendMessage(message);
     setMessage({ message: '' });
