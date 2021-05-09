@@ -30,7 +30,8 @@ const imageFileDirectoryMapper = new Promise(resolve => {
           });
         });
       }));
-    });
+    })
+    .catch(err => console.error(err));
 });
 
 imageFileDirectoryMapper.then(data => {
@@ -61,6 +62,6 @@ imageFileDirectoryMapper.then(data => {
   })
     .then(() => {
       generate('];');
-    });
-
+    })
+    .catch(err => console.error(err));
 });

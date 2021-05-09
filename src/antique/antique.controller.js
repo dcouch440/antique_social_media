@@ -46,13 +46,10 @@ class AntiqueController {
   async create (req, res) {
     try {
       const { file64, ...params } = req.body;
-
       const antique = await antiqueService.create({
         user_id: req.currentUser.user_id, ...params
       });
-
       await imageService.upload({ file64, antique_id: antique.id });
-
       res.status(201).json(antique);
     } catch (err) {
       console.error(err);
