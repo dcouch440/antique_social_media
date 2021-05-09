@@ -38,32 +38,33 @@ const imageFileDirectoryMapper = new Promise( resolve => {
 });
 
 imageFileDirectoryMapper.then( data => {
-  Promise.all(data).then( arrayOfArrays => {
-    console.log(arrayOfArrays);
+  const generate = (val, flag = { flag: 'a+' }) => fs.writeFileSync(saveDirectory, val, flag);
 
-    fs.writeFileSync(saveDirectory, '');
-    fs.writeFileSync(saveDirectory, 'module.exports = [', { flag: 'a+' });
+  Promise.all(data).then( arrayOfArrays => {
+    // clear file
+    generate('', null);
+    // export
+    generate('module.exports = [');
 
     times(arrayOfArrays.length)( ind => {
       const { arrayOfImages, folder, extension } = arrayOfArrays[ind];
-      fs.writeFileSync(saveDirectory, '[', { flag: 'a+' });
+      generate('[');
       arrayOfImages.forEach((img, i) => {
         if (i === arrayOfImages.length - 1) {
-          fs.writeFileSync(saveDirectory, `'${extension}${folder}/${img}'`, { flag: 'a+' } );
+          generate(`'${extension}${folder}/${img}'`);
         } else {
-          fs.writeFileSync(saveDirectory, `'${extension}${folder}/${img}',`, { flag: 'a+' } );
+          generate(`'${extension}${folder}/${img}',`);
         }
-
       });
       if (ind === arrayOfArrays.length - 1) {
-        fs.writeFileSync(saveDirectory, ']', { flag: 'a+' });
+        generate(']');
       } else {
-        fs.writeFileSync(saveDirectory, '],', { flag: 'a+' });
+        generate('],');
       }
-
     });
   })
     .then(() => {
-      fs.writeFileSync(saveDirectory, '];', { flag: 'a+' });
+      generate('];');
     });
+
 });
