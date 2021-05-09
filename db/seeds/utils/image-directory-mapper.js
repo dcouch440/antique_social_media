@@ -7,33 +7,29 @@ const folderExtension = source + '/';
 
 const imageFileDirectoryMapper = new Promise( resolve => {
 
-  const getFolders = new Promise( (resolve, reject) => {
+  return new Promise( (resolve, reject) => {
     fs.readdir('./db/seeds/image-map-folder', (err, folder) => {
       if (err) {
         reject(err);
       }
       resolve(folder);
     });
-  });
-
-  return getFolders.then(folders => {
-    return folders.map(folder => {
-      return new Promise((resolve, reject) => {
-        fs.readdir( folderExtension + folder, (err, extractedFile) => {
-          if (err) {
-            return reject(err);
-          }
-          resolve({
-            arrayOfImages: extractedFile,
-            folder: folder,
-            extension: folderExtension
+  })
+    .then(folders => {
+      resolve(folders.map(folder => {
+        return new Promise( (resolve, reject) => {
+          fs.readdir( folderExtension + folder, (err, extractedFile) => {
+            if (err) {
+              return reject(err);
+            }
+            resolve({
+              arrayOfImages: extractedFile,
+              folder: folder,
+              extension: folderExtension
+            });
           });
         });
-      });
-    });
-  })
-    .then(data => {
-      resolve(data);
+      }));
     });
 });
 
