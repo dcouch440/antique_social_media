@@ -1,20 +1,19 @@
 const jwt = require('jsonwebtoken');
 
-function sign (payload)
-{
+function sign (payload) {
   'use strict';
   return new Promise((resolve, reject) => {
-
     jwt.sign(
       payload,
       process.env.JWT_SECRET,
       { expiresIn: '1d' },
       (error, token) => {
-        if (error) { return reject(error); }
+        if (error) {
+          return reject(error);
+        }
         return resolve(token);
       }
     );
-
   });
 }
 

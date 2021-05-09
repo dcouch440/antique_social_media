@@ -3,8 +3,7 @@ const cookieParser = require('cookie-parser');
 'use strict';
 const getCurrentUser = async (req, res, next) => {
 
-  try
-  {
+  try {
     // users validate once through the router for all request,
     // these validations will need to exist to continue later.
     const { token } = cookieParser.JSONCookies(req.cookies);
@@ -22,10 +21,7 @@ const getCurrentUser = async (req, res, next) => {
     req.currentUser = user;
     next();
 
-  }
-
-  catch
-  {
+  } catch {
     const noUser = { user_id: undefined, username: undefined, email: undefined };
     Object.freeze(noUser);
     req.currentUser = noUser;

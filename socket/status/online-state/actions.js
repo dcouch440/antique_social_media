@@ -17,7 +17,6 @@ const userCameOnline = async payload => {
 };
 
 const userWentOffline = async payload => {
-
   const removeUser = reducer(USER_OFFLINE)(payload);
 
   await userService.changeOnlineState({ id: payload.user_id, online: false })

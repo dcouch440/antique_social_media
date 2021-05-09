@@ -8,7 +8,9 @@ const imageFileDirectoryMapper = async getDirectoryData => {
 
   const getFolders = getFiles => {
     fs.readdir('./db/seeds/image-map-folder', (err, folder) => {
-      if (err) { return getFiles(err); }
+      if (err) {
+        return getFiles(err);
+      }
       getFiles(null,folder);
     });
   };
@@ -18,7 +20,9 @@ const imageFileDirectoryMapper = async getDirectoryData => {
     folders.forEach(folder => {
       const extractFiles = extractor => {
         fs.readdir( folderExtension + folder, (err,file) => {
-          if (err) { return extractor(err); }
+          if (err) {
+            return extractor(err);
+          }
           extractor(null,file);
         });
       };
@@ -35,8 +39,7 @@ const imageFileDirectoryMapper = async getDirectoryData => {
   });
 };
 
-try
-{
+try {
   fs.writeFileSync(saveDirectory, '');
   fs.writeFileSync(saveDirectory, 'module.exports = [', { flag: 'a+' });
 
@@ -54,9 +57,9 @@ try
 
     fs.writeFileSync(saveDirectory, '],', { flag: 'a+' });
   });
+} catch (err) {
+  console.error(err);
 }
-
-catch (err) { console.error(err); }
 
 setTimeout(() => {
   // something about the writeFileSync causes this to fire first.

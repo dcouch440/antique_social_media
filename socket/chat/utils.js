@@ -1,7 +1,9 @@
 const userService = require('../../src/user/user.service');
 
 const getUsers = async usernames => {
-  if (!usernames.length) { return; }
+  if (!usernames.length) {
+    return;
+  }
   return userService.getUsersByUsername({ usernames });
 };
 

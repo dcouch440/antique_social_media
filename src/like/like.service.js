@@ -1,27 +1,22 @@
 const LikeDAO = require('./like.dao');
 
-class LikeService
-{
-  async liked (params)
-  {
+class LikeService {
+  async liked (params) {
     const liked = await LikeDAO.isPresent(params);
     return liked ? true : false;
   }
 
-  like ({ req, antique_id })
-  {
+  like ({ req, antique_id }) {
     const { username, user_id } = req.currentUser;
     return LikeDAO.create({ username, antique_id, user_id });
   }
 
-  unlike ({ req, antique_id })
-  {
+  unlike ({ req, antique_id }) {
     const { username, user_id } = req.currentUser;
     return LikeDAO.destroy({ username, antique_id, user_id });
   }
 
-  likes ({ req })
-  {
+  likes ({ req }) {
     const { user_id } = req.currentUser;
     return LikeDAO.likes(user_id);
   }

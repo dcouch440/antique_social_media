@@ -13,11 +13,11 @@ const router = express.Router();
 router.use(getCurrentUser);
 
 router.use(log);
-router.use('/', (req, res) => res.json(routesConstants));
 router.use('/images', images);
 router.use('/avatars', avatars);
 router.use('/users', users);
 router.use('/antiques', antiques);
 router.use('/likes', likes);
+router.use('/', (req, res) => res.json(routesConstants));
 
 module.exports = router;

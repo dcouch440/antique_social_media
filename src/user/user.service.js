@@ -4,25 +4,20 @@ const { hashPassword , compareHash } = require('../auth/auth.bcrypt');
 const { newUserParams, userIdParams } = require('./user.params');
 const cookieExpiration = require('../../constant/cookie-time');
 
-class UserService
-{
-  async signIn ({ res, password, email })
-  {
-    try
-    {
-
+class UserService {
+  async signIn ({ res, password, email }) {
+    try {
       const user = await userDAO.findByEmail(email);
-
-      if (!user)
-      {
+      if (!user) {
         throw new Error('Invalid username or Password');
       }
 
       const isValid = await compareHash({
         inputPassword: password, userPassword: user.password_digest
       });
-
-      if (!isValid) { throw new Error({ message: 'Bad Username or Password' }); }
+      if (!isValid) {
+        throw new Error({ message: 'Bad Username or Password' });
+      }
 
       const payload = {
         id: user.id,
@@ -41,18 +36,15 @@ class UserService
       });
 
       return payload;
+    } catch (err) {
+      res.status(403).json(err);
     }
-
-    catch (err){ res.status(403).json(err); }
   }
 
-  async signUp ({ res, username, password, email })
-  {
-    try
-    {
+  async signUp ({ res, username, password, email }) {
+    try {
       const user = await userDAO.findByEmail(email);
-      if (user)
-      {
+      if (user) {
         res.status(403);
         throw new Error('email Found');
       }
@@ -75,46 +67,39 @@ class UserService
       });
 
       return payload;
+    } catch (err) {
+      res.status(403).json(err);
     }
-
-    catch (err) { res.status(403).json(err); }
   }
 
-  async changeOnlineState ({ id, online })
-  {
+  async changeOnlineState ({ id, online }) {
     return await userDAO.changeOnlineState({ id, online })
       .catch(err => console.error(err));
   }
 
-  async getUsersByUsername ({ usernames })
-  {
+  async getUsersByUsername ({ usernames }) {
     return userDAO.getUsersByUsername(usernames);
   }
 
-  async getUserByUsername (username)
-  {
+  async getUserByUsername (username) {
     return userDAO.getUserByUsername(username);
   }
 
-  all ()
-  {
+  all () {
     return userDAO.all();
   }
 
-  async showOvert (id)
-  {
+  async showOvert (id) {
     await userIdParams.validate({ id: id });
     return userDAO.find(id);
   }
 
-  async destroy (id)
-  {
+  async destroy (id) {
     await userIdParams.validate({ id: id });
     return userDAO.destroy(id);
   }
 
-  antiquesAll (id)
-  {
+  antiquesAll (id) {
     return userDAO.find(id).withGraphFetched('antique');
   }
 }

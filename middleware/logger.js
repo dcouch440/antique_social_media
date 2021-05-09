@@ -1,5 +1,4 @@
 const handleException = ({ res, status, err }) => {
-
   console.error(err);
   res.status(status).json({
     ...err,
@@ -7,7 +6,6 @@ const handleException = ({ res, status, err }) => {
       .stack.replace(/(\r\n|\n|\r)/gm, '')
       .replace(/\s+/g, ' ').trim()
   });
-
 };
 
 

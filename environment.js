@@ -2,10 +2,8 @@ const NodeEnvironment = require('jest-environment-node');
 const knexfile = require('./knexfile');
 const db = require('./db');
 
-class customEnvironment extends NodeEnvironment
-{
-  async setup ()
-  {
+class customEnvironment extends NodeEnvironment {
+  async setup () {
     await super.setup();
 
     this._knex = db;
@@ -23,8 +21,7 @@ class customEnvironment extends NodeEnvironment
     this.global.knex = this._knex;
   }
 
-  async teardown ()
-  {
+  async teardown () {
     console.info('[ENV] destroying db');
     await this._knex.destroy();
     await super.teardown();

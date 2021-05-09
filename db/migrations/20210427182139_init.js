@@ -1,4 +1,4 @@
-exports.up = function (knex) {
+exports.up = async knex => {
   return knex.schema.createTable(
     'avatar', table => {
       table.increments();

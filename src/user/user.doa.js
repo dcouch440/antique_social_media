@@ -1,14 +1,11 @@
 const User = require('./user.model');
 
-class UserDAO
-{
-  all ()
-  {
+class UserDAO {
+  all () {
     return User.query();
   }
 
-  async find (id)
-  {
+  async find (id) {
     const { username, avatar, online } = await User.query()
       .findById(parseInt(id))
       .withGraphFetched('avatar')
@@ -17,13 +14,11 @@ class UserDAO
     return { antique_owner: { username, avatar, online } };
   }
 
-  async changeOnlineState ({ id, online })
-  {
+  async changeOnlineState ({ id, online }) {
     return await User.query().where('id', id).update({ online });
   }
 
-  async getUsersByUsername (usernames)
-  {
+  async getUsersByUsername (usernames) {
     const users = await User.query().where(builder => builder.whereIn('username', usernames))
       .withGraphFetched('avatar')
       .catch(err => console.error(err));
@@ -31,8 +26,7 @@ class UserDAO
     return users.map(user => ({ username: user.username, avatar: user.avatar }));
   }
 
-  async getUserByUsername (username)
-  {
+  async getUserByUsername (username) {
 
     const user = await User.query().where('username', username)
       .withGraphFetched('avatar')
@@ -40,30 +34,25 @@ class UserDAO
       .catch(err => console.error(err));
 
     return { username: user.username, avatar: user.avatar };
-
   }
 
-  destroy (id)
-  {
+  destroy (id) {
     return User.query()
       .deleteById(id);
   }
 
-  findByEmail (email)
-  {
+  findByEmail (email) {
     return User.query()
       .where('email', email).first();
   }
 
   // add password error?
-  create (hashedPasswordAndParams)
-  {
+  create (hashedPasswordAndParams) {
     return User.query()
       .insert(hashedPasswordAndParams);
   }
 
-  select ({ LIMIT, OFFSET })
-  {
+  select ({ LIMIT, OFFSET }) {
     return User.query()
       .offset({ OFFSET })
       .limit({ LIMIT });

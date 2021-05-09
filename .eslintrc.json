@@ -26,6 +26,8 @@
         "eqeqeq": "error",
         "curly": "error",
         "block-spacing": "error",
-        "arrow-parens": ["error", "as-needed"]
+        "arrow-parens": ["error", "as-needed"],
+        "brace-style": ["error", "1tbs"],
+        "no-trailing-spaces": ["error", { "skipBlankLines": true, "ignoreComments": true }]
     }
 }

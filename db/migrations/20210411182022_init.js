@@ -1,5 +1,4 @@
 exports.up = async knex => {
-
   return knex.schema.createTable(
     'user', table => {
       table.increments();

@@ -10,8 +10,7 @@ const times = require('./utils/times');
 const faker = require('faker');
 
 exports.seed = async knex => {
-  try
-  {
+  try {
     // cleanup
     await cleanupAntiqueImages(knex);
     await cleanupAvatarImages(knex);
@@ -73,7 +72,7 @@ exports.seed = async knex => {
 
       _____________________________________________
     `);
+  } catch (err) {
+    console.error(err);
   }
-
-  catch (err) { console.error(err); }
 };
