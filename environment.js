@@ -20,7 +20,6 @@ class customEnvironment extends NodeEnvironment {
     this.global.dbName = dbname;
     this.global.knex = this._knex;
   }
-
   async teardown () {
     console.info('[ENV] destroying db');
     await this._knex.destroy();
