@@ -38,7 +38,7 @@ const imageFileDirectoryMapper = async getDirectoryData => {
 try
 {
   fs.writeFileSync(saveDirectory, '');
-  fs.writeFileSync(saveDirectory, '[', { flag: 'a+' });
+  fs.writeFileSync(saveDirectory, 'module.exports = [', { flag: 'a+' });
 
   imageFileDirectoryMapper( data => {
     const { arrayOfArrayImages, folder, extension } = data;
@@ -59,6 +59,8 @@ try
 catch (err) { console.error(err); }
 
 setTimeout(() => {
+  // something about the writeFileSync causes this to fire first.
+  // this is a simple fix to something thats purely made to build a static file.
   fs.writeFileSync(saveDirectory, '];', { flag: 'a+' });
-}, 1000 );
+}, 2000 );
 
