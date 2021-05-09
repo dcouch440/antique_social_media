@@ -14,7 +14,6 @@ class AntiqueSerializer {
       console.error(err);
     }
   }
-
   async mergeObject ({ antiques, owner_id }) {
     try {
       const { created_at } = antiques;
@@ -30,7 +29,6 @@ class AntiqueSerializer {
       console.error(err);
     }
   }
-
   mergeArray ({ antiques }) {
     return antiques.map(async antique => {
       const { created_at } = antique;
@@ -43,7 +41,6 @@ class AntiqueSerializer {
         );
     });
   }
-
   async getOwnerRelations ({ owner_id }) {
     try {
       return await userService.showOvert(owner_id);
@@ -51,7 +48,6 @@ class AntiqueSerializer {
       console.error(err);
     }
   }
-
   async getUserRelations ({ created_at }) {
     try {
       // PREVIOUS FEATURES MOVED TO OTHER AREAS OF APPLICATION

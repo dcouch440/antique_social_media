@@ -12,7 +12,6 @@ class UserController {
       res.status(403).json(err);
     }
   }
-
   async signUp (req,res) {
     try {
       const { username, password, email } = req.body;
@@ -25,7 +24,6 @@ class UserController {
       res.status(403).json(err);
     }
   }
-
   async showByUsername (req,res) {
     try {
       const { usernames } = req.body;
@@ -39,7 +37,6 @@ class UserController {
       console.error(err);
     }
   }
-
   // for dev
   async all (req,res) {
     try {
@@ -49,7 +46,6 @@ class UserController {
       console.error(err);
     }
   }
-
   async show (req,res) {
 
     try {
@@ -60,9 +56,7 @@ class UserController {
       console.log(err);
       res.status(422).json(err);
     }
-
   }
-
   async signOut (req, res) {
     try {
       await res
@@ -72,7 +66,6 @@ class UserController {
       console.error(err);
     }
   }
-
   async session (req,res) {
     try {
       const { user_id :id, ...currentUser } = req.currentUser;
@@ -81,7 +74,6 @@ class UserController {
       res.status(401);
     }
   }
-
   async destroy (req,res) {
     try {
       const { id } = req.params;
@@ -92,7 +84,6 @@ class UserController {
       res.status(422);
     }
   }
-
   async antiquesAll (req,res) {
     try {
       const { id } = req.params;

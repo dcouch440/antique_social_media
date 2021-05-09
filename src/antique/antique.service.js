@@ -8,11 +8,9 @@ class AntiqueService {
   all () {
     return antiqueDAO.all();
   }
-
   show (id) {
     return antiqueDAO.find(id);
   }
-
   async destroy (id) {
     try {
       await imageService.destroyDependencyById(id);
@@ -21,7 +19,6 @@ class AntiqueService {
       console.error(err);
     }
   }
-
   async limitOffset ({ ...query }) {
     try {
       const queries = objLength(query) === 2 ? query : limitOffset;
@@ -32,7 +29,6 @@ class AntiqueService {
       return new Error(err);
     }
   }
-
   async create ({ ...params }) {
     try {
       const parsedParams = parseObjectInts(params);
@@ -42,12 +38,10 @@ class AntiqueService {
       console.error(err);
     }
   }
-
   queryCategory ({ category }) {
     console.log(category);
     return antiqueDAO.showUniques({ category });
   }
-
   async findManyById (id) {
     return antiqueDAO.findManyById(id);
   }

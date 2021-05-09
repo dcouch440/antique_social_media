@@ -24,7 +24,6 @@ class LikeController {
       res.status(422).json({ message: 'unprocessable entity' });
     }
   }
-
   async unlike (req,res) {
     try {
       const { antique_id } = req.params;

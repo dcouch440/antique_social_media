@@ -4,7 +4,6 @@ class User extends Model {
   static get tableName () {
     return 'user';
   }
-
   static get relationMappings () {
     const Antique = require('../antique/antique.model');
     const Like = require('../like/like.model');
@@ -36,7 +35,6 @@ class User extends Model {
         }
       }
     };
-
   }
 }
 

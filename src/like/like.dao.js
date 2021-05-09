@@ -9,18 +9,15 @@ class LikeDAO {
         .first();
     }
   }
-
   destroy ({ username, antique_id, user_id }) {
     return Like.query()
       .where({ username, antique_id, user_id })
       .delete();
   }
-
   create (params) {
     return Like.query()
       .insert(params);
   }
-
   async likes (user_id) {
     const likes = (await Like.query().where('user_id', user_id))
       .map(like => like.antique_id);

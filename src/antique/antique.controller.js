@@ -16,7 +16,6 @@ class AntiqueController {
       res.status(422).json(err);
     }
   }
-
   async show (req, res) {
     try {
       const { id } = req.params;
@@ -31,7 +30,6 @@ class AntiqueController {
       res.status(422).json(err);
     }
   }
-
   async destroy (req, res) {
     try {
       const { id } = req.params;
@@ -42,7 +40,6 @@ class AntiqueController {
       res.status(422);
     }
   }
-
   async create (req, res) {
     try {
       const { file64, ...params } = req.body;
@@ -56,7 +53,6 @@ class AntiqueController {
       res.json(422);
     }
   }
-
   async queryCategory (req,res) {
     const { category } = req.params;
     const response = await antiqueService.queryCategory({ category });

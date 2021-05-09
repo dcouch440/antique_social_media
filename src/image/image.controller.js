@@ -24,8 +24,6 @@ class ImageController {
       console.error(err);
     }
   }
-
-
 }
 
 module.exports = new ImageController();

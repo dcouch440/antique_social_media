@@ -4,7 +4,6 @@ class Avatar extends Model {
   static get tableName () {
     return 'avatar';
   }
-
   static relationMappings () {
     const User = require('../user/user.model');
 

@@ -10,7 +10,6 @@ class AvatarService {
 
     return avatarDAO.destroyById(public_id);
   }
-
   //  CALL AVATAR ON CREATION
   async upload ({ file64, user_id }) {
     const avatarPublicId = avatarPublicIdFormat(user_id);

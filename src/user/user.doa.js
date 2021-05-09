@@ -25,7 +25,6 @@ class UserDAO {
 
     return users.map(user => ({ username: user.username, avatar: user.avatar }));
   }
-
   async getUserByUsername (username) {
 
     const user = await User.query().where('username', username)
@@ -35,23 +34,19 @@ class UserDAO {
 
     return { username: user.username, avatar: user.avatar };
   }
-
   destroy (id) {
     return User.query()
       .deleteById(id);
   }
-
   findByEmail (email) {
     return User.query()
       .where('email', email).first();
   }
-
   // add password error?
   create (hashedPasswordAndParams) {
     return User.query()
       .insert(hashedPasswordAndParams);
   }
-
   select ({ LIMIT, OFFSET }) {
     return User.query()
       .offset({ OFFSET })

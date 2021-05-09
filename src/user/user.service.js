@@ -40,7 +40,6 @@ class UserService {
       res.status(403).json(err);
     }
   }
-
   async signUp ({ res, username, password, email }) {
     try {
       const user = await userDAO.findByEmail(email);
@@ -71,34 +70,27 @@ class UserService {
       res.status(403).json(err);
     }
   }
-
   async changeOnlineState ({ id, online }) {
     return await userDAO.changeOnlineState({ id, online })
       .catch(err => console.error(err));
   }
-
   async getUsersByUsername ({ usernames }) {
     return userDAO.getUsersByUsername(usernames);
   }
-
   async getUserByUsername (username) {
     return userDAO.getUserByUsername(username);
   }
-
   all () {
     return userDAO.all();
   }
-
   async showOvert (id) {
     await userIdParams.validate({ id: id });
     return userDAO.find(id);
   }
-
   async destroy (id) {
     await userIdParams.validate({ id: id });
     return userDAO.destroy(id);
   }
-
   antiquesAll (id) {
     return userDAO.find(id).withGraphFetched('antique');
   }

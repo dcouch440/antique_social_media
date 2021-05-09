@@ -11,7 +11,6 @@ class AvatarController {
       console.error(err);
     }
   }
-
   // AUTHORIZE IMAGE ROUTES
   async upload (req,res) {
     try {
@@ -25,7 +24,6 @@ class AvatarController {
       console.error(err);
     }
   }
-
 }
 
 module.exports = new AvatarController();

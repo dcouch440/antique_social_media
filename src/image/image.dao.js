@@ -20,7 +20,6 @@ class ImageDAO {
         });
     }
   }
-
   // remove async and test
   async destroyAllRelations (antique_id) {
     return await Image.query()
@@ -37,7 +36,6 @@ class ImageDAO {
       .where('antique_id', antique_id)
       .first();
   }
-
 }
 
 module.exports = new ImageDAO();
