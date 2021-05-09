@@ -5,9 +5,9 @@ const saveDirectory = './db/seeds/utils/mapped-image-data.js';
 const source = './db/seeds/image-map-folder';
 const folderExtension = source + '/';
 
-const imageFileDirectoryMapper = new Promise( resolve => {
+const imageFileDirectoryMapper = new Promise(resolve => {
 
-  return new Promise( (resolve, reject) => {
+  return new Promise((resolve, reject) => {
     fs.readdir('./db/seeds/image-map-folder', (err, folder) => {
       if (err) {
         reject(err);
@@ -17,7 +17,7 @@ const imageFileDirectoryMapper = new Promise( resolve => {
   })
     .then(folders => {
       resolve(folders.map(folder => {
-        return new Promise( (resolve, reject) => {
+        return new Promise((resolve, reject) => {
           fs.readdir( folderExtension + folder, (err, extractedFile) => {
             if (err) {
               return reject(err);
@@ -33,16 +33,16 @@ const imageFileDirectoryMapper = new Promise( resolve => {
     });
 });
 
-imageFileDirectoryMapper.then( data => {
+imageFileDirectoryMapper.then(data => {
   const generate = (val, flag = { flag: 'a+' }) => fs.writeFileSync(saveDirectory, val, flag);
 
-  Promise.all(data).then( arrayOfArrays => {
+  Promise.all(data).then(arrayOfArrays => {
     // clear file
     generate('', null);
     // export
     generate('module.exports = [');
 
-    times(arrayOfArrays.length)( ind => {
+    times(arrayOfArrays.length)(ind => {
       const { arrayOfImages, folder, extension } = arrayOfArrays[ind];
       generate('[');
       arrayOfImages.forEach((img, i) => {
