@@ -47,7 +47,6 @@ class UserController {
     }
   }
   async show (req,res) {
-
     try {
       const { id } = req.params;
       const user = await userService.show(id);

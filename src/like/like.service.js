@@ -2,7 +2,8 @@ const LikeDAO = require('./like.dao');
 
 class LikeService {
   async liked (params) {
-    const liked = await LikeDAO.isPresent(params);
+    const liked = await LikeDAO.isPresent(params)
+      .catch(err => console.error(err));
     return liked ? true : false;
   }
   like ({ req, antique_id }) {

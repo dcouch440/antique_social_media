@@ -54,9 +54,13 @@ class AntiqueController {
     }
   }
   async queryCategory (req,res) {
-    const { category } = req.params;
-    const response = await antiqueService.queryCategory({ category });
-    res.status(200).json(response);
+    try {
+      const { category } = req.params;
+      const response = await antiqueService.queryCategory({ category });
+      res.status(200).json(response);
+    } catch (err) {
+      console.error(err);
+    }
   }
 }
 

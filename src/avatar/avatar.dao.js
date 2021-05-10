@@ -14,13 +14,15 @@ class AvatarDAO {
       await cloudinary.uploader
         .destroy(params.public_id, result => {
           console.info(result);
-        });
+        })
+        .catch(err => console.error(err));
     }
   }
   async destroyById (user_id) {
     return Avatar.query()
       .where('public_id', user_id)
-      .del();
+      .del()
+      .catch(err => console.error(err));
   }
 
   findById (user_id) {

@@ -3,7 +3,7 @@ const STATIC_ROOMS = [
   { id: 'signs' },
   { id: 'coins' },
   { id: 'glassware' },
-  { id:  'paintings' }
+  { id: 'paintings' }
 ];
 
 module.exports = STATIC_ROOMS;

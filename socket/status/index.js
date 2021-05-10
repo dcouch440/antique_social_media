@@ -41,7 +41,7 @@ io.on( CONNECTION, socket => {
   socket.on(DISCONNECT, async () => {
     try {
       const { id :socket_id } = socket;
-      const user_id = await getUserIdBySocketId({ socket_id });
+      const user_id = getUserIdBySocketId({ socket_id });
 
       console.log('user ' + user_id + ' disconnected');
       user_id && await userWentOffline({ socket_id, user_id });

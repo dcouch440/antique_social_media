@@ -5,38 +5,46 @@ class UserDAO {
     return User.query();
   }
   async find (id) {
-    const { username, avatar, online } = await User.query()
-      .findById(parseInt(id))
-      .withGraphFetched('avatar')
-      .catch(err => console.error(err));
+    try {
+      const { username, avatar, online } = await User.query()
+        .findById(parseInt(id))
+        .withGraphFetched('avatar');
 
-    const userAvatar = attachAvatarIfNotPresent(avatar);
-    return { antique_owner: { username, avatar: userAvatar, online } };
+      const userAvatar = attachAvatarIfNotPresent(avatar);
+      return { antique_owner: { username, avatar: userAvatar, online } };
+    } catch (err) {
+      console.error(err);
+    }
   }
-
   async changeOnlineState ({ id, online }) {
-    return await User.query().where('id', id).update({ online });
-  }
-
-  async getUsersByUsername (usernames) {
-    const users = await User.query().where(builder => builder.whereIn('username', usernames))
-      .withGraphFetched('avatar')
+    return await User.query()
+      .where('id', id).update({ online })
       .catch(err => console.error(err));
+  }
+  async getUsersByUsername (usernames) {
+    try {
+      const users = await User.query()
+        .where(builder => builder.whereIn('username', usernames))
+        .withGraphFetched('avatar');
 
-    return users.map(user => {
-      const avatar = attachAvatarIfNotPresent(user.avatar);
-      return { username: user.username, avatar };
-    });
+      return users.map(user => {
+        const avatar = attachAvatarIfNotPresent(user.avatar);
+        return { username: user.username, avatar };
+      });
+    } catch (err) {
+      console.error(err);
+    }
   }
   async getUserByUsername (username) {
-
-    const user = await User.query().where('username', username)
-      .withGraphFetched('avatar')
-      .first()
-      .catch(err => console.error(err));
-
-    const avatar = attachAvatarIfNotPresent(user.avatar);
-    return { username: user.username, avatar };
+    try {
+      const user = await User.query().where('username', username)
+        .withGraphFetched('avatar')
+        .first();
+      const avatar = attachAvatarIfNotPresent(user.avatar);
+      return { username: user.username, avatar };
+    } catch (err) {
+      console.error(err);
+    }
   }
   destroy (id) {
     return User.query()

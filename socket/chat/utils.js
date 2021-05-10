@@ -13,11 +13,12 @@ const getUsersFromDB = async usernames => {
   }
 };
 
-const socketMapper = ({ rooms, io }) => rooms.map(async ({ id, ...rest }) => {
+const socketMapper = ({ rooms, io }) => rooms.map(data => {
   try {
+    const {id, ...rest} = data;
     return {
       roomId: id,
-      socketUsers: await io.sockets.adapter.rooms.get(id.toString()),
+      socketUsers: io.sockets.adapter.rooms.get(id.toString()),
       ...rest
     };
   } catch (err) {
@@ -25,24 +26,20 @@ const socketMapper = ({ rooms, io }) => rooms.map(async ({ id, ...rest }) => {
   }
 });
 
-const getActiveRooms = async ({ io }) => {
-  try {
-    const usersInRoomData = socketMapper({ rooms: STATIC_ROOMS, io });
-    const activeRooms = (await Promise.all(usersInRoomData));
-    const roomsCount = getUserRoomCountWithSet({ activeRooms });
-    console.log(roomsCount);
-    const sortedRooms = roomsCount.sort((a,b) => b.socketUsers - a.socketUsers);
-    return sortedRooms;
-  } catch (err) {
-    console.error(err);
-  }
+const getActiveRooms = ({ io }) => {
+  const usersInRoomData = socketMapper({ rooms: STATIC_ROOMS, io });
+  const activeRooms = usersInRoomData;
+  const roomsCount = getUserRoomCountWithSet({ activeRooms });
+  console.log(roomsCount);
+  const sortedRooms = roomsCount.sort((a,b) => b.socketUsers - a.socketUsers);
+  return sortedRooms;
 };
 
 const getActiveUserRooms = async ({ io, user_id }) => {
   try {
     const antique_ids = await AntiqueService.getUserAntiques(user_id);
     const userAntiqueRoomData = socketMapper({ rooms: antique_ids, io });
-    const activeRooms = (await Promise.all(userAntiqueRoomData))
+    const activeRooms = userAntiqueRoomData
       .filter(data => data.socketUsers !== undefined);
     const antiqueOwnersVacantRooms = getUserRoomCountWithSet({ activeRooms });
     const sortedRooms = antiqueOwnersVacantRooms.sort((a,b) => b.socketUsers - a.socketUsers);
@@ -63,17 +60,13 @@ const getUserRoomCountWithSet = ({ activeRooms }) => {
   });
 };
 
-const getRoomUsernames = async ({ io, roomId }) => {
-  try {
-    const clients = await io.sockets.adapter.rooms.get(roomId);
-    const set = new Set(clients);
-    const usernames = [...set].map(async clientId => {
-      return io.sockets.sockets.get(clientId).username;
-    });
-    return Promise.all(usernames);
-  } catch (err) {
-    console.error(err);
-  }
+const getRoomUsernames = ({ io, roomId }) => {
+  const clients = io.sockets.adapter.rooms.get(roomId);
+  const set = new Set(clients);
+  const usernames = [...set].map(clientId => {
+    return io.sockets.sockets.get(clientId).username;
+  });
+  return usernames;
 };
 
 // TODO, use one call for both users and the current message

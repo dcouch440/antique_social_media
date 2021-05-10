@@ -19,7 +19,7 @@ const {
   SHOW_ROOM_USER_COUNT
 } = require('../socket-events');
 
-const io = require('socket.io')( socket, {
+const io = require('socket.io')(socket, {
   cors: {
     origin: 'http://localhost:3000',
     methods: ['GET', 'POST'],
@@ -38,7 +38,7 @@ io.on(CONNECTION , async socket => {
       socket.join(roomId);
 
       const users = await getUsersFromDB(
-        await getRoomUsernames({ io, roomId })
+        getRoomUsernames({ io, roomId })
       );
 
       const useThatJoined = await messageWithAttachedUser({
@@ -57,7 +57,7 @@ io.on(CONNECTION , async socket => {
           const messageData = await messageWithAttachedUser({
             message, username: currentUser.username
           });
-          await io.to(roomId).emit( 'message', messageData);
+          io.to(roomId).emit( 'message', messageData);
         } catch (err) {
           console.error(err);
         }
@@ -66,17 +66,17 @@ io.on(CONNECTION , async socket => {
       socket.on(DISCONNECT, async () => {
         try {
           const users = await getUsersFromDB(
-            await getRoomUsernames({ io, roomId })
+            getRoomUsernames({ io, roomId })
           );
           const messageData = await messageWithAttachedUser({
             message: `${socket.username} has left the room`,
             username: socket.username
           });
-          await io.to(roomId).emit( DISCONNECTION, {
+          io.to(roomId).emit(DISCONNECTION, {
             users,
             ...messageData
           });
-          socket.emit( DISCONNECTION, {
+          socket.emit(DISCONNECTION, {
             users,
             ...messageData
           });
@@ -93,7 +93,7 @@ io.on(CONNECTION , async socket => {
   socket.on(SHOW_ROOM_USER_COUNT, async ({ currentUser }) => {
     try {
       const activeUserRooms = await getActiveUserRooms({ io, user_id: currentUser.id });
-      const activeRooms = await getActiveRooms({ io });
+      const activeRooms = getActiveRooms({ io });
       socket.emit(SHOW_ROOM_USER_COUNT, { activeUserRooms, activeRooms });
     } catch (err) {
       console.error(err);

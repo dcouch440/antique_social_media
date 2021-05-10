@@ -43,10 +43,12 @@ class AntiqueService {
     return antiqueDAO.showUniques({ category });
   }
   async findManyById (id) {
-    return antiqueDAO.findManyById(id);
+    return antiqueDAO.findManyById(id)
+      .catch(err => console.error(err));
   }
   async getUserAntiques (user_id) {
-    return antiqueDAO.findAntiquesByUserId(user_id);
+    return antiqueDAO.findAntiquesByUserId(user_id)
+      .catch(err => console.error(err));
   }
 }
 

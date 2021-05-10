@@ -75,21 +75,31 @@ class UserService {
       .catch(err => console.error(err));
   }
   async getUsersByUsername ({ usernames }) {
-    return userDAO.getUsersByUsername(usernames);
+    return userDAO.getUsersByUsername(usernames)
+      .catch(err => console.error(err));
   }
   async getUserByUsername (username) {
-    return userDAO.getUserByUsername(username);
+    return userDAO.getUserByUsername(username)
+      .catch(err => console.error(err));
   }
   all () {
     return userDAO.all();
   }
   async showOvert (id) {
-    await userIdParams.validate({ id: id });
-    return userDAO.find(id);
+    try {
+      await userIdParams.validate({ id: id });
+      return userDAO.find(id);
+    } catch (err) {
+      console.error(err);
+    }
   }
   async destroy (id) {
-    await userIdParams.validate({ id: id });
-    return userDAO.destroy(id);
+    try {
+      await userIdParams.validate({ id: id });
+      return userDAO.destroy(id);
+    } catch (err) {
+      console.error(err);
+    }
   }
   antiquesAll (id) {
     return userDAO.find(id).withGraphFetched('antique');

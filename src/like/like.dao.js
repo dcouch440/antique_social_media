@@ -19,9 +19,13 @@ class LikeDAO {
       .insert(params);
   }
   async likes (user_id) {
-    const likes = (await Like.query().where('user_id', user_id))
-      .map(like => like.antique_id);
-    return antiqueService.findManyById(likes);
+    try {
+      const likes = (await Like.query().where('user_id', user_id))
+        .map(like => like.antique_id);
+      return antiqueService.findManyById(likes);
+    } catch (err) {
+      console.error(err);
+    }
   }
 }
 

@@ -26,31 +26,38 @@ exports.seed = async knex => {
     });
 
     await times(amountOfImageFolders)(async userIndex => {
-      const user = imageArray[userIndex];
-      const randomUserHash = await hashPassword(randomUser());
-      const user_id = await addToTable({ table: 'user', obj: randomUserHash });
-      await avatarService.upload({
-        file64: faker.internet.avatar(),
-        user_id
-      });
-
-      await times(user.length)(async antiqueIndex => {
-        const antiqueImage = user[antiqueIndex];
-        const antique_id = await addToTable({
-          table: 'antique', obj: randomAntique(user_id)
+      try {
+        const user = imageArray[userIndex];
+        const randomUserHash = await hashPassword(randomUser());
+        const user_id = await addToTable({ table: 'user', obj: randomUserHash });
+        await avatarService.upload({
+          file64: faker.internet.avatar(),
+          user_id
         });
-        await imageService.upload({
-          file64: antiqueImage,
-          antique_id
+        await times(user.length)(async antiqueIndex => {
+          try {
+            const antiqueImage = user[antiqueIndex];
+            const antique_id = await addToTable({
+              table: 'antique', obj: randomAntique(user_id)
+            });
+            await imageService.upload({
+              file64: antiqueImage,
+              antique_id
+            });
+            await knex('like').insert({
+              user_id, antique_id, username: randomUserHash.username
+            });
+            await knex('like').insert({
+              user_id: static_user_id, antique_id,
+              username: staticUserHash.username
+            });
+          } catch (err) {
+            console.error(err);
+          }
         });
-        await knex('like').insert({
-          user_id, antique_id, username: randomUserHash.username
-        });
-        await knex('like').insert({
-          user_id: static_user_id, antique_id,
-          username: staticUserHash.username
-        });
-      });
+      } catch (err) {
+        console.error(err);
+      }
     });
 
     const [userCount] = await knex.from('user').count('id');
