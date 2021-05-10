@@ -1,13 +1,13 @@
 const app = require('../../app');
 const socket = require('http').createServer(app);
-const { getUsers, messageWithAttachedUser } = require('./utils');
 
 const {
-  userJoinedRoom,
-  userLeftRoom,
-  getUsersInRoom,
-  roomCreatedIfNoExist
-} = require('./room-state/actions');
+  getUsersFromDB,
+  messageWithAttachedUser,
+  getRoomUsernames,
+  getActiveUserRooms,
+  getActiveRooms
+} = require('./utils');
 
 const {
   CONNECTION,
@@ -16,6 +16,7 @@ const {
   MESSAGE,
   DISCONNECT,
   DISCONNECTION,
+  SHOW_ROOM_USER_COUNT
 } = require('../socket-events');
 
 const io = require('socket.io')( socket, {
@@ -26,64 +27,78 @@ const io = require('socket.io')( socket, {
   }
 });
 
-io.on( CONNECTION , socket => {
-
-  socket.emit( CONNECTION, 'connected to chat');
+io.on(CONNECTION , async socket => {
+  socket.emit(CONNECTION, 'connected to chat');
 
   socket.on( JOIN_ROOM, async ({ roomId, ...currentUser }) => {
     try {
-
       console.log('from join room', roomId);
 
       socket.username = currentUser.username;
       socket.join(roomId);
 
-      roomCreatedIfNoExist(roomId);
-      userJoinedRoom({ username: currentUser.username, roomId });
+      const users = await getUsersFromDB(
+        await getRoomUsernames({ io, roomId })
+      );
 
-      const users = await getUsers(getUsersInRoom(roomId));
       const useThatJoined = await messageWithAttachedUser({
         message: 'Joined The Room', username: currentUser.username
       });
 
       io.to(roomId).emit( USER_JOINED, { users });
-
       io.to(roomId).emit( JOIN_ROOM , {
         users,
         roomId,
         ...useThatJoined
       });
 
-      socket.on( MESSAGE, async message => {
-        const messageData = await messageWithAttachedUser({
-          message, username: currentUser.username
-        });
-
-        io.to(roomId).emit( 'message', messageData);
+      socket.on(MESSAGE, async message => {
+        try {
+          const messageData = await messageWithAttachedUser({
+            message, username: currentUser.username
+          });
+          await io.to(roomId).emit( 'message', messageData);
+        } catch (err) {
+          console.error(err);
+        }
       });
 
-      socket.on( DISCONNECT, async () => {
-        userLeftRoom({ username: socket.username, roomId });
-        const users = await getUsers(getUsersInRoom(roomId));
-        const messageData = await messageWithAttachedUser({
-          message: `${socket.username} has left the room`,
-          username: socket.username
-        });
-
-        io.to(roomId).emit( DISCONNECTION, {
-          users,
-          ...messageData
-        });
-        socket.emit( DISCONNECTION, {
-          users,
-          ...messageData
-        });
+      socket.on(DISCONNECT, async () => {
+        try {
+          const users = await getUsersFromDB(
+            await getRoomUsernames({ io, roomId })
+          );
+          const messageData = await messageWithAttachedUser({
+            message: `${socket.username} has left the room`,
+            username: socket.username
+          });
+          await io.to(roomId).emit( DISCONNECTION, {
+            users,
+            ...messageData
+          });
+          socket.emit( DISCONNECTION, {
+            users,
+            ...messageData
+          });
+        } catch (err) {
+          console.error(err);
+        }
       });
 
     } catch (err) {
       console.error(err);
     }
   });
-});
 
+  socket.on(SHOW_ROOM_USER_COUNT, async ({ currentUser }) => {
+    try {
+      const activeUserRooms = await getActiveUserRooms({ io, user_id: currentUser.id });
+      const activeRooms = await getActiveRooms({ io });
+      socket.emit(SHOW_ROOM_USER_COUNT, { activeUserRooms, activeRooms });
+    } catch (err) {
+      console.error(err);
+    }
+  });
+
+});
 module.exports = socket;
