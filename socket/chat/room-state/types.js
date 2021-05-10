@@ -1,0 +1,10 @@
+const USER_LEAVE_ROOM = 'USER_LEAVE_ROOM';
+const USER_JOIN_ROOM = 'USER_JOIN_ROOM';
+const CREATE_ROOM = 'CREATE_ROOM';
+
+
+module.exports = {
+  USER_LEAVE_ROOM,
+  USER_JOIN_ROOM,
+  CREATE_ROOM
+};

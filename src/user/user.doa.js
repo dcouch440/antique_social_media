@@ -1,17 +1,17 @@
 const User = require('./user.model');
-
+const attachAvatarIfNotPresent = require('../../lib/attach-avatar-if-not-present');
 class UserDAO {
   all () {
     return User.query();
   }
-
   async find (id) {
     const { username, avatar, online } = await User.query()
       .findById(parseInt(id))
       .withGraphFetched('avatar')
       .catch(err => console.error(err));
 
-    return { antique_owner: { username, avatar, online } };
+    const userAvatar = attachAvatarIfNotPresent(avatar);
+    return { antique_owner: { username, avatar: userAvatar, online } };
   }
 
   async changeOnlineState ({ id, online }) {
@@ -23,7 +23,10 @@ class UserDAO {
       .withGraphFetched('avatar')
       .catch(err => console.error(err));
 
-    return users.map(user => ({ username: user.username, avatar: user.avatar }));
+    return users.map(user => {
+      const avatar = attachAvatarIfNotPresent(user.avatar);
+      return { username: user.username, avatar };
+    });
   }
   async getUserByUsername (username) {
 
@@ -32,7 +35,8 @@ class UserDAO {
       .first()
       .catch(err => console.error(err));
 
-    return { username: user.username, avatar: user.avatar };
+    const avatar = attachAvatarIfNotPresent(user.avatar);
+    return { username: user.username, avatar };
   }
   destroy (id) {
     return User.query()

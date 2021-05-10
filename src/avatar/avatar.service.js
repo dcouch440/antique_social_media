@@ -13,7 +13,6 @@ class AvatarService {
   //  CALL AVATAR ON CREATION
   async upload ({ file64, user_id }) {
     const avatarPublicId = avatarPublicIdFormat(user_id);
-
     const {
       secure_url :image_url, public_id, width,
       height, format, resource_type
@@ -23,7 +22,7 @@ class AvatarService {
         public_id: avatarPublicId
       });
 
-    await avatarDAO.destroyById(user_id);
+    await avatarDAO.destroyById(avatarPublicId);
 
     return avatarDAO.storeUrl({
       image_url, public_id, width,

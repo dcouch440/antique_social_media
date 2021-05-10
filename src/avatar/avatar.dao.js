@@ -17,9 +17,9 @@ class AvatarDAO {
         });
     }
   }
-  async destroyById (public_id) {
+  async destroyById (user_id) {
     return Avatar.query()
-      .where('public_id', public_id)
+      .where('public_id', user_id)
       .del();
   }
 
