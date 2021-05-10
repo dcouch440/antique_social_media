@@ -13,11 +13,12 @@ const getUsersFromDB = async usernames => {
 };
 
 const getActiveUserRooms = async ({ io, user_id = 12 }) => {
-  const antique_ids = await AntiqueService.getUserAntiqueIds(user_id);
-  const ant = antique_ids.map(async ({ id }) => {
+  const antique_ids = await AntiqueService.getUserAntiques(user_id);
+  const ant = antique_ids.map(async ({ id, ...rest }) => {
     return {
       roomId: id,
-      socketUsers: await io.sockets.adapter.rooms.get(id.toString())
+      socketUsers: await io.sockets.adapter.rooms.get(id.toString()),
+      ...rest
     };
   });
 
@@ -29,9 +30,9 @@ const getActiveUserRooms = async ({ io, user_id = 12 }) => {
 
 const getUserRoomCount = ({ activeRooms }) => {
   const set = new Set(activeRooms);
-  return [...set].map(({ roomId, socketUsers }) => {
+  return [...set].map(({ socketUsers, ...rest }) => {
     return {
-      roomId,
+      ...rest,
       socketUsers: [...socketUsers].length
     };
   });

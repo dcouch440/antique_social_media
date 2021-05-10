@@ -45,8 +45,8 @@ class AntiqueService {
   async findManyById (id) {
     return antiqueDAO.findManyById(id);
   }
-  async getUserAntiqueIds (user_id) {
-    return antiqueDAO.findUserAntiquesReturnIds(user_id);
+  async getUserAntiques (user_id) {
+    return antiqueDAO.findAntiquesByUserId(user_id);
   }
 }
 
