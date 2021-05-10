@@ -1,12 +1,13 @@
 module.exports = user_id => {
   const env = process.env.NODE_ENV;
+  console.log(env);
   if (env === 'test') {
-    `_TEST_AVATAR_${user_id}_`;
+    return `_TEST_AVATAR_${user_id}_`;
   }
   if (env === 'development') {
-    `_AVATAR_${user_id}_`;
+    return `_AVATAR_${user_id}_`;
   }
   if (env === 'production') {
-    `__AVATAR_${user_id}__`;
+    return `__AVATAR_${user_id}__`;
   }
 };
