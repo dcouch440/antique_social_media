@@ -33,6 +33,9 @@ class AntiqueDAO {
   findManyById (id) {
     return Antique.query().where(builder => builder.whereIn('id', id)).withGraphFetched('images');
   }
+  findUserAntiquesReturnIds (user_id) {
+    return Antique.query().select('id').where('user_id', user_id);
+  }
   showUniques ({ category }) {
     return Antique.query()
       .distinct(category, 'id');

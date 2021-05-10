@@ -45,6 +45,9 @@ class AntiqueService {
   async findManyById (id) {
     return antiqueDAO.findManyById(id);
   }
+  async getUserAntiqueIds (user_id) {
+    return antiqueDAO.findUserAntiquesReturnIds(user_id);
+  }
 }
 
 module.exports = new AntiqueService();
