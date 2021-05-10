@@ -6,11 +6,12 @@ export const Username = styled.div`
 `;
 export const AvatarContainer = styled.div`
   display: flex;
-  padding: 5px;
+  padding: 0px 15px;
   align-items: center;
   box-shadow: 0 0 1px #ffffff54;
   background-color: #1c1c1c;
   height: 10%;
+  min-height: 60px;
   > * {
     margin: 5px;
   }
@@ -27,7 +28,8 @@ export const UserContainer = styled.div`
   z-index: 99999;
   border-radius: 20px;
   flex-direction: column;
-  height: 60%;
+  height: 500px;
+  max-height: 55%;
   background-color: #161616;
   right: 15px;
   top: 10%;

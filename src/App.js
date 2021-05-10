@@ -9,11 +9,12 @@ import Likes from './pages/Likes';
 import Navbar from './Navbar';
 import Post from './pages/Post';
 import Chat from './pages/Chat';
+import Rooms from './pages/Rooms';
 import { useContext } from 'react';
 
 export default function App () {
   const location = useLocation();
-  const [roomId, setRoomId] = useState('GLOBAL_CHAT');
+  const [roomId, setRoomId] = useState();
   const { inTransition, setInTransition } = useContext(Context);
 
   useEffect(() => {
@@ -43,6 +44,9 @@ export default function App () {
           </Route>
           <Route exact path="/chat">
             <Chat roomId={roomId} />
+          </Route>
+          <Route exact path="/rooms">
+            <Rooms />
           </Route>
         </Switch>
       </AnimatePresence>

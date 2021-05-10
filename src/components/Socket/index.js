@@ -1,23 +1,28 @@
 import { useContext, useEffect, useRef, useState, } from 'react';
 import { io } from 'socket.io-client';
 import { Context } from '../../Context';
-import { JOIN_ROOM, USER_JOINED, MESSAGE, DISCONNECTION } from '../../constant';
+import {
+  JOIN_ROOM,
+  USER_JOINED,
+  MESSAGE,
+  DISCONNECTION,
+  SHOW_ROOM_USER_COUNT
+} from '../../constant';
 
-export default function Socket (roomId) {
+export default function Socket (roomId = 'GLOBAL_CHAT') {
   const [messages, setMessages] = useState([]);
   const [users, setUsers] = useState([]);
   const { currentUser } = useContext(Context);
+  const [activeUserRooms, setActiveUserRooms] = useState(0);
   const socketRef = useRef();
 
   useEffect(() => {
     if (!currentUser.username) {
       return;
     }
-
     socketRef.current = io('http://localhost:4001', { withCredentials: true });
 
     socketRef.current.on( MESSAGE, msg => {
-      console.log('message - ', msg);
       setMessages(prevMsgs => [...prevMsgs, msg.message]);
     });
 
@@ -45,7 +50,23 @@ export default function Socket (roomId) {
 
     socketRef.current.on( USER_JOINED, data => setUsers(data.users));
 
+    return () => {
+      socketRef.current.disconnect();
+    };
+
   }, [currentUser, roomId]);
 
-  return { messages, users, socketRef };
+  useEffect(() => {
+    if (!currentUser.username) {
+      return;
+    }
+
+    socketRef.current.on(SHOW_ROOM_USER_COUNT, data => {
+      console.log(data);
+      // setActiveUserRooms(data);
+    });
+
+  }, [currentUser, setActiveUserRooms]);
+
+  return { messages, users, socketRef, activeUserRooms };
 }

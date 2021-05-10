@@ -2,13 +2,16 @@ import styled from 'styled-components';
 
 export const Rows = styled.div`
   width: 100%;
-  height: 80%;
+  height: calc(80% - 59px);
   background-color: #141414;
   display: flex;
   flex-direction: column;
   position: fixed;
   overflow-x: hidden;
   overflow-y: auto;
+  @media (max-height: 900px) {
+    height: calc(75% - 59px);
+  }
 `;
 
 export const Row = styled.div`
@@ -52,10 +55,14 @@ export const Message = styled.span`
 `;
 
 export const MessageContainer = styled.div`
-  width: 90%;
+  width: 80%;
   display: flex;
   align-items: center;
   > * { margin: 2px; }
+
+  @media (max-width: 900px) {
+    width: 75%;
+  }
 `;
 
 export const Time = styled.span`

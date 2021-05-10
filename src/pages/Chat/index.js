@@ -1,19 +1,23 @@
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
-import { MessageRow, ChatWindow } from './styles';
+import { ChatWindow } from './styles';
 import Socket from '../../components/Socket';
 import ChatRows from './ChatRow';
 import ChatInput from './ChatInput';
 import PageTransition from '../../Framer/PageTransition';
-import Users from './Users';
-
+import Users from './OnlineUserSidebar';
+import { SHOW_ROOM_USER_COUNT, MESSAGE } from '../../constant/index';
 export default function Chat ({ roomId }) {
   const [refresh, setRefresh] = useState(true);
   const { messages, users, socketRef } = Socket(roomId);
 
   const sendMessage = message => {
-    socketRef.current.emit('message', message);
+    socketRef.current.emit(MESSAGE, message);
   };
+
+  // const onCLick = () => {
+  //   socketRef.current.emit(SHOW_ROOM_USER_COUNT, {});
+  // };
 
   useEffect(() => {
     const refresher = setTimeout(() => {
@@ -27,9 +31,7 @@ export default function Chat ({ roomId }) {
       <Users users={users} />
       <ChatWindow>
         <ChatInput sendMessage={sendMessage} />
-        <MessageRow>
-          <ChatRows messages={messages} users={users} />
-        </MessageRow>
+        <ChatRows messages={messages} users={users} />
       </ChatWindow>
     </PageTransition>
   );

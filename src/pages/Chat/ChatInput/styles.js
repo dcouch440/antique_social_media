@@ -13,10 +13,13 @@ export const ChatWindow = styled.textarea`
 `;
 
 export const ChatBox = styled.div`
-  height: 15%;
+  height: 20%;
   bottom: 0;
   position: fixed;
   width: 100%;
+  @media (max-height: 900px) {
+    height: 25%;
+  }
 `;
 export const SubmitButton = styled.button`
   cursor: pointer;
@@ -36,5 +39,10 @@ export const SubmitButton = styled.button`
   :hover {
     background-color: black;
     color: white;
+  }
+  @media (max-height: 900px) {
+    bottom: 20px;
+    right: 10px;
+    padding: 2px;
   }
 `;
