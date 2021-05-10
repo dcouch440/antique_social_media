@@ -1,5 +1,6 @@
 const userService = require('../../src/user/user.service');
 const AntiqueService = require('../../src/antique/antique.service');
+const STATIC_ROOMS = require('./static-rooms');
 
 const getUsersFromDB = async usernames => {
   try {
@@ -12,28 +13,52 @@ const getUsersFromDB = async usernames => {
   }
 };
 
-const getActiveUserRooms = async ({ io, user_id = 12 }) => {
-  const antique_ids = await AntiqueService.getUserAntiques(user_id);
-  const ant = antique_ids.map(async ({ id, ...rest }) => {
+const socketMapper = ({ rooms, io }) => rooms.map(async ({ id, ...rest }) => {
+  try {
     return {
       roomId: id,
       socketUsers: await io.sockets.adapter.rooms.get(id.toString()),
       ...rest
     };
-  });
+  } catch (err) {
+    console.error(err);
+  }
+});
 
-  const activeRooms = (await Promise.all(ant)).filter(data => data.socketUsers !== undefined);
-  const antiqueOwnersVacantRooms = getUserRoomCount({ activeRooms });
-  const sortedRooms = antiqueOwnersVacantRooms.sort((a,b) => b.socketUsers - a.socketUsers);
-  return sortedRooms;
+const getActiveRooms = async ({ io }) => {
+  try {
+    const usersInRoomData = socketMapper({ rooms: STATIC_ROOMS, io });
+    const activeRooms = (await Promise.all(usersInRoomData));
+    const roomsCount = getUserRoomCountWithSet({ activeRooms });
+    console.log(roomsCount);
+    const sortedRooms = roomsCount.sort((a,b) => b.socketUsers - a.socketUsers);
+    return sortedRooms;
+  } catch (err) {
+    console.error(err);
+  }
 };
 
-const getUserRoomCount = ({ activeRooms }) => {
+const getActiveUserRooms = async ({ io, user_id }) => {
+  try {
+    const antique_ids = await AntiqueService.getUserAntiques(user_id);
+    const userAntiqueRoomData = socketMapper({ rooms: antique_ids, io });
+    const activeRooms = (await Promise.all(userAntiqueRoomData))
+      .filter(data => data.socketUsers !== undefined);
+    const antiqueOwnersVacantRooms = getUserRoomCountWithSet({ activeRooms });
+    const sortedRooms = antiqueOwnersVacantRooms.sort((a,b) => b.socketUsers - a.socketUsers);
+    return sortedRooms;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+const getUserRoomCountWithSet = ({ activeRooms }) => {
   const set = new Set(activeRooms);
   return [...set].map(({ socketUsers, ...rest }) => {
+    const userUndefinedConverter = socketUsers ? [...socketUsers].length : 0;
     return {
       ...rest,
-      socketUsers: [...socketUsers].length
+      socketUsers: userUndefinedConverter
     };
   });
 };
@@ -72,5 +97,6 @@ module.exports = {
   getUsersFromDB,
   messageWithAttachedUser,
   getRoomUsernames,
-  getActiveUserRooms
+  getActiveUserRooms,
+  getActiveRooms
 };

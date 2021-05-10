@@ -5,7 +5,8 @@ const {
   getUsersFromDB,
   messageWithAttachedUser,
   getRoomUsernames,
-  getActiveUserRooms
+  getActiveUserRooms,
+  getActiveRooms
 } = require('./utils');
 
 const {
@@ -91,8 +92,9 @@ io.on(CONNECTION , async socket => {
 
   socket.on(SHOW_ROOM_USER_COUNT, async ({ currentUser }) => {
     try {
-      const activeRooms = await getActiveUserRooms({ io, user_id: currentUser.id });
-      socket.emit(SHOW_ROOM_USER_COUNT, activeRooms);
+      const activeUserRooms = await getActiveUserRooms({ io, user_id: currentUser.id });
+      const activeRooms = await getActiveRooms({ io });
+      socket.emit(SHOW_ROOM_USER_COUNT, { activeUserRooms, activeRooms });
     } catch (err) {
       console.error(err);
     }
