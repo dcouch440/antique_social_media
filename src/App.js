@@ -13,7 +13,7 @@ import { useContext } from 'react';
 
 export default function App () {
   const location = useLocation();
-  const [roomId, setRoomId] = useState('GLOBAL CHAT');
+  const [roomId, setRoomId] = useState('GLOBAL_CHAT');
   const { inTransition, setInTransition } = useContext(Context);
 
   useEffect(() => {

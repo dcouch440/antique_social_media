@@ -21,10 +21,9 @@ export default function Socket (roomId) {
       setMessages(prevMsgs => [...prevMsgs, msg.message]);
     });
 
-    socketRef.current.on( DISCONNECTION, data => {
-      setUsers(data.users);
-      setMessages(prevMsgs => [...prevMsgs, data.message]);
-    });
+    return () => {
+      socketRef.current.disconnect();
+    };
 
   }, [currentUser, setMessages]);
 
@@ -33,9 +32,13 @@ export default function Socket (roomId) {
       return;
     }
 
+    socketRef.current.on( DISCONNECTION, data => {
+      setUsers(data.users);
+      setMessages(prevMsgs => [...prevMsgs, data.message]);
+    });
+
     socketRef.current.emit( JOIN_ROOM, { roomId, ...currentUser });
     socketRef.current.on( JOIN_ROOM, data => {
-      console.log('join - room' ,data);
       setUsers(data.users);
       setMessages(prevMsgs => [...prevMsgs, data.message]);
     });

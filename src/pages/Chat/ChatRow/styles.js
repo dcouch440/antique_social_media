@@ -37,6 +37,7 @@ export const GoBack = styled.button`
 export const Avatar = styled.img`
   width: 42px;
   height: 42px;
+  background-color: #69696985;
   border-radius: 50%;
 `;
 

@@ -36,7 +36,7 @@ export default function PageTransition ({ attr, transitionTime, exitTime, ...pro
 
 PageTransition.propTypes = {
   attr: PropTypes.object,
-  children: PropTypes.object.isRequired,
+  children: PropTypes.any.isRequired,
   direction: PropTypes.string,
   exitTime: PropTypes.number,
   transitionTime: PropTypes.number

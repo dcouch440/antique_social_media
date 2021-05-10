@@ -3,7 +3,7 @@ import { variants } from './variants';
 import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 
-export default function NewPage (props) {
+export default function NewPage ({ transition, direction, ...props }) {
   return (
     <motion.button
       variants={variants}
@@ -18,6 +18,13 @@ export default function NewPage (props) {
   );
 }
 
+NewPage.defaultProps = {
+  transition: { delay: 5, duration: 1 },
+  direction: 'right'
+};
+
 NewPage.propTypes = {
-  children: PropTypes.object.isRequired
+  children: PropTypes.object.isRequired,
+  direction: PropTypes.any,
+  transition: PropTypes.any
 };

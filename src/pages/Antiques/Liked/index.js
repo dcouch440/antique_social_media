@@ -6,8 +6,7 @@ import likedVariants from './variants';
 import { Check } from './styles';
 import { motion } from 'framer-motion';
 
-export default function Liked ({ antiqueId })
-{
+export default function Liked ({ antiqueId }) {
   const [liked, setLiked] = useState(false);
   const { currentUser } = useContext(Context);
   const display = liked ? 'F' : 'add';

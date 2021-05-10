@@ -5,8 +5,7 @@ import { wrap } from 'popmotion';
 import { AnimatePresence, motion } from 'framer-motion';
 import * as styles from './styles';
 
-export default function AntiquesSlideShow ({ antiqueImages })
-{
+export default function AntiquesSlideShow ({ antiqueImages }) {
   const [[page, direction], setPage] = useState([0, 0]);
   const [nextSlide, setNextSlide] = useState(0);
   const isTapped = useRef(false);
@@ -24,13 +23,18 @@ export default function AntiquesSlideShow ({ antiqueImages })
   }, [page, setPage]);
 
   useEffect(() => {
-    if (antiqueImages.length === 1) { return; }
+    if (antiqueImages.length === 1) {
+      return;
+    }
 
     const timer = setTimeout(
 
       () => {
-        if (!isTapped.current) { paginate(1); }
-        else { setNextSlide(prev=> prev += 1); }
+        if (!isTapped.current) {
+          paginate(1);
+        } else {
+          setNextSlide(prev=> prev += 1);
+        }
       }, 10000
 
     );

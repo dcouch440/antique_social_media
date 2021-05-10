@@ -27,7 +27,7 @@ export default function ChatRows ({ messages }) {
   const chatRow = messages.map((message, key) => {
     return (
       <Row
-        Key={key}
+        key={key}
         as={motion.div}
         variants={variants}
         initial="hidden"

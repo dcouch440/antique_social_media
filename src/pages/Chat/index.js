@@ -5,6 +5,7 @@ import Socket from '../../components/Socket';
 import ChatRows from './ChatRow';
 import ChatInput from './ChatInput';
 import PageTransition from '../../Framer/PageTransition';
+import Users from './Users';
 
 export default function Chat ({ roomId }) {
   const [refresh, setRefresh] = useState(true);
@@ -23,6 +24,7 @@ export default function Chat ({ roomId }) {
 
   return (
     <PageTransition attr={{ direction: 'bottom' }}>
+      <Users users={users} />
       <ChatWindow>
         <ChatInput sendMessage={sendMessage} />
         <MessageRow>

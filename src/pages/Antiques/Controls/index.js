@@ -6,8 +6,7 @@ import { controlVariants } from './variants';
 import { motion } from 'framer-motion';
 
 
-export default function Controls ({ setSlider, count })
-{
+export default function Controls ({ setSlider, count }) {
   return (
     <ControlsPanel
       as={motion.div}

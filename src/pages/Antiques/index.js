@@ -6,8 +6,7 @@ import Antique from './Antique';
 import Controls from './Controls';
 import useEverScroll from '../../hooks/useEverScroll';
 
-export default function AntiquesPage ()
-{
+export default function AntiquesPage () {
   const [bottomBoundaryRef, lazyRef, antiques] = useEverScroll(
     { limit: 15, route: '/antiques' }
   );
