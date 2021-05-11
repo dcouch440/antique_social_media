@@ -2,20 +2,19 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 //  UPLOAD ON ITS OWN -------------------------
-export default function Upload ({antiqueId})
-{
+export default function Upload ({ antiqueId }) {
   const [fileInputState, setFileInputState] = useState('');
   const [selectedFile, setSelectedFile] = useState('');
   const [previewSource, setPreviewSource] = useState('');
 
-  const handleFileInputChange = (e) => {
+  const handleFileInputChange = e => {
     const file = e.target.files[0];
     previewPicture(file);
     setSelectedFile(file);
     setFileInputState(e.target.value);
   };
 
-  const previewPicture = (file) => {
+  const previewPicture = file => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onloadend = () => {
@@ -23,10 +22,12 @@ export default function Upload ({antiqueId})
     };
   };
 
-  const handleFileSubmit = (e) => {
+  const handleFileSubmit = e => {
 
     e.preventDefault();
-    if (!selectedFile) { return; }
+    if (!selectedFile) {
+      return;
+    }
     const reader = new FileReader();
 
     reader.readAsDataURL(selectedFile);
@@ -40,16 +41,15 @@ export default function Upload ({antiqueId})
 
   };
 
-  const uploadImage = async (base64EncodedImage) => {
-    try
-    {
+  const uploadImage = async base64EncodedImage => {
+    try {
       await axios.post('/images/upload',{
         file: base64EncodedImage,
         antique_id: antiqueId
       });
+    } catch (err) {
+      console.error(err);
     }
-
-    catch (err) { console.error(err); }
   };
 
   return (

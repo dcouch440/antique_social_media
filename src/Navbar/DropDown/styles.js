@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const DropMenuPlate = styled.div`
   z-index: 9999;
   position: absolute;
-  color: black;
   overflow: hidden;
   width: 300px;
   display: ${({ display }) => display};
@@ -11,6 +10,7 @@ export const DropMenuPlate = styled.div`
   font-family: 'Courier New', Courier, monospace;
   right: 34px;
   border-radius: 6px;
+  border: 1px solid white;
   box-shadow: inset 0 0 2px 1px #00000099;
-  background-color: #e0e0e0;
+  background-color: #242424;
 `;

@@ -1,18 +1,19 @@
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
-import { MessageRow, ChatWindow } from './styles';
+import { ChatWindow } from './styles';
 import Socket from '../../components/Socket';
 import ChatRows from './ChatRow';
 import ChatInput from './ChatInput';
 import PageTransition from '../../Framer/PageTransition';
-import Users from './Users';
+import Users from './OnlineUserSidebar';
+import { MESSAGE } from '../../constant/index';
 
 export default function Chat ({ roomId }) {
   const [refresh, setRefresh] = useState(true);
   const { messages, users, socketRef } = Socket(roomId);
 
   const sendMessage = message => {
-    socketRef.current.emit('message', message);
+    socketRef.current.emit(MESSAGE, message);
   };
 
   useEffect(() => {
@@ -27,9 +28,7 @@ export default function Chat ({ roomId }) {
       <Users users={users} />
       <ChatWindow>
         <ChatInput sendMessage={sendMessage} />
-        <MessageRow>
-          <ChatRows messages={messages} users={users} />
-        </MessageRow>
+        <ChatRows messages={messages} socketRef={socketRef} users={users} />
       </ChatWindow>
     </PageTransition>
   );

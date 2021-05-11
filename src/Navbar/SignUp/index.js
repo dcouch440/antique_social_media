@@ -90,7 +90,7 @@ export default function SignUp ({ toggle }) {
 
       <DropDownButtonContainer>
         <DropDownButton type="submit" onClick={toggle}>Sign In</DropDownButton>
-        <DropDownButton >Sign In</DropDownButton>
+        <DropDownButton >Sign Up</DropDownButton>
       </DropDownButtonContainer>
 
     </Form>

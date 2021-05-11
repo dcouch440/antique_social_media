@@ -1,5 +1,5 @@
 import { Route, Switch, useLocation, Redirect } from 'react-router';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { Context } from './Context';
 import GlobalStyles from './GlobalStyles';
@@ -9,16 +9,18 @@ import Likes from './pages/Likes';
 import Navbar from './Navbar';
 import Post from './pages/Post';
 import Chat from './pages/Chat';
+import Rooms from './pages/Rooms';
 import { useContext } from 'react';
 
 export default function App () {
   const location = useLocation();
   const [roomId, setRoomId] = useState('GLOBAL_CHAT');
-  const { inTransition, setInTransition } = useContext(Context);
+  const { inTransition } = useContext(Context);
 
-  useEffect(() => {
-    setInTransition(true);
-  }, [location.key, setInTransition]);
+  // unused currently
+  // useEffect(() => {
+    // setInTransition(true);
+  // }, [location.key, setInTransition]);
 
   return (
     <>
@@ -43,6 +45,9 @@ export default function App () {
           </Route>
           <Route exact path="/chat">
             <Chat roomId={roomId} />
+          </Route>
+          <Route exact path="/rooms">
+            <Rooms setRoomId={setRoomId} />
           </Route>
         </Switch>
       </AnimatePresence>

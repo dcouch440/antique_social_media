@@ -16,7 +16,7 @@ export const Grid = styled.div`
 export const Header = styled.div`
   ${include.screenAdapt};
   font-family: 'Pacifico', cursive;
-  text-shadow: -1px -1px #455a64;
+  text-shadow: -1px -2px 1px black;
   height: 70px;
   text-align: center;
   font-size: 40px;

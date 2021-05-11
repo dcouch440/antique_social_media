@@ -1,23 +1,22 @@
 import { motion } from 'framer-motion';
-import { useContext, useEffect } from 'react';
 import { variants as transition } from './variants';
-import { Context } from '../../Context';
 import { Container } from './styles';
 import PropTypes from 'prop-types';
 
 
 export default function PageTransition ({ attr, transitionTime, exitTime, ...props }) {
-  const { setInTransition } = useContext(Context);
+  // const { setInTransition } = useContext(Context);
 
-  useEffect(() => {
+  // unused currently
+  // useEffect(() => {
 
-    const transitioning = setTimeout(() => {
-      setInTransition(false);
-    }, (transitionTime * 1000));
+  //   const transitioning = setTimeout(() => {
+  //     setInTransition(false);
+  //   }, (transitionTime * 1000));
 
-    return () => clearTimeout(transitioning);
+  //   return () => clearTimeout(transitioning);
 
-  }, [setInTransition, transitionTime]);
+  // }, [setInTransition, transitionTime]);
 
 
   return (

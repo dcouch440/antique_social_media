@@ -1,4 +1,4 @@
-import { AntiqueContainer, Image, AntiqueOverlay } from './styles';
+import { AntiqueContainer, Image, AntiqueOverlay, OverlayText } from './styles';
 import Liked from '../Liked';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -18,9 +18,11 @@ export default function Antique ({ antique, lazyRef, index }) {
       dimensions={{ height: image.height, width: image.width }}
     >
       <Image ref={el => lazyRef.current[index] = el} src={image.image_url} alt={antique.name} />
-      <AntiqueOverlay >
-        <div>{antique.name}</div>
-        <div>{antique.year}</div>
+      <AntiqueOverlay>
+        <OverlayText>
+          <div>{antique.name}</div>
+          <div>{antique.year}</div>
+        </OverlayText>
         <Liked antiqueId={antique.id}/>
       </AntiqueOverlay>
 
