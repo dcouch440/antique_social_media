@@ -6,14 +6,22 @@
 
   This Project is a Work in Progress
 
-  This is a front end application for a node.js backend Current Features
+  This is a front end application for a node.js backend
+  The current concept is chat rooms that are tied to a users antique
+
+  #### Current Features
 
   - Framer Motion Slideshow and screen transitions
   - Socket servers for
     - User online status
     - Chat messages / rooms
+  - Page for Global chat rooms
+  - Page for users to see how many people are talking in their chat rooms
+  - endless scroll loading intersection observer
+  - Likes page (work in progress)
   - Picture upload through cloudinary
   - HTTP Only session call on startup through Context
+
 
 # `Tech Used`
 - axios
