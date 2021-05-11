@@ -8,7 +8,7 @@ import moment from 'moment';
 import { useEffect, useRef } from 'react';
 import { useHistory } from 'react-router';
 
-export default function ChatRows ({ messages }) {
+export default function ChatRows ({ messages, socketRef }) {
   const history = useHistory();
   const messagesEndRef = useRef();
 
@@ -21,6 +21,7 @@ export default function ChatRows ({ messages }) {
   };
 
   const handleClick = () => {
+    socketRef.current.disconnect();
     history.goBack();
   };
 
@@ -44,7 +45,6 @@ export default function ChatRows ({ messages }) {
         </MessageContainer>
       </Row>
     );
-
   });
 
   return (

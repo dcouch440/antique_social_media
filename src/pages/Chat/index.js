@@ -6,7 +6,8 @@ import ChatRows from './ChatRow';
 import ChatInput from './ChatInput';
 import PageTransition from '../../Framer/PageTransition';
 import Users from './OnlineUserSidebar';
-import { SHOW_ROOM_USER_COUNT, MESSAGE } from '../../constant/index';
+import { MESSAGE } from '../../constant/index';
+
 export default function Chat ({ roomId }) {
   const [refresh, setRefresh] = useState(true);
   const { messages, users, socketRef } = Socket(roomId);
@@ -14,10 +15,6 @@ export default function Chat ({ roomId }) {
   const sendMessage = message => {
     socketRef.current.emit(MESSAGE, message);
   };
-
-  // const onCLick = () => {
-  //   socketRef.current.emit(SHOW_ROOM_USER_COUNT, {});
-  // };
 
   useEffect(() => {
     const refresher = setTimeout(() => {
@@ -31,7 +28,7 @@ export default function Chat ({ roomId }) {
       <Users users={users} />
       <ChatWindow>
         <ChatInput sendMessage={sendMessage} />
-        <ChatRows messages={messages} users={users} />
+        <ChatRows messages={messages} socketRef={socketRef} users={users} />
       </ChatWindow>
     </PageTransition>
   );

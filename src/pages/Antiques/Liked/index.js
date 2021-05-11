@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { Context } from '../../../Context';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import likedVariants from './variants';
 import { Check } from './styles';
 import { motion } from 'framer-motion';
@@ -10,6 +10,7 @@ export default function Liked ({ antiqueId }) {
   const [liked, setLiked] = useState(false);
   const { currentUser } = useContext(Context);
   const display = liked ? 'F' : 'add';
+  const loading = useRef(false);
 
   useEffect(() => {
 
@@ -25,13 +26,20 @@ export default function Liked ({ antiqueId }) {
 
   const handleClick = e => {
     e.stopPropagation();
+    if (loading.current) {
+      return;
+    }
+    loading.current = true;
 
     !liked && axios
       .post(
         `/likes/${antiqueId}`, {},
         { withCredentials: true }
       )
-      .then(res => res.status === 201 && setLiked(true))
+      .then(res => {
+        loading.current = false;
+        res.status === 201 && setLiked(true);
+      })
       .catch(err => console.log(err));
 
     liked && axios
@@ -39,7 +47,10 @@ export default function Liked ({ antiqueId }) {
         `/likes/${antiqueId}`, {},
         { withCredentials: true }
       )
-      .then(res => res.status === 204 && setLiked(false))
+      .then(res => {
+        loading.current = false;
+        res.status === 204 && setLiked(false);
+      })
       .catch(err => console.log(err));
   };
 

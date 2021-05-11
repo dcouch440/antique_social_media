@@ -35,7 +35,7 @@ export const Blog = styled.div`
   border-radius: 5px;
   font-size: 20px;
   white-space: pre-line;
-
+  padding: 15px;
   > * {
     font-family: monospace;
     margin: 15px 0px;

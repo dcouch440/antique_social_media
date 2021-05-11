@@ -25,6 +25,7 @@ export const DropDownButton = styled.button`
   color: black;
   font-weight: bold;
   :hover {
+    border: 2px solid white;
     background-color: black;
     color: white;
   }

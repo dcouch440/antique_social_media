@@ -15,11 +15,14 @@ const Grid = styled.div`
 export default function SingedIn ({ user }) {
   return (
     <Grid>
-      <Username>Welcome {user.charAt(0).toUpperCase() + user.slice(1)} </Username>
+      <Username>
+        <span>Welcome {user.charAt(0).toUpperCase() + user.slice(1)}</span>
+      </Username>
       <HubLink><Link to='/antiques'>antiques</Link></HubLink>
       <HubLink><Link to='/antiques/new'>post</Link></HubLink>
       <HubLink><Link to='/likes'>likes</Link></HubLink>
-      <HubLink><Link to='/'>profile</Link></HubLink>
+      <HubLink><Link to='/rooms'>rooms</Link></HubLink>
+      <HubLink><Link to='/chat'>global chat</Link></HubLink>
       <SignOut />
     </Grid>
   );
