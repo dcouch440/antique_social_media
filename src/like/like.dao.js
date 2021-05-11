@@ -1,4 +1,3 @@
-const antiqueService = require('../antique/antique.service');
 const Like = require('./like.model');
 
 class LikeDAO {
@@ -18,15 +17,10 @@ class LikeDAO {
     return Like.query()
       .insert(params);
   }
-  async likes (user_id) {
-    try {
-      const likes = (await Like.query().where('user_id', user_id))
-        .map(like => like.antique_id);
-      return antiqueService.findManyById(likes);
-    } catch (err) {
-      console.error(err);
-    }
+  likes (user_id) {
+    return Like.query().where('user_id', user_id);
   }
+
 }
 
 module.exports = new LikeDAO();

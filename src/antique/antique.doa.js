@@ -9,6 +9,7 @@ class AntiqueDAO {
     return Antique.query()
       .findById(id)
       .withGraphFetched('likes')
+      .modifyGraph('likes', builder => builder.select('user_id'))
       .withGraphFetched('images');
   }
   getLikes (id) {

@@ -1,22 +1,39 @@
 const LikeDAO = require('./like.dao');
+const antiqueService = require('../antique/antique.service');
 
 class LikeService {
   async liked (params) {
-    const liked = await LikeDAO.isPresent(params)
-      .catch(err => console.error(err));
-    return liked ? true : false;
+    try {
+      const liked = await LikeDAO.isPresent(params);
+      return liked ? true : false;
+    } catch (err) {
+      console.error(err);
+    }
   }
-  like ({ req, antique_id }) {
-    const { username, user_id } = req.currentUser;
-    return LikeDAO.create({ username, antique_id, user_id });
+  async like ({ req, antique_id }) {
+    try {
+      const { username, user_id } = req.currentUser;
+      return LikeDAO.create({ username, antique_id, user_id });
+    } catch (err) {
+      console.error(err);
+    }
   }
-  unlike ({ req, antique_id }) {
-    const { username, user_id } = req.currentUser;
-    return LikeDAO.destroy({ username, antique_id, user_id });
+  async unlike ({ req, antique_id }) {
+    try {
+      const { username, user_id } = req.currentUser;
+      return LikeDAO.destroy({ username, antique_id, user_id });
+    } catch (err) {
+      console.error(err);
+    }
   }
-  likes ({ req }) {
-    const { user_id } = req.currentUser;
-    return LikeDAO.likes(user_id);
+  async likes ({ req }) {
+    try {
+      const { user_id } = req.currentUser;
+      const likes = await LikeDAO.likes(user_id).map(like => like.antique_id);
+      return antiqueService.findManyById(likes);
+    } catch (err) {
+      console.error(err);
+    }
   }
 }
 

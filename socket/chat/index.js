@@ -100,5 +100,9 @@ io.on(CONNECTION , async socket => {
     }
   });
 
+  socket.on(DISCONNECT, () => {
+    console.log('dis');
+  });
+
 });
 module.exports = socket;

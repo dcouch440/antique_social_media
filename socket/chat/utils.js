@@ -14,23 +14,18 @@ const getUsersFromDB = async usernames => {
 };
 
 const socketMapper = ({ rooms, io }) => rooms.map(data => {
-  try {
-    const {id, ...rest} = data;
-    return {
-      roomId: id,
-      socketUsers: io.sockets.adapter.rooms.get(id.toString()),
-      ...rest
-    };
-  } catch (err) {
-    console.error(err);
-  }
+  const { id, ...rest } = data;
+  return {
+    roomId: id,
+    socketUsers: io.sockets.adapter.rooms.get(id.toString()),
+    ...rest
+  };
 });
 
 const getActiveRooms = ({ io }) => {
   const usersInRoomData = socketMapper({ rooms: STATIC_ROOMS, io });
   const activeRooms = usersInRoomData;
   const roomsCount = getUserRoomCountWithSet({ activeRooms });
-  console.log(roomsCount);
   const sortedRooms = roomsCount.sort((a,b) => b.socketUsers - a.socketUsers);
   return sortedRooms;
 };

@@ -20,17 +20,14 @@ class ImageDAO {
         });
     }
   }
-  // remove async and test
   async destroyAllRelations (antique_id) {
     return await Image.query()
       .where('antique_id', antique_id);
   }
-
   findById (antique_id) {
     return Image.query()
       .where('antique_id', antique_id);
   }
-
   findByIdLimitOne (antique_id) {
     return Image.query()
       .where('antique_id', antique_id)

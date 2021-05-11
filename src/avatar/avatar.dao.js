@@ -19,12 +19,14 @@ class AvatarDAO {
     }
   }
   async destroyById (user_id) {
-    return Avatar.query()
-      .where('public_id', user_id)
-      .del()
-      .catch(err => console.error(err));
+    try {
+      return Avatar.query()
+        .where('public_id', user_id)
+        .del();
+    } catch (err) {
+      console.error(err);
+    }
   }
-
   findById (user_id) {
     return Avatar.query()
       .where('user_id', user_id);

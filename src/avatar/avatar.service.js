@@ -8,7 +8,6 @@ class AvatarService {
       await cloudinary.api.delete_resources(public_id)
         .catch(err => console.error(err));
       return avatarDAO.destroyById(public_id);
-
     } catch (err) {
       console.error(err);
     }

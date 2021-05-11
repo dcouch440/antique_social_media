@@ -1,6 +1,5 @@
 const avatarService = require('./avatar.service');
 
-
 class AvatarController {
   async destroy (req,res) {
     const user_id = req.currentUser.user_id;

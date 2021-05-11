@@ -39,16 +39,21 @@ class AntiqueService {
     }
   }
   queryCategory ({ category }) {
-    console.log(category);
     return antiqueDAO.showUniques({ category });
   }
   async findManyById (id) {
-    return antiqueDAO.findManyById(id)
-      .catch(err => console.error(err));
+    try {
+      return antiqueDAO.findManyById(id);
+    } catch (err) {
+      console.error(err);
+    }
   }
   async getUserAntiques (user_id) {
-    return antiqueDAO.findAntiquesByUserId(user_id)
-      .catch(err => console.error(err));
+    try {
+      return antiqueDAO.findAntiquesByUserId(user_id);
+    } catch (err) {
+      console.error(err);
+    }
   }
 }
 

@@ -14,7 +14,6 @@ class ImageController {
       console.error(err);
     }
   }
-
   async destroy (req,res) {
     const { antiqueId :antique_id } = req.body;
     try {

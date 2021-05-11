@@ -24,7 +24,6 @@ class ImageService {
       console.error(err);
     }
   }
-
   async destroyDependencyById (antique_id) {
     try {
       const folder = antiqueFolderFormat(antique_id);
@@ -37,15 +36,20 @@ class ImageService {
       console.error(err);
     }
   }
-
   async getFirstImage (antique_id) {
-    return imageDAO.findByIdLimitOne(antique_id)
-      .catch(err => console.error(err));
+    try {
+      return imageDAO.findByIdLimitOne(antique_id);
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   async getAllImages (antique_id) {
-    return imageDAO.findById(antique_id)
-      .catch(err => console.error(err));
+    try {
+      return imageDAO.findById(antique_id);
+    } catch (err) {
+      console.error(err);
+    }
   }
 }
 

@@ -3,6 +3,7 @@ const jwt = require('../auth/auth.jwt');
 const { hashPassword , compareHash } = require('../auth/auth.bcrypt');
 const { newUserParams, userIdParams } = require('./user.params');
 const cookieExpiration = require('../../constant/cookie-time');
+const attachAvatarIfNotPresent = require('../../lib/attach-avatar-if-not-present');
 
 class UserService {
   async signIn ({ res, password, email }) {
@@ -71,16 +72,41 @@ class UserService {
     }
   }
   async changeOnlineState ({ id, online }) {
-    return await userDAO.changeOnlineState({ id, online })
-      .catch(err => console.error(err));
+    try {
+      return await userDAO.changeOnlineState({ id, online });
+    } catch (err) {
+      console.error(err);
+    }
   }
   async getUsersByUsername ({ usernames }) {
-    return userDAO.getUsersByUsername(usernames)
-      .catch(err => console.error(err));
+    try {
+      const users = await userDAO.getUsersByUsername(usernames);
+
+      const attachedAvatars = users.map(user => {
+        const avatar = attachAvatarIfNotPresent(user.avatar);
+        return { username: user.username, avatar };
+      });
+
+      return attachedAvatars;
+    } catch (err) {
+      console.error(err);
+    }
   }
   async getUserByUsername (username) {
-    return userDAO.getUserByUsername(username)
-      .catch(err => console.error(err));
+    try {
+      const user = await userDAO.getUserByUsername(username);
+      const avatar = attachAvatarIfNotPresent(user.avatar);
+      return { username: user.username, avatar };
+    } catch (err) {
+      console.error(err);
+    }
+  }
+  async getUsersByIds (id) {
+    try {
+      return userDAO.getUsersByIds(id);
+    } catch (err) {
+      console.error(err);
+    }
   }
   all () {
     return userDAO.all();
@@ -88,7 +114,10 @@ class UserService {
   async showOvert (id) {
     try {
       await userIdParams.validate({ id: id });
-      return userDAO.find(id);
+      const { username, avatar, online } = await userDAO.find(id);
+      const userAvatar = attachAvatarIfNotPresent(avatar);
+
+      return { antique_owner: { username, avatar: userAvatar, online } };
     } catch (err) {
       console.error(err);
     }

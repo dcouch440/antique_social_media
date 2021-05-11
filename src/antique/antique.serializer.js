@@ -1,59 +1,38 @@
-const moment = require('moment');
 const userService = require('../user/user.service');
 
 class AntiqueSerializer {
-  async serializeWithRelations ({ antiques }) {
+  async serializeWithRelations ({ antique }) {
     try {
-      const { user_id :owner_id } = antiques;
-      const mergedData = Array.isArray(antiques) ?
-        await Promise.all(this.mergeArray({ antiques })):
-        await this.mergeObject({ antiques, owner_id });
-
-      return mergedData;
+      const { user_id :owner_id } = antique;
+      return this.mergeObject({ antique, owner_id });
     } catch (err) {
       console.error(err);
     }
   }
-  async mergeObject ({ antiques, owner_id }) {
+  async mergeObject ({ antique, owner_id }) {
     try {
-      const { created_at } = antiques;
       return Object
-        .assign(
-          antiques,
-          await this.getUserRelations({
-            created_at
-          }),
-          await this.getOwnerRelations({ owner_id })
-        );
-    } catch (err) {
-      console.error(err);
-    }
-  }
-  mergeArray ({ antiques }) {
-    return antiques.map(async antique => {
-      const { created_at } = antique;
-      return Object
-        .assign(
+        .assign({},
           antique,
-          await this.getUserRelations({
-            created_at
-          }),
+          await this.getOwnerRelations({ owner_id }),
+          await this.getLikeUserAndAvatar({ antique })
         );
-    });
+    } catch (err) {
+      console.error(err);
+    }
+  }
+  async getLikeUserAndAvatar ({ antique }) {
+    try {
+      const user_ids = antique.likes.map(likes => likes.user_id);
+      const likes = await userService.getUsersByIds(user_ids);
+      return { likes };
+    } catch (err) {
+      console.error(err);
+    }
   }
   async getOwnerRelations ({ owner_id }) {
     try {
       return await userService.showOvert(owner_id);
-    } catch (err) {
-      console.error(err);
-    }
-  }
-  async getUserRelations ({ created_at }) {
-    try {
-      // PREVIOUS FEATURES MOVED TO OTHER AREAS OF APPLICATION
-      return ({
-        posted: moment(created_at).fromNow()
-      });
     } catch (err) {
       console.error(err);
     }
