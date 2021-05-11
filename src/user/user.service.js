@@ -5,6 +5,7 @@ const { newUserParams, userIdParams } = require('./user.params');
 const cookieExpiration = require('../../constant/cookie-time');
 const attachAvatarIfNotPresent = require('../../lib/attach-avatar-if-not-present');
 
+// TODO refactor attachAvatarIfNotPresent to have conditional logic within function
 class UserService {
   async signIn ({ res, password, email }) {
     try {
@@ -103,7 +104,11 @@ class UserService {
   }
   async getUsersByIds (id) {
     try {
-      return userDAO.getUsersByIds(id);
+      const users = await userDAO.getUsersByIds(id);
+      return users.map(user => {
+        const avatar = attachAvatarIfNotPresent(user.avatar);
+        return { username: user.username, avatar };
+      });
     } catch (err) {
       console.error(err);
     }

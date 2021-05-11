@@ -12,12 +12,20 @@ class ImageDAO {
         .returning('id')
         .then(id => console.log(id));
     } catch (err) {
+
       // rollback
       console.error(err);
-      await cloudinary.uploader
-        .destroy(params.public_id, result => {
-          console.info(result);
-        });
+      try {
+        await cloudinary.uploader
+          .destroy(params.public_id, result => {
+            console.info(result);
+          });
+      } catch (err) {
+        throw new Error(
+          'ImageDAO.StoreUrl failed to upload and cloudinary uploader failed to upload'
+        );
+      }
+
     }
   }
   async destroyAllRelations (antique_id) {
