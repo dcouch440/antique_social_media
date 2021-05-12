@@ -17,9 +17,7 @@ class ImageDAO {
       console.error(err);
       try {
         await cloudinary.uploader
-          .destroy(params.public_id, result => {
-            console.info(result);
-          });
+          .destroy(params.public_id, result => console.info(result));
       } catch (err) {
         throw new Error(
           'ImageDAO.StoreUrl failed to upload and cloudinary uploader failed to upload'

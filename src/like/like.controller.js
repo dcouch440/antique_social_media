@@ -5,7 +5,8 @@ class LikeController {
     try {
       const { antique_id } = req.params;
       const isLiked = await likeService.liked({
-        antique_id, user_id: req.currentUser.user_id
+        antique_id,
+        user_id: req.currentUser.user_id
       });
       res.status(200).json({ isLiked });
     } catch (err) {
@@ -16,7 +17,8 @@ class LikeController {
     try {
       const { antique_id } = req.params;
       const liked = await likeService.like({
-        req, antique_id
+        req,
+        antique_id
       });
       res.status(201).json(liked);
     } catch (err) {
@@ -28,7 +30,8 @@ class LikeController {
     try {
       const { antique_id } = req.params;
       const liked = await likeService.unlike({
-        req, antique_id
+        req,
+        antique_id
       });
       res.status(204).json(liked);
     } catch (err) {

@@ -5,8 +5,7 @@ const avatarPublicIdFormat = require('../../constant/avatar-public-id');
 class AvatarService {
   async deleteByPublicId (public_id) {
     try {
-      await cloudinary.api.delete_resources(public_id)
-        .catch(err => console.error(err));
+      await cloudinary.api.delete_resources(public_id);
       return avatarDAO.destroyById(public_id);
     } catch (err) {
       console.error(err);
@@ -17,8 +16,12 @@ class AvatarService {
     try {
       const avatarPublicId = avatarPublicIdFormat(user_id);
       const {
-        secure_url :image_url, public_id, width,
-        height, format, resource_type
+        secure_url :image_url,
+        public_id,
+        width,
+        height,
+        format,
+        resource_type
       } = await cloudinary
         .uploader.upload( file64 , {
           upload_preset: 'ml_default',
@@ -28,8 +31,13 @@ class AvatarService {
       await avatarDAO.destroyById(avatarPublicId);
 
       return avatarDAO.storeUrl({
-        image_url, public_id, width,
-        height, format, resource_type, user_id
+        image_url,
+        public_id,
+        width,
+        height,
+        format,
+        resource_type,
+        user_id
       });
     } catch (err) {
       console.error(err);

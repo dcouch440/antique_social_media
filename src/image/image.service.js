@@ -7,8 +7,10 @@ class ImageService {
     try {
       const {
 
-        secure_url :image_url, public_id, width,
-        height, format, resource_type
+        secure_url :image_url,
+        public_id, width,
+        height, format,
+        resource_type
 
       } = await cloudinary
         .uploader.upload( file64 , {
@@ -17,8 +19,13 @@ class ImageService {
         });
 
       return imageDAO.storeUrl({
-        image_url, antique_id, public_id, width,
-        height, format, resource_type
+        image_url,
+        antique_id,
+        public_id,
+        width,
+        height,
+        format,
+        resource_type
       });
     } catch (err) {
       console.error(err);

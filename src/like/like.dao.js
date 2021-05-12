@@ -2,11 +2,17 @@ const Like = require('./like.model');
 
 class LikeDAO {
   isPresent ({ user_id, antique_id }) {
-    if (user_id && antique_id) {
+    if (user_id !== undefined && antique_id !== undefined) {
       return Like.query()
         .where({ user_id, antique_id })
         .first();
     }
+  }
+  countByAntiqueId ({ antique_id }) {
+    return Like.query()
+      .where('antique_id', antique_id)
+      .count()
+      .first();
   }
   destroy ({ username, antique_id, user_id }) {
     return Like.query()

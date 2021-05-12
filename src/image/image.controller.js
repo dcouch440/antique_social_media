@@ -7,7 +7,8 @@ class ImageController {
     try {
       const { file64, antique_id } = req.body;
       const uploaded = await imageService.upload({
-        file64, antique_id: antique_id
+        file64,
+        antique_id: antique_id
       });
       res.status(201).json(uploaded);
     } catch (err) {

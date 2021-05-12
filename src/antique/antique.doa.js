@@ -32,10 +32,12 @@ class AntiqueDAO {
       .withGraphFetched('images');
   }
   findManyById (id) {
-    return Antique.query().where(builder => builder.whereIn('id', id)).withGraphFetched('images');
+    return Antique.query().where(builder => builder.whereIn('id', id))
+      .withGraphFetched('images');
   }
   findAntiquesByUserId (user_id) {
-    return Antique.query().where('user_id', user_id);
+    return Antique.query().where('user_id', user_id)
+      .withGraphFetched('images');
   }
   showUniques ({ category }) {
     return Antique.query()

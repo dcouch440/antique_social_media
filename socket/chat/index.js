@@ -32,8 +32,10 @@ io.on(CONNECTION , async socket => {
 
   socket.on( JOIN_ROOM, async ({ roomId, ...currentUser }) => {
     try {
-      console.log('from join room', roomId);
-
+      if (!roomId) {
+        return;
+      }
+      console.log('join-room', roomId);
       socket.username = currentUser.username;
       socket.join(roomId);
 
@@ -101,7 +103,7 @@ io.on(CONNECTION , async socket => {
   });
 
   socket.on(DISCONNECT, () => {
-    console.log('dis');
+    null;
   });
 
 });

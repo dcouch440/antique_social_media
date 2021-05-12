@@ -26,10 +26,18 @@ class LikeService {
       console.error(err);
     }
   }
+  async getLikesCountByAntiqueId ({ antique_id }) {
+    try {
+      const { count } = await LikeDAO.countByAntiqueId({ antique_id });
+      return parseInt(count);
+    } catch (err) {
+      console.error(err);
+    }
+  }
   async likes ({ req }) {
     try {
       const { user_id } = req.currentUser;
-      const likes = await LikeDAO.likes(user_id).map(like => like.antique_id);
+      const likes = (await LikeDAO.likes(user_id)).map(data => data.antique_id);
       return antiqueService.findManyById(likes);
     } catch (err) {
       console.error(err);

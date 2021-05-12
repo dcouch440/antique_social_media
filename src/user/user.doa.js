@@ -4,36 +4,27 @@ class UserDAO {
   all () {
     return User.query();
   }
-  async find (id) {
+  find (id) {
     return User.query()
       .findById(parseInt(id))
       .withGraphFetched('avatar');
   }
-  async changeOnlineState ({ id, online }) {
-    try {
-      return await User.query()
-        .where('id', id).update({ online });
-    } catch (err) {
-      console.error(err);
-    }
+  changeOnlineState ({ id, online }) {
+    return User.query()
+      .where('id', id).update({ online });
   }
-  async getUsersByIds (id) {
-    try {
-      return User.query()
-        .select('username')
-        .where(builder => builder.whereIn('id', id))
-        .withGraphFetched('avatar');
-
-    } catch (err) {
-      console.error(err);
-    }
+  getUsersByIds (id) {
+    return User.query()
+      .select('username')
+      .where(builder => builder.whereIn('id', id))
+      .limit(15);
   }
   getUsersByUsername (usernames) {
     return User.query()
       .where(builder => builder.whereIn('username', usernames))
       .withGraphFetched('avatar');
   }
-  async getUserByUsername (username) {
+  getUserByUsername (username) {
     return User.query()
       .where('username', username)
       .withGraphFetched('avatar')
