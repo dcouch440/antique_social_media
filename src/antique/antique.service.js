@@ -3,6 +3,8 @@ const { limitOffset } = require('./antique.constant');
 const { antiqueParams, queryParams } = require('./antique.params');
 const { objLength, parseObjectInts } = require('../../lib/utils');
 const imageService = require('../image/image.service');
+const likeService = require('../like/like.service');
+const userService = require('../user/user.service');
 
 class AntiqueService {
   all () {
@@ -54,6 +56,13 @@ class AntiqueService {
     } catch (err) {
       console.error(err);
     }
+  }
+  async antiquesWithLikes (id) {
+    const antiqueLikes = await likeService.getLikesByAntiqueId(id);
+    const user_ids = antiqueLikes.map(like => like.user_id);
+    const likes = await userService.getUsersByIds(user_ids);
+    const count = await likeService.getLikesCountByAntiqueId(id);
+    return { likes, count };
   }
 }
 

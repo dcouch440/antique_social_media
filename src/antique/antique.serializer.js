@@ -1,4 +1,3 @@
-const likeService = require('../like/like.service');
 const userService = require('../user/user.service');
 
 class AntiqueSerializer {
@@ -15,28 +14,8 @@ class AntiqueSerializer {
       return Object.assign(
         {},
         antique,
-        await this.getOwnerRelations({ owner_id }),
-        await this.getLikesUserAndAvatar({ antique }),
-        await this.getLikesCount({ antique })
+        await this.getOwnerRelations({ owner_id })
       );
-    } catch (err) {
-      console.error(err);
-    }
-  }
-  async getLikesCount ({ antique }) {
-    try {
-      const { id :antique_id } = antique;
-      const likeCount = await likeService.getLikesCountByAntiqueId({ antique_id });
-      return { likeCount };
-    } catch (err) {
-      console.error(err);
-    }
-  }
-  async getLikesUserAndAvatar ({ antique }) {
-    try {
-      const user_ids = antique.likes.map(likes => likes.user_id);
-      const likes = await userService.getUsersByIds(user_ids);
-      return { likes };
     } catch (err) {
       console.error(err);
     }
