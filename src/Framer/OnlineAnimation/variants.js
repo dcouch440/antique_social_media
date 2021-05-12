@@ -13,7 +13,7 @@ export const loadingContainerVariants = {
 
 export const loadingCircleVariants = {
   start: {
-    y: '45%',
+    y: '55%',
   },
   end: {
     y: '80%',
@@ -22,6 +22,7 @@ export const loadingCircleVariants = {
 
 export const loadingCircleTransition = {
   duration: 0.5,
-  yoyo: Infinity,
+  repeat: Infinity,
+  repeatType: "mirror",
   ease: 'easeInOut',
 };

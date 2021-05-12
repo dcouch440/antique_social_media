@@ -44,7 +44,7 @@ export default function Emoji ({ handleClick, show }) {
       });
     }
   };
-  const emojiMapper = emojis => emojis.map((emoji, key) => <div key={key} onClick={e => handleClick(emoji, e)} className='emoji'>{emoji}</div>);
+  const emojiMapper = emojis => emojis.map((emoji, key) => <div key={emoji} onClick={e => handleClick(emoji, e)} className='emoji'>{emoji}</div>);
   const toggleDisplay = show ? 'initial' : 'none';
 
   return (
