@@ -1,8 +1,15 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import {
-  TextArea, TitleInput, FormData, YearInput,
-  TitleYear, LabelsTitleYear, NameInput, Button
+  TextArea,
+  TitleInput,
+  FormData,
+  YearInput,
+  TitleYear,
+  LabelsTitleYear,
+  NameInput,
+  Button,
+  Header
 } from './styles';
 
 export default function Form ({ onSubmit }) {
@@ -23,47 +30,51 @@ export default function Form ({ onSubmit }) {
   };
 
   return (
-    <FormData autoComplete='off' onSubmit={handleSubmit}>
+    <>
+      <Header>
+        Post
+      </Header>
+      <FormData autoComplete='off' onSubmit={handleSubmit}>
+        <LabelsTitleYear>
+          <div>Title</div>
+          <div>Year</div>
+        </LabelsTitleYear>
 
-      <LabelsTitleYear>
-        <div>Title</div>
-        <div>Year</div>
-      </LabelsTitleYear>
+        <TitleYear>
+          <TitleInput
+            required
+            onChange={handleChange}
+            autoComplete='off'
+            name='title'
+          />
 
-      <TitleYear>
-        <TitleInput
+          <YearInput
+            required
+            onChange={handleChange}
+            autoComplete='off'
+            name='year'
+          />
+        </TitleYear>
+
+        <div>Name of Antique</div>
+        <NameInput
           required
           onChange={handleChange}
           autoComplete='off'
-          name='title'
+          name='name'
         />
 
-        <YearInput
+        <div>Tell us about this antique..</div>
+        <TextArea
           required
           onChange={handleChange}
           autoComplete='off'
-          name='year'
+          name='body'
         />
-      </TitleYear>
 
-      <div>Name of Antique</div>
-      <NameInput
-        required
-        onChange={handleChange}
-        autoComplete='off'
-        name='name'
-      />
-
-      <div>Tell us about this antique..</div>
-      <TextArea
-        required
-        onChange={handleChange}
-        autoComplete='off'
-        name='body'
-      />
-
-      <Button>Submit</Button>
-    </FormData>
+        <Button>Submit</Button>
+      </FormData>
+    </>
   );
 }
 Form.propTypes = {

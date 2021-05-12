@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import * as include from '../../../styled-mixens';
 
 export const Online = styled.div`
   position: absolute;
@@ -11,6 +12,8 @@ export const Online = styled.div`
 
 export const AboutMe = styled.div`
   font-family: monospace;
+  color: white;
+  ${include.textInteraction}
 `;
 
 export const AvatarContainer = styled.div`
@@ -20,7 +23,7 @@ export const AvatarContainer = styled.div`
   align-items: flex-end;
   flex: 1;
   padding: 5px 10px;
-  border-bottom: 2px solid black;
+  border-bottom: 1px solid white;
 `;
 
 export const Avatar = styled.img`

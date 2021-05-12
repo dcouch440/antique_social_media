@@ -20,7 +20,6 @@ export default function Rooms ({ setRoomId }) {
     if (!currentUser.id) {
       return;
     }
-
     socketRef.current.emit(SHOW_ROOM_USER_COUNT, { currentUser });
 
   }, [currentUser, socketRef]);

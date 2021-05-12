@@ -14,7 +14,7 @@ export const MagnaGlass = styled.span`
   width: 0.4em;
   box-sizing: content-box;
   height: 0.4em;
-  border: 0.1em solid black;
+  border: 0.1em solid white;
   border-radius: 0.35em;
   margin: 13px;
     &:before {
@@ -24,7 +24,7 @@ export const MagnaGlass = styled.span`
       right: -0.25em;
       bottom: -0.1em;
       border-width: 0;
-      background: black;
+      background: white;
       width: 0.35em;
       height: 0.08em;
       transform: rotate(45deg);

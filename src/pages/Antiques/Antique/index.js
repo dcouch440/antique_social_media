@@ -1,5 +1,5 @@
 import { AntiqueContainer, Image, AntiqueOverlay, OverlayText } from './styles';
-import Liked from '../Liked';
+import Liked from '../../../components/Liked';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -11,7 +11,6 @@ export default function Antique ({ antique, lazyRef, index }) {
   };
 
   const [image] = antique.images;
-
   return (
     <AntiqueContainer
       onClick={() => handleClick(antique.id)}

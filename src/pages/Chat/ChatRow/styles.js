@@ -2,15 +2,15 @@ import styled from 'styled-components';
 
 export const Rows = styled.div`
   width: 100%;
-  height: calc(80% - 59px);
+  height: 80%;
   background-color: #141414;
   display: flex;
   flex-direction: column;
-  position: fixed;
+  position: absolute;
   overflow-x: hidden;
   overflow-y: auto;
   @media (max-height: 900px) {
-    height: calc(75% - 59px);
+    height: 75%;
   }
 `;
 

@@ -8,6 +8,7 @@ import PageTransition from '../../Framer/PageTransition';
 import Users from './OnlineUserSidebar';
 import { MESSAGE } from '../../constant/index';
 
+
 export default function Chat ({ roomId }) {
   const [refresh, setRefresh] = useState(true);
   const { messages, users, socketRef } = Socket(roomId);
@@ -23,12 +24,13 @@ export default function Chat ({ roomId }) {
     return () => clearTimeout(refresher);
   }, [refresh, messages]);
 
+
   return (
     <PageTransition attr={{ direction: 'bottom' }}>
       <Users users={users} />
       <ChatWindow>
-        <ChatInput sendMessage={sendMessage} />
         <ChatRows messages={messages} socketRef={socketRef} users={users} />
+        <ChatInput sendMessage={sendMessage} />
       </ChatWindow>
     </PageTransition>
   );

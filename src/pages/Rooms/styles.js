@@ -3,14 +3,18 @@ import * as include from '../../styled-mixens';
 
 export const RoomsContainer = styled.div`
   ${include.screenAdapt}
+  ${include.darkBackgroundColor}
   margin: 0 auto;
   height: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 6px;
   grid-auto-rows: 180px;
-  background-color: #171717;
   overflow-y: auto;
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;
 `;
 
 export const RoomHeaders = styled.div`

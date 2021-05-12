@@ -3,7 +3,11 @@ import { useState, useEffect, useRef, useContext } from 'react';
 import axios from 'axios';
 import { Context } from '../../Context';
 import { Form, SignUpTitle } from './styles';
-import { StyledInput, DropDownButtonContainer, DropDownButton } from '../styled';
+import {
+  StyledInput,
+  DropDownButtonContainer,
+  DropDownButton
+} from '../styled';
 
 
 export default function SignUp ({ toggle }) {

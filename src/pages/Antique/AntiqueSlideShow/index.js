@@ -3,7 +3,7 @@ import { useEffect, useState, useRef, useCallback } from 'react';
 import { variants } from './variants';
 import { wrap } from 'popmotion';
 import { AnimatePresence, motion } from 'framer-motion';
-import * as styles from './styles';
+import { SlideShow } from './styles';
 
 export default function AntiquesSlideShow ({ antiqueImages }) {
   const [[page, direction], setPage] = useState([0, 0]);
@@ -47,7 +47,7 @@ export default function AntiquesSlideShow ({ antiqueImages }) {
   const handleMouseLeave = () => isTapped.current = false;
 
   return (
-    <styles.SlideShow>
+    <SlideShow>
       <AnimatePresence initial={true} custom={direction}>
         <motion.img
           key={page}
@@ -80,7 +80,7 @@ export default function AntiquesSlideShow ({ antiqueImages }) {
       <div className="prev" onClick={() => paginate(-1)}>
         {'‣'}
       </div>
-    </styles.SlideShow>
+    </SlideShow>
   );
 }
 

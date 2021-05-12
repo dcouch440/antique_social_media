@@ -9,6 +9,8 @@ export const AntiqueContainer = styled.div`
     const { height, width } = dimensions;
     return width > height ? 'span 2' : 'span 4';
   })};
+  border: 1px solid #ffffff63;
+  box-shadow: 0 0 0 1px #ffffff63;
   grid-column: span 1;
   img {
     width: 100%;

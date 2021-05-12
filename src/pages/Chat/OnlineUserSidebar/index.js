@@ -1,5 +1,9 @@
-import { Username, Avatar, UserContainer, AvatarContainer } from './styles';
-
+import {
+  Username,
+  Avatar,
+  UserContainer,
+  AvatarContainer
+} from './styles';
 
 export default function Users ({ users }) {
   const mappedUsers = users.map(user => {

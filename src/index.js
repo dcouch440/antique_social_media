@@ -4,7 +4,6 @@ import App from './App';
 import './fonts.css';
 import { BrowserRouter } from 'react-router-dom';
 import { ContextProvider as Provider } from './Context';
-import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <BrowserRouter>
@@ -14,8 +13,3 @@ ReactDOM.render(
   </BrowserRouter>,
   document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

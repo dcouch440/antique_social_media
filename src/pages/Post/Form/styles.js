@@ -1,6 +1,16 @@
 import styled from 'styled-components';
 import * as include from '../../../styled-mixens';
 
+export const Header = styled.div`
+  ${include.darkBackgroundColor}
+  ${include.maxCenter}
+  ${include.cursiveFont}
+  box-shadow: inset 0 0 1px #c8c8c82b;
+  color: whitesmoke;
+  height: 15%;
+  font-size: 76px;
+`;
+
 export const FormData = styled.form`
   ${include.cursiveFont}
   text-shadow: 1px 3px 1px black;
@@ -9,7 +19,7 @@ export const FormData = styled.form`
   flex-direction: column;
   justify-content: flex-end;
   padding: 30px;
-  height: 100%;
+  height: 85%;
   letter-spacing: 5px;
   font-weight: bold;
   color: white;

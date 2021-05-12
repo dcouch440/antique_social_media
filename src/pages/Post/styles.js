@@ -15,6 +15,7 @@ export const Page = styled.div`
 export const PreviewImage = styled.img`
   max-width: 98%;
   min-width: 70%;
+  box-shadow: inset 0 0 3px #c8c8c82b;
   height: auto;
   max-height: 90%;
   object-fit: cover;
@@ -58,5 +59,5 @@ export const ImagePreview = styled.div`
 
 export const FormContainer = styled.div`
   flex: 1;
-  background-color: #484848a6;
+  background-color: #333333;
 `;

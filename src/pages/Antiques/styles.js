@@ -3,8 +3,10 @@ import * as include from '../../styled-mixens';
 
 export const Grid = styled.div`
   ${include.screenAdapt};
+  ${include.darkBackgroundColor}
+  padding: 7px;
   display: grid;
-  grid-gap: 5px;
+  grid-gap: 7px;
   margin: 0 auto;
   grid-auto-flow: dense;
   grid-template-columns: repeat(${({ columns }) => columns},  1fr);
@@ -15,16 +17,21 @@ export const Grid = styled.div`
 
 export const Header = styled.div`
   ${include.screenAdapt};
+  ${include.darkBackgroundColor}
+  color: whitesmoke;
   font-family: 'Pacifico', cursive;
   text-shadow: -1px -2px 1px black;
-  height: 70px;
-  text-align: center;
-  font-size: 40px;
-  margin: 5px auto;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 76px;
+  margin: 0 auto;
 `;
 
 export const PageContainer = styled.div`
+  ${include.noInteraction}
   width: inherit;
   height: inherit;
-  position: relative;
+  position: relative
 `;

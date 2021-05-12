@@ -1,60 +1,55 @@
-import PropTypes from 'prop-types';
-import { useEffect, useRef, useState } from 'react';
-import { Page } from './styles';
-import Loading from '../../Framer/LoadingModules/Loading';
-import AntiqueInfo from './AntiqueInfo';
-import { useHistory, useParams } from 'react-router-dom';
-import PageTransition from '../../Framer/PageTransition';
-import GoBackButton from '../../components/GoBackButton';
-import axios from 'axios';
-import loadingSequence from '../../utils/loadingSequence';
+import AntiquesSlideShow from './AntiqueSlideShow';
+import User from './User';
+import { PropTypes } from 'prop-types';
+import { LikedComponentContainer, About, Page, Tag, Blog, StartChatting, SlideShowSide } from './styles';
+import AntiqueLikes from './AntiqueLikes';
+import Liked from '../../components/Liked';
+import { useState } from 'react';
 
-export default function AntiquePage ({ setRoomId }) {
-  const { id } = useParams();
-  const history = useHistory();
-  const [loading, setLoading] = useState(true);
-  const [antique, setAntique] = useState({});
-  const directionRef = useRef('right');
-  const sequence = useRef(false);
-
-  const handleClick = () => history.goBack();
-
-  const handleRoomChange = () => {
-    console.log('setting room id', id);
-    setRoomId(id);
-    directionRef.current = 'top';
-    history.push('/chat');
-  };
-
-  useEffect(() => {
-
-    axios.get(`/antiques/${id}`, { withCredentials: true })
-      .then(res => {
-        setAntique(res.data);
-        loadingSequence({ condition: setLoading, ref: sequence, timeBeforeCheck: 1500 });
-      })
-      .catch(err => console.error(err));
-
-  }, [id, setAntique, setLoading]);
+export default function AntiqueInfo ({ antique, setRoom }) {
+  const { year, name, antique_owner, images, body, id } = antique;
+  const [likesChange, setLikesChange] = useState(0);
 
   return (
-    <PageTransition attr={{ direction: directionRef.current, exitTime: 2 }}>
-      <Page>
-        <GoBackButton handleClick={handleClick} text={'Back  ▶'} />
-        <Loading
-          loadingState={loading}
-          version="MagnaGlass"
-          afterLoad={
-            <AntiqueInfo
-              setRoom={handleRoomChange}
-              antique={antique}
-            />
-          }
-        />
-      </Page>
-    </PageTransition>
+    <Page>
+      <SlideShowSide>
+        <LikedComponentContainer>
+          <Liked onLikesChange={setLikesChange} antiqueId={id} />
+        </LikedComponentContainer>
+        <AntiquesSlideShow antiqueImages={images} />
+      </SlideShowSide>
+      <About>
+        <StartChatting onClick={setRoom}>
+          Start Chatting ?
+        </StartChatting>
+        <User ownerInfo={antique_owner}/>
+        <AntiqueLikes antiqueId={id} likesChange={likesChange} />
+        <Blog>
+          <div>
+            <Tag>Name: </Tag>{name}
+          </div>
+          <div>
+            <Tag>Year: </Tag>{year}
+          </div>
+          <div>
+            <div>
+              <Tag>A Bit About This Item: </Tag>
+            </div>
+            {body}
+          </div>
+        </Blog>
+      </About>
+    </Page>
   );
 }
-AntiquePage.propTypes = {
-  setRoomId: PropTypes.func
+
+AntiqueInfo.propTypes = {
+  antique: PropTypes.shape({
+    antique_owner: PropTypes.object,
+    body: PropTypes.string,
+    images: PropTypes.array,
+    name: PropTypes.string,
+    year: PropTypes.number
+  }),
+  setRoom: PropTypes.any
 };

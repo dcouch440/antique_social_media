@@ -1,11 +1,14 @@
 import PropTypes from 'prop-types';
 import capitalize from '../../../utils/capitalize';
-import { RoomId, Users, Room, TextContainer } from './styles';
+import {
+  RoomId,
+  Users,
+  Room,
+  TextContainer
+} from './styles';
 
 export default function StaticRooms ({ handleClick, rooms }) {
-
-  const mappedRooms = rooms.map(data => {
-
+  return rooms.map(data => {
     return (
       <Room backgroundImg={data.image_url}>
         <TextContainer onClick={() => handleClick(data.roomId)}>
@@ -19,12 +22,6 @@ export default function StaticRooms ({ handleClick, rooms }) {
       </Room>
     );
   });
-
-  return (
-    <>
-      {mappedRooms}
-    </>
-  );
 }
 StaticRooms.propTypes = {
   handleClick: PropTypes.func,

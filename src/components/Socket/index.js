@@ -61,7 +61,6 @@ export default function Socket (roomId) {
       return;
     }
 
-
     socketRef.current.on(SHOW_ROOM_USER_COUNT, data => {
       setRoomData(data);
     });

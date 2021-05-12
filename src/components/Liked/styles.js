@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Check = styled.div`
+  z-index: 2;
   cursor: pointer;
   width: 39px;
   height: 37px;

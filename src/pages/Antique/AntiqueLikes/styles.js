@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import * as include from '../../../styled-mixens';
 
 export const Like = styled.div`
   display: flex;
@@ -20,14 +21,23 @@ export const AntLikes = styled.div`
   background-color: #2020204a;
   border-radius: 3px;
   display: flex;
-  overflow: auto;
+  align-items: center;
   max-width: 100%;
-  max-height: 37px;
+  max-height: 40px;
   margin: 10px 0;
-  padding: 7px 15px;;
+  padding: 7px 15px;
   flex-wrap: wrap;
 `;
 export const NoLikes = styled.div`
   font-family: monospace;
   font-size: 14px;
+`;
+export const LikesCount = styled.span`
+  ${include.cursiveFont}
+  font-size: 14px;
+  margin: 0 10px;
+  color: white;
+  .number {
+    font-size: 18px;
+  }
 `;

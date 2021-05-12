@@ -61,6 +61,8 @@ export const Name = styled.div`
 
 export const NoRooms = styled.div`
   ${include.cursiveFont};
+  grid-column: span 2;
+  grid-row: span 2;
   display: flex;
   align-items: center;
   justify-content: center;

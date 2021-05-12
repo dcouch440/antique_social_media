@@ -11,7 +11,10 @@ export default function Likes () {
   useEffect(() => {
     axios
       .get('/likes', { withCredentials: true })
-      .then(res => setAntiques(res.data))
+      .then(res => {
+ console.log(res);
+        setAntiques(res.data);
+})
       .catch(err => console.log(err));
   }, []);
 

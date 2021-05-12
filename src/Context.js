@@ -9,8 +9,6 @@ function ContextProvider (props) {
     id: undefined, username: undefined, email: undefined
   });
 
-  const [inTransition, setInTransition] = useState(false);
-
   OnlineStatus({ currentUser });
 
   useEffect(() => {
@@ -24,8 +22,6 @@ function ContextProvider (props) {
 
   return (
     <Context.Provider value={{
-      inTransition,
-      setInTransition,
       currentUser,
       setCurrentUser
     }}>

@@ -4,13 +4,12 @@ export const SlideShow = styled.div`
 
   /* CONTAINER */
   width: 100%;
-  height: 100%;
   position: relative;
-  grid-row: span 2;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #151515de;
+  background: #ffffff0d;
   overflow: hidden;
   padding: 0;
   margin: 0;

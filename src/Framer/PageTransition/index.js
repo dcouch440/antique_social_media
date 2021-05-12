@@ -5,19 +5,6 @@ import PropTypes from 'prop-types';
 
 
 export default function PageTransition ({ attr, transitionTime, exitTime, ...props }) {
-  // const { setInTransition } = useContext(Context);
-
-  // unused currently
-  // useEffect(() => {
-
-  //   const transitioning = setTimeout(() => {
-  //     setInTransition(false);
-  //   }, (transitionTime * 1000));
-
-  //   return () => clearTimeout(transitioning);
-
-  // }, [setInTransition, transitionTime]);
-
 
   return (
     <Container as={motion.div}

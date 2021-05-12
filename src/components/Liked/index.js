@@ -1,25 +1,26 @@
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { Context } from '../../../Context';
+import { Context } from '../../Context';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import likedVariants from './variants';
 import { Check } from './styles';
 import { motion } from 'framer-motion';
 
-export default function Liked ({ antiqueId }) {
+export default function Liked ({ antiqueId, onLikesChange }) {
   const [liked, setLiked] = useState(false);
   const { currentUser } = useContext(Context);
   const display = liked ? 'F' : 'add';
   const loading = useRef(false);
 
   useEffect(() => {
-
     axios
       .get(
         `/likes/${antiqueId}`, {},
         { withCredentials: true }
       )
-      .then(res => res.status === 200 && setLiked(res.data.isLiked))
+      .then(res => {
+        res.status === 200 && setLiked(res.data.isLiked);
+      })
       .catch(err => console.log(err));
 
   }, [antiqueId, currentUser]);
@@ -38,7 +39,10 @@ export default function Liked ({ antiqueId }) {
       )
       .then(res => {
         loading.current = false;
-        res.status === 201 && setLiked(true);
+        if (res.status === 201) {
+          setLiked(true);
+          onLikesChange && onLikesChange(prev => prev += 1);
+        }
       })
       .catch(err => console.log(err));
 
@@ -49,7 +53,10 @@ export default function Liked ({ antiqueId }) {
       )
       .then(res => {
         loading.current = false;
-        res.status === 204 && setLiked(false);
+        if (res.status === 204) {
+          setLiked(false);
+          onLikesChange && onLikesChange(prev => prev += 1);
+        }
       })
       .catch(err => console.log(err));
   };
@@ -71,6 +78,14 @@ export default function Liked ({ antiqueId }) {
   );
 }
 
+Liked.defaultProps = {
+  onLikesChange: false
+};
+
 Liked.propTypes = {
-  antiqueId: PropTypes.number
+  antiqueId: PropTypes.number,
+  onLikesChange: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.func,
+  ]),
 };

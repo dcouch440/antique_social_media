@@ -19,6 +19,19 @@ export const screenAdapt = `
   }
 `;
 
+export const noInteraction = `
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;
+`;
+export const textInteraction = `
+  -webkit-user-select: text;  /* Chrome all / Safari all */
+  -moz-user-select: text;     /* Firefox all */
+  -ms-user-select: text;      /* IE 10+ */
+  user-select: text;
+`;
+
 export const maxContainer = `
   width: 100%;
   height: 100%;
@@ -66,6 +79,10 @@ export const DropdownButtonStyle = `
   font-family: 'Pacifico', cursive;
   color: black;
   font-weight: bold;
+`;
+
+export const darkBackgroundColor = `
+  background-color: #171717f7;
 `;
 
 export const DropdownInputStyle = `

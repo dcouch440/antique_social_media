@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
-import { AntiqueRow, Image, About } from './styles';
 import moment from 'moment';
 import { useHistory } from 'react-router';
+import { AntiqueRow, Image, About } from './styles';
 
 export default function Antique ({ antique }) {
   const history = useHistory();

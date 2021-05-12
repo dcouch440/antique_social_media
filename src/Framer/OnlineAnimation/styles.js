@@ -15,7 +15,6 @@ height: 6px;
 position: absolute;
 right: 60px;
 bottom: 10px;
-box-shadow: 0 0 3px green, 0 1px 6px white ;
 border-radius: 50%;
 color: green;
 background-color: green;

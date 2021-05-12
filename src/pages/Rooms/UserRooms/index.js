@@ -1,11 +1,14 @@
 import PropTypes from 'prop-types';
-import { Users, Room, AntiqueImage, NoRooms } from './styles';
+import {
+  Users,
+  Room,
+  AntiqueImage,
+  NoRooms
+} from './styles';
 
 export default function ActiveUserRooms ({ handleClick, rooms }) {
 
-  const repeat = Array(15).fill().map(data => rooms).flat();
-
-  const mappedRooms =  repeat.map(data => {
+  const mappedRooms =  rooms.map(data => {
     const [image] = data.images;
     return (
       <Room onClick={() => handleClick(data.roomId)}>

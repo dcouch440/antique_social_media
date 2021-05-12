@@ -4,8 +4,13 @@ import { useHistory } from 'react-router';
 import PageTransition from '../../Framer/PageTransition';
 import Form from './Form';
 import {
-  Page, ImagePreview, FormContainer, NoImage,
-  NoImageCaption, ImageInput, PreviewImage
+  Page,
+  ImagePreview,
+  FormContainer,
+  NoImage,
+  NoImageCaption,
+  ImageInput,
+  PreviewImage
 } from './styles';
 
 export default function Post () {
