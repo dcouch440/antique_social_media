@@ -7,6 +7,7 @@
     "gen-image-array": "npx node ./db/seeds/utils/image-directory-mapper.js",
     "make-migration": "npx knex migrate:make init --migrations-directory ./db/migrations",
     "dev": "nodemon index.js",
+    "start": "node index.js",
     "seed": "npx knex seed:run --knexfile ./knexfile.js",
     "make-seed": "npx knex seed:make new-seed --knexfile ./knexfile.js",
     "migrate": "npx knex migrate:latest --knexfile ./knexfile.js",
