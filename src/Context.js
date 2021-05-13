@@ -12,7 +12,6 @@ function ContextProvider (props) {
   axios.defaults.baseURL = 'http://localhost:8080';
 
   OnlineStatus({ currentUser });
-  console.log(currentUser);
   useEffect(() => {
 
     axios
