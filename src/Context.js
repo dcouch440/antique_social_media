@@ -9,8 +9,6 @@ function ContextProvider (props) {
     id: undefined, username: undefined, email: undefined, admin: false
   });
 
-  axios.defaults.baseURL = 'http://localhost:8080';
-
   OnlineStatus({ currentUser });
   useEffect(() => {
 

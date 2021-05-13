@@ -1,12 +1,12 @@
+import { useEffect, useRef } from 'react';
+import { useHistory } from 'react-router';
 import PropTypes from 'prop-types';
+import { variants } from './variants';
+import moment from 'moment';
 import { motion } from 'framer-motion';
 import {
   Row, Rows, Avatar, Username, Message, MessageContainer, Time, GoBack
 } from './styles';
-import { variants } from './variants';
-import moment from 'moment';
-import { useEffect, useRef } from 'react';
-import { useHistory } from 'react-router';
 
 export default function ChatRows ({ messages, socketRef }) {
   const history = useHistory();

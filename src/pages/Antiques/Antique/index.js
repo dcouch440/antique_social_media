@@ -9,11 +9,12 @@ import 'render-smooth-image-react/build/style.css';
 
 export default function Antique ({ antique, lazyRef, index }) {
   const history = useHistory();
+  const [image] = antique.images;
 
   const handleClick = id => {
     history.push(`/antiques/${id}`);
   };
-  const [image] = antique.images;
+
   return (
     <AntiqueContainer
       onClick={() => handleClick(antique.id)}

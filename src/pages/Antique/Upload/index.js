@@ -31,7 +31,7 @@ export default function Upload ({ antique, afterUpload, setPreviewSource, setMes
     if (antique.user_id !== currentUser.id) {
       return;
     }
-   setMessage('Uploading, one moment please...');
+    setMessage('Uploading, one moment please...');
     const reader = new FileReader();
     reader.readAsDataURL(selectedFile);
     reader.onloadend = () => {

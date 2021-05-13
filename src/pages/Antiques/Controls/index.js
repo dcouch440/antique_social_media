@@ -25,6 +25,7 @@ export default function Controls ({ setSlider, count }) {
     </ControlsPanel>
   );
 }
+
 Controls.propTypes = {
   count: PropTypes.number,
   setSlider: PropTypes.func
