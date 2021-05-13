@@ -21,7 +21,7 @@ const {
 
 const io = require('socket.io')(socket, {
   cors: {
-    origin: 'localhost:4001',
+    origin: 'http://localhost:3000',
     methods: ['GET', 'POST'],
     credentials: true
   }
