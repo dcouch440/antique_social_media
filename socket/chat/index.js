@@ -21,7 +21,7 @@ const {
 
 const io = require('socket.io')(socket, {
   cors: {
-    origin: 'https://glacial-headland-56976.herokuapp.com/',
+    origin: 'localhost:4001',
     methods: ['GET', 'POST'],
     credentials: true
   }
