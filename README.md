@@ -19,6 +19,7 @@
   - Page for users to see how many people are talking in their chat rooms
   - endless scroll loading intersection observer
   - Likes page (work in progress)
+  - Posts page (work in progress)
   - Picture upload through cloudinary
   - HTTP Only session call on startup through Context
 
@@ -33,6 +34,16 @@
 ## `Dev Depends`
 - faker `5.5.3`
 
+
+# `PREVIEW`
+
+<img src='src/img/README/antique-home.PNG' alt='antique'>
+<img src='src/img/README/antique-upload.PNG' alt='antique'>
+<img src='src/img/README/antique-uploaded.PNG' alt='antique'>
+<img src='src/img/README/antique-new-upload.PNG' alt='antique'>
+<img src='src/img/README/antique-likes.PNG' alt='antique'>
+<img src='src/img/README/antique-rooms.PNG' alt='antique'>
+<img src='src/img/README/antique-chat.PNG' alt='antique'>
 
 The Link Provided below can be found at (https://github.com/dcouch440/antique-frontend) after Clicking the green button
 
