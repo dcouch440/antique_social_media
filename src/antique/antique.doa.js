@@ -7,8 +7,7 @@ class AntiqueDAO {
   }
   find (id) {
     return Antique.query()
-      .findById(id)
-      .withGraphFetched('images');
+      .findById(id);
   }
   getLikes (id) {
     return Antique.query()
@@ -40,6 +39,11 @@ class AntiqueDAO {
   showUniques ({ category }) {
     return Antique.query()
       .distinct(category, 'id');
+  }
+  findByUserId (user_id) {
+    return Antique.query()
+      .where('user_id', user_id)
+      .withGraphFetched('images');
   }
 }
 

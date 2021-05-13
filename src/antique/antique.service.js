@@ -4,7 +4,8 @@ const { antiqueParams, queryParams } = require('./antique.params');
 const { objLength, parseObjectInts } = require('../../lib/utils');
 const imageService = require('../image/image.service');
 const likeService = require('../like/like.service');
-const userService = require('../user/user.service');
+const userDAO = require('../user/user.doa');
+const attachAvatarIfNotPresent = require('../../lib/attach-avatar-if-not-present');
 
 class AntiqueService {
   all () {
@@ -43,7 +44,7 @@ class AntiqueService {
   queryCategory ({ category }) {
     return antiqueDAO.showUniques({ category });
   }
-  async findManyById (id) {
+  async findMany (id) {
     try {
       return antiqueDAO.findManyById(id);
     } catch (err) {
@@ -58,11 +59,25 @@ class AntiqueService {
     }
   }
   async antiquesWithLikes (id) {
+    // currently users.service is coming back undefined,
+    // might be an importing bug,
+    // for now logic will be within this block
     const antiqueLikes = await likeService.getLikesByAntiqueId(id);
     const user_ids = antiqueLikes.map(like => like.user_id);
-    const likes = await userService.getUsersByIds(user_ids);
+    const users = await userDAO.getUsersByIds(user_ids);
+
+    const usersWithAvatars = users.map(user => {
+      return {
+        username: user.username,
+        avatar: attachAvatarIfNotPresent(user.avatar)
+      };
+    });
     const count = await likeService.getLikesCountByAntiqueId(id);
+    const likes = usersWithAvatars;
     return { likes, count };
+  }
+  async getAntiquesByUserId (user_id) {
+    return await antiqueDAO.findByUserId(user_id);
   }
 }
 
