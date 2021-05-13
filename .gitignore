@@ -1,6 +1,6 @@
 *.css
 # See https://help.github.com/ignore-files/ for more about ignoring files.
-
+/db/seeds/image-map-folder
 # dependencies
 /node_modules
 
@@ -9,6 +9,7 @@
 
 # production
 /build
+
 
 # misc
 .env
