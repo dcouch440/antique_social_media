@@ -1,6 +1,7 @@
 const addToTable = require('./utils/add-to-table');
 const imageService = require('../../src/image/image.service');
-const imageArray = require('./utils/mapped-image-data');
+const devImageArray = require('./utils/mapped-image-data');
+const testImageArray = require('./utils/test-mapped-image-data');
 const { randomUser, randomAntique, staticUser } = require('../../lib/seed-data');
 const { cleanupAvatarImages, cleanupAntiqueImages } = require('./utils/cleanup-cloudinary-images');
 const avatarService = require('../../src/avatar/avatar.service');
@@ -15,12 +16,13 @@ exports.seed = async knex => {
     await cleanupAntiqueImages(knex);
     await cleanupAvatarImages(knex);
     await truncateTables(knex);
-
     const ENV = process.env.NODE_ENV;
+    const imageArray = ENV === 'test' ? testImageArray : devImageArray;
     const amountOfImageFolders = imageArray.length;
 
     // static user for testing routes
     const staticUserHash = await hashPassword(staticUser());
+
     const static_user_id = await addToTable({
       table: 'user', obj: staticUserHash
     });

@@ -13,16 +13,27 @@ const getCurrentUser = async (req, res, next) => {
     const {
       id :userBodyId,
       username :username,
-      email :email
+      email :email,
+      admin
     } = decryptedUser;
 
-    const user = { user_id: userBodyId, username, email };
+    const user = {
+      user_id: userBodyId,
+      username,
+      email,
+      admin
+    };
     Object.freeze(user);
     req.currentUser = user;
     next();
 
   } catch {
-    const noUser = { user_id: undefined, username: undefined, email: undefined };
+    const noUser = {
+      user_id: undefined,
+      username: undefined,
+      email: undefined,
+      admin: false
+    };
     Object.freeze(noUser);
     req.currentUser = noUser;
     next();

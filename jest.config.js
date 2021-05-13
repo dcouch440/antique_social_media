@@ -1,8 +1,6 @@
 module.exports = {
   verbose: true,
-  projects: [
-    {
-      testEnvironment: '<rootDir>/environment.js',
-    }
-  ]
+  globalSetup: './test-setup/setup-test.js',
+  globalTeardown: './test-setup/teardown-test.js',
+  testEnvironment: 'node',
 };

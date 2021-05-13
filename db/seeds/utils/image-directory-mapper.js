@@ -8,7 +8,7 @@ const folderExtension = source + '/';
 const imageFileDirectoryMapper = new Promise(resolve => {
 
   return new Promise((resolve, reject) => {
-    fs.readdir('./db/seeds/image-map-folder', (err, folder) => {
+    fs.readdir(source, (err, folder) => {
       if (err) {
         reject(err);
       }

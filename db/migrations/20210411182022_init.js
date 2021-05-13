@@ -6,6 +6,10 @@ exports.up = async knex => {
       table.string('username')
         .notNullable()
         .unique();
+      table
+        .boolean('admin')
+        .notNullable()
+        .defaultTo(false);
       table.boolean('online').defaultTo(false);
       table.string('password_digest').notNullable();
       table.timestamps(true, true);

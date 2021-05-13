@@ -24,7 +24,8 @@ class UserService {
       const payload = {
         id: user.id,
         username: user.username,
-        email: user.email
+        email: user.email,
+        admin: user.admin
       };
 
       const token = await jwt.sign(payload);
@@ -56,7 +57,7 @@ class UserService {
       const createdUser = await userDAO.create(hashedPasswordUser);
       delete createdUser.password_digest;
 
-      const payload = { id: createdUser.id, username, email };
+      const payload = { id: createdUser.id, username, email, admin: false };
       const token = await jwt.sign(payload);
 
       res.cookie('token', token, {

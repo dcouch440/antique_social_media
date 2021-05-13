@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 require('./db');
 const cors = require('cors');
-const router = require('./src/router/index');
+const router = require('./src/router');
 const cookieParser = require('cookie-parser');
 const { notFound, handleError } = require('./middleware/exceptions');
 
