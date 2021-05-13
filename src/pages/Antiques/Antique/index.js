@@ -29,7 +29,6 @@ export default function Antique ({ antique, lazyRef, index }) {
         </OverlayText>
         <Liked antiqueId={antique.id}/>
       </AntiqueOverlay>
-
     </AntiqueContainer>
   );
 }

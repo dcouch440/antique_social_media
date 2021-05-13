@@ -1,7 +1,7 @@
 ## `Antique Social Media App Front End`
 
 #### Created By David Couch
-
+###### `Date Created May 7, 2021`
 # `About:`
 
   This Project is a Work in Progress
@@ -12,17 +12,20 @@
   #### Current Features
 
   - Framer Motion Slideshow and screen transitions
+  - conditional user online with animation
   - Socket servers for
     - User online status
     - Chat messages / rooms
   - Page for Global chat rooms
+  - Images grid size is assigned on image load for dynamic grids with respect to the original aspect ratio
   - Page for users to see how many people are talking in their chat rooms
-  - endless scroll loading intersection observer
-  - Likes page (work in progress)
-  - Posts page (work in progress)
+  - Endless scroll loading intersection observer (new pictures load as the user scrolls)
+  - Users can upload many images to their post and have a smooth slideshow to show them off
+  - Users can change the image grid size with a slider option
+  - Likes page (styling work in progress)
+  - Posts page (styling work in progress)
   - Picture upload through cloudinary
   - HTTP Only session call on startup through Context
-
 
 # `Tech Used`
 - axios
@@ -30,10 +33,16 @@
 - framer-motion `4.1.9`
 - react-router-dom `5.2.0`
 - styled-components `5.2.3`
-
+- render-smooth-image-react `1.0.3`
+- emojis-list `3.0.0`
+- rc-slider `9.7.2`
 ## `Dev Depends`
 - faker `5.5.3`
+- babel-eslint `10.1.0`
 
+
+## `To Come`
+- users can upload their avatars! Route is created, integration is needed.
 
 # `PREVIEW`
 
@@ -46,6 +55,11 @@
 <img src='src/img/README/antique-chat.PNG' alt='antique'>
 
 The Link Provided below can be found at (https://github.com/dcouch440/antique-frontend) after Clicking the green button
+
+Note if you plan to download this and install: A lot went into this project and it has many parts.
+Without the backend no pictures will be displayed.
+Until a reliable source is found to host this complex app it will remain in github form.
+Please see previews examples.
 
 * Step 1: Clone the project
 ```
