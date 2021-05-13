@@ -6,11 +6,11 @@ const Context = createContext();
 
 function ContextProvider (props) {
   const [currentUser, setCurrentUser] = useState({
-    id: undefined, username: undefined, email: undefined
+    id: undefined, username: undefined, email: undefined, admin: false
   });
 
   OnlineStatus({ currentUser });
-
+  console.log(currentUser);
   useEffect(() => {
 
     axios

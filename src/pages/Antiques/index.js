@@ -4,10 +4,10 @@ import ApiMapper from '../../components/ApiMapper';
 import PageTransition from '../../Framer/PageTransition';
 import Antique from './Antique';
 import Controls from './Controls';
-import useEverScroll from '../../hooks/useEverScroll';
+import EverScroll from '../../components/EverScroll';
 
 export default function AntiquesPage () {
-  const [bottomBoundaryRef, lazyRef, antiques] = useEverScroll(
+  const [bottomBoundaryRef, lazyRef, antiques] = EverScroll(
     { limit: 15, route: '/antiques' }
   );
   const [slider, setSlider] = useState(3);
@@ -19,8 +19,8 @@ export default function AntiquesPage () {
         <Header>Antiques</Header>
         <Grid columns={slider}>
           <ApiMapper callData={antiques} lazyRef={lazyRef} component={Antique} />
-          <div ref={bottomBoundaryRef} style={{ background: 'red', width: '200px', height: '500px' }}></div>
         </Grid>
+        <div ref={bottomBoundaryRef} style={{ background: '', width: '1px', height: '50px' }}></div>
       </PageContainer>
     </PageTransition>
   );

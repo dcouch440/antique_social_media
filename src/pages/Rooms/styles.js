@@ -18,16 +18,7 @@ export const RoomsContainer = styled.div`
 `;
 
 export const RoomHeaders = styled.div`
-  ${include.maxCenter}
-  ${include.cursiveFont}
-  position: relative;
-  grid-row: span 1;
-  grid-column: span 2;
-  font-size: 80px;
-  filter: grayscale(20%);
-  color: white;
-  box-shadow: inset 0 0 3px black;
-  background-position: center;
+  ${include.pageHeader}
 `;
 
 export const Toggle = styled.button`

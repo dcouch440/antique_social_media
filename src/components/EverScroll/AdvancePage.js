@@ -1,6 +1,7 @@
 import { useCallback, useEffect } from 'react';
 
 export default function AdvancePage ({ setPage, BBRef, lazyRef, data }) {
+  console.log('lol');
   const scrollObserver = useCallback(node => {
 
     new IntersectionObserver(entries => entries.forEach(en => {
@@ -18,7 +19,7 @@ export default function AdvancePage ({ setPage, BBRef, lazyRef, data }) {
     const intObs = new IntersectionObserver(entries => entries
       .forEach(en => {
         if (en.intersectionRatio > 0) {
-          let currentImg = en.target;
+          let currentImg = node.children[0].children[0];
           const newImgSrc = currentImg.src;
 
           if (!newImgSrc) {

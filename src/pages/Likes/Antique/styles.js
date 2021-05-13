@@ -6,19 +6,19 @@ export const AntiqueRow = styled.div`
 
 export const Image = styled.img`
   border: 1px solid black;
-  height: auto;
   object-fit: cover;
-  width: 300px;
+  width: 200px;
 `;
 
 export const About = styled.div`
-  color: black;
   font-family: 'Pacifico';
   box-shadow: inset 0px 1px 6px 0px #00000057;
   padding: 5px;
-  background-color: #c8c8c8;
+  font-size: 15px;
+  background-color: #292929;
+  color: white;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
 `;

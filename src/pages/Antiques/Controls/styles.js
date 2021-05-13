@@ -5,7 +5,8 @@ export const ControlsPanel = styled.div`
   z-index: 9990;
   height: 100px;
   border-radius: 5px;
-  background-color: #e0e0e0;
+  background-color: #171717;
+  color: white;
   border: 2px solid black;
   position: fixed;
   right: 5px;
@@ -50,13 +51,13 @@ export const SliderContainer = styled.div`
   }
   .rc-slider-handle {
     background-color: gray;
-    border: 2px solid black;
+    border: 2px solid white;
   }
 `;
 
 export const GridTitle = styled.div`
+  color: whitesmoke;
   font-size: 24px;
   text-align: center;
   font-family: Pacifico, cursive;
-  color: black;
 `;

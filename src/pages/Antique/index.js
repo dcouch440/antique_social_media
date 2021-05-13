@@ -1,22 +1,43 @@
-import AntiquesSlideShow from './AntiqueSlideShow';
-import User from './User';
+import { useState } from 'react';
 import { PropTypes } from 'prop-types';
-import { LikedComponentContainer, About, Page, Tag, Blog, StartChatting, SlideShowSide } from './styles';
+import User from './User';
+import AntiqueImages from './AntiqueImages';
 import AntiqueLikes from './AntiqueLikes';
 import Liked from '../../components/Liked';
-import { useState } from 'react';
+import UploadIfCurrentUser from './UploadIfCurrentUser';
+import DeleteImage from './DeleteAntique';
+import {
+  LikedComponentContainer,
+  About,
+  Page,
+  Tag,
+  Blog,
+  StartChatting,
+  SlideShowSide,
+} from './styles';
 
 export default function AntiqueInfo ({ antique, setRoom }) {
-  const { year, name, antique_owner, images, body, id } = antique;
+  const { year, name, antique_owner, body, id } = antique;
   const [likesChange, setLikesChange] = useState(0);
+  const [show, setShow] = useState(false);
+  const [newUpload, setNewUpload] = useState(false);
+  const handleModalShowChange = () => setShow(prev => !prev);
+
 
   return (
     <Page>
+      <DeleteImage antique={antique}/>
+      <UploadIfCurrentUser
+        setNewUpload={setNewUpload}
+        handleModalShowChange={handleModalShowChange}
+        show={show}
+        antique={antique}
+      />
       <SlideShowSide>
         <LikedComponentContainer>
           <Liked onLikesChange={setLikesChange} antiqueId={id} />
         </LikedComponentContainer>
-        <AntiquesSlideShow antiqueImages={images} />
+        <AntiqueImages newUpload={newUpload} setNewUpload={setNewUpload} antiqueId={id}/>
       </SlideShowSide>
       <About>
         <StartChatting onClick={setRoom}>

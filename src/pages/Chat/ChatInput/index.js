@@ -38,9 +38,6 @@ export default function ChatInput ({ sendMessage }) {
 
   const handleClick = (emoji, e) => {
     e.stopPropagation();
-    if (typeof e.target.value !== 'string') {
-      return;
-    }
     setMessage(prev => ({ message: prev.message + emoji }));
   };
 
@@ -51,8 +48,8 @@ export default function ChatInput ({ sendMessage }) {
 
   return (
     <ChatBox>
-        <EmojiContainer onClick={handleDisplayChange}>
-          <RelativeContainer>
+        <EmojiContainer>
+          <RelativeContainer onClick={handleDisplayChange}>
             Emoji
           </RelativeContainer>
           <Emoji show={show} handleClick={handleClick} />

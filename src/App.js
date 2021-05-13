@@ -9,6 +9,7 @@ import Navbar from './Navbar';
 import Post from './pages/Post';
 import Chat from './pages/Chat';
 import Rooms from './pages/Rooms';
+import Posts from './pages/Posts';
 
 export default function App () {
   const location = useLocation();
@@ -41,6 +42,7 @@ export default function App () {
           <Route exact path="/rooms">
             <Rooms setRoomId={setRoomId} />
           </Route>
+          <Route exact path="/posts" component={Posts} />
         </Switch>
       </AnimatePresence>
     </>

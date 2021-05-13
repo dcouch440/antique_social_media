@@ -17,6 +17,7 @@ export const Page = styled.div`
 export const About = styled.div`
   font-family: 'New Tegomin', serif;
   box-shadow: inset 0 0 4px #ffffff0d;
+  background-color: #0088ff03;
   color: black;
   height: 100%;
   width: 100%;
@@ -30,7 +31,7 @@ export const About = styled.div`
 export const Blog = styled.div`
   ${include.scrollBarStyles}
   ${include.textInteraction}
-  box-shadow: inset 0 0 4px #ffffff0d;
+  box-shadow: inset 0 0 4px #ffffff0d, 0 0 6px white;
   flex: 5;
   overflow-x: hidden;
   overflow-y: auto;
@@ -88,3 +89,4 @@ export const LikedComponentContainer = styled.div`
   height: 50px;
   color: red;
 `;
+

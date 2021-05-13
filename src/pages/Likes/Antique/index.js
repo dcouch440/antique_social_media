@@ -10,23 +10,17 @@ export default function Antique ({ antique }) {
   const handleClick = () => history.push(`/antiques/${antique.id}`);
 
   return (
-    <AntiqueRow>
-      <Image onClick={handleClick} src={image.image_url} alt={antique.name} />
+    <AntiqueRow onClick={handleClick}>
+      <Image src={image.image_url} alt={antique.name} />
       <About>
-        <div>
-          Name: {antique.name}
-        </div>
-        <div>
-          Title: {antique.title}
-        </div>
-        <div>
-          Posted: {moment(antique.created_at).fromNow()}
-        </div>
+        <div>Name: {antique.name}</div>
+        <div>Title: {antique.title}</div>
+        <div> Posted: {moment(antique.created_at).fromNow()}</div>
       </About>
     </AntiqueRow>
   );
-
 }
+
 Antique.propTypes = {
   antique: PropTypes.shape({
     created_at: PropTypes.string.isRequired,

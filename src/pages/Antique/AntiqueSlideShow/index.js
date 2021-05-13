@@ -5,11 +5,10 @@ import { wrap } from 'popmotion';
 import { AnimatePresence, motion } from 'framer-motion';
 import { SlideShow } from './styles';
 
-export default function AntiquesSlideShow ({ antiqueImages }) {
+export default function AntiquesSlideShow ({ antiqueImages, newUpload, setNewUpload }) {
   const [[page, direction], setPage] = useState([0, 0]);
   const [nextSlide, setNextSlide] = useState(0);
   const isTapped = useRef(false);
-
   // IMAGES LOAD IN HERE WITH IMAGES TAG >>> SET API CALL IN PROPS
   const imageIndex = wrap(0, antiqueImages.length, page);
 
@@ -21,6 +20,15 @@ export default function AntiquesSlideShow ({ antiqueImages }) {
   const paginate = useCallback(newDirection => {
     setPage([page + newDirection, newDirection]);
   }, [page, setPage]);
+
+  // change to last index once new image has been uploaded
+  useEffect(() => {
+      if (!newUpload) {
+        return;
+      }
+      setPage([antiqueImages.length, 1]);
+      setNewUpload(false);
+  }, [antiqueImages.length, newUpload, setNewUpload]);
 
   useEffect(() => {
     if (antiqueImages.length === 1) {

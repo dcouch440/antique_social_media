@@ -16,7 +16,7 @@ export const Username = styled.div`
   align-items: center;
   justify-content: center;
   padding: 5px;
-  font-size: 24px;
+  font-size: 20px;
   span {
     background-color: #000000bf;
     padding: 5px 10px;

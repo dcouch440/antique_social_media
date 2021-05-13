@@ -17,6 +17,7 @@ export default function AntiqueLikes ({ antiqueId, likesChange }) {
     axios
       .get(`/antiques/${antiqueId}/likes`, { withCredentials: true })
       .then(res => {
+        console.log(res);
         setCount(res.data.count);
         setLikes([...res.data.likes]);
       })

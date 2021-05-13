@@ -12,14 +12,13 @@ export const AntiqueContainer = styled.div`
   border: 1px solid #ffffff63;
   box-shadow: 0 0 0 1px #ffffff63;
   grid-column: span 1;
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
 `;
 
-export const Image = styled.img``;
+export const Image = styled.div`
+  > * {
+    height: 100%;
+  }
+`;
 
 export const AntiqueOverlay = styled.div`
   position: absolute;

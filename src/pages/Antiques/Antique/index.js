@@ -1,7 +1,11 @@
 import { AntiqueContainer, Image, AntiqueOverlay, OverlayText } from './styles';
+
 import Liked from '../../../components/Liked';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import React from 'react';
+import RenderSmoothImage from 'render-smooth-image-react';
+import 'render-smooth-image-react/build/style.css';
 
 export default function Antique ({ antique, lazyRef, index }) {
   const history = useHistory();
@@ -9,14 +13,14 @@ export default function Antique ({ antique, lazyRef, index }) {
   const handleClick = id => {
     history.push(`/antiques/${id}`);
   };
-
   const [image] = antique.images;
   return (
     <AntiqueContainer
       onClick={() => handleClick(antique.id)}
       dimensions={{ height: image.height, width: image.width }}
+      ref={el => lazyRef.current[index] = el}
     >
-      <Image ref={el => lazyRef.current[index] = el} src={image.image_url} alt={antique.name} />
+      <RenderSmoothImage objectFit={'cover'} src={image.image_url} alt={antique.name}/>
       <AntiqueOverlay>
         <OverlayText>
           <div>{antique.name}</div>

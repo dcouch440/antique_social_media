@@ -3,7 +3,7 @@ import PaginateDatabase from './PaginateDatabase';
 import AdvancePage from './AdvancePage';
 import reducer from './reducer';
 
-export default function useEverScroll ({ limit, route }) {
+export default function EverScroll ({ limit, route, validate = false, currentUser }) {
   const [page, setPage] = useState(0);
   const BBRef = useRef(null);
   const lazyRef = useRef([]);
@@ -12,8 +12,10 @@ export default function useEverScroll ({ limit, route }) {
   const [CallDB] = PaginateDatabase({ route, limit, page });
 
   useEffect(() => {
+
     CallDB({ dispatch: AntiqueDispatch });
-  }, [CallDB, limit, page, route]);
+
+  }, [CallDB, currentUser, limit, page, route, validate, currentUser]);
 
   AdvancePage({ setPage, BBRef, lazyRef, data });
 
