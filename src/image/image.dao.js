@@ -26,6 +26,10 @@ class ImageDAO {
 
     }
   }
+  findByAntiqueId (antique_id) {
+    return Image.query()
+      .where('antique_id', antique_id);
+  }
   async destroyAllRelations (antique_id) {
     return await Image.query()
       .where('antique_id', antique_id);

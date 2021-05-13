@@ -3,6 +3,13 @@ const { cloudinary } = require('../config/cloudinary.config');
 const antiqueFolderFormat = require('../../constant/image-file');
 
 class ImageService {
+  async findByAntiqueId (antique_id) {
+    try {
+      return await imageDAO.findByAntiqueId(antique_id);
+    } catch (err) {
+      console.error(err);
+    }
+  }
   async upload ({ file64, antique_id }) {
     try {
       const {

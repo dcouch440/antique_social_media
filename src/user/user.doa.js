@@ -17,6 +17,7 @@ class UserDAO {
     return User.query()
       .select('username')
       .where(builder => builder.whereIn('id', id))
+      .withGraphFetched('avatar')
       .limit(15);
   }
   getUsersByUsername (usernames) {

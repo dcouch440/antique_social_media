@@ -4,8 +4,8 @@ const { hashPassword , compareHash } = require('../auth/auth.bcrypt');
 const { newUserParams, userIdParams } = require('./user.params');
 const cookieExpiration = require('../../constant/cookie-time');
 const attachAvatarIfNotPresent = require('../../lib/attach-avatar-if-not-present');
+const antiqueService = require('../antique/antique.service');
 
-// TODO refactor attachAvatarIfNotPresent to have conditional logic within function
 class UserService {
   async signIn ({ res, password, email }) {
     try {
@@ -136,7 +136,12 @@ class UserService {
     }
   }
   antiquesAll (id) {
-    return userDAO.find(id).withGraphFetched('antique');
+    /*
+      using antique service instead of user graph fetch
+      for performance && minimizing calls that contain
+      sensitive information
+    */
+    return antiqueService.getAntiquesByUserId(id);
   }
 }
 

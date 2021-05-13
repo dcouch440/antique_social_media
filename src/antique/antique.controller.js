@@ -13,6 +13,16 @@ class AntiqueController {
       res.status(422).json(err);
     }
   }
+  async likes (req, res) {
+    try {
+      const { id } = req.params;
+      const antiqueLikesWithAvatarsAndCount = await antiqueService
+        .antiquesWithLikes(id);
+      res.status(200).json(antiqueLikesWithAvatarsAndCount);
+    } catch (err) {
+      console.error(err);
+    }
+  }
   async show (req, res) {
     try {
       const { id } = req.params;

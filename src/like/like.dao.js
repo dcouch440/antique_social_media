@@ -8,7 +8,11 @@ class LikeDAO {
         .first();
     }
   }
-  countByAntiqueId ({ antique_id }) {
+  findByAntiqueId (antique_id) {
+    return Like.query()
+      .where('antique_id', antique_id);
+  }
+  countByAntiqueId (antique_id) {
     return Like.query()
       .where('antique_id', antique_id)
       .count()

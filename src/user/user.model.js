@@ -10,8 +10,8 @@ class User extends Model {
     const Avatar = require('../avatar/avatar.model');
 
     return {
-      users: {
-        relation: Model.BelongsToOneRelation,
+      antiques: {
+        relation: Model.HasManyRelation,
         modelClass: Antique,
         join: {
           from: 'user.id',

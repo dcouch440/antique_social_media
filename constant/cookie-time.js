@@ -1,1 +1,3 @@
-module.exports = new Date(new Date().getTime() + 10000 * 1000);
+const date = new Date();
+date.setDate(date.getDate() + 7);
+module.exports = date;

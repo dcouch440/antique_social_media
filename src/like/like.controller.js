@@ -38,7 +38,7 @@ class LikeController {
       res.status(422).json({ message: 'unprocessable entity' });
     }
   }
-  async likes (req,res) {
+  async likes (req, res) {
     try {
       const likes = await likeService.likes({ req });
       res.status(200).json(likes);

@@ -1,5 +1,5 @@
 const LikeDAO = require('./like.dao');
-const antiqueService = require('../antique/antique.service');
+const AntiqueDAO = require('../antique/antique.doa');
 
 class LikeService {
   async liked (params) {
@@ -26,9 +26,9 @@ class LikeService {
       console.error(err);
     }
   }
-  async getLikesCountByAntiqueId ({ antique_id }) {
+  async getLikesCountByAntiqueId (antique_id) {
     try {
-      const { count } = await LikeDAO.countByAntiqueId({ antique_id });
+      const { count } = await LikeDAO.countByAntiqueId(antique_id);
       return parseInt(count);
     } catch (err) {
       console.error(err);
@@ -38,7 +38,14 @@ class LikeService {
     try {
       const { user_id } = req.currentUser;
       const likes = (await LikeDAO.likes(user_id)).map(data => data.antique_id);
-      return antiqueService.findManyById(likes);
+      return AntiqueDAO.findManyById(likes);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+  async getLikesByAntiqueId (antique_id) {
+    try {
+      return LikeDAO.findByAntiqueId(antique_id);
     } catch (err) {
       console.error(err);
     }
