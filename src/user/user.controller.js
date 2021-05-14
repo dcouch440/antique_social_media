@@ -49,7 +49,7 @@ class UserController {
   async show (req,res) {
     try {
       const { id } = req.params;
-      const user = await userService.show(id);
+      const user = await userService.showOvert(id);
       res.json(user);
     } catch (err) {
       console.log(err);

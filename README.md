@@ -1,23 +1,18 @@
 ## `Antique Social Media App Made With Node.js `
 #### Created By David Couch
+##### `Project Started 4 / 11 / 2021`
 
-# About:
+# `About:`
 
-  This Project is an Work in Progress:
+  This Project is an Work in Progress, This was mad for the love of javascript and exploration in a full stack javascript social media app.
 
   This is API application made with Node.js that currently features,
 
     - HTTP only json web token authentication
     - bcrypt password hashing
     - cloudinary image upload routes
-    - user antique image + avatar image join tables
-    - sign in / out authentication
-    - serialization for like / dislike status for current logged in user
-    - like / dislike routes for antiques (posts)
-
-  In the works:
-    - Socket.io user online status
-    - additional tests
+    - socket.io for online status and chat rooms
+    - async + state functions to handle integration with socket.io and database queries for user online
 
   File Structure philosophy:
 
@@ -30,7 +25,7 @@
   This is an evolving project focused on efficiently and effectively take advantage of the technologies node.js give to developers. This Back end will be paired with a front end currently being developed to provide a fast and user friendly experience.
 
 
-### `Project Started 4 / 11 / 2021`
+
 
 # `Tech Used`
   * `bcrypt`
@@ -93,3 +88,43 @@ then run
 $ npm run dev
 ```
 
+### `Route examples`
+
+## `SESSIONS`
+
+<img src='lib/img/README/http-only.PNG' alt='a route call'>
+<img src='lib/img/README/session.PNG' alt='a route call'>
+<img src='lib/img/README/signout.PNG' alt='a route call'>
+<img src='lib/img/README/cookie.PNG' alt='a route call'>
+
+## `ANTIQUES`
+
+<img src='lib/img/README/antiques_get.PNG' alt='a route call'>
+<img src='lib/img/README/antiques_id.PNG' alt='a route call'>
+<img src='lib/img/README/antiques_delete.PNG' alt='a route call'>
+<img src='lib/img/README/antiques_images.PNG' alt='a route call'>
+<img src='lib/img/README/antiques_likes.PNG' alt='a route call'>
+<img src='lib/img/README/antiques_post.PNG' alt='a route call'>
+
+## `AVATAR`
+<img src='lib/img/README/avatars_post.PNG' alt='a route call'>
+
+## `IMAGES`
+
+<img src='lib/img/README/images_post.PNG' alt='a route call'>
+
+## `LIKES`
+
+<img src='lib/img/README/likes_like.PNG' alt='a route call'>
+<img src='lib/img/README/likes_dislike.PNG' alt='a route call'>
+<img src='lib/img/README/likes_likes.PNG' alt='a route call'>
+
+## `USER OBJECT SHAPE ( for demo )`
+<img src='lib/img/README/users_development_route.PNG' alt='a route call'>
+
+## `USERS`
+
+<img src='lib/img/README/users_signin.PNG' alt='a route call'>
+<img src='lib/img/README/users_signup.PNG' alt='a route call'>
+<img src='lib/img/README/users_antiques.PNG' alt='a route call'>
+<img src='lib/img/README/users_in_room_iterable.PNG' alt='a route call'>
