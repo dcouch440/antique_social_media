@@ -4,7 +4,7 @@ const { antiqueParams, queryParams } = require('./antique.params');
 const { objLength, parseObjectInts } = require('../../lib/utils');
 const imageService = require('../image/image.service');
 const userDAO = require('../user/user.doa');
-const attachAvatarIfNotPresent = require('../../lib/attach-avatar-if-not-present');
+const attachAvatarIfNotPresent = require('../../lib/get-avatar-if-no-present');
 const likeDAO = require('../like/like.dao');
 
 class AntiqueService {

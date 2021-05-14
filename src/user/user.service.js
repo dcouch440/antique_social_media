@@ -3,8 +3,9 @@ const jwt = require('../auth/auth.jwt');
 const { hashPassword , compareHash } = require('../auth/auth.bcrypt');
 const { newUserParams, userIdParams } = require('./user.params');
 const cookieExpiration = require('../../constant/cookie-time');
-const attachAvatarIfNotPresent = require('../../lib/attach-avatar-if-not-present');
+const attachAvatarIfNotPresent = require('../../lib/get-avatar-if-no-present');
 const antiqueService = require('../antique/antique.service');
+const userSerializer = require('./user.serializer');
 
 class UserService {
   async signIn ({ res, password, email }) {
@@ -84,12 +85,11 @@ class UserService {
     try {
       const users = await userDAO.getUsersByUsername(usernames);
 
-      const attachedAvatars = users.map(user => {
-        const avatar = attachAvatarIfNotPresent(user.avatar);
-        return { username: user.username, avatar };
+      const usersWithIdAndUsername = users.map(user => {
+        return { username: user.username, id: user.id };
       });
 
-      return attachedAvatars;
+      return usersWithIdAndUsername;
     } catch (err) {
       console.error(err);
     }
@@ -97,9 +97,7 @@ class UserService {
   async getUserByUsername (username) {
     try {
       const user = await userDAO.getUserByUsername(username);
-      console.log(user);
-      const avatar = attachAvatarIfNotPresent(user.avatar);
-      return { username: user.username, avatar };
+      return { username: user.username, id: user.id };
     } catch (err) {
       console.error(err);
     }
@@ -121,10 +119,16 @@ class UserService {
   async showOvert (id) {
     try {
       await userIdParams.validate({ id: id });
-      const { username, avatar, online } = await userDAO.find(id);
-      const userAvatar = attachAvatarIfNotPresent(avatar);
+      const user = await userDAO.find(id);
+      const { username, avatar, online } = userSerializer.serializeWithUserAvatar(user);
 
-      return { antique_owner: { username, avatar: userAvatar, online } };
+      return {
+        antique_owner: {
+          username,
+          avatar,
+          online
+        }
+      };
     } catch (err) {
       console.error(err);
     }

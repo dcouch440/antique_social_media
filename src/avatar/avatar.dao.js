@@ -12,8 +12,8 @@ class AvatarDAO {
   destroyById (public_id) {
     return cloudinary.api.delete_resources(public_id);
   }
-  findById (user_id) {
-    const avatarPublicId = avatarPublicIdFormat(user_id);
+  findById (id) {
+    const avatarPublicId = avatarPublicIdFormat(id);
     console.log('lol');
     return cloudinary.search.expression(`
       public_id:${avatarPublicId}
