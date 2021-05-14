@@ -4,9 +4,8 @@ const { hashPassword , compareHash } = require('../auth/auth.bcrypt');
 const { newUserParams, userIdParams } = require('./user.params');
 const cookieExpiration = require('../../constant/cookie-time');
 const attachAvatarIfNotPresent = require('../../lib/get-avatar-if-no-present');
-const antiqueService = require('../antique/antique.service');
 const userSerializer = require('./user.serializer');
-const antiqueSerializer = require('../antique/antique.serializer');
+
 
 class UserService {
   async signIn ({ res, password, email }) {
@@ -141,16 +140,6 @@ class UserService {
     } catch (err) {
       console.error(err);
     }
-  }
-  async antiquesAll (id) {
-    /*
-      using antique service instead of user graph fetch
-      for performance && minimizing calls that contain
-      sensitive information
-      */
-    const antique = await antiqueService.getAntiquesByUserId(id);
-    const antiquesWithImages = antiqueSerializer.serializeWithRelations({ antique });
-    return antiquesWithImages;
   }
 }
 

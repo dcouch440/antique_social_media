@@ -6,6 +6,7 @@ const router = express.Router();
 router.get('/', antiqueController.index);
 router.post('/', antiqueController.create);
 // router.get('/user', antiqueController.);
+router.get('/users/:user_id', antiqueController.usersAntiques);
 router.get('/:id/likes', antiqueController.likes);
 // router.get('/:category', antiqueController.queryCategory);
 // antiques/:id

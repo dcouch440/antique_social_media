@@ -1,12 +1,12 @@
 const antiqueService = require('./antique.service');
-const AntiqueSerializer = require('./antique.serializer');
+const antiqueSerializer = require('./antique.serializer');
 const imageService = require('../image/image.service');
 
 class AntiqueController {
   async index (req, res) {
     try {
       const { query } = req;
-      const antiques = await AntiqueSerializer.serializeWithRelations({
+      const antiques = await antiqueSerializer.serializeWithRelations({
         antique: await antiqueService.limitOffset(query)
       });
       res.status(200).json(antiques);
@@ -28,7 +28,7 @@ class AntiqueController {
   async show (req, res) {
     try {
       const { id } = req.params;
-      const antique = await AntiqueSerializer.serializeWithRelations({
+      const antique = await antiqueSerializer.serializeWithRelations({
         antique: await antiqueService.show(id)
       });
       res.json(antique);
@@ -65,6 +65,16 @@ class AntiqueController {
       const { category } = req.params;
       const response = await antiqueService.queryCategory({ category });
       res.status(200).json(response);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+  async usersAntiques (req,res) {
+    try {
+      const { user_id } = req.params;
+      const antique = await antiqueService.getAntiquesByUserId(user_id);
+      const antiquesWithImages = await antiqueSerializer.serializeWithRelations({ antique });
+      res.status(200).json(antiquesWithImages);
     } catch (err) {
       console.error(err);
     }
