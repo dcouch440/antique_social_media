@@ -14,10 +14,9 @@ class AvatarDAO {
   }
   findById (id) {
     const avatarPublicId = avatarPublicIdFormat(id);
-    console.log('lol');
-    return cloudinary.search.expression(`
-      public_id:${avatarPublicId}
-    `).execute();
+    return cloudinary.search.expression(
+      `public_id=${avatarPublicId}`
+    ).execute();
   }
 }
 

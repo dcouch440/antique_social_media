@@ -14,7 +14,7 @@ class AvatarService {
     try {
       const avatarPublicId = avatarPublicIdFormat(user_id);
       await avatarDAO.destroyById(avatarPublicId);
-      return avatarDAO.storeUrl({ file64, user_id });
+      return avatarDAO.storeUrl({ file64, avatarPublicId });
     } catch (err) {
       console.error(err);
     }

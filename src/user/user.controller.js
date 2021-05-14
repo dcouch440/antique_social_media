@@ -49,7 +49,8 @@ class UserController {
     try {
       const { id } = req.params;
       const user = await userService.showOvert(id);
-      res.json(user);
+      const serializedUsers = await userSerializer.serializeWithUserAvatar(user);
+      res.json(serializedUsers);
     } catch (err) {
       console.log(err);
       res.status(422).json(err);
