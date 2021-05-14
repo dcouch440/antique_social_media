@@ -8,7 +8,7 @@ import {
 
 export default function OnlineAnimation ({ status }) {
   return (
-    status&&
+    status ?
       <OnlineContainer
         as={motion.div}
         variants={loadingContainerVariants}
@@ -21,6 +21,7 @@ export default function OnlineAnimation ({ status }) {
           transition={loadingCircleTransition}
         />
       </OnlineContainer>
+      :null
   );
 }
 

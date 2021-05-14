@@ -21,7 +21,7 @@ export default function Antique ({ antique, lazyRef, index }) {
       dimensions={{ height: image.height, width: image.width }}
       ref={el => lazyRef.current[index] = el}
     >
-      <RenderSmoothImage objectFit={'cover'} src={image.image_url} alt={antique.name}/>
+      <RenderSmoothImage objectFit={'cover'} src={image.url} alt={antique.name}/>
       <AntiqueOverlay>
         <OverlayText>
           <div>{antique.name}</div>

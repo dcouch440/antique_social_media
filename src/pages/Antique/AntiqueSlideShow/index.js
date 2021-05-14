@@ -58,7 +58,7 @@ export default function AntiquesSlideShow ({ antiqueImages, newUpload, setNewUpl
       <AnimatePresence initial={true} custom={direction}>
         <motion.img
           key={page}
-          src={antiqueImages[imageIndex].image_url}
+          src={antiqueImages[imageIndex].url}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           custom={direction}

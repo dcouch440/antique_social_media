@@ -5,15 +5,14 @@ import { DropMenuPlate } from './styles';
 import SignedIn from '../SignedIn';
 import Access from '../Access';
 
-export default function DropDown ({ display }) {
-  const { currentUser } = useContext(Context);
+export default function DropDown ({ display, showAvatar, currentUser }) {
   const signedIn = currentUser.username;
 
   return (
     <DropMenuPlate display={display}>
       {
         signedIn ?
-          <SignedIn user={currentUser.username}/>
+          <SignedIn user={currentUser.username} showAvatar={showAvatar}/>
           :
           <Access />
       }

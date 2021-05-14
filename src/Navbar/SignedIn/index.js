@@ -13,9 +13,10 @@ const Grid = styled.div`
   font-family: 'Pacifico', cursive;
 `;
 
-export default function SingedIn ({ user }) {
+export default function SingedIn ({ user, showAvatar }) {
   const capitalizedUsername = capitalize(user);
   const username = maximumLength(capitalizedUsername, 9);
+
   return (
     <Grid>
       <Username>
@@ -27,6 +28,8 @@ export default function SingedIn ({ user }) {
       <HubLink><Link to='/likes'>likes</Link></HubLink>
       <HubLink><Link to='/rooms'>rooms</Link></HubLink>
       <HubLink><Link to='/chat'>global chat</Link></HubLink>
+      <HubLink onClick={showAvatar}><span>Avatar</span></HubLink>
+
       <SignOut />
     </Grid>
   );

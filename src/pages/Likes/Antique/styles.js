@@ -4,10 +4,14 @@ export const AntiqueRow = styled.div`
   display: flex;
 `;
 
-export const Image = styled.img`
+export const Image = styled.div`
   border: 1px solid black;
-  object-fit: cover;
   width: 200px;
+  img {
+    width: 200px;
+    height: auto;
+    object-fit: cover;
+  }
 `;
 
 export const About = styled.div`

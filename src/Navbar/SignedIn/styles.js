@@ -33,13 +33,14 @@ export const HubLink = styled.div`
   box-shadow: inset 0px 0px 0px 1px #00000036;
   :hover {
     border-color: 2px solid white;
-    a {
+    a, span {
       color: white;
       background-color: #000000ad;
       padding-left: 30px;
     }
   }
-  a {
+  a, span {
+    cursor: pointer;
     color: white;
     font-weight: 300;
     text-decoration: none;

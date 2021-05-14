@@ -8,7 +8,7 @@ function ContextProvider (props) {
   const [currentUser, setCurrentUser] = useState({
     id: undefined, username: undefined, email: undefined, admin: false
   });
-
+  const [scrollBehavior, setScrollBehavior] = useState(true);
   OnlineStatus({ currentUser });
   useEffect(() => {
 
@@ -18,11 +18,14 @@ function ContextProvider (props) {
       .catch(err => console.error(err));
 
   }, []);
+  const scroll = scrollBehavior ? 'scroll' : 'hidden';
 
   return (
     <Context.Provider value={{
       currentUser,
-      setCurrentUser
+      setCurrentUser,
+      setScrollBehavior,
+      scroll
     }}>
       {props.children}
     </Context.Provider>

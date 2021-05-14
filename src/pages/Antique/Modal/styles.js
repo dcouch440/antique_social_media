@@ -24,6 +24,7 @@ export const ImageModal = styled.div`
     max-height: 90%;
   }
 `;
+
 export const BlurContainer = styled.div`
   z-index: 10000;
   position: absolute;

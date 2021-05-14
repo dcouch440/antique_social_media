@@ -11,7 +11,8 @@ import {
 
 export default function User ({ ownerInfo }) {
   const { currentUser: { id } } = useContext(Context);
-  const isCurrentUserPostOrUserOnline = (id === ownerInfo.avatar.user_id && id) ? true : ownerInfo.online;
+  console.log(ownerInfo);
+  const isCurrentUserPostOrUserOnline = (id === ownerInfo.id && id) ? true : ownerInfo.online;
   const onlineOfflineText = isCurrentUserPostOrUserOnline ? 'Online' : 'Offline';
 
   return (
@@ -19,7 +20,7 @@ export default function User ({ ownerInfo }) {
       <AboutMe>{ownerInfo.username}</AboutMe>
       <Avatar
         status={true}
-        src={ownerInfo.avatar?.image_url}
+        src={ownerInfo.avatar?.url}
         alt={'avatar'}
       />
       <Online status={isCurrentUserPostOrUserOnline}>

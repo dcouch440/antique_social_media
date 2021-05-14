@@ -20,7 +20,7 @@ const GlobalStyles = createGlobalStyle`
   }
 	body {
     -webkit-font-smoothing: antialiased;
-    overflow-y: scroll;
+    overflow-y: ${({ scroll }) => scroll};
     overflow-x: hidden;
 	}
   #root {

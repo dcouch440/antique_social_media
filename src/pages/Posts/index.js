@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import { Context } from '../../Context';
 import PageTransition from '../../Framer/PageTransition';
 import Antiques from './Antiques';
-import { AntiquesList, PostsHeader } from './styles';
+import { AntiquesList, PostsHeader, Page } from './styles';
 
 export default function Posts () {
   const { currentUser } = useContext(Context);
@@ -26,14 +26,14 @@ export default function Posts () {
 
   return (
     <PageTransition>
-      <div>
+      <Page>
         <PostsHeader>
           Posts
         </PostsHeader>
         <AntiquesList>
           { antiques.length && <Antiques antiques={ antiques } /> }
         </AntiquesList>
-      </div>
+      </Page>
     </PageTransition>
   );
 }

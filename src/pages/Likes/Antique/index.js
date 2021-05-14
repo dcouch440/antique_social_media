@@ -8,10 +8,12 @@ export default function Antique ({ antique }) {
   const [image] = antique.images;
 
   const handleClick = () => history.push(`/antiques/${antique.id}`);
-
+  
   return (
     <AntiqueRow onClick={handleClick}>
-      <Image src={image.image_url} alt={antique.name} />
+      <Image>
+        <img src={image.image_url} alt={antique.name} />
+      </Image>
       <About>
         <div>Name: {antique.name}</div>
         <div>Title: {antique.title}</div>

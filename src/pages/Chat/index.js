@@ -5,7 +5,7 @@ import Socket from '../../components/Socket';
 import ChatRows from './ChatRow';
 import ChatInput from './ChatInput';
 import PageTransition from '../../Framer/PageTransition';
-import Users from './OnlineUserSidebar';
+import OnlineUserSidebar from './OnlineUserSidebar';
 import { MESSAGE } from '../../constant/index';
 
 
@@ -24,10 +24,9 @@ export default function Chat ({ roomId }) {
     return () => clearTimeout(refresher);
   }, [refresh, messages]);
 
-
   return (
     <PageTransition attr={{ direction: 'bottom' }}>
-      <Users users={users} />
+      <OnlineUserSidebar users={users} />
       <ChatWindow>
         <ChatRows messages={messages} socketRef={socketRef} users={users} />
         <ChatInput sendMessage={sendMessage} />

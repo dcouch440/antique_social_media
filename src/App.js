@@ -1,5 +1,5 @@
 import { Route, Switch, useLocation, Redirect } from 'react-router';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import GlobalStyles from './GlobalStyles';
 import Antiques from './pages/Antiques';
@@ -10,14 +10,16 @@ import Post from './pages/Post';
 import Chat from './pages/Chat';
 import Rooms from './pages/Rooms';
 import Posts from './pages/Posts';
+import { Context } from './Context';
 
 export default function App () {
   const location = useLocation();
   const [roomId, setRoomId] = useState('GLOBAL_CHAT');
+  const { scroll } = useContext(Context);
 
   return (
     <>
-      <GlobalStyles />
+      <GlobalStyles scroll={scroll} />
       <Navbar />
       <AnimatePresence>
         <Switch location={location} key={location.key}>
