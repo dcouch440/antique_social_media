@@ -127,4 +127,6 @@ $ npm run dev
 <img src='lib/img/README/users_signin.PNG' alt='a route call'>
 <img src='lib/img/README/users_signup.PNG' alt='a route call'>
 <img src='lib/img/README/users_antiques.PNG' alt='a route call'>
+
+#### `ITERATIVE ROUTE FOR ROOM USERS PROVIDED IN ARRAY`
 <img src='lib/img/README/users_in_room_iterable.PNG' alt='a route call'>
