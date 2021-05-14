@@ -71,7 +71,6 @@ const messageWithAttachedUser = async ({ message, username }) => {
   try {
     const user = await userService.getUserByUsername(username);
     const avatar = await userSerializer.serializeWithUserAvatar(user);
-    console.log(avatar);
     return {
       message: {
         message,

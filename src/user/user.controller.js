@@ -52,7 +52,7 @@ class UserController {
       const serializedUsers = await userSerializer.serializeWithUserAvatar(user);
       res.json(serializedUsers);
     } catch (err) {
-      console.log(err);
+      console.error(err);
       res.status(422).json(err);
     }
   }
@@ -79,7 +79,7 @@ class UserController {
       await userService.destroy(id);
       res.status(204);
     } catch (err) {
-      console.log(err);
+      console.error(err);
       res.status(422);
     }
   }
