@@ -16,6 +16,7 @@ export const Image = styled.div`
 
 export const About = styled.div`
   font-family: 'Pacifico';
+  position: relative;
   box-shadow: inset 0px 1px 6px 0px #00000057;
   padding: 5px;
   font-size: 15px;
@@ -25,4 +26,11 @@ export const About = styled.div`
   flex-direction: column;
   justify-content: center;
   width: 100%;
+  overflow: hidden;
+  img {
+    position: absolute;
+    right: 0;
+    bottom: 1%;
+    width: 5%;
+  }
 `;

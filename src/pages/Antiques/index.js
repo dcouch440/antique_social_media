@@ -1,10 +1,16 @@
 import { useState } from 'react';
-import { Grid, Header, PageContainer } from './styles';
 import ApiMapper from '../../components/ApiMapper';
 import PageTransition from '../../Framer/PageTransition';
 import Antique from './Antique';
 import Controls from './Controls';
 import EverScroll from '../../components/EverScroll';
+import bottleTyeDye from '../../img/assets/waxSealImg.png';
+import {
+    Grid,
+    Header,
+    PageContainer,
+    HeaderImage
+} from './styles';
 
 export default function AntiquesPage () {
   const [bottomBoundaryRef, lazyRef, antiques] = EverScroll(
@@ -16,7 +22,10 @@ export default function AntiquesPage () {
     <PageTransition>
       <PageContainer>
         <Controls setSlider={setSlider} count={slider}/>
-        <Header>Antiques</Header>
+        <Header>
+          <HeaderImage src={bottleTyeDye}/>
+          Antiques
+        </Header>
         <Grid columns={slider}>
           <ApiMapper callData={antiques} lazyRef={lazyRef} component={Antique} />
         </Grid>

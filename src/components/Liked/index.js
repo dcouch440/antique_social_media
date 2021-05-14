@@ -5,11 +5,14 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import likedVariants from './variants';
 import { Check } from './styles';
 import { motion } from 'framer-motion';
+import likeImage from '../../img/assets/waxSealImg.png';
+import dislikeImage from '../../img/assets/waxSealGrey50.png';
 
 export default function Liked ({ antiqueId, onLikesChange }) {
   const [liked, setLiked] = useState(false);
   const { currentUser } = useContext(Context);
-  const display = liked ? 'F' : 'add';
+  const like = likeImage;
+  const display = liked ? like : dislikeImage;
   const loading = useRef(false);
 
   useEffect(() => {
@@ -71,7 +74,7 @@ export default function Liked ({ antiqueId, onLikesChange }) {
         transition='transition'
         onClick={handleClick}
       >
-        {display}
+        <img src={display} alt='liked' />
       </Check>
       :
       null

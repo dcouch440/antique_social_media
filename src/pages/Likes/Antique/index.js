@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import { useHistory } from 'react-router';
 import { AntiqueRow, Image, About } from './styles';
+import waxImg from '../../../img/assets/waxSealImg.png';
 
 export default function Antique ({ antique }) {
   const history = useHistory();
@@ -18,6 +19,7 @@ export default function Antique ({ antique }) {
         <div>Name: {antique.name}</div>
         <div>Title: {antique.title}</div>
         <div> Posted: {moment(antique.created_at).fromNow()}</div>
+        <img src={waxImg} alt='wax seal' />
       </About>
     </AntiqueRow>
   );
