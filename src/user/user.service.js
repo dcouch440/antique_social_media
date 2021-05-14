@@ -3,8 +3,9 @@ const jwt = require('../auth/auth.jwt');
 const { hashPassword , compareHash } = require('../auth/auth.bcrypt');
 const { newUserParams, userIdParams } = require('./user.params');
 const cookieExpiration = require('../../constant/cookie-time');
-const attachAvatarIfNotPresent = require('../../lib/attach-avatar-if-not-present');
-const antiqueService = require('../antique/antique.service');
+const attachAvatarIfNotPresent = require('../../lib/get-avatar-if-no-present');
+const userSerializer = require('./user.serializer');
+
 
 class UserService {
   async signIn ({ res, password, email }) {
@@ -84,12 +85,11 @@ class UserService {
     try {
       const users = await userDAO.getUsersByUsername(usernames);
 
-      const attachedAvatars = users.map(user => {
-        const avatar = attachAvatarIfNotPresent(user.avatar);
-        return { username: user.username, avatar };
+      const usersWithIdAndUsername = users.map(user => {
+        return { username: user.username, id: user.id };
       });
 
-      return attachedAvatars;
+      return usersWithIdAndUsername;
     } catch (err) {
       console.error(err);
     }
@@ -97,8 +97,7 @@ class UserService {
   async getUserByUsername (username) {
     try {
       const user = await userDAO.getUserByUsername(username);
-      const avatar = attachAvatarIfNotPresent(user.avatar);
-      return { username: user.username, avatar };
+      return { username: user.username, id: user.id };
     } catch (err) {
       console.error(err);
     }
@@ -120,10 +119,16 @@ class UserService {
   async showOvert (id) {
     try {
       await userIdParams.validate({ id: id });
-      const { username, avatar, online } = await userDAO.find(id);
-      const userAvatar = attachAvatarIfNotPresent(avatar);
-
-      return { antique_owner: { username, avatar: userAvatar, online } };
+      const user = await userDAO.find(id);
+      const { username, avatar, online } = await userSerializer.serializeWithUserAvatar(user);
+      return {
+        antique_owner: {
+          id,
+          username,
+          avatar,
+          online
+        }
+      };
     } catch (err) {
       console.error(err);
     }
@@ -135,14 +140,6 @@ class UserService {
     } catch (err) {
       console.error(err);
     }
-  }
-  antiquesAll (id) {
-    /*
-      using antique service instead of user graph fetch
-      for performance && minimizing calls that contain
-      sensitive information
-    */
-    return antiqueService.getAntiquesByUserId(id);
   }
 }
 

@@ -1,6 +1,5 @@
 module.exports = user_id => {
   const env = process.env.NODE_ENV;
-  console.log(env);
   if (env === 'test') {
     return `_TEST_AVATAR_${user_id}_`;
   }

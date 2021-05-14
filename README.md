@@ -10,7 +10,7 @@
 
     - HTTP only json web token authentication
     - bcrypt password hashing
-    - cloudinary image upload routes
+    - cloudinary image upload routes ( cloud images merged through async array mapping )
     - socket.io for online status and chat rooms
     - async + state functions to handle integration with socket.io and database queries for user online
 
@@ -18,7 +18,8 @@
 
     Routes        :This file decides the routes and chosen controller
     Controller    :This file grabs the request and decides how to distribute it
-    service       :This file parses through queries and altering incoming data
+    Serializer    :This file is used to combine logic from other files at the end of the chain and combine pictures from cloud
+    service       :This file parses through queries and altering incoming data with limited importing
     DAO           :This file strictly interacts with the databases its named by
     Model         :This file holds relationship data through the objection package
 
@@ -87,6 +88,7 @@ then run
 ```
 $ npm run dev
 ```
+
 
 ### `Route examples`
 

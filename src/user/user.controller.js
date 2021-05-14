@@ -1,3 +1,4 @@
+const userSerializer = require('./user.serializer');
 const userService = require('./user.service');
 
 class UserController {
@@ -27,12 +28,9 @@ class UserController {
   async showByUsername (req,res) {
     try {
       const { usernames } = req.body;
-      console.log(req.body);
-      const users = await userService.getUsersByUsername({
-        usernames
-      });
-      console.log(users);
-      res.status(200).json(users);
+      const users = await userService.getUsersByUsername({ usernames });
+      const serializedUsers = await userSerializer.serializeWithUserAvatar(users);
+      res.status(200).json(serializedUsers);
     } catch (err) {
       console.error(err);
     }
@@ -41,7 +39,8 @@ class UserController {
   async all (req,res) {
     try {
       const users = await userService.all();
-      res.status(200).json(users);
+      const serializedUsers = await userSerializer.serializeWithUserAvatar(users);
+      res.status(200).json(serializedUsers);
     } catch (err) {
       console.error(err);
     }
@@ -50,9 +49,10 @@ class UserController {
     try {
       const { id } = req.params;
       const user = await userService.showOvert(id);
-      res.json(user);
+      const serializedUsers = await userSerializer.serializeWithUserAvatar(user);
+      res.json(serializedUsers);
     } catch (err) {
-      console.log(err);
+      console.error(err);
       res.status(422).json(err);
     }
   }
@@ -79,7 +79,7 @@ class UserController {
       await userService.destroy(id);
       res.status(204);
     } catch (err) {
-      console.log(err);
+      console.error(err);
       res.status(422);
     }
   }

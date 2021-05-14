@@ -1,13 +1,15 @@
 const userService = require('../../src/user/user.service');
 const AntiqueService = require('../../src/antique/antique.service');
 const STATIC_ROOMS = require('./static-rooms');
+const userSerializer = require('../../src/user/user.serializer');
 
 const getUsersFromDB = async usernames => {
   try {
     if (!usernames.length) {
       return;
     }
-    return userService.getUsersByUsername({ usernames });
+    const users = await userService.getUsersByUsername({ usernames });
+    return userSerializer.serializeWithUserAvatar(users);
   } catch (err) {
     console.error(err);
   }
@@ -68,12 +70,13 @@ const getRoomUsernames = ({ io, roomId }) => {
 const messageWithAttachedUser = async ({ message, username }) => {
   try {
     const user = await userService.getUserByUsername(username);
+    const avatar = await userSerializer.serializeWithUserAvatar(user);
     return {
       message: {
         message,
         timeStamp: new Date(),
         username: user.username,
-        avatar: user.avatar
+        ...avatar
       }
     };
   } catch (err) {

@@ -1,58 +1,34 @@
+const attachImageIfNotPresent = require('../../lib/attach-image-if-not-present');
 const imageDAO = require('./image.dao');
-const { cloudinary } = require('../config/cloudinary.config');
-const antiqueFolderFormat = require('../../constant/image-file');
 
 class ImageService {
   async findByAntiqueId (antique_id) {
     try {
-      return await imageDAO.findByAntiqueId(antique_id);
+      const { resources } = await imageDAO.findByAntiqueId(antique_id);
+      return resources;
     } catch (err) {
       console.error(err);
     }
   }
   async upload ({ file64, antique_id }) {
     try {
-      const {
-
-        secure_url :image_url,
-        public_id, width,
-        height, format,
-        resource_type
-
-      } = await cloudinary
-        .uploader.upload( file64 , {
-          upload_preset: 'ml_default',
-          folder: antiqueFolderFormat(antique_id)
-        });
-
-      return imageDAO.storeUrl({
-        image_url,
-        antique_id,
-        public_id,
-        width,
-        height,
-        format,
-        resource_type
-      });
+      return imageDAO.storeUrl({ file64, antique_id });
     } catch (err) {
       console.error(err);
     }
   }
   async destroyDependencyById (antique_id) {
     try {
-      const folder = antiqueFolderFormat(antique_id);
-
-      await cloudinary.api.delete_resources_by_prefix(folder);
-      await cloudinary.api.delete_folder(folder);
-
-      return await imageDAO.destroyAllRelations(antique_id);
+      return imageDAO.destroyAllRelations(antique_id);
     } catch (err) {
       console.error(err);
     }
   }
   async getFirstImage (antique_id) {
     try {
-      return imageDAO.findByIdLimitOne(antique_id);
+      const images = await imageDAO.findByIdLimitOne(antique_id);
+      // add default attach image
+      return attachImageIfNotPresent({ images, antique_id });
     } catch (err) {
       console.error(err);
     }

@@ -6,8 +6,7 @@ class UserDAO {
   }
   find (id) {
     return User.query()
-      .findById(parseInt(id))
-      .withGraphFetched('avatar');
+      .findById(parseInt(id));
   }
   changeOnlineState ({ id, online }) {
     return User.query()
@@ -15,20 +14,17 @@ class UserDAO {
   }
   getUsersByIds (id) {
     return User.query()
-      .select('username')
+      .select('username', 'id')
       .where(builder => builder.whereIn('id', id))
-      .withGraphFetched('avatar')
       .limit(15);
   }
   getUsersByUsername (usernames) {
     return User.query()
-      .where(builder => builder.whereIn('username', usernames))
-      .withGraphFetched('avatar');
+      .where(builder => builder.whereIn('username', usernames));
   }
   getUserByUsername (username) {
     return User.query()
       .where('username', username)
-      .withGraphFetched('avatar')
       .first();
   }
   destroy (id) {
