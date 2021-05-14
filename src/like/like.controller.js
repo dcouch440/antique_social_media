@@ -1,3 +1,4 @@
+const likeSerializer = require('./like.serializer');
 const likeService = require('./like.service');
 
 class LikeController {
@@ -41,7 +42,9 @@ class LikeController {
   async likes (req, res) {
     try {
       const likes = await likeService.likes({ req });
-      res.status(200).json(likes);
+      const likesWithImages = await likeSerializer
+        .serializeLikesWithImages(likes);
+      res.status(200).json(likesWithImages);
     } catch (err) {
       console.error(err);
     }

@@ -6,6 +6,7 @@ const cookieExpiration = require('../../constant/cookie-time');
 const attachAvatarIfNotPresent = require('../../lib/get-avatar-if-no-present');
 const antiqueService = require('../antique/antique.service');
 const userSerializer = require('./user.serializer');
+const antiqueSerializer = require('../antique/antique.serializer');
 
 class UserService {
   async signIn ({ res, password, email }) {
@@ -120,10 +121,10 @@ class UserService {
     try {
       await userIdParams.validate({ id: id });
       const user = await userDAO.find(id);
-      const { username, avatar, online } = userSerializer.serializeWithUserAvatar(user);
-
+      const { username, avatar, online } = await userSerializer.serializeWithUserAvatar(user);
       return {
         antique_owner: {
+          id,
           username,
           avatar,
           online
@@ -141,13 +142,15 @@ class UserService {
       console.error(err);
     }
   }
-  antiquesAll (id) {
+  async antiquesAll (id) {
     /*
       using antique service instead of user graph fetch
       for performance && minimizing calls that contain
       sensitive information
-    */
-    return antiqueService.getAntiquesByUserId(id);
+      */
+    const antique = await antiqueService.getAntiquesByUserId(id);
+    const antiquesWithImages = antiqueSerializer.serializeWithRelations({ antique });
+    return antiquesWithImages;
   }
 }
 

@@ -14,7 +14,7 @@ class UserDAO {
   }
   getUsersByIds (id) {
     return User.query()
-      .select('username')
+      .select('username', 'id')
       .where(builder => builder.whereIn('id', id))
       .limit(15);
   }

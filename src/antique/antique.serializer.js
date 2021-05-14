@@ -30,9 +30,12 @@ class AntiqueSerializer {
   }
   async mergeObject ({ antique, owner_id }) {
     try {
+      const { id } = antique;
+      const { resources } = await imageService.getFirstImage(id);
       return Object.assign(
         {},
         antique,
+        { images: resources },
         await this.getOwnerRelations({ owner_id })
       );
     } catch (err) {

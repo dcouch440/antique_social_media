@@ -2,8 +2,7 @@ const Antique = require('./antique.model');
 
 class AntiqueDAO {
   all () {
-    return Antique.query()
-      .withGraphFetched('images').limit(1);
+    return Antique.query();
   }
   find (id) {
     return Antique.query()
