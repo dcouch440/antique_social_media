@@ -1,35 +1,23 @@
 const { cloudinary } = require('../config/cloudinary.config');
-const Avatar = require('./avatar.model');
+const avatarPublicIdFormat = require('../../constant/avatar-public-id');
 
 class AvatarDAO {
-  async storeUrl ({ ...params }) {
-    try {
-      return Avatar.query()
-        .insert(params)
-        .returning('id')
-        .then(id => console.log(id));
-    } catch (err) {
-      // rollback
-      console.error(err);
-      await cloudinary.uploader
-        .destroy(params.public_id, result => {
-          console.info(result);
-        })
-        .catch(err => console.error(err));
-    }
+  storeUrl ({ file64, avatarPublicId }) {
+    return cloudinary
+      .uploader.upload( file64 , {
+        upload_preset: 'ml_default',
+        public_id: avatarPublicId
+      });
   }
-  async destroyById (user_id) {
-    try {
-      return Avatar.query()
-        .where('public_id', user_id)
-        .del();
-    } catch (err) {
-      console.error(err);
-    }
+  destroyById (public_id) {
+    return cloudinary.api.delete_resources(public_id);
   }
   findById (user_id) {
-    return Avatar.query()
-      .where('user_id', user_id);
+    const avatarPublicId = avatarPublicIdFormat(user_id);
+    console.log('lol');
+    return cloudinary.search.expression(`
+      public_id:${avatarPublicId}
+    `).execute();
   }
 }
 

@@ -1,47 +1,38 @@
 const { cloudinary } = require('../config/cloudinary.config');
-const Image = require('./image.model');
-
-// NOTE THIS FILE WAS EDITED AWAY FROM USING DB('IMAGE') AND MOVED TO IMAG.QUERY()
-// TEST CASE THIS FOR ERRORS IN THE FUTURE
+const antiqueFolderFormat = require('../../constant/image-file');
 
 class ImageDAO {
-  async storeUrl ({ ...params }) {
-    try { // attempt to change to image class when
-      return Image.query()
-        .insert(params)
-        .returning('id')
-        .then(id => console.log(id));
-    } catch (err) {
-
-      // rollback
-      console.error(err);
-      try {
-        await cloudinary.uploader
-          .destroy(params.public_id, result => console.info(result));
-      } catch (err) {
-        throw new Error(
-          'ImageDAO.StoreUrl failed to upload and cloudinary uploader failed to upload'
-        );
-      }
-
-    }
+  storeUrl ({ file64, antique_id }) {
+    return cloudinary.uploader.upload( file64 , {
+      upload_preset: 'ml_default',
+      folder: antiqueFolderFormat(antique_id)
+    });
   }
   findByAntiqueId (antique_id) {
-    return Image.query()
-      .where('antique_id', antique_id);
+    return cloudinary.search.expression(
+      `folder:${antiqueFolderFormat(antique_id)}`
+    ).execute();
   }
   async destroyAllRelations (antique_id) {
-    return await Image.query()
-      .where('antique_id', antique_id);
+    try {
+      const folder = antiqueFolderFormat(antique_id);
+      await cloudinary.api.delete_resources_by_prefix(folder);
+      await cloudinary.api.delete_folder(folder);
+      return 204;
+    } catch (err) {
+      console.error(err);
+    }
   }
-  findById (antique_id) {
-    return Image.query()
-      .where('antique_id', antique_id);
-  }
+  // REMOVED ? Commented for now
+  // findById (antique_id) {
+  //   return Image.query()
+  //     .where('antique_id', antique_id);
+  // }
   findByIdLimitOne (antique_id) {
-    return Image.query()
-      .where('antique_id', antique_id)
-      .first();
+    return cloudinary.search
+      .expression(`folder:${antiqueFolderFormat(antique_id)}`)
+      .max_results(1)
+      .execute();
   }
 }
 

@@ -3,9 +3,9 @@ const { limitOffset } = require('./antique.constant');
 const { antiqueParams, queryParams } = require('./antique.params');
 const { objLength, parseObjectInts } = require('../../lib/utils');
 const imageService = require('../image/image.service');
-const likeService = require('../like/like.service');
 const userDAO = require('../user/user.doa');
 const attachAvatarIfNotPresent = require('../../lib/attach-avatar-if-not-present');
+const likeDAO = require('../like/like.dao');
 
 class AntiqueService {
   all () {
@@ -62,7 +62,7 @@ class AntiqueService {
     // currently users.service is coming back undefined,
     // might be an importing bug,
     // for now logic will be within this block
-    const antiqueLikes = await likeService.getLikesByAntiqueId(id);
+    const antiqueLikes = await likeDAO.findByAntiqueId(id);
     const user_ids = antiqueLikes.map(like => like.user_id);
     const users = await userDAO.getUsersByIds(user_ids);
 
@@ -72,9 +72,10 @@ class AntiqueService {
         avatar: attachAvatarIfNotPresent(user.avatar)
       };
     });
-    const count = await likeService.getLikesCountByAntiqueId(id);
+    const { count } = await likeDAO.countByAntiqueId(id);
+    const parsedCount = parseInt(count);
     const likes = usersWithAvatars;
-    return { likes, count };
+    return { likes, count: parsedCount };
   }
   async getAntiquesByUserId (user_id) {
     return await antiqueDAO.findByUserId(user_id);

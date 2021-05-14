@@ -6,8 +6,10 @@ class AntiqueController {
   async index (req, res) {
     try {
       const { query } = req;
-      const antiquesWithLiked = await antiqueService.limitOffset(query);
-      res.status(200).json(antiquesWithLiked);
+      const antiques = await AntiqueSerializer.serializeWithRelations({
+        antique: await antiqueService.limitOffset(query)
+      });
+      res.status(200).json(antiques);
     } catch (err) {
       console.error(err);
       res.status(422).json(err);

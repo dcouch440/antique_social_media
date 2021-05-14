@@ -97,6 +97,7 @@ class UserService {
   async getUserByUsername (username) {
     try {
       const user = await userDAO.getUserByUsername(username);
+      console.log(user);
       const avatar = attachAvatarIfNotPresent(user.avatar);
       return { username: user.username, avatar };
     } catch (err) {
