@@ -8,11 +8,11 @@ export default function Antique ({ antique }) {
   const [image] = antique.images;
 
   const handleClick = () => history.push(`/antiques/${antique.id}`);
-  
+
   return (
     <AntiqueRow onClick={handleClick}>
       <Image>
-        <img src={image.image_url} alt={antique.name} />
+        <img src={image.url} alt={antique.name} />
       </Image>
       <About>
         <div>Name: {antique.name}</div>

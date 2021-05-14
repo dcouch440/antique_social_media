@@ -12,7 +12,7 @@ export default function Antiques ({ antiques }) {
 
   const mappedAntiques = antiques.map((antique, index) => {
     const { images } = antique;
-    const image = images[0].image_url;
+    const image = images[0].url;
 
     return (
       <Antique key={index} onClick={e => handleClick(e, antique.id)}>

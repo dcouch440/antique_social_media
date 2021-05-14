@@ -16,7 +16,6 @@ export default function Posts () {
     axios
       .get(`users/${currentUser.id}/antiques`, { withCredentials: true })
       .then(res => {
-        console.log(res.data);
         if (res.status === 200) {
           setAntiques([...res.data]);
         }

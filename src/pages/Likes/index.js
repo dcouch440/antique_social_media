@@ -8,7 +8,6 @@ import { AntiqueRows, LikesHeader, Page } from './styles';
 export default function Likes () {
   const [antiques, setAntiques] = useState([]);
 
-  console.log(antiques);
   useEffect(() => {
     axios
       .get('/likes', { withCredentials: true })
