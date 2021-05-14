@@ -43,7 +43,7 @@ io.on(CONNECTION , async socket => {
         getRoomUsernames({ io, roomId })
       );
 
-      const useThatJoined = await messageWithAttachedUser({
+      const userThatJoined = await messageWithAttachedUser({
         message: 'Joined The Room', username: currentUser.username
       });
 
@@ -51,7 +51,7 @@ io.on(CONNECTION , async socket => {
       io.to(roomId).emit( JOIN_ROOM , {
         users,
         roomId,
-        ...useThatJoined
+        ...userThatJoined
       });
 
       socket.on(MESSAGE, async message => {

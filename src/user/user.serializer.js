@@ -15,14 +15,12 @@ class UserSerializer {
     return Promise.all(usersWithAttachedAvatars);
   }
   async attachAvatarToUser (user) {
-    const avatar = this.getAvatarAndVerify(user);
+    const avatar = await this.getAvatarAndVerify(user);
     return { username: user.username, avatar };
   }
   async getAvatarAndVerify (user) {
     const { id } = user;
-    console.log('from serializer', id);
     const avatar = await avatarService.getAvatarByUserId(id);
-    console.log(avatar);
     return getAvatarIfNotPresent(avatar);
   }
 }
