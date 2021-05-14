@@ -29,7 +29,7 @@
 
 # `Tech Used`
 - axios
-- socket io `4.0.1`
+- socket io - client `4.0.1`
 - framer-motion `4.1.9`
 - react-router-dom `5.2.0`
 - styled-components `5.2.3`

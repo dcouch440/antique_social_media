@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Username, HubLink } from './styles';
 import { Link } from 'react-router-dom';

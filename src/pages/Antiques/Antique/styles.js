@@ -14,12 +14,6 @@ export const AntiqueContainer = styled.div`
   grid-column: span 1;
 `;
 
-export const Image = styled.div`
-  > * {
-    height: 100%;
-  }
-`;
-
 export const AntiqueOverlay = styled.div`
   position: absolute;
   padding: 3px;

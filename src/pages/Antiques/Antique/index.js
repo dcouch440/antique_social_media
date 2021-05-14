@@ -1,4 +1,4 @@
-import { AntiqueContainer, Image, AntiqueOverlay, OverlayText } from './styles';
+import { AntiqueContainer, AntiqueOverlay, OverlayText } from './styles';
 
 import Liked from '../../../components/Liked';
 import { useHistory } from 'react-router-dom';
