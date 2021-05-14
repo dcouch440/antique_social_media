@@ -1,9 +1,7 @@
 import PropTypes from 'prop-types';
-import React, { useContext } from 'react';
-import { Context } from '../../Context';
-import { DropMenuPlate } from './styles';
 import SignedIn from '../SignedIn';
 import Access from '../Access';
+import { DropMenuPlate } from './styles';
 
 export default function DropDown ({ display, showAvatar, currentUser }) {
   const signedIn = currentUser.username;

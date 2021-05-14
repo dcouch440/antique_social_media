@@ -25,6 +25,12 @@ export default function Antique ({ antique }) {
   );
 }
 
+Antique.defaultProps = {
+  antique: {
+    images: [{ url: '' }]
+  }
+};
+
 Antique.propTypes = {
   antique: PropTypes.shape({
     created_at: PropTypes.string.isRequired,

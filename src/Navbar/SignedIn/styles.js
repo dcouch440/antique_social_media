@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 
+export const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-auto-rows: 40px;
+  font-family: 'Pacifico', cursive;
+`;
+
 export const Username = styled.div`
   font-family: 'Pacifico', cursive;
   background-image: url('https://res.cloudinary.com/dbyretay5/image/upload/v1620696860/pexels-pixabay-210126_eh5kyp.jpg');

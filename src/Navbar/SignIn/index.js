@@ -1,13 +1,18 @@
-import PropTypes from 'prop-types';
 import { useState, useEffect, useRef, useContext } from 'react';
-import axios from 'axios';
 import { Context } from '../../Context';
-import { SignIngTitle, SignedIn } from './styles';
+import PropTypes from 'prop-types';
+import axios from 'axios';
+
 import {
   StyledInput,
   DropDownButton,
   DropDownButtonContainer
 } from '../styled';
+
+import {
+  SignIngTitle,
+  SignedIn
+} from './styles';
 
 export default function SignIn ({ toggle }) {
   const { setCurrentUser } = useContext(Context);

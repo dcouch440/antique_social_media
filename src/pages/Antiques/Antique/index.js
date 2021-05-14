@@ -33,6 +33,12 @@ export default function Antique ({ antique, lazyRef, index }) {
   );
 }
 
+Antique.defaultProps = {
+  antique: {
+    images: [{ url: '' }]
+  }
+};
+
 Antique.propTypes = {
   antique: PropTypes.object,
   index: PropTypes.number,

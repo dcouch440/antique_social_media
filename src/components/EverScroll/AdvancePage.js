@@ -1,7 +1,6 @@
 import { useCallback, useEffect } from 'react';
 
 export default function AdvancePage ({ setPage, BBRef, lazyRef, data }) {
-  console.log('lol');
   const scrollObserver = useCallback(node => {
 
     new IntersectionObserver(entries => entries.forEach(en => {

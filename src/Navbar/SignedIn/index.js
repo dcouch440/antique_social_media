@@ -1,17 +1,15 @@
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { Username, HubLink } from './styles';
 import { Link } from 'react-router-dom';
 import SignOut from '../SignOut';
 import maximumLength from '../../utils/maxLength';
 import capitalize from '../../utils/capitalize';
 
-const Grid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  grid-auto-rows: 40px;
-  font-family: 'Pacifico', cursive;
-`;
+import {
+  Grid,
+  Username,
+  HubLink
+} from './styles';
+
 
 export default function SingedIn ({ user, showAvatar }) {
   const capitalizedUsername = capitalize(user);

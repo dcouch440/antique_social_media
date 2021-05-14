@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import * as emojis from 'emojis-list';
 import { useState } from 'react';
 import {
@@ -77,3 +78,12 @@ export default function Emoji ({ handleClick, show }) {
     </>
   );
 }
+
+Emoji.defaultProps = {
+  show: false
+};
+
+Emoji.propTypes = {
+  handleClick: PropTypes.func,
+  show: PropTypes.bool
+};

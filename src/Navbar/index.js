@@ -1,8 +1,12 @@
 import React, { useState, useRef, useContext } from 'react';
-import { Nav, Menu } from './styles';
+import { Context } from '../Context';
 import DropDown from './DropDown';
 import Avatar from './Avatar';
-import { Context } from '../Context';
+
+import {
+  Nav,
+  Menu
+} from './styles';
 
 
 export default function Navbar () {

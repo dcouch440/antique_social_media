@@ -33,13 +33,9 @@ export default function Avatar ({ hideAvatar }) {
   };
 
   const handleFileSubmit = () => {
-    if (!selectedFile) {
+    if (!selectedFile || !currentUser.id) {
       return;
     }
-    if (!currentUser.id) {
-      return;
-    }
-
     setMessage('Uploading, one moment please...');
     const reader = new FileReader();
     reader.readAsDataURL(selectedFile);
@@ -83,7 +79,6 @@ export default function Avatar ({ hideAvatar }) {
       <AvatarUpload>
         <InputContainer>
           <input
-
               type="file"
               name="files"
               onChange={handleChange}

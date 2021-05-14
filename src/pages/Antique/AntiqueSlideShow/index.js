@@ -91,6 +91,10 @@ export default function AntiquesSlideShow ({ antiqueImages, newUpload, setNewUpl
   );
 }
 
+AntiquesSlideShow.defaultProps = {
+  antiqueImages: []
+};
+
 AntiquesSlideShow.propTypes = {
   antiqueImages: PropTypes.array
 };

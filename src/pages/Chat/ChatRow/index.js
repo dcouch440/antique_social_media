@@ -59,5 +59,8 @@ export default function ChatRows ({ messages, socketRef }) {
 }
 
 ChatRows.propTypes = {
-  messages: PropTypes.array
+  messages: PropTypes.array,
+  socketRef: PropTypes.shape({
+    current: PropTypes.any
+  })
 };
