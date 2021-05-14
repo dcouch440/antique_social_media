@@ -1,10 +1,14 @@
 import PropTypes from 'prop-types';
 import { ControlsPanel } from './styles';
 import Slider from '../../../components/Slider';
-import { SliderContainer, Slide, GridTitle,Count } from './styles';
 import { controlVariants } from './variants';
 import { motion } from 'framer-motion';
 
+import {
+  SliderContainer,
+  Slide,
+  GridTitle,Count
+} from './styles';
 
 export default function Controls ({ setSlider, count }) {
   return (

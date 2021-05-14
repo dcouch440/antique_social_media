@@ -1,5 +1,4 @@
 // gives a default time for animation loading
-
 export default function loadingSequence ({ condition, ref, timeBeforeCheck = 1000 }) {
   setTimeout(() => {
     ref.current = true;

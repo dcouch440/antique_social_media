@@ -3,7 +3,10 @@ import { useContext, useRef } from "react";
 import { useHistory } from "react-router";
 import { Context } from "../../../Context";
 import checkUser from "../../../utils/checkUser";
-import { DeleteButton } from './styles';
+
+import {
+  DeleteButton
+} from './styles';
 
 export default function DeleteImage ({ antique }) {
   const { currentUser } = useContext(Context);

@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import Emoji from '../Emoji';
+
 import {
   SubmitButton,
   ChatWindow,
@@ -7,7 +9,6 @@ import {
   EmojiContainer,
   RelativeContainer
 } from './styles';
-import Emoji from '../Emoji';
 
 export default function ChatInput ({ sendMessage }) {
   const [{ message }, setMessage] = useState({ message: '' });

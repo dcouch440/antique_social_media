@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useHistory } from 'react-router';
 import { Antique } from './styles';
 
@@ -8,7 +9,6 @@ export default function Antiques ({ antiques }) {
     e.stopPropagation();
     history.push(`/antiques/${id}`);
   };
-
 
   const mappedAntiques = antiques.map((antique, index) => {
     const { images } = antique;
@@ -23,3 +23,7 @@ export default function Antiques ({ antiques }) {
 
   return mappedAntiques;
 }
+
+Antiques.propTypes = {
+  antiques: PropTypes.object
+};

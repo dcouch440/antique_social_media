@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+
 import {
   TextArea,
   TitleInput,
@@ -77,6 +78,7 @@ export default function Form ({ onSubmit }) {
     </>
   );
 }
+
 Form.propTypes = {
   onSubmit: PropTypes.func
 };

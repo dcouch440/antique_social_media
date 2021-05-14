@@ -10,7 +10,6 @@ import {
   DropDownButton
 } from '../styled';
 
-
 export default function SignUp ({ toggle }) {
   const [payload, setPayload] = useState({});
   const [message, setMessage] = useState('Sign Up');

@@ -1,8 +1,11 @@
 import { useContext } from "react";
 import { Context } from "../../../Context";
-import { UploadModalButton } from './styles';
 import Modal from '../Modal';
 import checkUser from "../../../utils/checkUser";
+
+import {
+  UploadModalButton
+} from './styles';
 
 export default function UploadIfCurrentUser ({ show, antique, handleModalShowChange, setNewUpload }) {
   const { currentUser } = useContext(Context);

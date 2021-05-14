@@ -5,10 +5,14 @@ import OnlineStatus from './components/OnlineStatus';
 const Context = createContext();
 
 function ContextProvider (props) {
-  const [currentUser, setCurrentUser] = useState({
-    id: undefined, username: undefined, email: undefined, admin: false
-  });
   const [scrollBehavior, setScrollBehavior] = useState(true);
+  const [currentUser, setCurrentUser] = useState({
+    id: undefined,
+    username: undefined,
+    email: undefined,
+    admin: false
+  });
+
   OnlineStatus({ currentUser });
   useEffect(() => {
 
@@ -18,6 +22,7 @@ function ContextProvider (props) {
       .catch(err => console.error(err));
 
   }, []);
+
   const scroll = scrollBehavior ? 'scroll' : 'hidden';
 
   return (

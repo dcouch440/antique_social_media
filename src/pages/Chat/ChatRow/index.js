@@ -4,8 +4,16 @@ import PropTypes from 'prop-types';
 import { variants } from './variants';
 import moment from 'moment';
 import { motion } from 'framer-motion';
+
 import {
-  Row, Rows, Avatar, Username, Message, MessageContainer, Time, GoBack
+  Row,
+  Rows,
+  Avatar,
+  Username,
+  Message,
+  MessageContainer,
+  Time,
+  GoBack
 } from './styles';
 
 export default function ChatRows ({ messages, socketRef }) {

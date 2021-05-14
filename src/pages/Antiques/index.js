@@ -5,6 +5,7 @@ import Antique from './Antique';
 import Controls from './Controls';
 import EverScroll from '../../components/EverScroll';
 import bottleTyeDye from '../../img/assets/waxSealImg.png';
+
 import {
     Grid,
     Header,

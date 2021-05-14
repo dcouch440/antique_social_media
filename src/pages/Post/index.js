@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import PageTransition from '../../Framer/PageTransition';
 import Form from './Form';
+
 import {
   Page,
   ImagePreview,

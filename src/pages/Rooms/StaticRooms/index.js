@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import capitalize from '../../../utils/capitalize';
+
 import {
   RoomId,
   Users,

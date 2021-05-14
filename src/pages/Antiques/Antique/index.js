@@ -1,11 +1,15 @@
-import { AntiqueContainer, AntiqueOverlay, OverlayText } from './styles';
-
 import Liked from '../../../components/Liked';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import React from 'react';
 import RenderSmoothImage from 'render-smooth-image-react';
 import 'render-smooth-image-react/build/style.css';
+
+import {
+  AntiqueContainer,
+  AntiqueOverlay,
+  OverlayText
+} from './styles';
 
 export default function Antique ({ antique, lazyRef, index }) {
   const history = useHistory();

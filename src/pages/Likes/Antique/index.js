@@ -1,8 +1,13 @@
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { useHistory } from 'react-router';
-import { AntiqueRow, Image, About } from './styles';
 import waxImg from '../../../img/assets/waxSealImg.png';
+
+import {
+  AntiqueRow,
+  Image,
+  About
+} from './styles';
 
 export default function Antique ({ antique }) {
   const history = useHistory();

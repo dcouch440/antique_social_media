@@ -1,7 +1,11 @@
 import React, { useContext, useState } from 'react';
 import axios from 'axios';
-import { ImageInput, ImageUpload, UploadButton } from './styles';
 import { Context } from '../../../Context';
+import {
+  ImageInput,
+  ImageUpload,
+  UploadButton
+} from './styles';
 
 export default function Upload ({ antique, afterUpload, setPreviewSource, setMessage }) {
   const [fileInputState, setFileInputState] = useState('');

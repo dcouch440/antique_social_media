@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import { Context } from '../../../Context';
 import OnlineAnimation from '../../../Framer/OnlineAnimation';
+
 import {
   Online,
   AvatarContainer,
@@ -11,7 +12,6 @@ import {
 
 export default function User ({ ownerInfo }) {
   const { currentUser: { id } } = useContext(Context);
-  console.log(ownerInfo);
   const isCurrentUserPostOrUserOnline = (id === ownerInfo.id && id) ? true : ownerInfo.online;
   const onlineOfflineText = isCurrentUserPostOrUserOnline ? 'Online' : 'Offline';
 

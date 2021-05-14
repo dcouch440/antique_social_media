@@ -6,6 +6,7 @@ import AntiqueLikes from './AntiqueLikes';
 import Liked from '../../components/Liked';
 import UploadIfCurrentUser from './UploadIfCurrentUser';
 import DeleteImage from './DeleteAntique';
+
 import {
   LikedComponentContainer,
   About,

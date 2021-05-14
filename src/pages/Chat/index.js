@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
-import { ChatWindow } from './styles';
 import Socket from '../../components/Socket';
 import ChatRows from './ChatRow';
 import ChatInput from './ChatInput';
@@ -8,6 +7,9 @@ import PageTransition from '../../Framer/PageTransition';
 import OnlineUserSidebar from './OnlineUserSidebar';
 import { MESSAGE } from '../../constant/index';
 
+import {
+  ChatWindow
+} from './styles';
 
 export default function Chat ({ roomId }) {
   const [refresh, setRefresh] = useState(true);
