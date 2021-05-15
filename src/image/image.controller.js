@@ -3,7 +3,6 @@ const imageService = require('./image.service');
 // ADD DELETE IMAGE
 
 class ImageController {
-
   async show (req,res) {
     try {
       const { antique_id } = req.params;
@@ -13,7 +12,6 @@ class ImageController {
       console.error(err);
     }
   }
-
   async upload (req,res) {
     try {
       const { file64, antique_id } = req.body;

@@ -70,8 +70,6 @@ exports.seed = async knex => {
     const [userCount] = await knex.from('user').count('id');
     const [antiquesCount] = await knex.from('antique').count('id');
     const [likesCount] = await knex.from('like').count('id');
-    const [imageCount] = await knex.from('image').count('id');
-    const [avatarCount] = await knex.from('avatar').count('id');
 
     ENV !== 'test' && console.info(`
       ______________________________________________
@@ -80,11 +78,10 @@ exports.seed = async knex => {
           User Count:    - ${userCount.count}
           Antique Count: - ${antiquesCount.count}
           Like Count:    - ${likesCount.count}
-          Image Count:    - ${imageCount.count}
-          Avatar Count:  - ${avatarCount.count}
           [ENV]:         - ${process.env.NODE_ENV}
 
-      _____________________________________________
+      ______________________________________________
+
     `);
   } catch (err) {
     console.error(err);
