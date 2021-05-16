@@ -13,6 +13,8 @@ function ContextProvider (props) {
     admin: false
   });
 
+  axios.defaults.baseURL = '/api';
+
   OnlineStatus({ currentUser });
   useEffect(() => {
 
