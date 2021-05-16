@@ -48,21 +48,24 @@ export default function Upload ({ antique, afterUpload, setPreviewSource, setMes
   };
 
   const uploadImage = async base64EncodedImage => {
-    axios
-      .post('/images/upload',{
-        file64: base64EncodedImage,
-        antique_id: antique.id
-      })
-      .then(res => {
-        if (res.status === 201) {
-          setPreviewSource('');
-          afterUpload({ uploaded: true, message: 'Success!' });
-        } else {
-          setPreviewSource('');
-          afterUpload({ uploaded: false, message: res.message });
-        }
-      })
-      .catch(err => console.error(err));
+    try {
+      axios
+        .post('/images/upload',{
+          file64: base64EncodedImage,
+          antique_id: antique.id
+        })
+        .then(res => {
+          if (res.status === 201) {
+            setPreviewSource('');
+            afterUpload({ uploaded: true, message: 'Success!' });
+          } else {
+            setPreviewSource('');
+            afterUpload({ uploaded: false, message: res.message });
+          }
+        });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (

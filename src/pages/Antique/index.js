@@ -24,7 +24,6 @@ export default function AntiqueInfo ({ antique, setRoom }) {
   const [newUpload, setNewUpload] = useState(false);
   const handleModalShowChange = () => setShow(prev => !prev);
 
-
   return (
     <Page>
       <DeleteImage antique={antique}/>
