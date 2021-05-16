@@ -7,7 +7,6 @@ class User extends Model {
   static get relationMappings () {
     const Antique = require('../antique/antique.model');
     const Like = require('../like/like.model');
-    const Avatar = require('../avatar/avatar.model');
 
     return {
       antiques: {
@@ -26,14 +25,6 @@ class User extends Model {
           to: 'like.user_id'
         }
       },
-      avatar: {
-        relation: Model.HasOneRelation,
-        modelClass: Avatar,
-        join: {
-          from: 'user.id',
-          to: 'avatar.user_id'
-        }
-      }
     };
   }
 }
