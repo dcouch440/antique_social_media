@@ -36,9 +36,11 @@ class AntiqueDAO {
     return Antique.query()
       .distinct(category, 'id');
   }
-  findByUserId (user_id) {
+  findByUserId ({ user_id, OFFSET, LIMIT }) {
     return Antique.query()
-      .where('user_id', user_id);
+      .where('user_id', user_id)
+      .offset(OFFSET)
+      .limit(LIMIT);
   }
 }
 

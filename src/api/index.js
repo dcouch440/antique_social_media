@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const users = require('../user/user.routes');
 const images = require('../image/image.routes');
 const antiques = require('../antique/antique.routes');
@@ -7,17 +8,21 @@ const avatars = require('../avatar/avatar.routes');
 const routesConstants = require('../../constant/routes');
 const getCurrentUser = require('../../middleware/get-current-user');
 const log = require('../../middleware/log');
-const router = express.Router();
+const api = express.Router();
 
 // ----------- first ---
-router.use(getCurrentUser);
+api.use(getCurrentUser);
 
-router.use(log);
-router.use('/images', images);
-router.use('/avatars', avatars);
-router.use('/users', users);
-router.use('/antiques', antiques);
-router.use('/likes', likes);
-router.use('/', (req, res) => res.json(routesConstants));
+api.use(log);
+api.use('/images', images);
+api.use('/avatars', avatars);
+api.use('/users', users);
+api.use('/antiques', antiques);
+api.use('/likes', likes);
 
-module.exports = router;
+api.use('/', (req, res) => res.json(routesConstants));
+api.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, './client/build', 'index.html'));
+});
+
+module.exports = api;

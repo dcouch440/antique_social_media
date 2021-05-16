@@ -23,11 +23,6 @@ class ImageDAO {
       console.error(err);
     }
   }
-  // REMOVED ? Commented for now
-  // findById (antique_id) {
-  //   return Image.query()
-  //     .where('antique_id', antique_id);
-  // }
   findByIdLimitOne (antique_id) {
     return cloudinary.search
       .expression(`folder:${antiqueFolderFormat(antique_id)}`)

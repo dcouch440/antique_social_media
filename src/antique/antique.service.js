@@ -67,8 +67,11 @@ class AntiqueService {
     const parsedCount = parseInt(count);
     return { likes: usersWithAttachedAvatars, count: parsedCount };
   }
-  async getAntiquesByUserId (user_id) {
-    return await antiqueDAO.findByUserId(user_id);
+  async getAntiquesByUserId ({ user_id, query }) {
+    const queries = objLength(query) === 2 ? query : limitOffset;
+    const parsedQuery = parseObjectInts(queries);
+    await queryParams.validate(parsedQuery, { abortEarly: false });
+    return antiqueDAO.findByUserId({ user_id, ...parsedQuery });
   }
 }
 
