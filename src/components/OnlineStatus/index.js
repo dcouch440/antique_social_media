@@ -8,7 +8,7 @@ export default function OnlineStatus ({ currentUser }) {
       return;
     }
 
-    const socket = io('http://127.0.0.1:3002', { withCredentials: true });
+    const socket = io('http://localhost:3002', { withCredentials: true });
     socket.emit( LOGIN, { id: currentUser.id, username: currentUser.username } );
 
     return () => socket.disconnect();
