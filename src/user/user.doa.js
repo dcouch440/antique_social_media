@@ -35,7 +35,6 @@ class UserDAO {
     return User.query()
       .where('email', email).first();
   }
-  // add password error?
   create (hashedPasswordAndParams) {
     return User.query()
       .insert(hashedPasswordAndParams);

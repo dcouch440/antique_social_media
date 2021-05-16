@@ -6,9 +6,10 @@ class AntiqueController {
   async index (req, res) {
     try {
       const { query } = req;
-      const antiques = await antiqueSerializer.serializeWithRelations({
-        antique: await antiqueService.limitOffset(query)
-      });
+      const antiques = await antiqueSerializer
+        .serializeWithRelations({
+          antique: await antiqueService.limitOffset(query)
+        });
       res.status(200).json(antiques);
     } catch (err) {
       console.error(err);
@@ -28,9 +29,10 @@ class AntiqueController {
   async show (req, res) {
     try {
       const { id } = req.params;
-      const antique = await antiqueSerializer.serializeWithRelations({
-        antique: await antiqueService.show(id)
-      });
+      const antique = await antiqueSerializer
+        .serializeWithRelations({
+          antique: await antiqueService.show(id)
+        });
       res.json(antique);
     } catch (err) {
       console.error(err);
@@ -51,7 +53,8 @@ class AntiqueController {
     try {
       const { file64, ...params } = req.body;
       const antique = await antiqueService.create({
-        user_id: req.currentUser.user_id, ...params
+        user_id: req.currentUser.user_id,
+        ...params
       });
       await imageService.upload({ file64, antique_id: antique.id });
       res.status(201).json(antique);
@@ -63,7 +66,8 @@ class AntiqueController {
   async queryCategory (req,res) {
     try {
       const { category } = req.params;
-      const response = await antiqueService.queryCategory({ category });
+      const response = await antiqueService
+        .queryCategory({ category });
       res.status(200).json(response);
     } catch (err) {
       console.error(err);
@@ -72,8 +76,10 @@ class AntiqueController {
   async usersAntiques (req,res) {
     try {
       const { user_id } = req.params;
-      const antique = await antiqueService.getAntiquesByUserId(user_id);
-      const antiquesWithImages = await antiqueSerializer.serializeWithRelations({ antique });
+      const antique = await antiqueService
+        .getAntiquesByUserId(user_id);
+      const antiquesWithImages = await antiqueSerializer
+        .serializeWithRelations({ antique });
       res.status(200).json(antiquesWithImages);
     } catch (err) {
       console.error(err);

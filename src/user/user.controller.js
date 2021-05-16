@@ -28,8 +28,10 @@ class UserController {
   async showByUsername (req,res) {
     try {
       const { usernames } = req.body;
-      const users = await userService.getUsersByUsername({ usernames });
-      const serializedUsers = await userSerializer.serializeWithUserAvatar(users);
+      const users = await userService
+        .getUsersByUsername({ usernames });
+      const serializedUsers = await userSerializer
+        .serializeWithUserAvatar(users);
       res.status(200).json(serializedUsers);
     } catch (err) {
       console.error(err);
@@ -39,7 +41,8 @@ class UserController {
   async all (req,res) {
     try {
       const users = await userService.all();
-      const serializedUsers = await userSerializer.serializeWithUserAvatar(users);
+      const serializedUsers = await userSerializer
+        .serializeWithUserAvatar(users);
       res.status(200).json(serializedUsers);
     } catch (err) {
       console.error(err);
@@ -49,7 +52,8 @@ class UserController {
     try {
       const { id } = req.params;
       const user = await userService.showOvert(id);
-      const serializedUsers = await userSerializer.serializeWithUserAvatar(user);
+      const serializedUsers = await userSerializer
+        .serializeWithUserAvatar(user);
       res.json(serializedUsers);
     } catch (err) {
       console.error(err);

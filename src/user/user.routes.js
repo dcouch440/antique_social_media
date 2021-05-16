@@ -10,8 +10,7 @@ router.get('/session', userController.session);
 router.get('/:id', userController.show);
 router.post('/signin', userController.signIn);
 router.post('/signup', userController.signUp);
-
-// nested
+// REMOVE
 router.get('/:id/antiques', userController.antiquesAll);
 
 module.exports = router;

@@ -6,7 +6,8 @@ class ImageController {
   async show (req,res) {
     try {
       const { antique_id } = req.params;
-      const antiqueImages = await imageService.findByAntiqueId(antique_id);
+      const antiqueImages = await imageService
+        .findByAntiqueId(antique_id);
       res.status(200).json(antiqueImages);
     } catch (err) {
       console.error(err);

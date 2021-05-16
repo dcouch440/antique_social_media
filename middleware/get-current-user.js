@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
-'use strict';
 
+'use strict';
 const getCurrentUser = async (req, res, next) => {
 
   try {
@@ -12,6 +12,7 @@ const getCurrentUser = async (req, res, next) => {
     const decryptedUser = jwt.verify(
       token, process.env.JWT_SECRET
     );
+
     const {
       id :userBodyId,
       username :username,

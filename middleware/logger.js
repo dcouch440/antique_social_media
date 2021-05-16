@@ -8,5 +8,4 @@ const handleException = ({ res, status, err }) => {
   });
 };
 
-
 module.exports = { handleException };
