@@ -12,21 +12,17 @@ function ContextProvider (props) {
     email: undefined,
     admin: false
   });
+  OnlineStatus({ currentUser });
 
   axios.defaults.baseURL = '/api';
-
-  OnlineStatus({ currentUser });
   useEffect(() => {
-
     axios
       .get('/users/session', { withCredentials: true })
       .then(res => setCurrentUser(res.data))
       .catch(err => console.error(err));
-
   }, []);
 
   const scroll = scrollBehavior ? 'scroll' : 'hidden';
-
   return (
     <Context.Provider value={{
       currentUser,

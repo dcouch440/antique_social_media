@@ -4,6 +4,7 @@ export default function AdvancePage ({ setPage, BBRef, lazyRef, data }) {
   const scrollObserver = useCallback(node => {
 
     new IntersectionObserver(entries => entries.forEach(en => {
+      console.log(en.intersectionRatio);
       en.intersectionRatio > 0 && setPage(prev => prev += 1);
     })).observe(node);
 
@@ -14,7 +15,9 @@ export default function AdvancePage ({ setPage, BBRef, lazyRef, data }) {
   }, [scrollObserver, BBRef]);
 
   const observer = useCallback(node => {
-
+    if (node === null) {
+      return;
+    }
     const intObs = new IntersectionObserver(entries => entries
       .forEach(en => {
         if (en.intersectionRatio > 0) {
@@ -22,9 +25,9 @@ export default function AdvancePage ({ setPage, BBRef, lazyRef, data }) {
           const newImgSrc = currentImg.src;
 
           if (!newImgSrc) {
-          console.error('Image source is invalid');
+            console.error('Image source is invalid');
           } else {
-          currentImg.src = newImgSrc;
+            currentImg.src = newImgSrc;
           }
 
           intObs.unobserve(node);

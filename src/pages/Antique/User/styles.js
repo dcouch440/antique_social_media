@@ -34,3 +34,21 @@ export const Avatar = styled.img`
   object-fit: cover;
   animation: online 5s;
 `;
+
+export const CollectionsButton = styled.button`
+  all: unset;
+  cursor: pointer;
+  ${include.cursiveFont}
+  border: 1px solid white;
+  border-radius: 15px;
+  padding: 5px;
+  font-size: 15px;
+  position: absolute;
+  top: 50%;
+  color: white;
+  transition: .2s;
+  :hover {
+    background-color: white;
+    color: black;
+  }
+`;

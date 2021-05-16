@@ -27,7 +27,10 @@ export default function App () {
             <Redirect to="/antiques"/>
           </Route>
           <Route exact path="/antiques">
-            <Antiques />
+            <Antiques route={'/antiques'} />
+          </Route>
+          <Route exact path="/collections/:user_id">
+            <Antiques route={'/antiques/users/'} />
           </Route>
           <Route exact path="/antiques/new">
             <Post />

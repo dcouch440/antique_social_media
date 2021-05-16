@@ -50,7 +50,7 @@ export default function Upload ({ antique, afterUpload, setPreviewSource, setMes
   const uploadImage = async base64EncodedImage => {
     try {
       axios
-        .post('/images/upload',{
+        .post('/images',{
           file64: base64EncodedImage,
           antique_id: antique.id
         })

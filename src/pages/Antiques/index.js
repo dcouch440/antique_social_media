@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import { useHistory, useParams } from 'react-router';
 import ApiMapper from '../../components/ApiMapper';
 import PageTransition from '../../Framer/PageTransition';
 import Antique from './Antique';
 import Controls from './Controls';
-import EverScroll from '../../components/EverScroll';
+import capitalize from '../../utils/capitalize';
+import useEverScroll from '../../components/useEverScroll';
 import bottleTyeDye from '../../img/assets/waxSealImg.png';
 
 import {
@@ -13,11 +15,15 @@ import {
     HeaderImage
 } from './styles';
 
-export default function AntiquesPage () {
-  const [bottomBoundaryRef, lazyRef, antiques] = EverScroll(
-    { limit: 15, route: '/antiques' }
+export default function AntiquesPage ({ route }) {
+  const { user_id } = useParams();
+  const history = useHistory();
+  const [slider, setSlider] = useState(4);
+  const [bottomBoundaryRef, lazyRef, antiques] = useEverScroll(
+    { limit: 20, route: user_id ? route + user_id : route }
   );
-  const [slider, setSlider] = useState(3);
+
+  const getHeader = h => capitalize(h.location.pathname.split('/')[1]);
 
   return (
     <PageTransition>
@@ -25,12 +31,12 @@ export default function AntiquesPage () {
         <Controls setSlider={setSlider} count={slider}/>
         <Header>
           <HeaderImage src={bottleTyeDye}/>
-          Antiques
+          { getHeader(history) }
         </Header>
         <Grid columns={slider}>
           <ApiMapper callData={antiques} lazyRef={lazyRef} component={Antique} />
         </Grid>
-        <div ref={bottomBoundaryRef} style={{ background: '', width: '1px', height: '50px' }}></div>
+        <div ref={bottomBoundaryRef} style={{ background: '', width: '1px', height: '200px', marginTop: '' }}></div>
       </PageContainer>
     </PageTransition>
   );

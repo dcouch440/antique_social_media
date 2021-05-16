@@ -7,7 +7,6 @@ export const Page = styled.div`
   height: inherit;
   grid-auto-rows: 50%;
   width: 100%;
-    /* IE 10+ */
   grid-template-columns: repeat(2,1fr);
   @media (max-width: 1000px) {
     grid-template-columns: repeat(1,1fr);
@@ -65,12 +64,13 @@ export const StartChatting = styled.button`
   color: black;
   font-weight: bold;
   color: white;
+  transition: .2s;
   @media (max-width: 1000px) {
     top: calc(50px + 100%);
   }
   :hover {
-    background-color: black;
-    color: white;
+    background-color: white;
+    color: black;
   }
 `;
 
