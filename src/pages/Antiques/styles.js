@@ -19,6 +19,7 @@ export const Header = styled.div`
   ${include.screenAdapt};
   ${include.darkBackgroundColor}
   overflow: hidden;
+  position: relative;
   color: whitesmoke;
   font-family: 'Pacifico', cursive;
   text-shadow: -1px -2px 1px black;
@@ -39,6 +40,6 @@ export const PageContainer = styled.div`
 
 export const HeaderImage = styled.img`
   position: absolute;
-  height: 20%;
-  right: 20%;
+  height: 115%;
+  right: 3%;
 `;
