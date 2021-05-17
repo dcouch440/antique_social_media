@@ -4,11 +4,7 @@ module.exports = {
 
   development: {
     client: 'postgresql',
-    connection: {
-      database:process.env.TEST_DB_NAME,
-      user:process.env.PG_USER,
-      password:process.env.PG_PASS,
-    },
+    connection: process.env.PG_CONNECTION,
     pool: {
       min: 2,
       max: 10,
@@ -44,11 +40,7 @@ module.exports = {
 
   test: {
     client: 'postgresql',
-    connection: {
-      database:process.env.TEST_DB_NAME,
-      user:process.env.PG_USER,
-      password:process.env.PG_PASS,
-    },
+    connection: process.env.PG_CONNECTION_TEST,
     pool: {
       min: 2,
       max: 10,
