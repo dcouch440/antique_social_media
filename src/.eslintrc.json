@@ -1,0 +1,26 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "extends": "eslint:recommended",
+  "rules": {
+    "semi": "error",
+    "semi-spacing": "error",
+    "no-multiple-empty-lines": "error",
+    "no-unused-vars": "warn",
+    "keyword-spacing": "error",
+    "space-before-function-paren": "error",
+    "object-curly-spacing": ["warn", "always"],
+    "react/react-in-jsx-scope": "off",
+    "eqeqeq": "error",
+    "curly": "error",
+    "block-spacing": "error",
+    "arrow-parens": ["error", "as-needed"],
+    "brace-style": ["error", "1tbs"],
+    "no-trailing-spaces": ["error", { "skipBlankLines": true, "ignoreComments": true }]
+  }
+}
