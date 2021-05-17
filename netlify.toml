@@ -1,6 +1,5 @@
 [build]
-  command   = "npm run server-install"
-  publish = "out"
+  command = "npm run server-install"
 
 [[plugins]]
   package = "./netlify-plugin-playtime"
