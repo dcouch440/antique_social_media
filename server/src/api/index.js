@@ -1,5 +1,4 @@
 const express = require('express');
-const path = require('path');
 const users = require('../user/user.routes');
 const images = require('../image/image.routes');
 const antiques = require('../antique/antique.routes');
@@ -21,9 +20,5 @@ api.use('/antiques', antiques);
 api.use('/likes', likes);
 
 api.use('/', (req, res) => res.json(routesConstants));
-
-api.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../../../client/build', 'index.html'));
-});
 
 module.exports = api;

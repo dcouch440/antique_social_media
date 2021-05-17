@@ -16,4 +16,9 @@ app.use('/api', api);
 app.use(notFound);
 app.use(handleError);
 
+api.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
+});
+
+
 module.exports = app;
