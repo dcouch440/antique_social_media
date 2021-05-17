@@ -1,10 +1,12 @@
-import { useEffect, useReducer, useRef, useState } from 'react';
+import { useContext, useEffect, useReducer, useRef, useState } from 'react';
 import PaginateDatabase from './PaginateDatabase';
 import AdvancePage from './AdvancePage';
 import reducer from './reducer';
 import * as A from './actions';
+import { Context } from '../../Context';
 
-export default function useEverScroll ({ limit, route, validate = false, currentUser }) {
+export default function EverScroll ({ limit, route, validate = false }) {
+  const { currentUser } = useContext(Context);
   const [page, setPage] = useState(0);
   const BBRef = useRef(null);
   const lazyRef = useRef([]);
@@ -15,8 +17,11 @@ export default function useEverScroll ({ limit, route, validate = false, current
   useEffect(() => antiqueDispatch({ type: A.CLEAR_LIST, data: [] }), []);
 
   useEffect(() => {
+    if (currentUser.id === undefined) {
+      return;
+    }
     CallDB({ dispatch: antiqueDispatch });
-  }, [CallDB, currentUser, limit, page, route, validate, currentUser]);
+  }, [CallDB, currentUser, limit, page, route, validate]);
 
   AdvancePage({ setPage, BBRef, lazyRef, data });
 

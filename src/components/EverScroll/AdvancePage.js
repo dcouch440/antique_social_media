@@ -4,7 +4,6 @@ export default function AdvancePage ({ setPage, BBRef, lazyRef, data }) {
   const scrollObserver = useCallback(node => {
 
     new IntersectionObserver(entries => entries.forEach(en => {
-      console.log(en.intersectionRatio);
       en.intersectionRatio > 0 && setPage(prev => prev += 1);
     })).observe(node);
 

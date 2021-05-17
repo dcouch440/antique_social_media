@@ -15,9 +15,7 @@ export default function Antique ({ antique, lazyRef, index }) {
   const history = useHistory();
   const [image] = antique.images;
 
-  const handleClick = id => {
-    history.push(`/antiques/${id}`);
-  };
+  const handleClick = id => history.push(`/antiques/${id}`);
 
   return (
     <AntiqueContainer
