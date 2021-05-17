@@ -14,6 +14,9 @@
     "server-migrate": "cd server && npx knex migrate:latest --knexfile ./knexfile.js",
     "server-seed": "cd server && npx knex seed:run --knexfile ./knexfile.js"
   },
+  "engines": {
+    "node": "12.18.1"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
