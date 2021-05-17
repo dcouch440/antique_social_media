@@ -59,19 +59,30 @@ class AntiqueService {
     }
   }
   async antiquesWithLikes (id) {
-    const antiqueLikes = await likeDAO.findByAntiqueId(id);
-    const user_ids = antiqueLikes.map(like => like.user_id);
-    const users = await userDAO.getUsersByIds(user_ids);
-    const usersWithAttachedAvatars = await userSerializer.serializeWithUserAvatar(users);
-    const { count } = await likeDAO.countByAntiqueId(id);
-    const parsedCount = parseInt(count);
-    return { likes: usersWithAttachedAvatars, count: parsedCount };
+    try {
+      const antiqueLikes = await likeDAO.findByAntiqueId(id);
+      const user_ids = antiqueLikes.map(like => like.user_id);
+      const users = await userDAO.getUsersByIds(user_ids);
+      const usersWithAttachedAvatars = await userSerializer.serializeWithUserAvatar(users);
+      const { count } = await likeDAO.countByAntiqueId(id);
+      const parsedCount = parseInt(count);
+      return { likes: usersWithAttachedAvatars, count: parsedCount };
+    } catch (err) {
+      console.error(err);
+    }
   }
   async getAntiquesByUserId ({ user_id, query }) {
-    const queries = objLength(query) === 2 ? query : limitOffset;
-    const parsedQuery = parseObjectInts(queries);
-    await queryParams.validate(parsedQuery, { abortEarly: false });
-    return antiqueDAO.findByUserId({ user_id, ...parsedQuery });
+    try {
+      if (query['NOLIMIT'] === 'true') {
+        return antiqueDAO.findAntiquesByUserId(user_id);
+      }
+      const queries = objLength(query) === 2 ? query : limitOffset;
+      const parsedQuery = parseObjectInts(queries);
+      await queryParams.validate(parsedQuery, { abortEarly: false });
+      return antiqueDAO.findByUserId({ user_id, ...parsedQuery });
+    } catch (err) {
+      console.error(err);
+    }
   }
 }
 

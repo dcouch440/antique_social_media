@@ -5,7 +5,7 @@ module.exports = {
   development: {
     client: 'postgresql',
     connection: {
-      database:process.env.DB_NAME,
+      database:process.env.TEST_DB_NAME,
       user:process.env.PG_USER,
       password:process.env.PG_PASS,
     },

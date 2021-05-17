@@ -1,6 +1,6 @@
 const cloudinary = require('cloudinary').v2;
-const env = process.env.NODE_ENV;
-const isTestEnv = env === 'test';
+// const env = process.env.NODE_ENV;
+const isTestEnv = true;
 
 const setValue = envKey => process.env[envKey];
 const cloud_name = setValue(isTestEnv ? 'TEST_CLOUDINARY_API_NAME' : 'CLOUDINARY_API_NAME');
