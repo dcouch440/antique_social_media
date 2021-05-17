@@ -4,7 +4,7 @@ module.exports = {
 
   development: {
     client: 'postgresql',
-    connection: process.env.PG_CONNECTION,
+    connection: process.env.DATABASE_URL,
     pool: {
       min: 2,
       max: 10,
@@ -37,10 +37,9 @@ module.exports = {
       directory: './db/seeds',
     },
   },
-
   test: {
     client: 'postgresql',
-    connection: process.env.PG_CONNECTION_TEST,
+    connection: process.env.DATABASE_URL,
     pool: {
       min: 2,
       max: 10,
