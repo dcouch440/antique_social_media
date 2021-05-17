@@ -4,6 +4,7 @@
   "main": "index.js",
   "scripts": {
     "start": "cd server && node index.js",
+    "build": "cd server && npm i",
     "heroku-postbuild": "cd client && npm install && npm run build",
     "server-start": "cd server && npm run dev",
     "client-start": "cd client && npm run start",
@@ -13,6 +14,7 @@
     "server-migrate": "cd server && npx knex migrate:latest --knexfile ./knexfile.js",
     "server-seed": "cd server && npx knex seed:run --knexfile ./knexfile.js"
   },
+  "heroku-run-build-script": true,
   "keywords": [],
   "author": "",
   "license": "ISC",
