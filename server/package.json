@@ -17,6 +17,9 @@
     "test": "jest",
     "test-detect": "jest --watch --runInBand --detectOpenHandles"
   },
+  "engines": {
+    "node": "12.18.1"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

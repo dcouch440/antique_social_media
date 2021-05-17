@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "cd server && npm i && node index.js",
+    "start": "cd server && node index.js",
     "heroku-postbuild": "cd client && npm install && npm run build",
     "server-start": "cd server && npm run dev",
     "client-start": "cd client && npm run start",
@@ -12,9 +12,6 @@
     "client-build": "cd client && npm run build",
     "server-migrate": "cd server && npx knex migrate:latest --knexfile ./knexfile.js",
     "server-seed": "cd server && npx knex seed:run --knexfile ./knexfile.js"
-  },
-  "engines": {
-    "node": "12.18.1"
   },
   "keywords": [],
   "author": "",
