@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "start": "cd server && node index.js",
     "server-start": "cd server && npm run dev",
     "client-start": "cd client && npm run start",
     "client-install": "cd client && npm install",
