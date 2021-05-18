@@ -13,11 +13,12 @@ app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.use(cookieParser());
 app.use('/api', api);
-app.use(notFound);
-app.use(handleError);
 
-api.get('*', (req, res) => {
+app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, './client/build', 'index.html'));
 });
+
+app.use(notFound);
+app.use(handleError);
 
 module.exports = app;
