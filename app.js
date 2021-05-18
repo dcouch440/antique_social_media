@@ -8,7 +8,7 @@ const cookieParser = require('cookie-parser');
 const { notFound, handleError } = require('./middleware/exceptions');
 
 app.use(express.static(path.resolve(__dirname, './client/build')));
-app.use(cors({ credentials: true, origin: 'http://localhost:3001' }));
+app.use(cors({ credentials: true, origin: 'https://radiant-thicket-98181.herokuapp.com' }));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
 app.use(cookieParser());

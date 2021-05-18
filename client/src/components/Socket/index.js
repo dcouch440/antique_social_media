@@ -21,7 +21,7 @@ export default function Socket (roomId) {
     if (!currentUser.username) {
       return;
     }
-    socketRef.current = io('http://localhost:3003', { withCredentials: true });
+    socketRef.current = io('https://radiant-thicket-98181.herokuapp.com:3003', { withCredentials: true });
 
     socketRef.current.on(MESSAGE, msg => {
       setMessages(prevMsgs => [...prevMsgs, msg.message]);
