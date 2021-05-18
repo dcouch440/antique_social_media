@@ -12,9 +12,11 @@ function ContextProvider (props) {
     email: undefined,
     admin: false
   });
+
   OnlineStatus({ currentUser });
 
   axios.defaults.baseURL = '/api';
+
   useEffect(() => {
     axios
       .get('/users/session', { withCredentials: true })
