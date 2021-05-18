@@ -30,6 +30,7 @@ module.exports = {
       max: 10,
     },
     ssl: {
+      sslmode: 'require',
       rejectUnauthorized: false,
     },
     migrations: {
