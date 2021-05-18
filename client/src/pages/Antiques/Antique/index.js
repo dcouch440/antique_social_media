@@ -10,20 +10,21 @@ import {
   AntiqueOverlay,
   OverlayText
 } from './styles';
+import imageSizer from '../../../utils/imageSizer';
 
 export default function Antique ({ antique, lazyRef, index }) {
   const history = useHistory();
   const [image] = antique.images;
-
+  const { url, height, width } = image;
   const handleClick = id => history.push(`/antiques/${id}`);
-
+  const downsizedUrl = imageSizer({ url, height, width, decreesBy: 5 });
   return (
     <AntiqueContainer
       onClick={() => handleClick(antique.id)}
-      dimensions={{ height: image.height, width: image.width }}
+      dimensions={{ height, width }}
       ref={el => lazyRef.current[index] = el}
     >
-      <RenderSmoothImage objectFit={'cover'} src={image.url} alt={antique.name}/>
+      <RenderSmoothImage objectFit={'cover'} src={downsizedUrl} alt={antique.name}/>
       <AntiqueOverlay>
         <OverlayText>
           <div>{antique.name}</div>

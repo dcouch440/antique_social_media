@@ -9,7 +9,7 @@ describe('imageSizer', () => {
       decreesBy: 10
     };
     expect(imageSizer(imageUrl))
-      .toEqual("https://res.cloudinary.com/dbyretay5/image/w_10,h_10/v1620878706/_ANTIQUE_2_/IMG_2077_ktiqu5.jpg");
+      .toEqual("https://res.cloudinary.com/dbyretay5/image/upload/h_10,w_10/v1620878706/_ANTIQUE_2_/IMG_2077_ktiqu5.jpg");
   });
   it('returns url in the correct spot even if it contains multiple upload words', () => {
     const imageUrl = {
@@ -19,6 +19,6 @@ describe('imageSizer', () => {
       decreesBy: 10
     };
     expect(imageSizer(imageUrl))
-      .toEqual('https://res.cloudinary.com/dbyretay5/image/upload/v1620878706/upload/_ANTIQUE_2_/upload/IMG_2077_ktiqu5.jpg');
+      .toEqual('https://res.cloudinary.com/dbyretay5/image/upload/h_10,w_10/v1620878706/upload/_ANTIQUE_2_/upload/IMG_2077_ktiqu5.jpg');
   });
 });

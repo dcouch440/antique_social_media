@@ -1,12 +1,10 @@
 const imageSizer = ({ url, width, height, decreesBy }) => {
-  const newHeight = height / decreesBy;
-  const newWidth = width / decreesBy;
+  const newHeight = Math.floor(height / decreesBy);
+  const newWidth = Math.floor(width / decreesBy);
   const splitUrl = url.split('upload/');
-  const newUrl = [
-    splitUrl[0] + `w_${newWidth},h_${newHeight}/`,
-    ...splitUrl.splice(1)
-  ];
-  return newUrl.join('upload/');
+  const [baseUrl, ...rest] = splitUrl;
+  const newArray = rest.join('upload/');
+  return `${baseUrl}upload/h_${newHeight},w_${newWidth}/${newArray}`;
 };
 
 export default imageSizer;

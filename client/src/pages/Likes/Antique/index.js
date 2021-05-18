@@ -8,17 +8,19 @@ import {
   Image,
   About
 } from './styles';
+import imageSizer from '../../../utils/imageSizer';
 
 export default function Antique ({ antique }) {
   const history = useHistory();
   const [image] = antique.images;
-
+  const { url, height, width } = image;
   const handleClick = () => history.push(`/antiques/${antique.id}`);
+  const downsizedUrl = imageSizer({ url, height, width, decreesBy: 7 });
 
   return (
     <AntiqueRow onClick={handleClick}>
       <Image>
-        <img src={image.url} alt={antique.name} />
+        <img src={downsizedUrl} alt={antique.name} />
       </Image>
       <About>
         <div>Name: {antique.name}</div>
