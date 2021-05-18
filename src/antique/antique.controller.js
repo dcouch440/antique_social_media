@@ -13,7 +13,7 @@ class AntiqueController {
       res.status(200).json(serializedAntiques);
     } catch (err) {
       console.error(err);
-      res.status(422).json(err);
+      res.json({ message: err.message });
     }
   }
   async likes (req, res) {
@@ -35,7 +35,7 @@ class AntiqueController {
       res.json(serializedAntiques);
     } catch (err) {
       console.error(err);
-      res.status(422).json(err);
+      res.json({ message: err.message });
     }
   }
   async destroy (req, res) {
@@ -45,7 +45,7 @@ class AntiqueController {
       res.status(204).json(deleted);
     } catch (err) {
       console.error(err);
-      res.status(422);
+      res.json({ message: err.message });
     }
   }
   async create (req, res) {
@@ -59,7 +59,7 @@ class AntiqueController {
       res.status(201).json(antique);
     } catch (err) {
       console.error(err);
-      res.json(422);
+      res.json({ message: err.message });
     }
   }
   async queryCategory (req,res) {
@@ -70,6 +70,7 @@ class AntiqueController {
       res.status(200).json(response);
     } catch (err) {
       console.error(err);
+      res.json({ message: err.message });
     }
   }
   async usersAntiques (req,res) {
@@ -83,6 +84,7 @@ class AntiqueController {
       res.status(200).json(antiquesWithImages);
     } catch (err) {
       console.error(err);
+      res.json({ message: err.message });
     }
   }
 }

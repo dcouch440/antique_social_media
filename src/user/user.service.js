@@ -6,7 +6,6 @@ const cookieExpiration = require('../../constant/cookie-time');
 const attachAvatarIfNotPresent = require('../../lib/get-avatar-if-no-present');
 const userSerializer = require('./user.serializer');
 
-
 class UserService {
   async signIn ({ res, password, email }) {
     try {
@@ -41,14 +40,15 @@ class UserService {
 
       return payload;
     } catch (err) {
-      res.status(403).json(err);
+      console.error(err);
+      res.status(403).json(err.errors);
     }
   }
   async signUp ({ res, username, password, email }) {
     try {
       const user = await userDAO.findByEmail(email);
       if (user) {
-        res.status(403);
+        res.status(403).json({ message: 'Invalid Credentials' });
         throw new Error('email Found');
       }
       const userParams = { username, password, email };
@@ -71,7 +71,8 @@ class UserService {
 
       return payload;
     } catch (err) {
-      res.status(403).json(err);
+      console.error(err);
+      res.json({ message: err.errors });
     }
   }
   async changeOnlineState ({ id, online }) {

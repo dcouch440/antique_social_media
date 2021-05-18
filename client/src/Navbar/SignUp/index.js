@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useState, useEffect, useRef, useContext } from 'react';
 import axios from 'axios';
 import { Context } from '../../Context';
-import { Form, SignUpTitle } from './styles';
+import { Form, SignUpTitle, Errors } from './styles';
 
 import {
   StyledInput,
@@ -13,6 +13,7 @@ import {
 export default function SignUp ({ toggle }) {
   const [payload, setPayload] = useState({});
   const [message, setMessage] = useState('Sign Up');
+  const [errors, setErrors] = useState([]);
   const isRequest = useRef(false);
   const [credentials, setCredentials] = useState({ password: '', email: '', username: '', passwordConfirmation: '' });
   const { setCurrentUser } = useContext(Context);
@@ -33,9 +34,25 @@ export default function SignUp ({ toggle }) {
 
     if (password === passwordConfirmation) {
       isRequest.current = true;
-      setPayload({ password,email,username });
+      setPayload({ password, email, username });
     } else {
       setMessage('Passwords Must Match');
+    }
+  };
+
+  const showErrors = () => {
+    if (errors.length) {
+      return (
+        <Errors>
+          {
+            errors.map(error =>  (
+                <div>
+                  {error}
+                </div>
+            ))
+          }
+        </Errors>
+      );
     }
   };
 
@@ -49,7 +66,14 @@ export default function SignUp ({ toggle }) {
       payload,
       { withCredentials: true }
     )
-      .then(res => res.status === 201 && setCurrentUser(res.data))
+      .then(res => {
+        if (res.status === 201) {
+          setCurrentUser(res.data);
+        } else {
+          console.log([...res.data.message]);
+          setErrors([...res.data.message]);
+        }
+      })
       .catch(error => console.log(error));
 
   }, [payload, setCurrentUser]);
@@ -57,7 +81,7 @@ export default function SignUp ({ toggle }) {
 
   return (
     <Form onSubmit={handleSubmit}>
-
+      { showErrors() }
       <SignUpTitle>{message}</SignUpTitle>
 
       <StyledInput

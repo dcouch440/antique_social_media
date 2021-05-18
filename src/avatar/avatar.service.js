@@ -10,13 +10,14 @@ class AvatarService {
     }
   }
   //  CALL AVATAR ON CREATION
-  async upload ({ file64, user_id }) {
+  async upload ({ res, file64, user_id }) {
     try {
       const avatarPublicId = avatarPublicIdFormat(user_id);
       await avatarDAO.destroyById(avatarPublicId);
       return avatarDAO.storeUrl({ file64, avatarPublicId });
     } catch (err) {
       console.error(err);
+      res.status(400).json({ message: err.message });
     }
   }
   async getAvatarByUserId (id) {

@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const DropMenuPlate = styled.div`
   z-index: 9999;
   position: absolute;
-  overflow: hidden;
   width: 300px;
   display: ${({ display }) => display};
   top: 62px;
