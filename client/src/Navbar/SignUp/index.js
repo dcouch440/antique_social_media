@@ -16,12 +16,17 @@ import {
 } from '../styled';
 
 export default function SignUp ({ toggle }) {
+  const { setCurrentUser } = useContext(Context);
   const [payload, setPayload] = useState({});
   const [message, setMessage] = useState('Sign Up');
   const { setErrors, showErrors } = useLoginErrors();
   const isRequest = useRef(false);
-  const [credentials, setCredentials] = useState({ password: '', email: '', username: '', passwordConfirmation: '' });
-  const { setCurrentUser } = useContext(Context);
+  const [credentials, setCredentials] = useState({
+    password: '',
+     email: '',
+     username: '',
+     passwordConfirmation: ''
+  });
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -31,10 +36,12 @@ export default function SignUp ({ toggle }) {
   };
 
   const handleSubmit = e => {
+    console.log(e);
     const {
       password, passwordConfirmation, username, email
     } = credentials;
 
+    e.stopPropagation();
     e.preventDefault();
 
     if (password === passwordConfirmation) {
@@ -59,7 +66,6 @@ export default function SignUp ({ toggle }) {
         if (res.status === 201) {
           setCurrentUser(res.data);
         } else {
-          console.log([...res.data.message]);
           setErrors([...res.data.errors]);
         }
       })
@@ -70,7 +76,7 @@ export default function SignUp ({ toggle }) {
 
   return (
     <Form onSubmit={handleSubmit}>
-      { showErrors() }
+      {showErrors()}
       <SignUpTitle>{message}</SignUpTitle>
 
       <StyledInput

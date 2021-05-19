@@ -10,12 +10,11 @@ class ImageService {
       console.error(err);
     }
   }
-  async upload ({ res, file64, antique_id }) {
+  async upload ({ file64, antique_id }) {
     try {
       return imageDAO.storeUrl({ file64, antique_id });
     } catch (err) {
-      console.error(err);
-      res.status(400).json({ message: err.message });
+      throw new Error(err);
     }
   }
   async destroyDependencyById (antique_id) {

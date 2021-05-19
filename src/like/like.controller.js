@@ -24,7 +24,7 @@ class LikeController {
       res.status(201).json(liked);
     } catch (err) {
       console.error(err);
-      res.status(422).json({ message: 'unprocessable entity' });
+      res.status(422).json({ message: err.message });
     }
   }
   async unlike (req,res) {
@@ -36,7 +36,7 @@ class LikeController {
       });
       res.status(204).json(liked);
     } catch (err) {
-      res.status(422).json({ message: 'unprocessable entity' });
+      res.status(422).json({ message: err.message });
     }
   }
   async likes (req, res) {

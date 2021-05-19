@@ -8,6 +8,7 @@ class AvatarController {
       res.status(204).json({ message: 'Deleted' });
     } catch (err) {
       console.error(err);
+      res.status(422).json({ message: err.message });
     }
   }
   // AUTHORIZE IMAGE ROUTES
@@ -22,6 +23,7 @@ class AvatarController {
       res.status(201).json(uploaded);
     } catch (err) {
       console.error(err);
+      res.status(422).json({ message: err.message });
     }
   }
 }

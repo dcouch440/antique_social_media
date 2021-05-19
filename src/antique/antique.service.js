@@ -19,7 +19,7 @@ class AntiqueService {
       await imageService.destroyDependencyById(id);
       return await antiqueDAO.destroy(id);
     } catch (err) {
-      console.error(err);
+      throw new Error(err);
     }
   }
   async limitOffset ({ ...query }) {
@@ -29,7 +29,7 @@ class AntiqueService {
       await queryParams.validate(parsedQuery, { abortEarly: false });
       return antiqueDAO.limitedList(parsedQuery);
     } catch (err) {
-      return new Error(err);
+      console.error(err);
     }
   }
   async create ({ ...params }) {
@@ -38,7 +38,7 @@ class AntiqueService {
       await antiqueParams.validate(parsedParams, { abortEarly: false });
       return antiqueDAO.create(parsedParams);
     } catch (err) {
-      console.error(err);
+      throw new Error(err);
     }
   }
   queryCategory ({ category }) {

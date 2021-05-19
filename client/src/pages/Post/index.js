@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import PageTransition from '../../Framer/PageTransition';
 import Form from './Form';
@@ -11,14 +11,24 @@ import {
   NoImage,
   NoImageCaption,
   ImageInput,
-  PreviewImage
+  PreviewImage,
+  ErrorMessage
 } from './styles';
 
 export default function Post () {
   const [fileInputState, setFileInputState] = useState('');
   const [previewImage, setPreviewImage] = useState('');
   const [selectedFile, setSelectedFile] = useState('');
+  const [{ uploading, message }, setMessage] = useState({ uploading: false, message: '' });
   const history = useHistory();
+
+  useEffect(() => {
+    if (!uploading && message.length) {
+      setTimeout(() => {
+        setMessage({ uploading: false, message: '' });
+      }, 3000);
+    }
+  }, [message.length, uploading]);
 
   const handleImageInputChange = e => {
     const file = e.target.files[0];
@@ -38,22 +48,28 @@ export default function Post () {
   const uploadImage = async uploadData => {
     await axios
       .post(
-        '/antiques', uploadData,
+        '/antiques',
+        uploadData,
         { withCredentials: true }
       )
-      .then(res => res.status === 201 && history.push(
-        `/antiques/${res.data.id}`
-      ))
+      .then(res => {
+        if (res.status === 201) {
+          history.push(`/antiques/${res.data.id}`);
+          setMessage({ uploading: false, message: '' });
+        } else {
+          setMessage({ uploading: false, message: res.data.message });
+        }
+      })
       .catch(err => console.log(err));
   };
 
   const handleSubmit = formData => {
-    if (!selectedFile) {
+    if (!selectedFile || uploading) {
       return;
     }
+    setMessage({ uploading: true, message: 'Uploading' });
     const reader = new FileReader();
     reader.readAsDataURL(selectedFile);
-    setSelectedFile(undefined);
     reader.onload = () => {
       uploadImage({
         file64: reader.result,
@@ -64,7 +80,7 @@ export default function Post () {
 
   return (
     <PageTransition>
-
+      {message&& <ErrorMessage><span>{message}</span></ErrorMessage>}
       <Page>
         <ImagePreview>
           <ImageInput
@@ -85,7 +101,7 @@ export default function Post () {
               <NoImageCaption>
                 <NoImage>No Image</NoImage>
                 <div>
-                We require at least one image for your antique!
+                  We require at least one image for your antique!
                 </div>
               </NoImageCaption>
           }

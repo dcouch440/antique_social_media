@@ -39,7 +39,6 @@ class UserService {
 
       return payload;
     } catch (err) {
-      console.error(err);
       res.status(403).json({ message: err.errors });
     }
   }
@@ -69,7 +68,6 @@ class UserService {
 
       return payload;
     } catch (err) {
-      console.error(err);
       res.json(err);
     }
   }

@@ -1,7 +1,5 @@
 const imageService = require('./image.service');
 
-// ADD DELETE IMAGE
-
 class ImageController {
   async show (req,res) {
     try {
@@ -17,7 +15,6 @@ class ImageController {
     try {
       const { file64, antique_id } = req.body;
       const uploaded = await imageService.upload({
-        res,
         file64,
         antique_id
       });

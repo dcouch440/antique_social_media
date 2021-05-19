@@ -13,17 +13,27 @@ class LikeService {
   async like ({ req, antique_id }) {
     try {
       const { username, user_id } = req.currentUser;
-      return likeDAO.create({ username, antique_id, user_id });
+      const parsedAntiqueId = parseInt(antique_id);
+      return likeDAO.create({
+        username,
+        antique_id: parsedAntiqueId,
+        user_id
+      });
     } catch (err) {
-      console.error(err);
+      throw new Error(err);
     }
   }
   async unlike ({ req, antique_id }) {
     try {
       const { username, user_id } = req.currentUser;
-      return likeDAO.destroy({ username, antique_id, user_id });
+      const parsedAntiqueId = parseInt(antique_id);
+      return likeDAO.destroy({
+        username,
+        antique_id: parsedAntiqueId,
+        user_id
+      });
     } catch (err) {
-      console.error(err);
+      throw new Error(err);
     }
   }
   async getLikesCountByAntiqueId (antique_id) {

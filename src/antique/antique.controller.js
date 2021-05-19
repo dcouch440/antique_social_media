@@ -12,8 +12,7 @@ class AntiqueController {
         .serializeWithRelations({ antique: antiques });
       res.status(200).json(serializedAntiques);
     } catch (err) {
-      console.error(err);
-      res.json({ message: err.message });
+      res.status(400).json({ message: err.message });
     }
   }
   async likes (req, res) {
@@ -45,7 +44,7 @@ class AntiqueController {
       res.status(204).json(deleted);
     } catch (err) {
       console.error(err);
-      res.json({ message: err.message });
+      res.status(422).json({ message: err.message });
     }
   }
   async create (req, res) {
@@ -70,7 +69,7 @@ class AntiqueController {
       res.status(200).json(response);
     } catch (err) {
       console.error(err);
-      res.json({ message: err.message });
+      res.status(400).json({ message: err.message });
     }
   }
   async usersAntiques (req,res) {

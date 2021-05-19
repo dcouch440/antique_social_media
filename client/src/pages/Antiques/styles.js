@@ -1,13 +1,19 @@
 import styled from 'styled-components';
 import * as include from '../../styled-mixens';
 
-export const Grid = styled.div`
+
+export const GridContainer = styled.div`
   ${include.screenAdapt};
   ${include.darkBackgroundColor}
+  margin: 0 auto;
+  min-height: 100%;
+`;
+
+export const Grid = styled.div`
+  width: 100%;
   padding: 7px;
   display: grid;
   grid-gap: 7px;
-  margin: 0 auto;
   grid-auto-flow: dense;
   grid-template-columns: repeat(${({ columns }) => columns},  1fr);
   @media (max-width: 900px) {

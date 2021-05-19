@@ -17,8 +17,10 @@ export default function EverScroll ({ limit, route, validate = false }) {
   useEffect(() => antiqueDispatch({ type: A.CLEAR_LIST, data: [] }), []);
 
   useEffect(() => {
-    if (currentUser.id === undefined) {
-      return;
+    if (validate) {
+      if (currentUser.id === undefined) {
+        return;
+      }
     }
     CallDB({ dispatch: antiqueDispatch });
   }, [CallDB, currentUser, limit, page, route, validate]);
