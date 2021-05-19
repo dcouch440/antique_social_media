@@ -19,7 +19,6 @@ class AvatarController {
         file64,
         user_id: req.currentUser.user_id
       });
-
       res.status(201).json(uploaded);
     } catch (err) {
       console.error(err);

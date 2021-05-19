@@ -54,9 +54,15 @@ class AntiqueController {
         user_id: req.currentUser.user_id,
         ...params
       });
-      await imageService.upload({ file64, antique_id: antique.id });
+      try {
+        await imageService.upload({ file64, antique_id: antique.id });
+      } catch (err) {
+        throw new Error({ ...err.message, antique_id: antique.id });
+      }
       res.status(201).json(antique);
     } catch (err) {
+      const { antique_id } = err.message;
+      await antiqueService.destroy(antique_id);
       console.error(err);
       res.json({ message: err.message });
     }
