@@ -10,12 +10,14 @@ module.exports = async (req, res, next) => {
     const { id :decryptedId } = jwt.verify(
       token, process.env.JWT_SECRET
     );
+    console.log('user_id' ,user_id);
+    console.log(user_id === decryptedId);
     if (user_id !== decryptedId) {
-      throw new Error({ message: 'Unauthorized' });
+      throw new Error('Unauthorized');
     } else {
       next();
     }
-  } catch {
-    res.status(401).json({ message: 'Unauthorized' });
+  } catch (err) {
+    res.status(401).json(err);
   }
 };

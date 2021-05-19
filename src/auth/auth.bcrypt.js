@@ -10,7 +10,7 @@ async function hashPassword ({ username, email, password, admin }) {
       admin
     };
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 }
 
@@ -18,7 +18,7 @@ async function compareHash ({ inputPassword, userPassword }) {
   try {
     return bcrypt.compare(inputPassword, userPassword);
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 }
 

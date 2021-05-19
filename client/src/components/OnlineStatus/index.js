@@ -8,7 +8,7 @@ export default function OnlineStatus ({ currentUser }) {
       return;
     }
 
-    const socket = io('https://radiant-thicket-98181.herokuapp.com:3002', { withCredentials: true });
+    const socket = io('http://localhost:3002', { withCredentials: true });
     socket.emit( LOGIN, { id: currentUser.id, username: currentUser.username } );
 
     return () => socket.disconnect();

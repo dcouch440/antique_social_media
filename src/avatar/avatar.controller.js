@@ -11,7 +11,6 @@ class AvatarController {
       res.status(422).json({ message: err.message });
     }
   }
-  // AUTHORIZE IMAGE ROUTES
   async upload (req,res) {
     try {
       const { file64 } = req.body;

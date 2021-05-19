@@ -61,6 +61,12 @@ export default function Post () {
         }
       })
       .catch(err => {
+        console.log(err.response.status);
+        if (err.response.status === 401) {
+          setMessage({ uploading: false, message: 'Unauthorized' });
+        } else {
+          setMessage({ uploading: false, message: 'Something went wrong...' });
+        }
         console.log(err);
       });
   };

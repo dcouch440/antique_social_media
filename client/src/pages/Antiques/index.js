@@ -20,7 +20,6 @@ export default function AntiquesPage ({ route }) {
   const { user_id } = useParams();
   const history = useHistory();
   const [slider, setSlider] = useState(4);
-  console.log(user_id ? route + user_id : route);
   const [bottomBoundaryRef, lazyRef, antiques] = EverScroll(
     {
       limit: 5,

@@ -15,7 +15,7 @@ const {
 
 const io = require('socket.io')( socket, {
   cors: {
-    origin: 'https://radiant-thicket-98181.herokuapp.com',
+    origin: 'http://localhost:3001',
     methods: ['GET', 'POST'],
     credentials: true
   }
