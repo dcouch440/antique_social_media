@@ -57,14 +57,12 @@ class AntiqueController {
       try {
         await imageService.upload({ file64, antique_id: antique.id });
       } catch (err) {
-        throw new Error({ ...err.message, antique_id: antique.id });
+        await antiqueService.destroy(antique.id);
+        throw new Error(err.message);
       }
       res.status(201).json(antique);
     } catch (err) {
-      const { antique_id } = err.message;
-      await antiqueService.destroy(antique_id);
-      console.error(err);
-      res.json({ message: err.message });
+      res.status(200).json({ message: err.message });
     }
   }
   async queryCategory (req,res) {

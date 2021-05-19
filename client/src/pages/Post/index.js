@@ -60,7 +60,9 @@ export default function Post () {
           setMessage({ uploading: false, message: res.data.message });
         }
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   const handleSubmit = formData => {

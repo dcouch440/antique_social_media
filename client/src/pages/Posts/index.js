@@ -19,7 +19,7 @@ export default function Posts () {
       return;
     }
     axios
-      .get(`/antiques/users/${currentUser.id}?LIMIT=1&OFFSET=6`, { withCredentials: true })
+      .get(`/antiques/users/${currentUser.id}?NOLIMIT=true`, { withCredentials: true })
       .then(res => {
         if (res.status === 200) {
           setAntiques([...res.data]);
