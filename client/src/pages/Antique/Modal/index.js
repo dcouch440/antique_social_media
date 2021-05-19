@@ -39,7 +39,12 @@ export default function Modal ({ modalShowChange, antique, setNewUpload }) {
       </BlurContainer>
       <ImageModal>
         <CloseButton onClick={modalShowChange}>Exit Upload</CloseButton>
-        <Upload antique={antique} setMessage={setMessage} afterUpload={handleAfterUpload} setPreviewSource={setPreviewSource} />
+        <Upload
+          antique={antique}
+          setMessage={setMessage}
+          afterUpload={handleAfterUpload}
+          setPreviewSource={setPreviewSource}
+        />
         {imageOrMessage()}
       </ImageModal>
     </>

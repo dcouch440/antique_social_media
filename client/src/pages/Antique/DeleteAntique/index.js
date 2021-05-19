@@ -17,28 +17,34 @@ export default function DeleteImage ({ antique }) {
   const isCurrentUsersPost = checkUser({ currentUser, user_id });
 
   const handleDeleteImages = async () => {
-    const wasDeleted = await deleteImage();
-    loading.current = false;
-    if (wasDeleted) {
-      history.push('/antiques');
+    try {
+      const wasDeleted = await deleteImage();
+      loading.current = false;
+      if (wasDeleted) {
+        history.push('/antiques');
+      }
+    } catch (err) {
+      console.log(err);
     }
   };
 
   const deleteImage = async () => {
-    if (loading.current === true) {
-      return;
-    }
-    loading.current = true;
-
-    if (!currentUser.admin) {
-      if (!isCurrentUsersPost) {
+    try {
+      if (loading.current === true) {
         return;
       }
+      loading.current = true;
+      if (!currentUser.admin) {
+        if (!isCurrentUsersPost) {
+          return;
+        }
+      }
+      return axios
+        .delete(`/antiques/${id}`, { withCredentials: true })
+        .then(res => (res.status === 204));
+    } catch (err) {
+      console.log(err);
     }
-    return axios
-      .delete(`/antiques/${id}`, { withCredentials: true })
-      .then(res => (res.status === 204))
-      .catch(err => console.log(err));
   };
 
   return (

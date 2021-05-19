@@ -38,7 +38,6 @@ export default function AntiquesSlideShow ({ antiqueImages, newUpload, setNewUpl
     }
 
     const timer = setTimeout(
-
       () => {
         if (!isTapped.current) {
           paginate(1);
@@ -46,7 +45,6 @@ export default function AntiquesSlideShow ({ antiqueImages, newUpload, setNewUpl
           setNextSlide(prev=> prev += 1);
         }
       }, 10000
-
     );
 
     return () => clearTimeout(timer);

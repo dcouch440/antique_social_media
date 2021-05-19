@@ -2,7 +2,12 @@ import PropTypes from 'prop-types';
 import { useState, useEffect, useRef, useContext } from 'react';
 import axios from 'axios';
 import { Context } from '../../Context';
-import { Form, SignUpTitle, Errors } from './styles';
+import useLoginErrors from '../../hooks/useLoginErrors';
+
+import {
+  Form,
+  SignUpTitle
+} from './styles';
 
 import {
   StyledInput,
@@ -13,7 +18,7 @@ import {
 export default function SignUp ({ toggle }) {
   const [payload, setPayload] = useState({});
   const [message, setMessage] = useState('Sign Up');
-  const [errors, setErrors] = useState([]);
+  const { setErrors, showErrors } = useLoginErrors();
   const isRequest = useRef(false);
   const [credentials, setCredentials] = useState({ password: '', email: '', username: '', passwordConfirmation: '' });
   const { setCurrentUser } = useContext(Context);
@@ -40,22 +45,6 @@ export default function SignUp ({ toggle }) {
     }
   };
 
-  const showErrors = () => {
-    if (errors.length) {
-      return (
-        <Errors>
-          {
-            errors.map(error =>  (
-                <div>
-                  {error}
-                </div>
-            ))
-          }
-        </Errors>
-      );
-    }
-  };
-
   useEffect(() => {
     if (isRequest.current === false) {
        return;
@@ -71,12 +60,12 @@ export default function SignUp ({ toggle }) {
           setCurrentUser(res.data);
         } else {
           console.log([...res.data.message]);
-          setErrors([...res.data.message]);
+          setErrors([...res.data.errors]);
         }
       })
       .catch(error => console.log(error));
 
-  }, [payload, setCurrentUser]);
+  }, [payload, setCurrentUser, setErrors]);
 
 
   return (

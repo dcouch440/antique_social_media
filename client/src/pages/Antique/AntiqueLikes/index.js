@@ -31,6 +31,7 @@ export default function AntiqueLikes ({ antiqueId, likesChange }) {
       </Like>
     );
   });
+
   return (
     <AntLikes>
       <LikesCount>Likes: <span className='number'>{count}</span></LikesCount>
@@ -43,6 +44,7 @@ export default function AntiqueLikes ({ antiqueId, likesChange }) {
     </AntLikes>
   );
 }
+
 AntiqueLikes.propTypes = {
   likes: PropTypes.array
 };

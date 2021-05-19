@@ -11,7 +11,6 @@ import {
   HubLink
 } from './styles';
 
-
 export default function SingedIn ({ user, showAvatar }) {
   const history = useHistory();
   const capitalizedUsername = capitalize(user);

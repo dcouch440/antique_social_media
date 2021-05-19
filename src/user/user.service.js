@@ -11,14 +11,13 @@ class UserService {
     try {
       const user = await userDAO.findByEmail(email);
       if (!user) {
-        throw new Error('Invalid username or Password');
+        throw new Error({ errors: ['Invalid username or Password'] });
       }
-
       const isValid = await compareHash({
         inputPassword: password, userPassword: user.password_digest
       });
       if (!isValid) {
-        throw new Error({ message: 'Bad Username or Password' });
+        throw new Error({ errors: ['Bad Username or Password'] });
       }
 
       const payload = {
@@ -41,15 +40,14 @@ class UserService {
       return payload;
     } catch (err) {
       console.error(err);
-      res.status(403).json(err.errors);
+      res.status(403).json({ message: err.errors });
     }
   }
   async signUp ({ res, username, password, email }) {
     try {
       const user = await userDAO.findByEmail(email);
       if (user) {
-        res.status(403).json({ message: 'Invalid Credentials' });
-        throw new Error('email Found');
+        throw new Error({ message: ['Invalid username or Password'] });
       }
       const userParams = { username, password, email };
       await newUserParams.validate(userParams, { abortEarly: false });
@@ -72,7 +70,7 @@ class UserService {
       return payload;
     } catch (err) {
       console.error(err);
-      res.json({ message: err.errors });
+      res.json(err);
     }
   }
   async changeOnlineState ({ id, online }) {
@@ -119,7 +117,7 @@ class UserService {
   }
   async showOvert (id) {
     try {
-      await userIdParams.validate({ id: id });
+      await userIdParams.validate({ id });
       const user = await userDAO.find(id);
       const { username, avatar, online } = await userSerializer.serializeWithUserAvatar(user);
       return {
@@ -136,7 +134,7 @@ class UserService {
   }
   async destroy (id) {
     try {
-      await userIdParams.validate({ id: id });
+      await userIdParams.validate({ id });
       return userDAO.destroy(id);
     } catch (err) {
       console.error(err);

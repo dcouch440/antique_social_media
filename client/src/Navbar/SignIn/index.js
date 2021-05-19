@@ -14,6 +14,7 @@ import {
   SignedIn
 } from './styles';
 
+
 export default function SignIn ({ toggle }) {
   const { setCurrentUser } = useContext(Context);
   const [{ password, email }, setCredentials] = useState({ password: '', email: '' });
