@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState, useEffect, createContext, useRef } from 'react';
+import { useState, useEffect, createContext } from 'react';
 import axios from 'axios';
 import OnlineStatus from './components/OnlineStatus';
 const Context = createContext();

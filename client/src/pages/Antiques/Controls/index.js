@@ -23,7 +23,7 @@ export default function Controls ({ setSlider, count }) {
       </GridTitle>
       <SliderContainer>
         <Slide>
-          <Slider onChange={n => setSlider(n)} min={3} max={3} /> <Count>{count}</Count>
+          <Slider onChange={n => setSlider(n)} min={3} max={4} /> <Count>{count}</Count>
         </Slide>
       </SliderContainer>
     </ControlsPanel>

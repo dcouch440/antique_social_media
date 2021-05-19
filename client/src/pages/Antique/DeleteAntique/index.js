@@ -34,6 +34,7 @@ export default function DeleteImage ({ antique }) {
         return;
       }
       loading.current = true;
+
       if (!currentUser.admin) {
         if (!isCurrentUsersPost) {
           return;
