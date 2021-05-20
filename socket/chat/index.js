@@ -35,7 +35,6 @@ io.on(CONNECTION , async socket => {
       if (!roomId) {
         return;
       }
-      console.log('join-room', roomId);
       socket.username = currentUser.username;
       socket.join(roomId);
 
