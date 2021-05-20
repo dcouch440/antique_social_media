@@ -63,6 +63,7 @@ export default function Socket (roomId) {
     }
 
     socketRef.current.on(SHOW_ROOM_USER_COUNT, data => {
+      console.log('room data',data);
       setRoomData(data);
     });
 
