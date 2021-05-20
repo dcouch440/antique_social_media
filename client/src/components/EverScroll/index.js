@@ -5,7 +5,7 @@ import reducer from './reducer';
 import * as A from './actions';
 import { Context } from '../../Context';
 
-export default function EverScroll ({ limit, route, validate = false }) {
+export default function EverScroll ({ limit, route }) {
   const { currentUser } = useContext(Context);
   const [page, setPage] = useState(0);
   const BBRef = useRef(null);
@@ -17,13 +17,12 @@ export default function EverScroll ({ limit, route, validate = false }) {
   useEffect(() => antiqueDispatch({ type: A.CLEAR_LIST, data: [] }), []);
 
   useEffect(() => {
-    if (validate) {
-      if (currentUser.id === undefined) {
-        return;
-      }
+    if (currentUser.id === undefined) {
+      return;
     }
+
     CallDB({ dispatch: antiqueDispatch });
-  }, [CallDB, currentUser, limit, page, route, validate]);
+  }, [CallDB, currentUser, limit, page, route]);
 
   AdvancePage({ setPage, BBRef, lazyRef, data });
 
