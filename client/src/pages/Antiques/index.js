@@ -19,14 +19,11 @@ import {
 export default function AntiquesPage ({ route }) {
   const { user_id } = useParams();
   const history = useHistory();
-  const [slider, setSlider] = useState(4);
-  const [bottomBoundaryRef, lazyRef, antiques] = EverScroll(
-    {
-      limit: 5,
-      route: user_id ? route + user_id : route,
-      validate: true
-    }
-  );
+  const [slider, setSlider] = useState(3);
+  const [bottomBoundaryRef, lazyRef, antiques] = EverScroll({
+    limit: 25,
+    route: user_id ? route + user_id : route
+  });
 
   const getHeader = h => capitalize(h.location.pathname.split('/')[1]);
 
