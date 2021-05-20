@@ -7,16 +7,24 @@ class UserSerializer {
       await this.attachAvatarToUsers(user):
       await this.attachAvatarToUser(user);
   }
-  async attachAvatarToUsers (user) {
-    const usersWithAttachedAvatars = user.map(async user => {
+  async attachAvatarToUsers (users) {
+    const usersWithAttachedAvatars = users.map(async user => {
       const avatar = await this.getAvatarAndVerify(user);
-      return { username: user.username, avatar };
+      return {
+        username: user.username,
+        avatar,
+        online: user.online
+      };
     });
     return Promise.all(usersWithAttachedAvatars);
   }
   async attachAvatarToUser (user) {
     const avatar = await this.getAvatarAndVerify(user);
-    return { username: user.username, avatar };
+    return {
+      username: user.username,
+      avatar,
+      online: user.online
+    };
   }
   async getAvatarAndVerify (user) {
     const { id } = user;

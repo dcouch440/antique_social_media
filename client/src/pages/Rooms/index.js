@@ -23,7 +23,6 @@ export default function Rooms ({ setRoomId }) {
     socketRef.current.emit(SHOW_ROOM_USER_COUNT, { currentUser });
 
   }, [currentUser, socketRef]);
-
   const handleClick = roomId => {
     setRoomId(roomId);
     history.push('/chat');

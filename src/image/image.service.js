@@ -27,7 +27,6 @@ class ImageService {
   async getFirstImage (antique_id) {
     try {
       const images = await imageDAO.findByIdLimitOne(antique_id);
-      // add default attach image
       return attachImageIfNotPresent({ images, antique_id });
     } catch (err) {
       console.error(err);

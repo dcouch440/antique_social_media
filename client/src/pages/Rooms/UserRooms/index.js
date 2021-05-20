@@ -3,14 +3,13 @@ import PropTypes from 'prop-types';
 import {
   Users,
   Room,
-  AntiqueImage,
   NoRooms
 } from './styles';
 
 export default function ActiveUserRooms ({ handleClick, rooms }) {
 
   const mappedRooms =  rooms.map(data => {
-    const [image] = data.images;
+
     return (
       <Room onClick={() => handleClick(data.roomId)}>
           <div className='name'>{data.name}</div>
@@ -18,7 +17,6 @@ export default function ActiveUserRooms ({ handleClick, rooms }) {
             <span className='chat-bubble'>💬</span>
             <span className='user-number'>{ data.socketUsers }</span>
           </Users>
-          <AntiqueImage src={image.image_url} alt='antique' />
       </Room>
     );
   });
