@@ -1,4 +1,5 @@
 # `ANTIQUE SOCIAL MEDIA`
+
 #### Created By David Couch
 ##### `Project Started 4 / 11 / 2021`
 ### This project is two previous projects combined
@@ -7,7 +8,6 @@
 
   This Project is a Work in Progress
 
-  This is a front end application for a node.js backend
   The current concept is chat rooms that are tied to a users antique
 
   #### Current Features
