@@ -55,6 +55,11 @@
 
 # `Backend`
 
+##  `TODO:`
+  This used to function as an API only back-end because of this these tasks require completion.
+  - Socket server moved to its own repo and deploy site.
+  - Api routes made for socket interaction with front end
+
   This Project is an Work in Progress, This was mad for the love of javascript and exploration in a full stack javascript social media app.
 
   This is API application made with Node.js that currently features,
@@ -73,8 +78,6 @@
     service       :This file parses through queries and altering incoming data with limited importing
     DAO           :This file strictly interacts with the databases its named by
     Model         :This file holds relationship data through the objection package
-
-  This is an evolving project focused on efficiently and effectively take advantage of the technologies node.js give to developers. This Back end will be paired with a front end currently being developed to provide a fast and user friendly experience.
 
 
 # `Tech Used`
