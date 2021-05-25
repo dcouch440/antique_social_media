@@ -21,6 +21,7 @@ export const BlurOverlay = styled.div`
 export const AvatarPicture = styled.img`
   height: 300px;
   width: 300px;
+  object-fit: cover;
   border-radius: 50%;
 `;
 
