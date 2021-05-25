@@ -41,6 +41,7 @@ export const Avatar = styled.img`
   width: 42px;
   height: 42px;
   background-color: #69696985;
+  object-fit: cover;
   border-radius: 50%;
 `;
 
