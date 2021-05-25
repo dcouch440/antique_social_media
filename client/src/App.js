@@ -1,6 +1,7 @@
-import { Route, Switch, useLocation, Redirect } from 'react-router';
 import { useContext, useState } from 'react';
+import { Route, Switch, useLocation, Redirect } from 'react-router';
 import { AnimatePresence } from 'framer-motion';
+import { Context } from './Context';
 import GlobalStyles from './GlobalStyles';
 import Antiques from './pages/Antiques';
 import Antique from './pages/Antique/Transition';
@@ -10,7 +11,6 @@ import Post from './pages/Post';
 import Chat from './pages/Chat';
 import Rooms from './pages/Rooms';
 import Posts from './pages/Posts';
-import { Context } from './Context';
 
 export default function App () {
   const location = useLocation();
