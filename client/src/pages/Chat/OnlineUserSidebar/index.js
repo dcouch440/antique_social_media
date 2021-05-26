@@ -7,7 +7,7 @@ import {
 
 export default function OnlineUserSidebar ({ users }) {
 
-  const mappedUsers = users.map(user => {
+  const mappedUsers = users && users.map(user => {
     return (
       <AvatarContainer key={user.username}>
         <Avatar src={user.avatar.url} alt='avatar' />
