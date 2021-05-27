@@ -2,7 +2,7 @@ const userSerializer = require('./user.serializer');
 const userService = require('./user.service');
 
 class UserController {
-  async signIn (req,res) {
+  async signIn (req, res) {
     try {
       const { username, password, email } = req.body;
       const payload = await userService.signIn({
@@ -13,7 +13,7 @@ class UserController {
       res.status(403).json(err);
     }
   }
-  async signUp (req,res) {
+  async signUp (req, res) {
     try {
       const { username, password, email } = req.body;
       const payload = await userService.signUp({
@@ -24,7 +24,7 @@ class UserController {
       res.status(403).json(err);
     }
   }
-  async showByUsername (req,res) {
+  async showByUsername (req, res) {
     try {
       const { usernames } = req.body;
       const users = await userService
@@ -37,7 +37,7 @@ class UserController {
     }
   }
   // for dev
-  async all (req,res) {
+  async all (req, res) {
     try {
       const users = await userService.all();
       const serializedUsers = await userSerializer
@@ -47,7 +47,7 @@ class UserController {
       console.error(err);
     }
   }
-  async show (req,res) {
+  async show (req, res) {
     try {
       const { id } = req.params;
       const user = await userService.showOvert(id);
@@ -68,7 +68,7 @@ class UserController {
       console.error(err);
     }
   }
-  async session (req,res) {
+  async session (req, res) {
     try {
       const { user_id :id, ...currentUser } = req.currentUser;
       await res.status(200).json({ id, ...currentUser });
@@ -76,7 +76,7 @@ class UserController {
       res.status(401);
     }
   }
-  async destroy (req,res) {
+  async destroy (req, res) {
     try {
       const { id } = req.params;
       await userService.destroy(id);
