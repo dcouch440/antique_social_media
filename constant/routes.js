@@ -13,7 +13,6 @@ module.exports = {
     post_signin_path: '/api/users/signin',
     post_signup_path: '/api/users/signup',
     get_session_path: '/api/users/session',
-    get_users_in_room_path: '/api/users/in-room',
     get_signout_path: '/api/users/signout'
   },
   likes: {

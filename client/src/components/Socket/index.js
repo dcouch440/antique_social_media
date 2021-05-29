@@ -21,7 +21,7 @@ export default function Socket (roomId) {
     if (!currentUser.username) {
       return;
     }
-    socketRef.current = io('http://localhost:3003', { withCredentials: true });
+    socketRef.current = io('https://sleepy-beyond-81756.herokuapp.com', { withCredentials: true });
 
     socketRef.current.on(MESSAGE, msg => {
       setMessages(prevMsgs => [...prevMsgs, msg.message]);

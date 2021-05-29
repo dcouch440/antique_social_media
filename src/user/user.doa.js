@@ -18,15 +18,6 @@ class UserDAO {
       .where(builder => builder.whereIn('id', id))
       .limit(15);
   }
-  getUsersByUsername (usernames) {
-    return User.query()
-      .where(builder => builder.whereIn('username', usernames));
-  }
-  getUserByUsername (username) {
-    return User.query()
-      .where('username', username)
-      .first();
-  }
   destroy (id) {
     return User.query()
       .deleteById(id);

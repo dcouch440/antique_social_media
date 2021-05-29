@@ -78,27 +78,6 @@ class UserService {
       console.error(err);
     }
   }
-  async getUsersByUsername ({ usernames }) {
-    try {
-      const users = await userDAO.getUsersByUsername(usernames);
-
-      const usersWithIdAndUsername = users.map(user => {
-        return { username: user.username, id: user.id };
-      });
-
-      return usersWithIdAndUsername;
-    } catch (err) {
-      console.error(err);
-    }
-  }
-  async getUserByUsername (username) {
-    try {
-      const user = await userDAO.getUserByUsername(username);
-      return { username: user.username, id: user.id };
-    } catch (err) {
-      console.error(err);
-    }
-  }
   async getUsersByIds (id) {
     try {
       const users = await userDAO.getUsersByIds(id);
