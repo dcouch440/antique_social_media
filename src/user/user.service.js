@@ -71,13 +71,6 @@ class UserService {
       res.json(err);
     }
   }
-  async changeOnlineState ({ id, online }) {
-    try {
-      return await userDAO.changeOnlineState({ id, online });
-    } catch (err) {
-      console.error(err);
-    }
-  }
   async getUsersByIds (id) {
     try {
       const users = await userDAO.getUsersByIds(id);

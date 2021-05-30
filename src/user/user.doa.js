@@ -8,10 +8,6 @@ class UserDAO {
     return User.query()
       .findById(parseInt(id));
   }
-  changeOnlineState ({ id, online }) {
-    return User.query()
-      .where('id', id).update({ online });
-  }
   getUsersByIds (id) {
     return User.query()
       .select('username', 'id')
