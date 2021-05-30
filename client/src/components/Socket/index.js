@@ -1,6 +1,7 @@
 import { useContext, useEffect, useRef, useState, } from 'react';
-import { io } from 'socket.io-client';
 import { Context } from '../../Context';
+import { io } from 'socket.io-client';
+import envUrl from '../../utils/env-url';
 
 import {
   JOIN_ROOM,
@@ -9,6 +10,7 @@ import {
   DISCONNECTION,
   SHOW_ROOM_USER_COUNT
 } from '../../constant';
+
 
 export default function Socket (roomId) {
   const [messages, setMessages] = useState([]);
@@ -21,7 +23,9 @@ export default function Socket (roomId) {
     if (!currentUser.username) {
       return;
     }
-    socketRef.current = io('https://sleepy-beyond-81756.herokuapp.com', { withCredentials: true });
+
+    const url = 'https://sleepy-beyond-81756.herokuapp.com';
+    socketRef.current = io(url, { withCredentials: true });
 
     socketRef.current.on(MESSAGE, msg => {
       setMessages(prevMsgs => [...prevMsgs, msg.message]);
@@ -63,7 +67,6 @@ export default function Socket (roomId) {
     }
 
     socketRef.current.on(SHOW_ROOM_USER_COUNT, data => {
-      console.log('room data',data);
       setRoomData(data);
     });
 
