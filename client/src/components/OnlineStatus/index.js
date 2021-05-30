@@ -7,8 +7,9 @@ export default function OnlineStatus ({ currentUser }) {
     if (!currentUser.id) {
       return;
     }
+    const url = 'https://gentle-brushlands-14865.herokuapp.com';
+    const socket = io(url, { withCredentials: true });
 
-    const socket = io('http://localhost:3002', { withCredentials: true });
     socket.emit( LOGIN, { id: currentUser.id, username: currentUser.username } );
 
     return () => socket.disconnect();
