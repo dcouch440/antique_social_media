@@ -21,7 +21,7 @@ Currently the home page is set up too just view all antiques that are on the web
   
 - Sockets are set up on remote repositories so it may take a few seconds for rooms to show up because heroku is starting the server.
   
-- This app was made out of the love of exploration and design, no features are final.
+- This app was made out of love of exploration and design, no features are final.
 
 ## `Socket Servers`
 
