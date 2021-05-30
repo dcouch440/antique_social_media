@@ -27,6 +27,7 @@ Currently the home page is set up too just view all antiques that are on the web
 
 Github:
   Chat Socket: ( https://github.com/dcouch440/antique_chat_socket )
+   
   Online Status Socket: ( https://github.com/dcouch440/antique_online_socket )
 
 # `front-end`
