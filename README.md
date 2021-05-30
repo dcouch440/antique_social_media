@@ -4,9 +4,32 @@
 ##### `Project Started 4 / 11 / 2021`
 ### This project is two previous projects combined
 
-# `front-end`
+## `About`
+See this app LIVE @ ( https://radiant-thicket-98181.herokuapp.com/ )
 
-  This Project is a Work in Progress
+This Project is a Work in Progress
+
+Please log in / sign-up to view content a fake email will work find but there are password rules that will display if you enter one without the correct rules.
+
+This project is an application made to upload images of your favorite antiques and give a bit of information / backstory on it. Users can view your antique from the home page through the infinite scroll image display.
+  
+
+Currently the home page is set up too just view all antiques that are on the website but you can view all of a users posts by visiting that page.
+### `Notes:`
+  
+- Cloudinary limits 500 image loads per day so if things are not loading, others might have viewed the website.
+  
+- Sockets are set up on remote repositories so it may take a few seconds for rooms to show up because heroku is starting the server.
+  
+- This app was made out of the love of exploration and design, no features are final.
+
+## `Socket Servers`
+
+Github:
+  Chat Socket: ( https://github.com/dcouch440/antique_chat_socket )
+  Online Status Socket: ( https://github.com/dcouch440/antique_online_socket )
+
+# `front-end`
 
   The current concept is chat rooms that are tied to a users antique
 
@@ -42,7 +65,6 @@
 - faker `5.5.3`
 - babel-eslint `10.1.0`
 
-
 # `PREVIEW`
 
 <img src='img/front-end/antique-home.PNG' alt='antique'>
@@ -55,20 +77,13 @@
 
 # `Backend`
 
-##  `TODO:`
-  This used to function as an API only back-end because of this these tasks require completion.
-  - Socket server moved to its own repo and deploy site.
-  - Api routes made for socket interaction with front end
-
   This Project is an Work in Progress, This was mad for the love of javascript and exploration in a full stack javascript social media app.
 
-  This is API application made with Node.js that currently features,
+  This app is made with Node.js that currently features,
 
     - HTTP only json web token authentication
     - bcrypt password hashing
     - cloudinary image upload routes ( cloud images merged through async array mapping )
-    - socket.io for online status and chat rooms
-    - async + state functions to handle integration with socket.io and database queries for user online
 
   File Structure philosophy:
 
@@ -106,7 +121,7 @@
 
 ### `Route examples`
 
-(currently under construction, some calls might not be exact)
+#### (currently under construction, some calls might not be exact)
 
 ## `SESSIONS`
 
@@ -145,10 +160,6 @@
 <img src='img/back-end/users_signin.PNG' alt='a route call'>
 <img src='img/back-end/users_signup.PNG' alt='a route call'>
 <img src='img/back-end/users_antiques.PNG' alt='a route call'>
-
-#### `ITERATIVE ROUTE FOR ROOM USERS PROVIDED IN ARRAY`
-<img src='img/back-end/users_in_room_iterable.PNG' alt='a route call'>
-
 
 ### `Install`
 requirements for install ( git - code editor )
