@@ -12,7 +12,6 @@ export default function Antiques ({ antiques }) {
 
   const mappedAntiques = antiques.map((antique, index) => {
     const { images } = antique;
-    console.log(antique);
     return (
       <Antique key={index} onClick={e => handleClick(e, antique.id)}>
         <img src={images[0].secure_url} alt="antique" />
