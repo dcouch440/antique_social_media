@@ -10,8 +10,10 @@ export const SignOutDiv = styled.div`
   font-family: 18px;
   padding: 20px;
   font-weight: 400;
+  border-top: 1px solid black;
   box-shadow: inset 0px -1px 1px 1px black;
   transition: .5s;
+  border-radius: 0 0 6px 6px;
   :hover {
     color: white;
     background-color: black;

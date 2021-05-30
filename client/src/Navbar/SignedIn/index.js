@@ -38,7 +38,7 @@ export default function SingedIn ({ user, showAvatar }) {
       <HubLink onClick={e => handleClick(e, '/likes')}><span>likes</span></HubLink>
       <HubLink onClick={e => handleClick(e, '/rooms')}><span>rooms</span></HubLink>
       <HubLink onClick={e => handleClick(e, '/chat')}><span>global chat</span></HubLink>
-      <HubLink onClick={showAvatar}><span>Avatar</span></HubLink>
+      <HubLink onClick={showAvatar}><span>avatar</span></HubLink>
       <SignOut />
     </Grid>
   );

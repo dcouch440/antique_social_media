@@ -16,6 +16,7 @@ export const Username = styled.div`
   grid-row: span 3;
   color: white;
   text-align: center;
+  border-radius: 6px 6px 0 0;
   letter-spacing: 3px;
   border: 1px solid black;
   font-weight: bold;
