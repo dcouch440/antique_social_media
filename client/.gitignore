@@ -8,7 +8,7 @@
 # testing
 /coverage
 .env
-TODO.txt
+
 # production
 /build
 # misc
