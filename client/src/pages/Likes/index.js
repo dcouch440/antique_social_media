@@ -12,7 +12,6 @@ export default function Likes () {
     axios
       .get('/likes', { withCredentials: true })
       .then(res => {
-        console.log(res);
         setAntiques([...res.data]);
       })
       .catch(err => console.log(err));
