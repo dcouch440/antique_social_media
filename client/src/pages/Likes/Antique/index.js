@@ -13,9 +13,9 @@ import imageSizer from '../../../utils/imageSizer';
 export default function Antique ({ antique }) {
   const history = useHistory();
   const [image] = antique.images;
-  const { url, height, width } = image;
+  const { secure_url, height, width } = image;
   const handleClick = () => history.push(`/antiques/${antique.id}`);
-  const downsizedUrl = imageSizer({ url, height, width, decreesBy: 7 });
+  const downsizedUrl = imageSizer({ url: secure_url, height, width, decreesBy: 7 });
 
   return (
     <AntiqueRow onClick={handleClick}>

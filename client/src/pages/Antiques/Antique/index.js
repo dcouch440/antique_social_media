@@ -15,9 +15,9 @@ import imageSizer from '../../../utils/imageSizer';
 export default function Antique ({ antique, lazyRef, index }) {
   const history = useHistory();
   const [image] = antique.images;
-  const { url, height, width } = image;
+  const { secure_url, height, width } = image;
   const handleClick = id => history.push(`/antiques/${id}`);
-  const downsizedUrl = imageSizer({ url, height, width, decreesBy: 5 });
+  const downsizedUrl = imageSizer({ url: secure_url, height, width, decreesBy: 5 });
   return (
     <AntiqueContainer
       onClick={() => handleClick(antique.id)}
