@@ -9,7 +9,6 @@ export default function AntiqueImages ({ antiqueId, newUpload, setNewUpload }) {
     axios
       .get(`/images/${antiqueId}`, { withCredentials: true })
       .then(res => {
-        console.log(res);
         if (res.status === 200) {
           setImages([...res.data]);
         }
