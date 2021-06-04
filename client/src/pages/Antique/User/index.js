@@ -27,7 +27,7 @@ export default function User ({ ownerInfo }) {
       <AboutMe>{ownerInfo.username}</AboutMe>
       <Avatar
         status={true}
-        src={ownerInfo.avatar?.url}
+        src={ownerInfo.avatar?.secure_url}
         alt={'avatar'}
       />
       <CollectionsButton onClick={handleRouteChange}>User Collection</CollectionsButton>

@@ -27,7 +27,7 @@ export default function AntiqueLikes ({ antiqueId, likesChange }) {
   const mappedLikes = likes.map(data => {
     return (
       <Like key={data.username}>
-        <Avatar src={data.avatar.url} alt='avatar' />
+        <Avatar src={data.avatar.secure_url} alt='avatar' />
       </Like>
     );
   });

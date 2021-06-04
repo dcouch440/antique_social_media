@@ -11,7 +11,7 @@ import {
 export default function StaticRooms ({ handleClick, rooms }) {
   return rooms.map(data => {
     return (
-      <Room key={data.roomId} backgroundImg={data.url}>
+      <Room key={data.roomId} backgroundImg={data.secure_url}>
         <TextContainer onClick={() => handleClick(data.roomId)}>
           <RoomId>
             <span className='room-name'>{capitalize(data.roomId)}</span>

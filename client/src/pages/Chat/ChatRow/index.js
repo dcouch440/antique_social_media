@@ -46,7 +46,7 @@ export default function ChatRows ({ messages, socketRef }) {
         exit="exit"
       >
         <MessageContainer>
-          <Avatar src={message.avatar.url} alt={'avatar'}/>
+          <Avatar src={message.avatar.secure_url} alt={'avatar'}/>
           <Username>{message.username}: </Username>
           <Message>{message.message}</Message>
           <Time>{ moment(message.timestamp).fromNow() }</Time>
