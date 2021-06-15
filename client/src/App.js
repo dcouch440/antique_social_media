@@ -12,6 +12,7 @@ import Chat from './pages/Chat';
 import Rooms from './pages/Rooms';
 import Posts from './pages/Posts';
 
+
 export default function App () {
   const location = useLocation();
   const [roomId, setRoomId] = useState('GLOBAL_CHAT');
@@ -23,31 +24,31 @@ export default function App () {
       <Navbar />
       <AnimatePresence>
         <Switch location={location} key={location.key}>
-          <Route exact path="/">
-            <Redirect to="/antiques"/>
+          <Route exact path='/'>
+            <Redirect to='/antiques'/>
           </Route>
-          <Route exact path="/antiques">
+          <Route exact path='/antiques'>
             <Antiques route={'/antiques'} />
           </Route>
-          <Route exact path="/collections/:user_id">
+          <Route exact path='/collections/:user_id'>
             <Antiques route={'/antiques/users/'} />
           </Route>
-          <Route exact path="/antiques/new">
+          <Route exact path='/antiques/new'>
             <Post />
           </Route>
-          <Route exact path="/antiques/:id">
+          <Route exact path='/antiques/:id'>
             <Antique setRoomId={setRoomId} />
           </Route>
-          <Route exact path="/likes">
+          <Route exact path='/likes'>
             <Likes />
           </Route>
-          <Route exact path="/chat">
+          <Route exact path='/chat'>
             <Chat roomId={roomId} />
           </Route>
-          <Route exact path="/rooms">
+          <Route exact path='/rooms'>
             <Rooms setRoomId={setRoomId} />
           </Route>
-          <Route exact path="/posts" component={Posts} />
+          <Route exact path='/posts' component={Posts} />
         </Switch>
       </AnimatePresence>
     </>
