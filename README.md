@@ -179,7 +179,3 @@ cd antique_social_media
 code .
 ```
 - from here you can now view the project
-
-#### `Known Bugs`
-
-Logging in and out re loads home images.
