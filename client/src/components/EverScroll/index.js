@@ -6,7 +6,6 @@ import * as A from './actions';
 import { Context } from '../../Context';
 
 export default function EverScroll ({ limit, route }) {
-  const { currentUser } = useContext(Context);
   const [page, setPage] = useState(0);
   const BBRef = useRef(null);
   const lazyRef = useRef([]);
@@ -17,12 +16,8 @@ export default function EverScroll ({ limit, route }) {
   useEffect(() => antiqueDispatch({ type: A.CLEAR_LIST, data: [] }), []);
 
   useEffect(() => {
-    if (currentUser.id === undefined) {
-      return;
-    }
-
     CallDB({ dispatch: antiqueDispatch });
-  }, [CallDB, currentUser, limit, page, route]);
+  }, [CallDB, limit, page, route]);
 
   AdvancePage({ setPage, BBRef, lazyRef, data });
 
