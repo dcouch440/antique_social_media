@@ -1,9 +1,8 @@
-import { useContext, useEffect, useReducer, useRef, useState } from 'react';
+import { useEffect, useReducer, useRef, useState } from 'react';
 import PaginateDatabase from './PaginateDatabase';
 import AdvancePage from './AdvancePage';
 import reducer from './reducer';
 import * as A from './actions';
-import { Context } from '../../Context';
 
 export default function EverScroll ({ limit, route }) {
   const [page, setPage] = useState(0);
