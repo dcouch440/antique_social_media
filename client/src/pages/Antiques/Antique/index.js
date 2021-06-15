@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import RenderSmoothImage from 'render-smooth-image-react';
 import 'render-smooth-image-react/build/style.css';
+import imageSizer from '../../../utils/imageSizer';
 
 import {
   AntiqueContainer,
   AntiqueOverlay,
   OverlayText
 } from './styles';
-import imageSizer from '../../../utils/imageSizer';
 
 export default function Antique ({ antique, lazyRef, index }) {
   const history = useHistory();
@@ -18,6 +18,7 @@ export default function Antique ({ antique, lazyRef, index }) {
   const { secure_url, height, width } = image;
   const handleClick = id => history.push(`/antiques/${id}`);
   const downsizedUrl = imageSizer({ url: secure_url, height, width, decreesBy: 5 });
+
   return (
     <AntiqueContainer
       onClick={() => handleClick(antique.id)}
