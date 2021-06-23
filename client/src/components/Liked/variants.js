@@ -9,4 +9,5 @@ const likedVariants = {
     transition: { duration: .3, delay: .5 }
   }
 };
+
 export default likedVariants;
