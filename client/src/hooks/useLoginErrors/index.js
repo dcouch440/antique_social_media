@@ -12,10 +12,10 @@ export default function useLoginErrors () {
       return (
         <Errors>
           {
-            errors.map(error =>  (
-                <div>
-                  {error}
-                </div>
+            errors.map((error, index) =>  (
+              <div key={index}>
+                {error}
+              </div>
             ))
           }
         </Errors>
