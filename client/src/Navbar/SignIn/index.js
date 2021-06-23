@@ -74,6 +74,7 @@ export default function SignIn ({ toggle }) {
           name={'password'}
           placeholder={'password'}
           value={password}
+          type={'password'}
         />
         <DropDownButtonContainer>
           <DropDownButton type='button' onClick={toggle}>Sign Up</DropDownButton>
