@@ -92,7 +92,6 @@ export default function SignUp ({ toggle }) {
         name={'username'}
         placeholder={'Username'}
         value={credentials.username}
-        type={'password'}
         required
       />
 
@@ -109,6 +108,7 @@ export default function SignUp ({ toggle }) {
         onChange={handleChange}
         name={'passwordConfirmation'}
         placeholder={'password Confirmation'}
+        type={'password'}
         value={credentials.passwordConfirmation}
         required
       />
