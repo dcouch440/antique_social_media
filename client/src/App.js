@@ -12,7 +12,6 @@ import Chat from './pages/Chat';
 import Rooms from './pages/Rooms';
 import Posts from './pages/Posts';
 
-
 export default function App () {
   const location = useLocation();
   const [roomId, setRoomId] = useState('GLOBAL_CHAT');
