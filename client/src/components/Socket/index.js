@@ -1,7 +1,6 @@
 import { useContext, useEffect, useRef, useState, } from 'react';
 import { Context } from '../../Context';
 import { io } from 'socket.io-client';
-import envUrl from '../../utils/env-url';
 
 import {
   JOIN_ROOM,
