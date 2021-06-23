@@ -36,7 +36,6 @@ export default function SignUp ({ toggle }) {
   };
 
   const handleSubmit = e => {
-    console.log(e);
     const {
       password, passwordConfirmation, username, email
     } = credentials;
