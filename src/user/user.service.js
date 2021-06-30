@@ -11,13 +11,13 @@ class UserService {
     try {
       const user = await userDAO.findByEmail(email);
       if (!user) {
-        throw new Error({ errors: ['Invalid username or Password'] });
+        throw new Error('Invalid username or Password');
       }
       const isValid = await compareHash({
         inputPassword: password, userPassword: user.password_digest
       });
       if (!isValid) {
-        throw new Error({ errors: ['Bad Username or Password'] });
+        throw new Error('Bad Username or Password');
       }
 
       const payload = {
@@ -39,14 +39,16 @@ class UserService {
 
       return payload;
     } catch (err) {
-      res.status(403).json({ message: err.errors });
+      const { message } = err;
+      // change to 403 and check error kickbaack
+      res.status(400).json({ errors: [message] });
     }
   }
   async signUp ({ res, username, password, email }) {
     try {
       const user = await userDAO.findByEmail(email);
       if (user) {
-        throw new Error({ message: ['Invalid username or Password'] });
+        throw new Error('Invalid username or Password');
       }
       const userParams = { username, password, email };
       await newUserParams.validate(userParams, { abortEarly: false });
@@ -68,7 +70,9 @@ class UserService {
 
       return payload;
     } catch (err) {
-      res.json(err);
+      const { message } = err;
+      // change to 403 and check error kickbaack
+      res.status(400).json({ errors: [message] });
     }
   }
   async getUsersByIds (id) {
