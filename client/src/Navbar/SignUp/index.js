@@ -68,7 +68,12 @@ export default function SignUp ({ toggle }) {
           setErrors([...res.data.errors]);
         }
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        console.log(error);
+        setErrors([...error.response.data.errors]);
+      });
+
+      /// THE DATA IS KICKING BECAUSE ITS a 403?
 
   }, [payload, setCurrentUser, setErrors]);
 
