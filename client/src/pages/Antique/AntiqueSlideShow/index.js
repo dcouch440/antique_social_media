@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 import {
   SlideShow
- } from './styles';
+} from './styles';
 
 export default function AntiquesSlideShow ({ antiqueImages, newUpload, setNewUpload }) {
   const [[page, direction], setPage] = useState([0, 0]);
