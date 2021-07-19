@@ -7,11 +7,9 @@
 ## `About`
 See this app LIVE @ ( https://radiant-thicket-98181.herokuapp.com/ )
 
-This Project is a Work in Progress
+Please log in / sign-up to view content. A fake email will work fine but there are password rules that will display if you enter one without the correct rules.
 
-Please log in / sign-up to view content a fake email will work find but there are password rules that will display if you enter one without the correct rules.
-
-This project is an application made to upload images of your favorite antiques and give a bit of information / backstory on it. Users can view your antique from the home page through the infinite scroll image display.
+This project is an application made to upload images of your favorite antiques and give a bit of information / backstory on them. Users can view your antique from the home page through the infinite scroll image display.
   
 
 Currently the home page is set up too just view all antiques that are on the website but you can view all of a users posts by visiting that page.
@@ -37,7 +35,7 @@ Github:
   #### Current Features
 
   - Framer Motion Slideshow and screen transitions
-  - conditional user online with animation
+  - Conditional user online with animation
   - Socket servers for
     - User online status
     - Chat messages / rooms
@@ -62,6 +60,7 @@ Github:
 - render-smooth-image-react `1.0.3`
 - emojis-list `3.0.0`
 - rc-slider `9.7.2`
+
 ## `Dev Depends`
 - faker `5.5.3`
 - babel-eslint `10.1.0`
@@ -77,8 +76,6 @@ Github:
 <img src='img/front-end/antique-chat.PNG' alt='antique'>
 
 # `Backend`
-
-  This Project is an Work in Progress, This was mad for the love of javascript and exploration in a full stack javascript social media app.
 
   This app is made with Node.js that currently features,
 
