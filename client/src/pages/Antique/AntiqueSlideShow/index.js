@@ -25,11 +25,11 @@ export default function AntiquesSlideShow ({ antiqueImages, newUpload, setNewUpl
   }, [page, setPage]);
 
   useEffect(() => {
-      if (!newUpload) {
-        return;
-      }
-      setPage([antiqueImages.length, 1]);
-      setNewUpload(false);
+    if (!newUpload) {
+      return;
+    }
+    setPage([antiqueImages.length, 1]);
+    setNewUpload(false);
   }, [antiqueImages.length, newUpload, setNewUpload]);
 
   useEffect(() => {
