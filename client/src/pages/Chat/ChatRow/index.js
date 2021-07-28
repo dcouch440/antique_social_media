@@ -29,7 +29,9 @@ export default function ChatRows ({ messages, socketRef }) {
   };
 
   const handleClick = () => {
-    socketRef.current.disconnect();
+    if (socketRef.current) {
+      socketRef.current.disconnect();
+    }
     history.goBack();
   };
 
