@@ -1,4 +1,9 @@
-import { useEffect, useReducer, useRef, useState } from 'react';
+import {
+  useEffect,
+  useReducer,
+  useRef,
+  useState
+} from 'react';
 import PaginateDatabase from './PaginateDatabase';
 import AdvancePage from './AdvancePage';
 import reducer from './reducer';

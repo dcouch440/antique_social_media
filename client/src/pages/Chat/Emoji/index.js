@@ -64,7 +64,7 @@ export default function Emoji ({ handleClick, show }) {
   return (
     <>
       <EmojiDisplayContainer display={toggleDisplay}>
-      <ButtonContainer>
+        <ButtonContainer>
           <PageSelect name='minus' onClick={handlePageChange}>
             -
           </PageSelect>

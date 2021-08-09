@@ -42,10 +42,11 @@ export default function User ({ ownerInfo }) {
 User.propTypes = {
   ownerInfo: PropTypes.shape({
     avatar: PropTypes.shape({
-      image_url: PropTypes.string,
-      user_id: PropTypes.number
+      secure_url: PropTypes.string,
+      user_id: PropTypes.number,
     }),
     online: PropTypes.bool,
-    username: PropTypes.string
+    username: PropTypes.string,
+    id: PropTypes.string
   })
 };

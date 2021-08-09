@@ -1,13 +1,15 @@
 import PropTypes from 'prop-types';
-import { useState, useEffect, useRef, useContext } from 'react';
+import {
+  useState,
+  useEffect,
+  useRef,
+  useContext
+} from 'react';
 import axios from 'axios';
 import { Context } from '../../Context';
 import useLoginErrors from '../../hooks/useLoginErrors';
 
-import {
-  Form,
-  SignUpTitle
-} from './styles';
+import { Form, SignUpTitle } from './styles';
 
 import {
   StyledInput,
@@ -23,9 +25,9 @@ export default function SignUp ({ toggle }) {
   const isRequest = useRef(false);
   const [credentials, setCredentials] = useState({
     password: '',
-     email: '',
-     username: '',
-     passwordConfirmation: ''
+    email: '',
+    username: '',
+    passwordConfirmation: ''
   });
 
   const handleChange = e => {
@@ -53,7 +55,7 @@ export default function SignUp ({ toggle }) {
 
   useEffect(() => {
     if (isRequest.current === false) {
-       return;
+      return;
     }
     isRequest.current = false;
     axios.post(
@@ -73,7 +75,7 @@ export default function SignUp ({ toggle }) {
         setErrors([...error.response.data.errors]);
       });
 
-      /// THE DATA IS KICKING BECAUSE ITS a 403?
+    /// THE DATA IS KICKING BECAUSE ITS a 403?
 
   }, [payload, setCurrentUser, setErrors]);
 

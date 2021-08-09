@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useState } from 'react';
 import { useHistory, useParams } from 'react-router';
 import ApiMapper from '../../components/ApiMapper';
@@ -40,8 +41,14 @@ export default function AntiquesPage ({ route }) {
             <ApiMapper callData={antiques} lazyRef={lazyRef} component={Antique} />
           </Grid>
         </GridContainer>
-        <div ref={bottomBoundaryRef} style={{ background: '', width: '1px', height: '250px', marginTop: '' }}></div>
+        <div ref={bottomBoundaryRef} style={{
+          background: '', width: '1px', height: '250px', marginTop: ''
+        }}></div>
       </PageContainer>
     </PageTransition>
   );
 }
+
+AntiquesPage.propTypes = {
+  route: PropTypes.string
+};

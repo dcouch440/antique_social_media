@@ -1,11 +1,10 @@
+import PropTypes from "prop-types";
 import { useContext } from "react";
 import { Context } from "../../../Context";
 import Modal from '../Modal';
 import checkUser from "../../../utils/checkUser";
 
-import {
-  UploadModalButton
-} from './styles';
+import { UploadModalButton } from './styles';
 
 export default function UploadIfCurrentUser ({ show, antique, handleModalShowChange, setNewUpload }) {
   const { currentUser } = useContext(Context);
@@ -35,3 +34,11 @@ export default function UploadIfCurrentUser ({ show, antique, handleModalShowCha
     )
   );
 }
+UploadIfCurrentUser.propTypes = {
+  antique: PropTypes.shape({
+    user_id: PropTypes.number
+  }),
+  handleModalShowChange: PropTypes.func,
+  setNewUpload: PropTypes.bool,
+  show: PropTypes.bool
+};

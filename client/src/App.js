@@ -1,5 +1,10 @@
 import { useContext, useState } from 'react';
-import { Route, Switch, useLocation, Redirect } from 'react-router';
+import {
+  Redirect,
+  Route,
+  Switch,
+  useLocation
+} from 'react-router';
 import { AnimatePresence } from 'framer-motion';
 import { Context } from './Context';
 import GlobalStyles from './GlobalStyles';
@@ -23,31 +28,31 @@ export default function App () {
       <Navbar />
       <AnimatePresence>
         <Switch location={location} key={location.key}>
-          <Route exact path='/'>
-            <Redirect to='/antiques'/>
+          <Route exact path="/">
+            <Redirect to="/antiques" />
           </Route>
-          <Route exact path='/antiques'>
-            <Antiques route={'/antiques'} />
+          <Route exact path="/antiques">
+            <Antiques route="/antiques" />
           </Route>
-          <Route exact path='/collections/:user_id'>
-            <Antiques route={'/antiques/users/'} />
+          <Route exact path="/collections/:user_id">
+            <Antiques route="/antiques/users/" />
           </Route>
-          <Route exact path='/antiques/new'>
+          <Route exact path="/antiques/new">
             <Post />
           </Route>
-          <Route exact path='/antiques/:id'>
+          <Route exact path="/antiques/:id">
             <Antique setRoomId={setRoomId} />
           </Route>
-          <Route exact path='/likes'>
+          <Route exact path="/likes">
             <Likes />
           </Route>
-          <Route exact path='/chat'>
+          <Route exact path="/chat">
             <Chat roomId={roomId} />
           </Route>
-          <Route exact path='/rooms'>
+          <Route exact path="/rooms">
             <Rooms setRoomId={setRoomId} />
           </Route>
-          <Route exact path='/posts' component={Posts} />
+          <Route exact path="/posts" component={Posts} />
         </Switch>
       </AnimatePresence>
     </>

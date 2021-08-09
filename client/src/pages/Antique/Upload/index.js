@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import { Context } from '../../../Context';
@@ -87,3 +88,12 @@ export default function Upload ({ antique, afterUpload, setPreviewSource, setMes
     </div>
   );
 }
+Upload.propTypes = {
+  afterUpload: PropTypes.func,
+  antique: PropTypes.shape({
+    id: PropTypes.string,
+    user_id: PropTypes.number
+  }),
+  setMessage: PropTypes.func,
+  setPreviewSource: PropTypes.func
+};

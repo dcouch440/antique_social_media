@@ -16,7 +16,9 @@ export default function AntiqueLikes ({ antiqueId, likesChange }) {
 
   useEffect(() => {
     axios
-      .get(`/antiques/${antiqueId}/likes`, { withCredentials: true })
+      .get(`/antiques/${antiqueId}/likes`, {
+        withCredentials: true
+      })
       .then(res => {
         setCount(res.data.count);
         setLikes([...res.data.likes]);
@@ -46,5 +48,6 @@ export default function AntiqueLikes ({ antiqueId, likesChange }) {
 }
 
 AntiqueLikes.propTypes = {
-  likes: PropTypes.array
+  antiqueId: PropTypes.any,
+  likesChange: PropTypes.any
 };

@@ -1,5 +1,9 @@
 import PropTypes from 'prop-types';
-import { useState, useEffect, createContext } from 'react';
+import {
+  createContext,
+  useEffect,
+  useState
+} from 'react';
 import axios from 'axios';
 import OnlineStatus from './components/OnlineStatus';
 const Context = createContext();
@@ -13,14 +17,18 @@ function ContextProvider (props) {
     admin: false
   });
 
-  OnlineStatus({ currentUser });
+  OnlineStatus({
+    currentUser
+  });
 
   axios.defaults.baseURL = '/api';
   axios.defaults.headers.user_id = currentUser.id;
 
   useEffect(() => {
     axios
-      .get('/users/session', { withCredentials: true })
+      .get('/users/session', {
+        withCredentials: true
+      })
       .then(res => setCurrentUser(res.data))
       .catch(err => console.error(err));
   }, []);

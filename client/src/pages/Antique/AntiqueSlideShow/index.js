@@ -1,12 +1,15 @@
-import { useEffect, useState, useRef, useCallback } from 'react';
+import {
+  useEffect,
+  useState,
+  useRef,
+  useCallback
+} from 'react';
 import PropTypes from 'prop-types';
 import { variants } from './variants';
 import { wrap } from 'popmotion';
 import { AnimatePresence, motion } from 'framer-motion';
 
-import {
-  SlideShow
-} from './styles';
+import { SlideShow } from './styles';
 
 export default function AntiquesSlideShow ({ antiqueImages, newUpload, setNewUpload }) {
   const [[page, direction], setPage] = useState([0, 0]);
@@ -97,5 +100,7 @@ AntiquesSlideShow.defaultProps = {
 };
 
 AntiquesSlideShow.propTypes = {
-  antiqueImages: PropTypes.array
+  antiqueImages: PropTypes.array,
+  newUpload: PropTypes.bool,
+  setNewUpload: PropTypes.func
 };

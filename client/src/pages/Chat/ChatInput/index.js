@@ -49,12 +49,12 @@ export default function ChatInput ({ sendMessage }) {
 
   return (
     <ChatBox>
-        <EmojiContainer>
-          <RelativeContainer onClick={handleDisplayChange}>
+      <EmojiContainer>
+        <RelativeContainer onClick={handleDisplayChange}>
             Emoji
-          </RelativeContainer>
-          <Emoji show={show} handleClick={handleClick} />
-        </EmojiContainer>
+        </RelativeContainer>
+        <Emoji show={show} handleClick={handleClick} />
+      </EmojiContainer>
       <ChatWindow onKeyDown={onEnterPress} value={message} name="message" onChange={handleChange} />
       <SubmitButton onClick={handleSubmit}>
         Send Message

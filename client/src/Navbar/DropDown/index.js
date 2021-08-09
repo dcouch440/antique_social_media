@@ -2,9 +2,7 @@ import PropTypes from 'prop-types';
 import SignedIn from '../SignedIn';
 import Access from '../Access';
 
-import {
-  DropMenuPlate
-} from './styles';
+import { DropMenuPlate } from './styles';
 
 export default function DropDown ({ display, showAvatar, currentUser }) {
   const signedIn = currentUser.username;
@@ -22,5 +20,9 @@ export default function DropDown ({ display, showAvatar, currentUser }) {
 }
 
 DropDown.propTypes = {
-  display: PropTypes.string
+  currentUser: PropTypes.shape({
+    username: PropTypes.any
+  }),
+  display: PropTypes.string,
+  showAvatar: PropTypes.any
 };

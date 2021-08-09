@@ -1,8 +1,12 @@
+import PropTypes from "prop-types";
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { LoadingCircle, LoadingContainer } from '../styles';
 import {
-  loadingContainerVariants, loadingVariants, loadingTransition, pageVariants
+  loadingContainerVariants,
+  loadingVariants,
+  loadingTransition,
+  pageVariants
 } from '../variants';
 
 export default function SimulateLoading ({ render, time = 1000 }) {
@@ -41,3 +45,8 @@ export default function SimulateLoading ({ render, time = 1000 }) {
 
   );
 }
+
+SimulateLoading.propTypes = {
+  render: PropTypes.any,
+  time: PropTypes.number
+};

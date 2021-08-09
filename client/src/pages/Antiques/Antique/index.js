@@ -12,17 +12,22 @@ import {
   OverlayText
 } from './styles';
 
+
 export default function Antique ({ antique, lazyRef, index }) {
   const history = useHistory();
   const [image] = antique.images;
   const { secure_url, height, width } = image;
   const handleClick = id => history.push(`/antiques/${id}`);
-  const downsizedUrl = imageSizer({ url: secure_url, height, width, decreesBy: 5 });
+  const downsizedUrl = imageSizer({
+    url: secure_url, height, width, decreesBy: 5
+  });
 
   return (
     <AntiqueContainer
       onClick={() => handleClick(antique.id)}
-      dimensions={{ height, width }}
+      dimensions={{
+        height, width
+      }}
       ref={el => lazyRef.current[index] = el}
     >
       <RenderSmoothImage objectFit={'cover'} src={downsizedUrl} alt={antique.name}/>
@@ -39,7 +44,9 @@ export default function Antique ({ antique, lazyRef, index }) {
 
 Antique.defaultProps = {
   antique: {
-    images: [{ url: '' }]
+    images: [{
+      url: ''
+    }]
   }
 };
 

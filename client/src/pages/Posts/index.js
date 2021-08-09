@@ -1,4 +1,8 @@
-import { useContext, useEffect, useState } from 'react';
+import {
+  useContext,
+  useEffect,
+  useState
+} from 'react';
 import { Context } from '../../Context';
 import Antiques from './Antiques';
 import axios from 'axios';

@@ -1,5 +1,5 @@
 const capitalize = s => {
-  if (typeof s == 'number') {
+  if (typeof s === 'number') {
     return s;
   }
   if (typeof s !== 'string') {

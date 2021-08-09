@@ -1,10 +1,18 @@
 import PropTypes from 'prop-types';
-import { useContext, useEffect, useState } from 'react';
+import {
+  useContext,
+  useEffect,
+  useState
+} from 'react';
 import Socket from '../../components/Socket';
 import PageTransition from '../../Framer/PageTransition';
 import { SHOW_ROOM_USER_COUNT } from '../../constant';
 import { Context } from '../../Context';
-import { RoomsContainer, RoomHeaders, Toggle } from './styles';
+import {
+  RoomsContainer,
+  RoomHeaders,
+  Toggle
+} from './styles';
 import { useHistory } from 'react-router';
 import StaticRooms from './StaticRooms';
 import UserRooms from './UserRooms';

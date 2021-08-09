@@ -3,7 +3,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { OnlineCircle, OnlineContainer } from './styles';
 import {
-  loadingContainerVariants, loadingCircleVariants, loadingCircleTransition
+  loadingContainerVariants,
+  loadingCircleVariants,
+  loadingCircleTransition
 } from './variants';
 
 export default function OnlineAnimation ({ status }) {

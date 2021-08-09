@@ -70,7 +70,9 @@ AntiqueInfo.propTypes = {
     body: PropTypes.string,
     images: PropTypes.array,
     name: PropTypes.string,
-    year: PropTypes.number
+    year: PropTypes.number,
+    string: PropTypes.string,
+    id: PropTypes.string
   }),
   setRoom: PropTypes.any
 };

@@ -1,5 +1,9 @@
 import PropTypes from 'prop-types';
-import { useEffect, useRef, useState } from 'react';
+import {
+  useEffect,
+  useRef,
+  useState
+} from 'react';
 import Loading from '../../../Framer/LoadingModules/Loading';
 import AntiqueInfo from '..';
 import { useHistory, useParams } from 'react-router-dom';
@@ -8,9 +12,7 @@ import GoBackButton from '../../../components/GoBackButton';
 import axios from 'axios';
 import loadingSequence from '../../../utils/loadingSequence';
 
-import {
-  Page
-} from './styles';
+import { Page } from './styles';
 
 export default function AntiquePage ({ setRoomId }) {
   const { id } = useParams();

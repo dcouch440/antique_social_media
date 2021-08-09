@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import {
   Username,
   Avatar,
@@ -22,3 +23,6 @@ export default function OnlineUserSidebar ({ users }) {
     </UserContainer>
   );
 }
+OnlineUserSidebar.propTypes = {
+  users: PropTypes.any
+};

@@ -3,7 +3,11 @@ import { useEffect, useState } from 'react';
 import ApiMapper from '../../components/ApiMapper';
 import PageTransition from '../../Framer/PageTransition';
 import Antique from './Antique';
-import { AntiqueRows, LikesHeader, Page } from './styles';
+import {
+  AntiqueRows,
+  LikesHeader,
+  Page
+} from './styles';
 
 export default function Likes () {
   const [antiques, setAntiques] = useState([]);

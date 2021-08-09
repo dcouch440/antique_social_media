@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useState } from "react";
 import Upload from "../Upload";
 
@@ -50,3 +51,8 @@ export default function Modal ({ modalShowChange, antique, setNewUpload }) {
     </>
   );
 }
+Modal.propTypes = {
+  antique: PropTypes.object,
+  modalShowChange: PropTypes.func,
+  setNewUpload: PropTypes.func
+};

@@ -2,9 +2,7 @@ import { useContext } from 'react';
 import axios from 'axios';
 import { Context } from '../../Context';
 
-import {
-  SignOutDiv
-} from './styles';
+import { SignOutDiv } from './styles';
 
 export default function SignOut () {
   const { setCurrentUser } = useContext(Context);

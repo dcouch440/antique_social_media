@@ -2,9 +2,7 @@ import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 import { fromRightSide } from './variants';
 
-import {
-  GoBackButton
-} from './styles';
+import { GoBackButton } from './styles';
 
 export default function GoBack ({ handleClick, text }) {
   return (

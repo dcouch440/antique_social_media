@@ -6,10 +6,30 @@
       "jsx": true
     }
   },
-  "extends": "eslint:recommended",
+  "extends": [
+    "plugin:react/recommended",
+    "react-app",
+    "react-app/jest"
+  ],
+  "plugins": [
+    "import-newlines"
+  ],
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "root": true,
   "rules": {
+    "import-newlines/enforce": [
+      "error", {
+        "items": 2,
+        "max-len": 100,
+        "semi": false
+      }
+    ],
     "semi": "error",
     "semi-spacing": "error",
+    "indent": ["error", 2],
     "no-multiple-empty-lines": "error",
     "no-unused-vars": "warn",
     "keyword-spacing": "error",

@@ -1,4 +1,9 @@
-import { useState, useEffect, useRef, useContext } from 'react';
+import {
+  useState,
+  useEffect,
+  useRef,
+  useContext
+} from 'react';
 import { Context } from '../../Context';
 import PropTypes from 'prop-types';
 import axios from 'axios';
@@ -9,10 +14,7 @@ import {
   DropDownButtonContainer
 } from '../styled';
 
-import {
-  SignIngTitle,
-  SignedIn
-} from './styles';
+import { SignIngTitle, SignedIn } from './styles';
 
 
 export default function SignIn ({ toggle }) {

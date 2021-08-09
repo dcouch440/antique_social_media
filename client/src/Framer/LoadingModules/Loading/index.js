@@ -1,8 +1,15 @@
 import { motion } from 'framer-motion';
 import { PropTypes } from 'prop-types';
-import { LoadingCircle, LoadingContainer, MagnaGlass } from '../styles';
 import {
-  loadingContainerVariants, loadingVariants, loadingTransition, pageVariants
+  LoadingCircle,
+  LoadingContainer,
+  MagnaGlass
+} from '../styles';
+import {
+  loadingContainerVariants,
+  loadingVariants,
+  loadingTransition,
+  pageVariants
 } from '../variants';
 
 

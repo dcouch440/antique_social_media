@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import axios from 'axios';
 import { useContext, useState } from 'react';
 import { Context } from '../../Context';
@@ -80,13 +81,13 @@ export default function Avatar ({ hideAvatar }) {
       <AvatarUpload>
         <InputContainer>
           <input
-              type="file"
-              name="files"
-              onChange={handleChange}
-              value={fileInputState}
-              className="form-input"
-            />
-            <button onClick={handleFileSubmit}>Submit</button>
+            type="file"
+            name="files"
+            onChange={handleChange}
+            value={fileInputState}
+            className="form-input"
+          />
+          <button onClick={handleFileSubmit}>Submit</button>
         </InputContainer>
         {
           previewImage ?
@@ -100,3 +101,6 @@ export default function Avatar ({ hideAvatar }) {
     </PageContainer>
   );
 }
+Avatar.propTypes = {
+  hideAvatar: PropTypes.func
+};

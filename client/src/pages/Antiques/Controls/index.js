@@ -7,7 +7,8 @@ import { motion } from 'framer-motion';
 import {
   SliderContainer,
   Slide,
-  GridTitle,Count
+  GridTitle,
+  Count
 } from './styles';
 
 export default function Controls ({ setSlider, count }) {
@@ -16,7 +17,9 @@ export default function Controls ({ setSlider, count }) {
       as={motion.div}
       variants={controlVariants}
       initial='start'
-      whileHover={{ x: 0 }}
+      whileHover={{
+        x: 0
+      }}
     >
       <GridTitle>
         Set Grid Count

@@ -1,4 +1,9 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, {
+  useContext,
+  useEffect,
+  useRef,
+  useState
+} from 'react';
 import { Context } from '../../Context';
 import PropTypes from 'prop-types';
 import likedVariants from './variants';
@@ -7,9 +12,7 @@ import axios from 'axios';
 import likeImage from '../../img/assets/waxSealImg.png';
 import dislikeImage from '../../img/assets/waxSealGrey50.png';
 
-import {
-  Check
-} from './styles';
+import { Check } from './styles';
 
 export default function Liked ({ antiqueId, onLikesChange }) {
   const [liked, setLiked] = useState(false);

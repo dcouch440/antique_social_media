@@ -1,5 +1,6 @@
-import { createGlobalStyle } from 'styled-components';
 import * as include from './styled-mixens';
+
+import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
   ${include.scrollBarStyles}

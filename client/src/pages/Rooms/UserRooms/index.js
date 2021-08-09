@@ -8,15 +8,18 @@ import {
 
 export default function ActiveUserRooms ({ handleClick, rooms }) {
 
-  const mappedRooms =  rooms.map(data => {
+  const mappedRooms =  rooms.map((data, key) => {
 
     return (
-      <Room onClick={() => handleClick(data.roomId)}>
-          <div className='name'>{data.name}</div>
-          <Users>
-            <span className='chat-bubble'>💬</span>
-            <span className='user-number'>{ data.socketUsers }</span>
-          </Users>
+      <Room
+        key={key}
+        onClick={() => handleClick(data.roomId)}
+      >
+        <div className='name'>{data.name}</div>
+        <Users>
+          <span className='chat-bubble'>💬</span>
+          <span className='user-number'>{ data.socketUsers }</span>
+        </Users>
       </Room>
     );
   });

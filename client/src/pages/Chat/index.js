@@ -7,9 +7,7 @@ import PageTransition from '../../Framer/PageTransition';
 import OnlineUserSidebar from './OnlineUserSidebar';
 import { MESSAGE } from '../../constant/index';
 
-import {
-  ChatWindow
-} from './styles';
+import { ChatWindow } from './styles';
 
 export default function Chat ({ roomId }) {
   const [refresh, setRefresh] = useState(true);

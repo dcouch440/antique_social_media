@@ -1,13 +1,13 @@
-import React, { useState, useRef, useContext } from 'react';
+import React, {
+  useState,
+  useRef,
+  useContext
+} from 'react';
 import { Context } from '../Context';
 import DropDown from './DropDown';
 import Avatar from './Avatar';
 
-import {
-  Nav,
-  Menu
-} from './styles';
-
+import { Nav, Menu } from './styles';
 
 export default function Navbar () {
   const [menu, setMenu] = useState('none');
@@ -26,13 +26,13 @@ export default function Navbar () {
 
   return (
     <>
-        { show && <Avatar hideAvatar={handleModalChange} currentUser={currentUser} /> }
-        <Nav>
-          <Menu className={'menu-button'} ref={menuButton} onClick={handleClick}>
+      { show && <Avatar hideAvatar={handleModalChange} currentUser={currentUser} /> }
+      <Nav>
+        <Menu className={'menu-button'} ref={menuButton} onClick={handleClick}>
             ☰
-          </Menu>
-          <DropDown showAvatar={handleModalChange} currentUser={currentUser} display={menu} />
-        </Nav>
+        </Menu>
+        <DropDown showAvatar={handleModalChange} currentUser={currentUser} display={menu} />
+      </Nav>
 
     </>
   );
