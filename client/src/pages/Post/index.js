@@ -3,17 +3,17 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import PageTransition from '../../Framer/PageTransition';
 import Form from './Form';
-
 import {
-  Page,
-  ImagePreview,
+  ErrorMessage,
   FormContainer,
+  ImageInput,
+  ImagePreview,
   NoImage,
   NoImageCaption,
-  ImageInput,
-  PreviewImage,
-  ErrorMessage
+  Page,
+  PreviewImage
 } from './styles';
+
 
 export default function Post () {
   const [fileInputState, setFileInputState] = useState('');
@@ -91,17 +91,20 @@ export default function Post () {
       <Page>
         <ImagePreview>
           <ImageInput
-            id="file-input"
-            type="file"
-            name="files"
-            onChange={handleImageInputChange}
-            value={fileInputState}
             className="form-input"
+            id="file-input"
+            name="files"
+            type="file"
+            value={fileInputState}
+            onChange={handleImageInputChange}
           />
           {
             previewImage ?
 
-              <PreviewImage src={previewImage} alt='preview'/>
+              <PreviewImage
+                alt='preview'
+                src={previewImage}
+              />
 
               : // NO IMAGE
 

@@ -1,16 +1,16 @@
 import PropTypes from 'prop-types';
 import { useContext } from 'react';
+import { useHistory } from 'react-router';
 import { Context } from '../../../Context';
 import OnlineAnimation from '../../../Framer/OnlineAnimation';
-import { useHistory } from 'react-router';
-
 import {
-  Online,
-  AvatarContainer,
   AboutMe,
   Avatar,
-  CollectionsButton
+  AvatarContainer,
+  CollectionsButton,
+  Online
 } from './styles';
+
 
 export default function User ({ ownerInfo }) {
   const { currentUser: { id } } = useContext(Context);
@@ -26,13 +26,13 @@ export default function User ({ ownerInfo }) {
     <AvatarContainer>
       <AboutMe>{ownerInfo.username}</AboutMe>
       <Avatar
-        status={true}
-        src={ownerInfo.avatar?.secure_url}
         alt={'avatar'}
+        src={ownerInfo.avatar?.secure_url}
+        status={true}
       />
       <CollectionsButton onClick={handleRouteChange}>User Collection</CollectionsButton>
       <Online status={isCurrentUserPostOrUserOnline}>
-        <OnlineAnimation status={isCurrentUserPostOrUserOnline}/>
+        <OnlineAnimation status={isCurrentUserPostOrUserOnline} />
         {onlineOfflineText}
       </Online>
     </AvatarContainer>

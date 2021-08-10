@@ -4,10 +4,10 @@ import {
   useRef,
   useState
 } from 'react';
-import PaginateDatabase from './PaginateDatabase';
-import AdvancePage from './AdvancePage';
-import reducer from './reducer';
 import * as A from './actions';
+import AdvancePage from './AdvancePage';
+import PaginateDatabase from './PaginateDatabase';
+import reducer from './reducer';
 
 export default function EverScroll ({ limit, route }) {
   const [page, setPage] = useState(0);

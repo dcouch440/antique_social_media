@@ -1,17 +1,17 @@
+import { motion } from 'framer-motion';
+import PropTypes from 'prop-types';
 import React from 'react';
 import { variants } from './variants';
-import PropTypes from 'prop-types';
-import { motion } from 'framer-motion';
 
 export default function NewPage ({ transition, direction, ...props }) {
   return (
     <motion.button
-      variants={variants}
-      initial="hidden"
       animate="visible"
+      exit="exit"
+      initial="hidden"
       timing="timing"
       transition="transition"
-      exit="exit"
+      variants={variants}
     >
       {props.children}
     </motion.button>

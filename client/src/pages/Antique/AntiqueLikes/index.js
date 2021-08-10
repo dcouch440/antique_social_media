@@ -1,14 +1,14 @@
 import axios from "axios";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
-
 import {
-  Like,
-  Avatar,
   AntLikes,
-  NoLikes,
-  LikesCount
+  Avatar,
+  Like,
+  LikesCount,
+  NoLikes
 } from './styles';
+
 
 export default function AntiqueLikes ({ antiqueId, likesChange }) {
   const [likes, setLikes] = useState([]);
@@ -29,7 +29,10 @@ export default function AntiqueLikes ({ antiqueId, likesChange }) {
   const mappedLikes = likes.map(data => {
     return (
       <Like key={data.username}>
-        <Avatar src={data.avatar.secure_url} alt='avatar' />
+        <Avatar
+          alt='avatar'
+          src={data.avatar.secure_url}
+        />
       </Like>
     );
   });

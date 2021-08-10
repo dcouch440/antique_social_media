@@ -1,5 +1,5 @@
-import PropTypes from "prop-types";
 import axios from "axios";
+import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import AntiquesSlideShow from "../AntiqueSlideShow";
 

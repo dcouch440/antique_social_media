@@ -1,13 +1,13 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 import Upload from "../Upload";
-
 import {
-  ImageModal,
   BlurContainer,
-  Message,
   CloseButton,
+  ImageModal,
+  Message
 } from './styles';
+
 
 export default function Modal ({ modalShowChange, antique, setNewUpload }) {
   const [previewSource, setPreviewSource] = useState('');
@@ -28,7 +28,12 @@ export default function Modal ({ modalShowChange, antique, setNewUpload }) {
 
   const imageOrMessage = () => {
     if (previewSource.length !== 0) {
-      return <img src={previewSource} alt="zap" />;
+      return (
+        <img
+          alt="zap"
+          src={previewSource}
+        />
+      );
     } else if (message.length) {
       return <Message>{message}</Message>;
     }
@@ -41,9 +46,9 @@ export default function Modal ({ modalShowChange, antique, setNewUpload }) {
       <ImageModal>
         <CloseButton onClick={modalShowChange}>Exit Upload</CloseButton>
         <Upload
+          afterUpload={handleAfterUpload}
           antique={antique}
           setMessage={setMessage}
-          afterUpload={handleAfterUpload}
           setPreviewSource={setPreviewSource}
         />
         {imageOrMessage()}

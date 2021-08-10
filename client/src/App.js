@@ -1,3 +1,4 @@
+import { AnimatePresence } from 'framer-motion';
 import { useContext, useState } from 'react';
 import {
   Redirect,
@@ -5,17 +6,16 @@ import {
   Switch,
   useLocation
 } from 'react-router';
-import { AnimatePresence } from 'framer-motion';
 import { Context } from './Context';
 import GlobalStyles from './GlobalStyles';
-import Antiques from './pages/Antiques';
-import Antique from './pages/Antique/Transition';
-import Likes from './pages/Likes';
 import Navbar from './Navbar';
-import Post from './pages/Post';
+import Antique from './pages/Antique/Transition';
+import Antiques from './pages/Antiques';
 import Chat from './pages/Chat';
-import Rooms from './pages/Rooms';
+import Likes from './pages/Likes';
+import Post from './pages/Post';
 import Posts from './pages/Posts';
+import Rooms from './pages/Rooms';
 
 export default function App () {
   const location = useLocation();
@@ -27,32 +27,63 @@ export default function App () {
       <GlobalStyles scroll={scroll} />
       <Navbar />
       <AnimatePresence>
-        <Switch location={location} key={location.key}>
-          <Route exact path="/">
+        <Switch
+          key={location.key}
+          location={location}
+        >
+          <Route
+            exact
+            path="/"
+          >
             <Redirect to="/antiques" />
           </Route>
-          <Route exact path="/antiques">
+          <Route
+            exact
+            path="/antiques"
+          >
             <Antiques route="/antiques" />
           </Route>
-          <Route exact path="/collections/:user_id">
+          <Route
+            exact
+            path="/collections/:user_id"
+          >
             <Antiques route="/antiques/users/" />
           </Route>
-          <Route exact path="/antiques/new">
+          <Route
+            exact
+            path="/antiques/new"
+          >
             <Post />
           </Route>
-          <Route exact path="/antiques/:id">
+          <Route
+            exact
+            path="/antiques/:id"
+          >
             <Antique setRoomId={setRoomId} />
           </Route>
-          <Route exact path="/likes">
+          <Route
+            exact
+            path="/likes"
+          >
             <Likes />
           </Route>
-          <Route exact path="/chat">
+          <Route
+            exact
+            path="/chat"
+          >
             <Chat roomId={roomId} />
           </Route>
-          <Route exact path="/rooms">
+          <Route
+            exact
+            path="/rooms"
+          >
             <Rooms setRoomId={setRoomId} />
           </Route>
-          <Route exact path="/posts" component={Posts} />
+          <Route
+            exact
+            component={Posts}
+            path="/posts"
+          />
         </Switch>
       </AnimatePresence>
     </>

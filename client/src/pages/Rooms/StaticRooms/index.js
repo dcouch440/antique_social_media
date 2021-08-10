@@ -1,17 +1,20 @@
 import PropTypes from 'prop-types';
 import capitalize from '../../../utils/capitalize';
-
 import {
-  RoomId,
-  Users,
   Room,
-  TextContainer
+  RoomId,
+  TextContainer,
+  Users
 } from './styles';
+
 
 export default function StaticRooms ({ handleClick, rooms }) {
   return rooms.map(data => {
     return (
-      <Room key={data.roomId} backgroundImg={data.secure_url}>
+      <Room
+        backgroundImg={data.secure_url}
+        key={data.roomId}
+      >
         <TextContainer onClick={() => handleClick(data.roomId)}>
           <RoomId>
             <span className='room-name'>{capitalize(data.roomId)}</span>

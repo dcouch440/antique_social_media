@@ -1,13 +1,13 @@
-import PropTypes from "prop-types";
 import * as emojis from 'emojis-list';
+import PropTypes from "prop-types";
 import { useState } from 'react';
-
 import {
-  EmojiDisplayContainer,
   ButtonContainer,
-  PageSelect,
-  EmojiContainer
+  EmojiContainer,
+  EmojiDisplayContainer,
+  PageSelect
 } from './styles';
+
 
 export default function Emoji ({ handleClick, show }) {
   const [page, setPage] = useState(6);
@@ -50,9 +50,9 @@ export default function Emoji ({ handleClick, show }) {
   const emojiMapper = emojis => emojis.map(emoji => {
     return (
       <div
+        className='emoji'
         key={emoji}
         onClick={e => handleClick(emoji, e)}
-        className='emoji'
       >
         {emoji}
       </div>
@@ -65,10 +65,16 @@ export default function Emoji ({ handleClick, show }) {
     <>
       <EmojiDisplayContainer display={toggleDisplay}>
         <ButtonContainer>
-          <PageSelect name='minus' onClick={handlePageChange}>
+          <PageSelect
+            name='minus'
+            onClick={handlePageChange}
+          >
             -
           </PageSelect>
-          <PageSelect name='plus' onClick={handlePageChange}>
+          <PageSelect
+            name='plus'
+            onClick={handlePageChange}
+          >
             +
           </PageSelect>
         </ButtonContainer>

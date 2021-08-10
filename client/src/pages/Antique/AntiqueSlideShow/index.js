@@ -1,15 +1,15 @@
-import {
-  useEffect,
-  useState,
-  useRef,
-  useCallback
-} from 'react';
-import PropTypes from 'prop-types';
-import { variants } from './variants';
-import { wrap } from 'popmotion';
 import { AnimatePresence, motion } from 'framer-motion';
-
+import { wrap } from 'popmotion';
+import PropTypes from 'prop-types';
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState
+} from 'react';
 import { SlideShow } from './styles';
+import { variants } from './variants';
+
 
 export default function AntiquesSlideShow ({ antiqueImages, newUpload, setNewUpload }) {
   const [[page, direction], setPage] = useState([0, 0]);
@@ -59,21 +59,22 @@ export default function AntiquesSlideShow ({ antiqueImages, newUpload, setNewUpl
 
   return (
     <SlideShow>
-      <AnimatePresence initial={true} custom={direction}>
+      <AnimatePresence
+        custom={direction}
+        initial={true}
+      >
         <motion.img
-          key={page}
-          src={antiqueImages[imageIndex].secure_url}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          custom={direction}
-          variants={variants}
-          initial="enter"
           animate="center"
-          exit="exit"
-          transition='transition'
+          custom={direction}
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
           dragElastic={1}
+          exit="exit"
+          initial="enter"
+          key={page}
+          src={antiqueImages[imageIndex].secure_url}
+          transition='transition'
+          variants={variants}
           onDragEnd={(e, { offset, velocity }) => {
             const swipe = swipePower(offset.x, velocity.x);
 
@@ -83,12 +84,20 @@ export default function AntiquesSlideShow ({ antiqueImages, newUpload, setNewUpl
               paginate(-1);
             }
           }}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
         />
       </AnimatePresence>
-      <div className="next" onClick={() => paginate(1)}>
+      <div
+        className="next"
+        onClick={() => paginate(1)}
+      >
         {'‣'}
       </div>
-      <div className="prev" onClick={() => paginate(-1)}>
+      <div
+        className="prev"
+        onClick={() => paginate(-1)}
+      >
         {'‣'}
       </div>
     </SlideShow>

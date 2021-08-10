@@ -4,17 +4,15 @@ import {
   useRef,
   useState
 } from 'react';
-import { Context } from '../../Context';
 import { io } from 'socket.io-client';
-
 import {
-  JOIN_ROOM,
-  USER_JOINED,
-  MESSAGE,
   DISCONNECTION,
-  SHOW_ROOM_USER_COUNT
+  JOIN_ROOM,
+  MESSAGE,
+  SHOW_ROOM_USER_COUNT,
+  USER_JOINED
 } from '../../constant';
-
+import { Context } from '../../Context';
 
 export default function Socket (roomId) {
   const [messages, setMessages] = useState([]);

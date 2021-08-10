@@ -1,11 +1,11 @@
+import { motion } from 'framer-motion';
 import PropTypes from "prop-types";
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import { LoadingCircle, LoadingContainer } from '../styles';
 import {
   loadingContainerVariants,
-  loadingVariants,
   loadingTransition,
+  loadingVariants,
   pageVariants
 } from '../variants';
 
@@ -20,15 +20,15 @@ export default function SimulateLoading ({ render, time = 1000 }) {
     loadingState ?
 
       <LoadingContainer
-        as={motion.div}
-        variants={loadingContainerVariants}
-        initial="start"
         animate="end"
+        as={motion.div}
+        initial="start"
+        variants={loadingContainerVariants}
       >
         <LoadingCircle
           as={motion.span}
-          variants={loadingVariants}
           transition={loadingTransition}
+          variants={loadingVariants}
         />
 
       </LoadingContainer>
@@ -36,9 +36,9 @@ export default function SimulateLoading ({ render, time = 1000 }) {
       : // done loading
 
       <motion.div
-        variants={pageVariants}
-        initial='hidden'
         animate='visible'
+        initial='hidden'
+        variants={pageVariants}
       >
         {render}
       </motion.div>

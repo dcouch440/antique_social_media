@@ -30,7 +30,10 @@ export default function Likes () {
         <AntiqueRows>
           {
             antiques.length >= 1 ?
-              <ApiMapper callData={antiques} component={Antique} />:
+              <ApiMapper
+                callData={antiques}
+                component={Antique}
+              />:
               <h1>No Antiques?  Get liking..</h1>
           }
         </AntiqueRows>

@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 import { useContext } from "react";
 import { Context } from "../../../Context";
-import Modal from '../Modal';
 import checkUser from "../../../utils/checkUser";
-
+import Modal from '../Modal';
 import { UploadModalButton } from './styles';
+
 
 export default function UploadIfCurrentUser ({ show, antique, handleModalShowChange, setNewUpload }) {
   const { currentUser } = useContext(Context);
@@ -19,9 +19,9 @@ export default function UploadIfCurrentUser ({ show, antique, handleModalShowCha
 
   const showIfModal = () => show&& (
     <Modal
-      setNewUpload={setNewUpload}
       antique={antique}
       modalShowChange={handleModalShowChange}
+      setNewUpload={setNewUpload}
     />
   );
 

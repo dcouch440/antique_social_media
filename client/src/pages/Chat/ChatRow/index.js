@@ -1,20 +1,20 @@
+import { motion } from 'framer-motion';
+import moment from 'moment';
+import PropTypes from 'prop-types';
 import { useEffect, useRef } from 'react';
 import { useHistory } from 'react-router';
-import PropTypes from 'prop-types';
-import { variants } from './variants';
-import moment from 'moment';
-import { motion } from 'framer-motion';
-
 import {
-  Row,
-  Rows,
   Avatar,
-  Username,
+  GoBack,
   Message,
   MessageContainer,
+  Row,
+  Rows,
   Time,
-  GoBack
+  Username
 } from './styles';
+import { variants } from './variants';
+
 
 export default function ChatRows ({ messages, socketRef }) {
   const history = useHistory();
@@ -38,17 +38,20 @@ export default function ChatRows ({ messages, socketRef }) {
   const chatRow = messages.map((message, key) => {
     return (
       <Row
-        key={key}
-        as={motion.div}
-        variants={variants}
-        initial="hidden"
         animate="visible"
+        as={motion.div}
+        exit="exit"
+        initial="hidden"
+        key={key}
         timing="timing"
         transition="transition"
-        exit="exit"
+        variants={variants}
       >
         <MessageContainer>
-          <Avatar src={message.avatar.secure_url} alt={'avatar'}/>
+          <Avatar
+            alt={'avatar'}
+            src={message.avatar.secure_url}
+          />
           <Username>{message.username}: </Username>
           <Message>{message.message}</Message>
           <Time>{ moment(message.timestamp).fromNow() }</Time>
@@ -70,7 +73,10 @@ export default function ChatRows ({ messages, socketRef }) {
 
 ChatRows.propTypes = {
   messages: PropTypes.array,
+
   socketRef: PropTypes.shape({
+
     current: PropTypes.any
+    
   })
 };

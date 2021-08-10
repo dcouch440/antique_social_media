@@ -4,17 +4,17 @@ import {
   useEffect,
   useState
 } from 'react';
+import { useHistory } from 'react-router';
 import Socket from '../../components/Socket';
-import PageTransition from '../../Framer/PageTransition';
 import { SHOW_ROOM_USER_COUNT } from '../../constant';
 import { Context } from '../../Context';
+import PageTransition from '../../Framer/PageTransition';
+import StaticRooms from './StaticRooms';
 import {
-  RoomsContainer,
   RoomHeaders,
+  RoomsContainer,
   Toggle
 } from './styles';
-import { useHistory } from 'react-router';
-import StaticRooms from './StaticRooms';
 import UserRooms from './UserRooms';
 
 export default function Rooms ({ setRoomId }) {
@@ -50,9 +50,15 @@ export default function Rooms ({ setRoomId }) {
           </Toggle>
         </RoomHeaders>
         { !showUserRooms ?
-          <StaticRooms rooms={activeRooms} handleClick={handleClick} />
+          <StaticRooms
+            handleClick={handleClick}
+            rooms={activeRooms}
+          />
           :
-          <UserRooms rooms={activeUserRooms} handleClick={handleClick} />
+          <UserRooms
+            handleClick={handleClick}
+            rooms={activeUserRooms}
+          />
         }
 
       </RoomsContainer>

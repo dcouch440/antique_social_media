@@ -7,8 +7,8 @@ import {
 } from '../styles';
 import {
   loadingContainerVariants,
-  loadingVariants,
   loadingTransition,
+  loadingVariants,
   pageVariants
 } from '../variants';
 
@@ -18,10 +18,10 @@ export default function Loading ({ loadingState, afterLoad, version }) {
     loadingState ?
 
       <LoadingContainer
-        as={motion.div}
-        variants={loadingContainerVariants}
-        initial="start"
         animate="end"
+        as={motion.div}
+        initial="start"
+        variants={loadingContainerVariants}
       >
         {
 
@@ -30,18 +30,18 @@ export default function Loading ({ loadingState, afterLoad, version }) {
             <>
               <MagnaGlass
                 as={motion.span}
-                variants={loadingVariants}
                 transition={loadingTransition}
+                variants={loadingVariants}
               />
               <MagnaGlass
                 as={motion.span}
-                variants={loadingVariants}
                 transition={loadingTransition}
+                variants={loadingVariants}
               />
               <MagnaGlass
                 as={motion.span}
-                variants={loadingVariants}
                 transition={loadingTransition}
+                variants={loadingVariants}
               />
             </>
 
@@ -51,8 +51,8 @@ export default function Loading ({ loadingState, afterLoad, version }) {
 
               <LoadingCircle
                 as={motion.span}
-                variants={loadingVariants}
                 transition={loadingTransition}
+                variants={loadingVariants}
               />
 
               :null
@@ -63,10 +63,10 @@ export default function Loading ({ loadingState, afterLoad, version }) {
       : // done loading
 
       <motion.div
-        variants={pageVariants}
-        style={{ height: '100%', width: '100%' }}
-        initial='hidden'
         animate='visible'
+        initial='hidden'
+        style={{ height: '100%', width: '100%' }}
+        variants={pageVariants}
       >
         {afterLoad}
       </motion.div>

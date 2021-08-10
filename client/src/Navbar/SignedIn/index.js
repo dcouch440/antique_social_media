@@ -1,15 +1,15 @@
+import PropTypes from 'prop-types';
 import { useRef } from 'react';
 import { useHistory } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import SignOut from '../SignOut';
-import maximumLength from '../../utils/maxLength';
 import capitalize from '../../utils/capitalize';
-
+import maximumLength from '../../utils/maxLength';
+import SignOut from '../SignOut';
 import {
   Grid,
-  Username,
-  HubLink
+  HubLink,
+  Username
 } from './styles';
+
 
 export default function SingedIn ({ user, showAvatar }) {
   const history = useHistory();

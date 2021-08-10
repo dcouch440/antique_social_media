@@ -1,13 +1,12 @@
-import PropTypes from 'prop-types';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 import { useHistory } from 'react-router';
 import waxImg from '../../../img/assets/waxSealImg.png';
 import imageSizer from '../../../utils/imageSizer';
-
 import {
+  About,
   AntiqueRow,
-  Image,
-  About
+  Image
 } from './styles';
 
 export default function Antique ({ antique }) {
@@ -20,13 +19,19 @@ export default function Antique ({ antique }) {
   return (
     <AntiqueRow onClick={handleClick}>
       <Image>
-        <img src={downsizedUrl} alt={antique.name} />
+        <img
+          alt={antique.name}
+          src={downsizedUrl}
+        />
       </Image>
       <About>
         <div>Name: {antique.name}</div>
         <div>Title: {antique.title}</div>
         <div> Posted: {moment(antique.created_at).fromNow()}</div>
-        <img src={waxImg} alt='wax seal' />
+        <img
+          alt='wax seal'
+          src={waxImg}
+        />
       </About>
     </AntiqueRow>
   );

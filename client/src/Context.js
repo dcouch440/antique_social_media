@@ -1,10 +1,10 @@
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import {
   createContext,
   useEffect,
   useState
 } from 'react';
-import axios from 'axios';
 import OnlineStatus from './components/OnlineStatus';
 const Context = createContext();
 
@@ -35,12 +35,14 @@ function ContextProvider (props) {
 
   const scroll = scrollBehavior ? 'scroll' : 'hidden';
   return (
-    <Context.Provider value={{
-      currentUser,
-      setCurrentUser,
-      setScrollBehavior,
-      scroll
-    }}>
+    <Context.Provider
+      value={{
+        currentUser,
+        setCurrentUser,
+        setScrollBehavior,
+        scroll
+      }}
+    >
       {props.children}
     </Context.Provider>
   );
@@ -51,3 +53,4 @@ ContextProvider.propTypes = {
 };
 
 export { ContextProvider, Context };
+

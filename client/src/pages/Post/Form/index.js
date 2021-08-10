@@ -1,17 +1,17 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-
 import {
-  TextArea,
-  TitleInput,
+  Button,
   FormData,
-  YearInput,
-  TitleYear,
+  Header,
   LabelsTitleYear,
   NameInput,
-  Button,
-  Header
+  TextArea,
+  TitleInput,
+  TitleYear,
+  YearInput
 } from './styles';
+
 
 export default function Form ({ onSubmit }) {
   const [formData, setFormData] = useState({
@@ -35,7 +35,10 @@ export default function Form ({ onSubmit }) {
       <Header>
         Post
       </Header>
-      <FormData autoComplete='off' onSubmit={handleSubmit}>
+      <FormData
+        autoComplete='off'
+        onSubmit={handleSubmit}
+      >
         <LabelsTitleYear>
           <div>Title</div>
           <div>Year</div>
@@ -44,33 +47,33 @@ export default function Form ({ onSubmit }) {
         <TitleYear>
           <TitleInput
             required
-            onChange={handleChange}
             autoComplete='off'
             name='title'
+            onChange={handleChange}
           />
 
           <YearInput
             required
-            onChange={handleChange}
             autoComplete='off'
             name='year'
+            onChange={handleChange}
           />
         </TitleYear>
 
         <div>Name of Antique</div>
         <NameInput
           required
-          onChange={handleChange}
           autoComplete='off'
           name='name'
+          onChange={handleChange}
         />
 
         <div>Tell us about this antique..</div>
         <TextArea
           required
-          onChange={handleChange}
           autoComplete='off'
           name='body'
+          onChange={handleChange}
         />
 
         <Button>Submit</Button>

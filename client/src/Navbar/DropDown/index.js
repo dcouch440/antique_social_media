@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
-import SignedIn from '../SignedIn';
 import Access from '../Access';
-
+import SignedIn from '../SignedIn';
 import { DropMenuPlate } from './styles';
+
 
 export default function DropDown ({ display, showAvatar, currentUser }) {
   const signedIn = currentUser.username;
@@ -11,7 +11,10 @@ export default function DropDown ({ display, showAvatar, currentUser }) {
     <DropMenuPlate display={display}>
       {
         signedIn ?
-          <SignedIn user={currentUser.username} showAvatar={showAvatar}/>
+          <SignedIn
+            showAvatar={showAvatar}
+            user={currentUser.username}
+          />
           :
           <Access />
       }

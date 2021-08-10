@@ -1,11 +1,10 @@
-import Liked from '../../../components/Liked';
-import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import RenderSmoothImage from 'render-smooth-image-react';
 import 'render-smooth-image-react/build/style.css';
+import Liked from '../../../components/Liked';
 import imageSizer from '../../../utils/imageSizer';
-
 import {
   AntiqueContainer,
   AntiqueOverlay,
@@ -24,19 +23,23 @@ export default function Antique ({ antique, lazyRef, index }) {
 
   return (
     <AntiqueContainer
-      onClick={() => handleClick(antique.id)}
       dimensions={{
         height, width
       }}
       ref={el => lazyRef.current[index] = el}
+      onClick={() => handleClick(antique.id)}
     >
-      <RenderSmoothImage objectFit={'cover'} src={downsizedUrl} alt={antique.name}/>
+      <RenderSmoothImage
+        alt={antique.name}
+        objectFit={'cover'}
+        src={downsizedUrl}
+      />
       <AntiqueOverlay>
         <OverlayText>
           <div>{antique.name}</div>
           <div>{antique.year}</div>
         </OverlayText>
-        <Liked antiqueId={antique.id}/>
+        <Liked antiqueId={antique.id} />
       </AntiqueOverlay>
     </AntiqueContainer>
   );

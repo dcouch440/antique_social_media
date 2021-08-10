@@ -1,20 +1,18 @@
+import axios from 'axios';
+import PropTypes from 'prop-types';
 import {
-  useState,
+  useContext,
   useEffect,
   useRef,
-  useContext
+  useState
 } from 'react';
 import { Context } from '../../Context';
-import PropTypes from 'prop-types';
-import axios from 'axios';
-
 import {
-  StyledInput,
   DropDownButton,
-  DropDownButtonContainer
+  DropDownButtonContainer,
+  StyledInput
 } from '../styled';
-
-import { SignIngTitle, SignedIn } from './styles';
+import { SignedIn, SignIngTitle } from './styles';
 
 
 export default function SignIn ({ toggle }) {
@@ -66,20 +64,23 @@ export default function SignIn ({ toggle }) {
       <SignIngTitle>{error ? 'Something went wrong.. try again' : 'Please Sign In'}</SignIngTitle>
       <form onSubmit={onSubmit}>
         <StyledInput
-          onChange={handleChange}
           name={'email'}
           placeholder={'Email'}
           value={email}
+          onChange={handleChange}
         />
         <StyledInput
-          onChange={handleChange}
           name={'password'}
           placeholder={'password'}
-          value={password}
           type={'password'}
+          value={password}
+          onChange={handleChange}
         />
         <DropDownButtonContainer>
-          <DropDownButton type='button' onClick={toggle}>Sign Up</DropDownButton>
+          <DropDownButton
+            type='button'
+            onClick={toggle}
+          >Sign Up</DropDownButton>
           <DropDownButton type={'submit'}>Sign In</DropDownButton>
         </DropDownButtonContainer>
       </form>

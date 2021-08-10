@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
-
 import {
-  Users,
+  NoRooms,
   Room,
-  NoRooms
+  Users
 } from './styles';
+
 
 export default function ActiveUserRooms ({ handleClick, rooms }) {
 

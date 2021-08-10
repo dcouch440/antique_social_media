@@ -1,6 +1,6 @@
+import axios from 'axios';
 import { useCallback } from 'react';
 import * as A from './actions';
-import axios from 'axios';
 
 export default function PaginateDatabase ({ route, limit, page }) {
   const url = `${route}?LIMIT=${limit}&OFFSET=${limit * page}`;

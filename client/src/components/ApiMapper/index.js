@@ -2,7 +2,12 @@ import PropTypes from 'prop-types';
 
 export default function ApiMapper ({ callData, component :Component, lazyRef = null }) {
   return callData.map((antique, i) => (
-    <Component key={antique.id} lazyRef={lazyRef} index={i} antique={antique} />
+    <Component
+      antique={antique}
+      index={i}
+      key={antique.id}
+      lazyRef={lazyRef}
+    />
   ));
 }
 

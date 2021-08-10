@@ -1,3 +1,6 @@
+import axios from 'axios';
+import { motion } from 'framer-motion';
+import PropTypes from 'prop-types';
 import React, {
   useContext,
   useEffect,
@@ -5,14 +8,11 @@ import React, {
   useState
 } from 'react';
 import { Context } from '../../Context';
-import PropTypes from 'prop-types';
-import likedVariants from './variants';
-import { motion } from 'framer-motion';
-import axios from 'axios';
-import likeImage from '../../img/assets/waxSealImg.png';
 import dislikeImage from '../../img/assets/waxSealGrey50.png';
-
+import likeImage from '../../img/assets/waxSealImg.png';
 import { Check } from './styles';
+import likedVariants from './variants';
+
 
 export default function Liked ({ antiqueId, onLikesChange }) {
   const [liked, setLiked] = useState(false);
@@ -73,14 +73,17 @@ export default function Liked ({ antiqueId, onLikesChange }) {
   return (
     currentUser.id ?
       <Check
-        as={motion.div}
-        variants={likedVariants}
-        initial='hidden'
         animate='visible'
+        as={motion.div}
+        initial='hidden'
         transition='transition'
+        variants={likedVariants}
         onClick={handleClick}
       >
-        <img src={display} alt='liked' />
+        <img
+          alt='liked'
+          src={display}
+        />
       </Check>
       :
       null

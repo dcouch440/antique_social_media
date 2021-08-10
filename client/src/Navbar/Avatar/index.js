@@ -1,15 +1,14 @@
-import PropTypes from "prop-types";
 import axios from 'axios';
+import PropTypes from "prop-types";
 import { useContext, useState } from 'react';
 import { Context } from '../../Context';
-
 import {
-  PageContainer,
-  BlurOverlay,
   AvatarPicture,
   AvatarUpload,
+  BlurOverlay,
   InputContainer,
-  Message
+  Message,
+  PageContainer
 } from './styles';
 
 export default function Avatar ({ hideAvatar }) {
@@ -81,17 +80,20 @@ export default function Avatar ({ hideAvatar }) {
       <AvatarUpload>
         <InputContainer>
           <input
-            type="file"
-            name="files"
-            onChange={handleChange}
-            value={fileInputState}
             className="form-input"
+            name="files"
+            type="file"
+            value={fileInputState}
+            onChange={handleChange}
           />
           <button onClick={handleFileSubmit}>Submit</button>
         </InputContainer>
         {
           previewImage ?
-            <AvatarPicture src={previewImage} alt='avatar' />
+            <AvatarPicture
+              alt='avatar'
+              src={previewImage}
+            />
             :
             <Message>
               {message}

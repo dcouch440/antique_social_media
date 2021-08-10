@@ -1,21 +1,20 @@
-import { useState } from 'react';
 import { PropTypes } from 'prop-types';
-import User from './User';
+import { useState } from 'react';
+import Liked from '../../components/Liked';
 import AntiqueImages from './AntiqueImages';
 import AntiqueLikes from './AntiqueLikes';
-import Liked from '../../components/Liked';
-import UploadIfCurrentUser from './UploadIfCurrentUser';
 import DeleteImage from './DeleteAntique';
-
 import {
-  LikedComponentContainer,
   About,
-  Page,
-  Tag,
   Blog,
-  StartChatting,
+  LikedComponentContainer,
+  Page,
   SlideShowSide,
+  StartChatting,
+  Tag
 } from './styles';
+import UploadIfCurrentUser from './UploadIfCurrentUser';
+import User from './User';
 
 export default function AntiqueInfo ({ antique, setRoom }) {
   const { year, name, antique_owner, body, id } = antique;
@@ -26,25 +25,35 @@ export default function AntiqueInfo ({ antique, setRoom }) {
 
   return (
     <Page>
-      <DeleteImage antique={antique}/>
+      <DeleteImage antique={antique} />
       <UploadIfCurrentUser
-        setNewUpload={setNewUpload}
-        handleModalShowChange={handleModalShowChange}
-        show={show}
         antique={antique}
+        handleModalShowChange={handleModalShowChange}
+        setNewUpload={setNewUpload}
+        show={show}
       />
       <SlideShowSide>
         <LikedComponentContainer>
-          <Liked onLikesChange={setLikesChange} antiqueId={id} />
+          <Liked
+            antiqueId={id}
+            onLikesChange={setLikesChange}
+          />
         </LikedComponentContainer>
-        <AntiqueImages newUpload={newUpload} setNewUpload={setNewUpload} antiqueId={id}/>
+        <AntiqueImages
+          antiqueId={id}
+          newUpload={newUpload}
+          setNewUpload={setNewUpload}
+        />
       </SlideShowSide>
       <About>
         <StartChatting onClick={setRoom}>
           Start Chatting ?
         </StartChatting>
-        <User ownerInfo={antique_owner}/>
-        <AntiqueLikes antiqueId={id} likesChange={likesChange} />
+        <User ownerInfo={antique_owner} />
+        <AntiqueLikes
+          antiqueId={id}
+          likesChange={likesChange}
+        />
         <Blog>
           <div>
             <Tag>Name: </Tag>{name}

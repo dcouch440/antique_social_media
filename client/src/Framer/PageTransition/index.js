@@ -1,19 +1,20 @@
 import { motion } from 'framer-motion';
-import { variants as transition } from './variants';
-import { Container } from './styles';
 import PropTypes from 'prop-types';
+import { Container } from './styles';
+import { variants as transition } from './variants';
 
 
 export default function PageTransition ({ attr, transitionTime, exitTime, ...props }) {
 
   return (
-    <Container as={motion.div}
-      variants={transition({ attr, transitionTime, exitTime })}
-      initial="hidden"
+    <Container
       animate="visible"
+      as={motion.div}
+      exit="exit"
+      initial="hidden"
       timing="timing"
       transition="transition"
-      exit="exit"
+      variants={transition({ attr, transitionTime, exitTime })}
     >
       {props.children}
     </Container>

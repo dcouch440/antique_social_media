@@ -1,13 +1,13 @@
+import axios from 'axios';
 import PropTypes from "prop-types";
 import React, { useContext, useState } from 'react';
-import axios from 'axios';
 import { Context } from '../../../Context';
-
 import {
   ImageInput,
   ImageUpload,
   UploadButton
 } from './styles';
+
 
 export default function Upload ({ antique, afterUpload, setPreviewSource, setMessage }) {
   const [fileInputState, setFileInputState] = useState('');
@@ -75,12 +75,12 @@ export default function Upload ({ antique, afterUpload, setPreviewSource, setMes
       <ImageUpload>
         <form onSubmit={handleFileSubmit}>
           <ImageInput
-            id="file-input"
-            type="file"
-            name="files"
-            onChange={handleFileInputChange}
-            value={fileInputState}
             className="form-input"
+            id="file-input"
+            name="files"
+            type="file"
+            value={fileInputState}
+            onChange={handleFileInputChange}
           />
           <UploadButton>submit</UploadButton>
         </form>
@@ -88,6 +88,7 @@ export default function Upload ({ antique, afterUpload, setPreviewSource, setMes
     </div>
   );
 }
+
 Upload.propTypes = {
   afterUpload: PropTypes.func,
   antique: PropTypes.shape({

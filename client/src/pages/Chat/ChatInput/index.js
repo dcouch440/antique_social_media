@@ -1,14 +1,14 @@
-import { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 import Emoji from '../Emoji';
-
 import {
-  SubmitButton,
-  ChatWindow,
   ChatBox,
+  ChatWindow,
   EmojiContainer,
-  RelativeContainer
+  RelativeContainer,
+  SubmitButton
 } from './styles';
+
 
 export default function ChatInput ({ sendMessage }) {
   const [{ message }, setMessage] = useState({ message: '' });
@@ -53,9 +53,17 @@ export default function ChatInput ({ sendMessage }) {
         <RelativeContainer onClick={handleDisplayChange}>
             Emoji
         </RelativeContainer>
-        <Emoji show={show} handleClick={handleClick} />
+        <Emoji
+          handleClick={handleClick}
+          show={show}
+        />
       </EmojiContainer>
-      <ChatWindow onKeyDown={onEnterPress} value={message} name="message" onChange={handleChange} />
+      <ChatWindow
+        name="message"
+        value={message}
+        onChange={handleChange}
+        onKeyDown={onEnterPress}
+      />
       <SubmitButton onClick={handleSubmit}>
         Send Message
       </SubmitButton>

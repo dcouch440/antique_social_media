@@ -1,18 +1,18 @@
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import {
   useEffect,
   useRef,
   useState
 } from 'react';
-import Loading from '../../../Framer/LoadingModules/Loading';
-import AntiqueInfo from '..';
 import { useHistory, useParams } from 'react-router-dom';
-import PageTransition from '../../../Framer/PageTransition';
+import AntiqueInfo from '..';
 import GoBackButton from '../../../components/GoBackButton';
-import axios from 'axios';
+import Loading from '../../../Framer/LoadingModules/Loading';
+import PageTransition from '../../../Framer/PageTransition';
 import loadingSequence from '../../../utils/loadingSequence';
-
 import { Page } from './styles';
+
 
 export default function AntiquePage ({ setRoomId }) {
   const { id } = useParams();
@@ -45,16 +45,19 @@ export default function AntiquePage ({ setRoomId }) {
   return (
     <PageTransition attr={{ direction: directionRef.current, exitTime: 2 }}>
       <Page>
-        <GoBackButton handleClick={handleClick} text={'Back  ▶'} />
+        <GoBackButton
+          handleClick={handleClick}
+          text={'Back  ▶'}
+        />
         <Loading
-          loadingState={loading}
-          version="MagnaGlass"
           afterLoad={
             <AntiqueInfo
-              setRoom={handleRoomChange}
               antique={antique}
+              setRoom={handleRoomChange}
             />
           }
+          loadingState={loading}
+          version="MagnaGlass"
         />
       </Page>
     </PageTransition>

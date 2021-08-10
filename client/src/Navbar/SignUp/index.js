@@ -1,21 +1,20 @@
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import {
-  useState,
+  useContext,
   useEffect,
   useRef,
-  useContext
+  useState
 } from 'react';
-import axios from 'axios';
 import { Context } from '../../Context';
 import useLoginErrors from '../../hooks/useLoginErrors';
-
+import {
+  DropDownButton,
+  DropDownButtonContainer,
+  StyledInput
+} from '../styled';
 import { Form, SignUpTitle } from './styles';
 
-import {
-  StyledInput,
-  DropDownButtonContainer,
-  DropDownButton
-} from '../styled';
 
 export default function SignUp ({ toggle }) {
   const { setCurrentUser } = useContext(Context);
@@ -86,41 +85,44 @@ export default function SignUp ({ toggle }) {
       <SignUpTitle>{message}</SignUpTitle>
 
       <StyledInput
-        onChange={handleChange}
+        required
         name={'email'}
         placeholder={'Email'}
         value={credentials.email}
-        required
+        onChange={handleChange}
       />
 
       <StyledInput
-        onChange={handleChange}
+        required
         name={'username'}
         placeholder={'Username'}
         value={credentials.username}
-        required
+        onChange={handleChange}
       />
 
       <StyledInput
-        onChange={handleChange}
+        required
         name={'password'}
         placeholder={'password'}
         type={'password'}
         value={credentials.password}
-        required
+        onChange={handleChange}
       />
 
       <StyledInput
-        onChange={handleChange}
+        required
         name={'passwordConfirmation'}
         placeholder={'password Confirmation'}
         type={'password'}
         value={credentials.passwordConfirmation}
-        required
+        onChange={handleChange}
       />
 
       <DropDownButtonContainer>
-        <DropDownButton type="submit" onClick={toggle}>Sign In</DropDownButton>
+        <DropDownButton
+          type="submit"
+          onClick={toggle}
+        >Sign In</DropDownButton>
         <DropDownButton >Sign Up</DropDownButton>
       </DropDownButtonContainer>
 

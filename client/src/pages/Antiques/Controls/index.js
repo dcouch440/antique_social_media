@@ -1,22 +1,22 @@
-import PropTypes from 'prop-types';
-import { ControlsPanel } from './styles';
-import Slider from '../../../components/Slider';
-import { controlVariants } from './variants';
 import { motion } from 'framer-motion';
-
+import PropTypes from 'prop-types';
+import Slider from '../../../components/Slider';
 import {
-  SliderContainer,
-  Slide,
+  ControlsPanel,
+  Count,
   GridTitle,
-  Count
+  Slide,
+  SliderContainer
 } from './styles';
+import { controlVariants } from './variants';
+
 
 export default function Controls ({ setSlider, count }) {
   return (
     <ControlsPanel
       as={motion.div}
-      variants={controlVariants}
       initial='start'
+      variants={controlVariants}
       whileHover={{
         x: 0
       }}
@@ -26,7 +26,11 @@ export default function Controls ({ setSlider, count }) {
       </GridTitle>
       <SliderContainer>
         <Slide>
-          <Slider onChange={n => setSlider(n)} min={3} max={4} /> <Count>{count}</Count>
+          <Slider
+            max={4}
+            min={3}
+            onChange={n => setSlider(n)}
+          /> <Count>{count}</Count>
         </Slide>
       </SliderContainer>
     </ControlsPanel>

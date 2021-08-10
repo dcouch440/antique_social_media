@@ -1,19 +1,19 @@
-import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
+import PropTypes from 'prop-types';
+import { GoBackButton } from './styles';
 import { fromRightSide } from './variants';
 
-import { GoBackButton } from './styles';
 
 export default function GoBack ({ handleClick, text }) {
   return (
     <GoBackButton
-      variants={fromRightSide}
-      initial="hidden"
       animate="visible"
+      as={motion.button}
+      exit="exit"
+      initial="hidden"
       timing="timing"
       transition="transition"
-      exit="exit"
-      as={motion.button}
+      variants={fromRightSide}
       onClick={handleClick}
     >
       {text}
