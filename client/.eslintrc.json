@@ -21,13 +21,11 @@
   },
   "root": true,
   "rules": {
-    "import-newlines/enforce": [
-      "error", {
-        "items": 2,
-        "max-len": 100,
-        "semi": true
-      }
-    ],
+    "import-newlines/enforce": ["error", {
+      "items": 2,
+      "max-len": 100,
+      "semi": true
+    }],
     "react/jsx-sort-props": ["error", {
       "callbacksLast": true,
       "shorthandFirst": true,
@@ -40,7 +38,9 @@
       1,
       "line-aligned"
     ],
-    "react/jsx-max-props-per-line": ["error", { "max-len": 1 }],
+    "react/jsx-max-props-per-line": ["error", {
+      "max-len": 1
+    }],
     "react/jsx-first-prop-new-line": [1, "multiline-multiprop"],
     "react/jsx-tag-spacing": ["error", {
       "closingSlash": "never",
