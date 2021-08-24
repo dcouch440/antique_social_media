@@ -48,4 +48,13 @@ export const HeaderImage = styled.img`
   position: absolute;
   height: 115%;
   right: 3%;
+  @media (max-width: 1300px) {
+    height: 95%
+  }
+  @media (max-width: 1000px) {
+    height: 65%;
+  }
+  @media (max-width: 800px) {
+    display: none;
+  }
 `;

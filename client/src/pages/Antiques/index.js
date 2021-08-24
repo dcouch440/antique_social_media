@@ -51,7 +51,10 @@ export default function AntiquesPage ({ route }) {
         <div
           ref={bottomBoundaryRef}
           style={{
-            background: '', width: '1px', height: '250px', marginTop: ''
+            background: '',
+            width: '1px',
+            height: '250px',
+            marginTop: ''
           }}
         />
       </PageContainer>
