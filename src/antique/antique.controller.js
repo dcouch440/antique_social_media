@@ -31,7 +31,7 @@ class AntiqueController {
       const antique = await antiqueService.show(id);
       const serializedAntiques = await antiqueSerializer
         .serializeWithRelations({ antique });
-      res.json(serializedAntiques);
+      res.status(200).json(serializedAntiques);
     } catch (err) {
       console.error(err);
       res.json({ message: err.message });
