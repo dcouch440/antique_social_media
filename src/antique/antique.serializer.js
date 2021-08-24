@@ -5,9 +5,9 @@ class AntiqueSerializer {
   async serializeWithRelations ({ antique }) {
     try {
       const { user_id :owner_id } = antique;
-      return Array.isArray(antique) ?
-        await this.attachImageToAntiqueAndMerge({ antique }):
-        await this.mergeObject({ antique, owner_id });
+      return Array.isArray(antique)
+        ? await this.attachImageToAntiqueAndMerge({ antique })
+        : await this.mergeObject({ antique, owner_id });
     } catch (err) {
       console.error(err);
     }
