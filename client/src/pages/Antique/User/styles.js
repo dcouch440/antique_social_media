@@ -13,6 +13,9 @@ export const Online = styled.div`
 export const AboutMe = styled.div`
   font-family: monospace;
   color: white;
+  @media(max-width: 1000px) {
+    color: black
+  }
   ${include.textInteraction}
 `;
 
@@ -35,20 +38,3 @@ export const Avatar = styled.img`
   animation: online 5s;
 `;
 
-export const CollectionsButton = styled.button`
-  all: unset;
-  cursor: pointer;
-  ${include.cursiveFont}
-  border: 1px solid white;
-  border-radius: 15px;
-  padding: 5px;
-  font-size: 15px;
-  position: absolute;
-  top: 50%;
-  color: white;
-  transition: .2s;
-  :hover {
-    background-color: white;
-    color: black;
-  }
-`;
