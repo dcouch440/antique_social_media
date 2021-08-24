@@ -69,7 +69,7 @@
     "react/react-in-jsx-scope": "off",
     "eqeqeq": "error",
     "curly": "error",
-    "block-spacing": "error",
+    "block-spacing": ["error", "always"],
     "arrow-parens": ["error", "as-needed"],
     "brace-style": ["error", "1tbs"],
     "no-trailing-spaces": ["error", { "skipBlankLines": true, "ignoreComments": true }]
