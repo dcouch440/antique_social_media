@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useContext } from 'react';
 import { Context } from '../../Context';
-import { SignOutDiv } from './styles';
+import { DropdownBottomLink } from '../styles';
 
 
 export default function SignOut () {
@@ -26,11 +26,11 @@ export default function SignOut () {
   };
 
   return (
-    <SignOutDiv
+    <DropdownBottomLink
       type="button"
       onClick={requestLogout}
     >
       Sign-Out
-    </SignOutDiv>
+    </DropdownBottomLink>
   );
 }
