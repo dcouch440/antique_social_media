@@ -16,6 +16,7 @@ function ContextProvider (props) {
     email: undefined,
     admin: false
   });
+  const scroll = scrollBehavior ? 'scroll' : 'hidden';
 
   OnlineStatus({
     currentUser
@@ -33,7 +34,6 @@ function ContextProvider (props) {
       .catch(err => console.error(err));
   }, []);
 
-  const scroll = scrollBehavior ? 'scroll' : 'hidden';
   return (
     <Context.Provider
       value={{
