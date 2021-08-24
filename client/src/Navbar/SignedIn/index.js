@@ -5,10 +5,10 @@ import capitalize from '../../utils/capitalize';
 import maximumLength from '../../utils/maxLength';
 import SignOut from '../SignOut';
 import {
-  Grid,
-  HubLink,
-  Username
-} from './styles';
+  DropdownGrid,
+  DropdownHubLink,
+  DropdownUsername
+} from '../styles';
 
 
 export default function SingedIn ({ user, showAvatar }) {
@@ -30,17 +30,17 @@ export default function SingedIn ({ user, showAvatar }) {
   };
 
   return (
-    <Grid>
-      <Username><span>Welcome {username}</span></Username>
-      <HubLink onClick={e => handleClick(e, '/antiques')}><span >antiques</span></HubLink>
-      <HubLink onClick={e => handleClick(e, '/antiques/new')}><span>post</span></HubLink>
-      <HubLink onClick={e => handleClick(e, '/posts')}><span>your posts</span></HubLink>
-      <HubLink onClick={e => handleClick(e, '/likes')}><span>likes</span></HubLink>
-      <HubLink onClick={e => handleClick(e, '/rooms')}><span>rooms</span></HubLink>
-      <HubLink onClick={e => handleClick(e, '/chat')}><span>global chat</span></HubLink>
-      <HubLink onClick={showAvatar}><span>avatar</span></HubLink>
+    <DropdownGrid>
+      <DropdownUsername><span>Welcome {username}</span></DropdownUsername>
+      <DropdownHubLink onClick={e => handleClick(e, '/antiques')}><span >antiques</span></DropdownHubLink>
+      <DropdownHubLink onClick={e => handleClick(e, '/antiques/new')}><span>post</span></DropdownHubLink>
+      <DropdownHubLink onClick={e => handleClick(e, '/posts')}><span>your posts</span></DropdownHubLink>
+      <DropdownHubLink onClick={e => handleClick(e, '/likes')}><span>likes</span></DropdownHubLink>
+      <DropdownHubLink onClick={e => handleClick(e, '/rooms')}><span>rooms</span></DropdownHubLink>
+      <DropdownHubLink onClick={e => handleClick(e, '/chat')}><span>global chat</span></DropdownHubLink>
+      <DropdownHubLink onClick={showAvatar}><span>avatar</span></DropdownHubLink>
       <SignOut />
-    </Grid>
+    </DropdownGrid>
   );
 }
 
