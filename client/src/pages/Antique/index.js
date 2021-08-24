@@ -1,5 +1,6 @@
 import { PropTypes } from 'prop-types';
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import Liked from '../../components/Liked';
 import AntiqueImages from './AntiqueImages';
 import AntiqueLikes from './AntiqueLikes';
@@ -7,6 +8,7 @@ import DeleteImage from './DeleteAntique';
 import {
   About,
   Blog,
+  CollectionsButton,
   LikedComponentContainer,
   Page,
   SlideShowSide,
@@ -17,11 +19,13 @@ import UploadIfCurrentUser from './UploadIfCurrentUser';
 import User from './User';
 
 export default function AntiqueInfo ({ antique, setRoom }) {
+  const history = useHistory();
   const { year, name, antique_owner, body, id } = antique;
   const [likesChange, setLikesChange] = useState(0);
   const [show, setShow] = useState(false);
   const [newUpload, setNewUpload] = useState(false);
   const handleModalShowChange = () => setShow(prev => !prev);
+  const handleRouteChange = () =>  history.push('/collections/' + antique_owner.id);
 
   return (
     <Page>
@@ -46,6 +50,9 @@ export default function AntiqueInfo ({ antique, setRoom }) {
         />
       </SlideShowSide>
       <About>
+        <CollectionsButton onClick={handleRouteChange}>
+          User Collection
+        </CollectionsButton>
         <StartChatting onClick={setRoom}>
           Start Chatting ?
         </StartChatting>

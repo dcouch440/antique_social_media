@@ -65,8 +65,47 @@ export const StartChatting = styled.button`
   font-weight: bold;
   color: white;
   transition: .2s;
+  @media (max-width: 1500px) {
+    top: 2%;
+    right: 10%
+  }
   @media (max-width: 1000px) {
-    top: calc(50px + 100%);
+    top: 10%;
+    right: 2%;
+    background-color: #00000090;
+    border: 1px solid white;
+    border-radius: 15px;
+    padding: 7px;
+  }
+  :hover {
+    background-color: white;
+    color: black;
+  }
+`;
+
+export const CollectionsButton = styled.button`
+  all: unset;
+  z-index: 5;
+  position: absolute;
+  cursor: pointer;
+  ${include.cursiveFont}
+  border: 1px solid white;
+  border-radius: 15px;
+  padding: 5px;
+  font-size: 15px;
+  top: 50%;
+  color: white;
+  transition: .2s;
+  @media (max-width: 1500px) {
+    top: 2%;
+    right: 39%
+  }
+  @media (max-width: 1000px) {
+    top: 20%;
+    right: 2%;
+    background-color: #00000090;
+    border: 1px solid white;
+    border-radius: 15px;
   }
   :hover {
     background-color: white;
