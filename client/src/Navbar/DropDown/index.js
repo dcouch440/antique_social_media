@@ -3,7 +3,6 @@ import Access from '../Access';
 import SignedIn from '../SignedIn';
 import { DropMenuPlate } from './styles';
 
-
 export default function DropDown ({ display, showAvatar, currentUser }) {
   const signedIn = currentUser.username;
 
