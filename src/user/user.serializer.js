@@ -3,9 +3,9 @@ const getAvatarIfNotPresent = require('../../lib/get-avatar-if-no-present');
 
 class UserSerializer {
   async serializeWithUserAvatar (user) {
-    return Array.isArray(user) ?
-      await this.attachAvatarToUsers(user):
-      await this.attachAvatarToUser(user);
+    return Array.isArray(user)
+      ? await this.attachAvatarToUsers(user)
+      : await this.attachAvatarToUser(user);
   }
   async attachAvatarToUsers (users) {
     const usersWithAttachedAvatars = users.map(async user => {
