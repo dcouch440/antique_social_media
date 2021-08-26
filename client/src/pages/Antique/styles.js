@@ -93,7 +93,7 @@ export const CollectionsButton = styled.button`
   border-radius: 15px;
   padding: 5px;
   font-size: 15px;
-  top: 50%;
+  top: 5%;
   color: white;
   transition: .2s;
   @media (max-width: 1500px) {
@@ -127,5 +127,8 @@ export const LikedComponentContainer = styled.div`
   right: 5px;
   height: 50px;
   color: red;
+  @media (max-width: 1000px) {
+    right: 90%;
+  }
 `;
 
