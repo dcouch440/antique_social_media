@@ -34,6 +34,7 @@ export default function UploadIfCurrentUser ({ show, antique, handleModalShowCha
     )
   );
 }
+
 UploadIfCurrentUser.propTypes = {
   antique: PropTypes.shape({
     user_id: PropTypes.number
