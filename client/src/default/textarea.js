@@ -1,6 +1,11 @@
-const textarea = ({ onClick, text, type, className }) => (
-  <textarea onClick={onClick} type={type} className={className}>
+const textArea = ({ onClick, text, type, className }) => (
+  <textarea
+    className={className}
+    type={type}
+    onClick={onClick}
+  >
     {text}
   </textarea>
 );
-export default textarea;
+
+export default textArea;
