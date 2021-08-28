@@ -63,6 +63,7 @@ export default function AntiquePage ({ setRoomId }) {
     </PageTransition>
   );
 }
+
 AntiquePage.propTypes = {
   setRoomId: PropTypes.func
 };

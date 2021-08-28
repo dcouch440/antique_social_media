@@ -56,6 +56,7 @@ export default function Modal ({ modalShowChange, antique, setNewUpload }) {
     </>
   );
 }
+
 Modal.propTypes = {
   antique: PropTypes.object,
   modalShowChange: PropTypes.func,

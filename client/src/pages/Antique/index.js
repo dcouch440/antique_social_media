@@ -18,6 +18,7 @@ import {
 import UploadIfCurrentUser from './UploadIfCurrentUser';
 import User from './User';
 
+
 export default function AntiqueInfo ({ antique, setRoom }) {
   const history = useHistory();
   const { year, name, antique_owner, body, id } = antique;
