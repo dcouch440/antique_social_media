@@ -18,7 +18,9 @@ export default function Socket (roomId) {
   const [messages, setMessages] = useState([]);
   const [users, setUsers] = useState([]);
   const { currentUser } = useContext(Context);
-  const [roomData, setRoomData] = useState({ activeUserRooms: [], activeRooms: [] });
+  const [roomData, setRoomData] = useState({
+    activeUserRooms: [], activeRooms: []
+  });
   const socketRef = useRef();
 
   useEffect(() => {
@@ -26,8 +28,11 @@ export default function Socket (roomId) {
       return;
     }
 
-    const url = 'https://sleepy-beyond-81756.herokuapp.com';
-    socketRef.current = io(url, { withCredentials: true });
+    const productionUrl = 'https://sleepy-beyond-81756.herokuapp.com';
+    // const localHost = 'http://localhost:3003';
+    socketRef.current = io(productionUrl, {
+      withCredentials: true
+    });
 
     socketRef.current.on(MESSAGE, msg => {
       setMessages(prevMsgs => [...prevMsgs, msg.message]);
@@ -49,7 +54,9 @@ export default function Socket (roomId) {
       setMessages(prevMsgs => [...prevMsgs, data.message]);
     });
 
-    socketRef.current.emit(JOIN_ROOM, { roomId, ...currentUser });
+    socketRef.current.emit(JOIN_ROOM, {
+      roomId, ...currentUser
+    });
     socketRef.current.on(JOIN_ROOM, data => {
       setUsers(data.users);
       setMessages(prevMsgs => [...prevMsgs, data.message]);
@@ -78,5 +85,7 @@ export default function Socket (roomId) {
 
   }, [currentUser, setRoomData]);
 
-  return { messages, users, socketRef, roomData };
+  return {
+    messages, users, socketRef, roomData
+  };
 }
