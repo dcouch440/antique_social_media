@@ -1,7 +1,11 @@
-const input = ({ className, text, name, onChange }) => (
-  <input onChange={onChange} className={className} name={name}>
+const textInput = ({ className, text, name, onChange }) => (
+  <input
+    className={className}
+    name={name}
+    onChange={onChange}
+  >
     {text}
   </input>
 );
 
-export default input;
+export default textInput;
