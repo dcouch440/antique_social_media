@@ -27,6 +27,7 @@ export default function StaticRooms ({ handleClick, rooms }) {
     );
   });
 }
+
 StaticRooms.propTypes = {
   handleClick: PropTypes.func,
   rooms: PropTypes.array
