@@ -14,9 +14,9 @@ export default function SignOut () {
         .then(res => {
           if (res.status === 202) {
             setCurrentUser({
-              id: undefined,
-              username: undefined,
-              email: undefined
+              id: null,
+              username: null,
+              email: null
             });
           }
         });
