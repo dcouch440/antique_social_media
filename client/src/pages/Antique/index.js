@@ -1,95 +1,67 @@
-import { PropTypes } from 'prop-types';
-import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import Liked from '../../components/Liked';
-import AntiqueImages from './AntiqueImages';
-import AntiqueLikes from './AntiqueLikes';
-import DeleteImage from './DeleteAntique';
+import axios from 'axios';
+import PropTypes from 'prop-types';
 import {
-  About,
-  Blog,
-  CollectionsButton,
-  LikedComponentContainer,
-  Page,
-  SlideShowSide,
-  StartChatting,
-  Tag
-} from './styles';
-import UploadIfCurrentUser from './UploadIfCurrentUser';
-import User from './User';
+  useEffect,
+  useRef,
+  useState
+} from 'react';
+import { useHistory, useParams } from 'react-router-dom';
+import GoBackButton from '../../components/GoBackButton';
+import Loading from '../../Framer/LoadingModules/Loading';
+import PageTransition from '../../Framer/PageTransition';
+import loadingSequence from '../../utils/loadingSequence';
+import AntiqueInfo from './AntiqueInfo';
+import { Page } from './styles';
 
 
-export default function AntiqueInfo ({ antique, setRoom }) {
+export default function Antique ({ setRoomId }) {
+  const { id } = useParams();
   const history = useHistory();
-  const { year, name, antique_owner, body, id } = antique;
-  const [likesChange, setLikesChange] = useState(0);
-  const [show, setShow] = useState(false);
-  const [newUpload, setNewUpload] = useState(false);
-  const handleModalShowChange = () => setShow(prev => !prev);
-  const handleRouteChange = () =>  history.push('/collections/' + antique_owner.id);
+  const [loading, setLoading] = useState(true);
+  const [antique, setAntique] = useState({});
+  const directionRef = useRef('right');
+  const sequence = useRef(false);
+
+  const handleClick = () => history.goBack();
+
+  const handleRoomChange = () => {
+    setRoomId(id);
+    directionRef.current = 'top';
+    history.push('/chat');
+  };
+
+  useEffect(() => {
+    axios
+      .get(`/antiques/${id}`, { withCredentials: true })
+      .then(res => {
+        setAntique(res.data);
+        loadingSequence({ condition: setLoading, ref: sequence, timeBeforeCheck: 1500 });
+      })
+      .catch(err => console.error(err));
+  }, [id, setAntique, setLoading]);
 
   return (
-    <Page>
-      <DeleteImage antique={antique} />
-      <UploadIfCurrentUser
-        antique={antique}
-        handleModalShowChange={handleModalShowChange}
-        setNewUpload={setNewUpload}
-        show={show}
-      />
-      <SlideShowSide>
-        <LikedComponentContainer>
-          <Liked
-            antiqueId={id}
-            onLikesChange={setLikesChange}
-          />
-        </LikedComponentContainer>
-        <AntiqueImages
-          antiqueId={id}
-          newUpload={newUpload}
-          setNewUpload={setNewUpload}
+    <PageTransition attr={{ direction: directionRef.current, exitTime: 2 }}>
+      <Page>
+        <GoBackButton
+          handleClick={handleClick}
+          text={'Back  ▶'}
         />
-      </SlideShowSide>
-      <About>
-        <CollectionsButton onClick={handleRouteChange}>
-          User Collection
-        </CollectionsButton>
-        <StartChatting onClick={setRoom}>
-          Start Chatting ?
-        </StartChatting>
-        <User ownerInfo={antique_owner} />
-        <AntiqueLikes
-          antiqueId={id}
-          likesChange={likesChange}
+        <Loading
+          afterLoad={
+            <AntiqueInfo
+              antique={antique}
+              setRoom={handleRoomChange}
+            />
+          }
+          loadingState={loading}
+          version="MagnaGlass"
         />
-        <Blog>
-          <div>
-            <Tag>Name: </Tag>{name}
-          </div>
-          <div>
-            <Tag>Year: </Tag>{year}
-          </div>
-          <div>
-            <div>
-              <Tag>A Bit About This Item: </Tag>
-            </div>
-            {body}
-          </div>
-        </Blog>
-      </About>
-    </Page>
+      </Page>
+    </PageTransition>
   );
 }
 
-AntiqueInfo.propTypes = {
-  antique: PropTypes.shape({
-    antique_owner: PropTypes.object,
-    body: PropTypes.string,
-    images: PropTypes.array,
-    name: PropTypes.string,
-    year: PropTypes.number,
-    string: PropTypes.string,
-    id: PropTypes.string
-  }),
-  setRoom: PropTypes.any
+Antique.propTypes = {
+  setRoomId: PropTypes.func
 };
