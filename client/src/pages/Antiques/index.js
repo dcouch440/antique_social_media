@@ -21,8 +21,8 @@ export default function AntiquesPage ({ route }) {
   const { user_id } = useParams();
   const history = useHistory();
   const [slider, setSlider] = useState(3);
-  const [bottomBoundaryRef, lazyRef, antiques] = EverScroll({
-    limit: 25,
+  const [bottomBoundaryRef, antiques] = EverScroll({
+    limit: 1,
     route: user_id ? route + user_id : route
   });
 
@@ -44,7 +44,6 @@ export default function AntiquesPage ({ route }) {
             <ApiMapper
               callData={antiques}
               component={Antique}
-              lazyRef={lazyRef}
             />
           </Grid>
         </GridContainer>
