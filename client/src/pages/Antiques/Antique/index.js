@@ -12,7 +12,7 @@ import {
 } from './styles';
 
 
-export default function Antique ({ antique, lazyRef, index }) {
+export default function Antique ({ antique, index }) {
   const history = useHistory();
   const [image] = antique.images;
   const { secure_url, height, width } = image;
@@ -26,12 +26,12 @@ export default function Antique ({ antique, lazyRef, index }) {
       dimensions={{
         height, width
       }}
-      ref={el => lazyRef.current[index] = el}
       onClick={() => handleClick(antique.id)}
     >
       <RenderSmoothImage
         alt={antique.name}
-        objectFit={'cover'}
+        loading='lazy'
+        objectFit='cover'
         src={downsizedUrl}
       />
       <AntiqueOverlay>
@@ -56,7 +56,4 @@ Antique.defaultProps = {
 Antique.propTypes = {
   antique: PropTypes.object,
   index: PropTypes.number,
-  lazyRef: PropTypes.shape({
-    current: PropTypes.any
-  })
 };
