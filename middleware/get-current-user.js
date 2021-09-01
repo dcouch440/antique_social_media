@@ -33,9 +33,9 @@ const getCurrentUser = async (req, res, next) => {
 
   } catch (err) {
     const noUser = {
-      user_id: undefined,
-      username: undefined,
-      email: undefined,
+      user_id: null,
+      username: null,
+      email: null,
       admin: false
     };
     Object.freeze(noUser);
