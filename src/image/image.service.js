@@ -32,7 +32,6 @@ class ImageService {
       console.error(err);
     }
   }
-
   async getAllImages (antique_id) {
     try {
       return imageDAO.findById(antique_id);

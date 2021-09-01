@@ -9,9 +9,10 @@ class ImageDAO {
     });
   }
   findByAntiqueId (antique_id) {
-    return cloudinary.search.expression(
-      `folder:${antiqueFolderFormat(antique_id)}`
-    ).execute();
+    return cloudinary.search
+      .expression(
+        `folder:${antiqueFolderFormat(antique_id)}`
+      ).execute();
   }
   async destroyAllRelations (antique_id) {
     try {
