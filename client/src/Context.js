@@ -11,9 +11,9 @@ const Context = createContext();
 function ContextProvider (props) {
   const [scrollBehavior, setScrollBehavior] = useState(true);
   const [currentUser, setCurrentUser] = useState({
-    id: undefined,
-    username: undefined,
-    email: undefined,
+    id: null,
+    username: null,
+    email: null,
     admin: false
   });
   const scroll = scrollBehavior ? 'scroll' : 'hidden';
