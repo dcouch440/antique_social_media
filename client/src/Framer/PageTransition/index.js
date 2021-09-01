@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import { Container } from './styles';
-import { variants as transition } from './variants';
+import { variants } from './variants';
 
 
 export default function PageTransition ({ attr, transitionTime, exitTime, ...props }) {
@@ -14,7 +14,7 @@ export default function PageTransition ({ attr, transitionTime, exitTime, ...pro
       initial="hidden"
       timing="timing"
       transition="transition"
-      variants={transition({ attr, transitionTime, exitTime })}
+      variants={variants({ attr, transitionTime, exitTime })}
     >
       {props.children}
     </Container>
