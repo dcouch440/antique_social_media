@@ -92,13 +92,13 @@ export default function AntiquesSlideShow ({ antiqueImages, newUpload, setNewUpl
         className="next"
         onClick={() => paginate(1)}
       >
-        {'‣'}
+        ‣
       </div>
       <div
         className="prev"
         onClick={() => paginate(-1)}
       >
-        {'‣'}
+        ‣
       </div>
     </SlideShow>
   );
