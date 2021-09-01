@@ -19,7 +19,7 @@ export default function User ({ ownerInfo }) {
     <AvatarContainer>
       <AboutMe>{ownerInfo.username}</AboutMe>
       <Avatar
-        alt={'avatar'}
+        alt='avatar'
         src={ownerInfo.avatar?.secure_url}
         status={true}
       />
