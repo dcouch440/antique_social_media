@@ -9,7 +9,7 @@ import {
 import { Context } from './Context';
 import GlobalStyles from './GlobalStyles';
 import Navbar from './Navbar';
-import Antique from './pages/Antique/Transition';
+import Antique from './pages/Antique';
 import Antiques from './pages/Antiques';
 import Chat from './pages/Chat';
 import Likes from './pages/Likes';
