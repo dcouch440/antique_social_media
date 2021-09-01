@@ -7,7 +7,7 @@ import checkUser from "../../../utils/checkUser";
 import { DeleteButton } from './styles';
 
 
-export default function DeleteImage ({ antique }) {
+export default function DeleteAntique ({ antique }) {
   const { currentUser } = useContext(Context);
   const history = useHistory();
   const loading = useRef(false);
@@ -56,7 +56,7 @@ export default function DeleteImage ({ antique }) {
   );
 }
 
-DeleteImage.propTypes = {
+DeleteAntique.propTypes = {
   antique: PropTypes.shape({
     id: PropTypes.string,
     user_id: PropTypes.number
