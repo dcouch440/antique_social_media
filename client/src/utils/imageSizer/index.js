@@ -1,13 +1,7 @@
 const imageSizer = ({ url, width, height, decreesBy }) => {
 
   const setDimensions = () => {
-    if (width > 3500) {
-      return {
-        newHeight: Math.floor(height / decreesBy),
-        newWidth: Math.floor(width / decreesBy)
-      };
-    } else if (width > 2000 || height > 3000) {
-      Math.floor(decreesBy / 3);
+    if (width > 2000 || height > 3000) {
       return {
         newHeight: Math.floor(height / decreesBy),
         newWidth: Math.floor(width / decreesBy)
