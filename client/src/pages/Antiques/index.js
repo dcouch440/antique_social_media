@@ -2,8 +2,8 @@ import PropTypes from "prop-types";
 import { useState } from 'react';
 import { useHistory, useParams } from 'react-router';
 import ApiMapper from '../../components/ApiMapper';
-import EverScroll from '../../components/EverScroll';
 import PageTransition from '../../Framer/PageTransition';
+import useEverScroll from "../../hooks/useEverScroll";
 import bottleTyeDye from '../../img/assets/waxSealImg.png';
 import capitalize from '../../utils/capitalize';
 import Antique from './Antique';
@@ -21,7 +21,7 @@ export default function AntiquesPage ({ route }) {
   const { user_id } = useParams();
   const history = useHistory();
   const [slider, setSlider] = useState(3);
-  const [bottomBoundaryRef, antiques] = EverScroll({
+  const [bottomBoundaryRef, antiques] = useEverScroll({
     limit: 1,
     route: user_id ? route + user_id : route
   });
