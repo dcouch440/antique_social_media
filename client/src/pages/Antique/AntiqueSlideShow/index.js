@@ -75,7 +75,7 @@ export default function AntiquesSlideShow ({ antiqueImages, newUpload, setNewUpl
           src={antiqueImages[imageIndex].secure_url}
           transition='transition'
           variants={variants}
-          onDragEnd={(e, { offset, velocity }) => {
+          onDragEnd={(_, { offset, velocity }) => {
             const swipe = swipePower(offset.x, velocity.x);
 
             if (swipe < -swipeConfidenceThreshold) {
