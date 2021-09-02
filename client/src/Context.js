@@ -5,7 +5,7 @@ import {
   useEffect,
   useState
 } from 'react';
-import OnlineStatus from './components/OnlineStatus';
+import useOnlineStatus from './hooks/useOnlineStatus';
 const Context = createContext();
 
 function ContextProvider (props) {
@@ -16,15 +16,13 @@ function ContextProvider (props) {
     email: null,
     admin: false
   });
+  useOnlineStatus({ currentUser });
+
   const scroll = scrollBehavior ? 'scroll' : 'hidden';
-
-  OnlineStatus({
-    currentUser
-  });
-
   axios.defaults.baseURL = '/api';
   axios.defaults.headers.user_id = currentUser.id;
 
+  // LOAD SESSION
   useEffect(() => {
     axios
       .get('/users/session', {
@@ -32,7 +30,7 @@ function ContextProvider (props) {
       })
       .then(res => setCurrentUser(res.data))
       .catch(err => console.error(err));
-  }, []);
+  }, [setCurrentUser]);
 
   return (
     <Context.Provider
