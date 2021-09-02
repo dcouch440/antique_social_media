@@ -12,7 +12,7 @@ import {
 } from './styles';
 
 
-export default function Antique ({ antique, index }) {
+export default function Antique ({ antique }) {
   const history = useHistory();
   const [image] = antique.images;
   const { secure_url, height, width } = image;
