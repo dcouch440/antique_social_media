@@ -5,10 +5,10 @@ import {
   useState
 } from 'react';
 import { useHistory } from 'react-router';
-import Socket from '../../components/Socket';
 import { SHOW_ROOM_USER_COUNT } from '../../constant';
 import { Context } from '../../Context';
 import PageTransition from '../../Framer/PageTransition';
+import useChatSocket from '../../hooks/useChatSocket';
 import StaticRooms from './StaticRooms';
 import {
   RoomHeaders,
@@ -20,7 +20,7 @@ import UserRooms from './UserRooms';
 export default function Rooms ({ setRoomId }) {
   const history = useHistory();
   const { currentUser } = useContext(Context);
-  const { socketRef, roomData } = Socket();
+  const { socketRef, roomData } = useChatSocket();
   const [showUserRooms, setShowUserRooms] = useState(false);
   const { activeUserRooms, activeRooms } = roomData;
 
