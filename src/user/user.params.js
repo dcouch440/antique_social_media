@@ -11,7 +11,7 @@ module.exports = {
       email: yup
         .string()
         .trim()
-        .email()
+        .email('Email must be in the correct format.')
         .required(),
       password: yup
         .string()
