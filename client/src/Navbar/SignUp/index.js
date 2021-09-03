@@ -38,7 +38,10 @@ export default function SignUp ({ toggle }) {
 
   const handleSubmit = e => {
     const {
-      password, passwordConfirmation, username, email
+      password,
+      passwordConfirmation,
+      username,
+      email
     } = credentials;
 
     e.stopPropagation();
@@ -53,9 +56,7 @@ export default function SignUp ({ toggle }) {
   };
 
   useEffect(() => {
-    if (isRequest.current === false) {
-      return;
-    }
+    if (isRequest.current === false) { return; }
     isRequest.current = false;
     axios.post(
       '/users/signup',
