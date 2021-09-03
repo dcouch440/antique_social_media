@@ -30,7 +30,7 @@ export default function Modal ({ modalShowChange, antique, setNewUpload }) {
     if (previewSource.length !== 0) {
       return (
         <img
-          alt="zap"
+          alt="preview"
           src={previewSource}
         />
       );
@@ -41,8 +41,7 @@ export default function Modal ({ modalShowChange, antique, setNewUpload }) {
 
   return (
     <>
-      <BlurContainer>
-      </BlurContainer>
+      <BlurContainer />
       <ImageModal>
         <CloseButton onClick={modalShowChange}>Exit Upload</CloseButton>
         <Upload
