@@ -63,7 +63,7 @@ class AntiqueService {
       const antiqueLikes = await likeDAO.findByAntiqueId(id);
       const user_ids = antiqueLikes.map(like => like.user_id);
       const users = await userDAO.getUsersByIds(user_ids);
-      const usersWithAttachedAvatars = await userSerializer.serializeWithUserAvatar(users);
+      const usersWithAttachedAvatars = await userSerializer.serializeAllWithUserAvatar(users);
       const { count } = await likeDAO.countByAntiqueId(id);
       const parsedCount = parseInt(count);
       return { likes: usersWithAttachedAvatars, count: parsedCount };
