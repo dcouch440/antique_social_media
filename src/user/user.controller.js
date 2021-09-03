@@ -10,6 +10,7 @@ class UserController {
       });
       res.status(200).json(payload);
     } catch (err) {
+      console.error(err);
       res.status(403).json(err);
     }
   }
@@ -21,6 +22,7 @@ class UserController {
       });
       res.status(201).json(payload);
     } catch (err) {
+      console.err(err);
       res.status(403).json(err);
     }
   }
@@ -30,7 +32,7 @@ class UserController {
       const users = await userService
         .getUsersByUsername({ usernames });
       const serializedUsers = await userSerializer
-        .serializeWithUserAvatar(users);
+        .serializeAllWithUserAvatar(users);
       res.status(200).json(serializedUsers);
     } catch (err) {
       console.error(err);
@@ -41,7 +43,7 @@ class UserController {
     try {
       const users = await userService.all();
       const serializedUsers = await userSerializer
-        .serializeWithUserAvatar(users);
+        .serializeAllWithUserAvatar(users);
       res.status(200).json(serializedUsers);
     } catch (err) {
       console.error(err);
