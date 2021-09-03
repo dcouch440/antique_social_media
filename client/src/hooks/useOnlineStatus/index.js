@@ -5,9 +5,7 @@ import { LOGIN } from '../../constant';
 
 export default function useOnlineStatus ({ currentUser }) {
   useEffect(() => {
-    if (!currentUser.id) {
-      return;
-    }
+    if (!currentUser.id) { return; }
     const { id, username } = currentUser;
     const socket = io(urls.statusSocket.localHost, { withCredentials: true });
 
