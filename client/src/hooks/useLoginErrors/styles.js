@@ -6,7 +6,8 @@ export const Errors = styled.div`
   top: 5%;
   right: 105%;
   border: 2px solid white;
-  font-family: 'Courier New', Courier, monospace;
+  color: white;
+  font-family: sans-serif;
   width: 100%;
   font-size: 12px;
   > div {
