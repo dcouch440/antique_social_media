@@ -9,7 +9,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import GoBackButton from '../../components/GoBackButton';
 import Loading from '../../Framer/LoadingModules/Loading';
 import PageTransition from '../../Framer/PageTransition';
-import loadingSequence from '../../utils/loadingSequence';
+import useMinimumLoadingTime from '../../hooks/useMinimumLoadingTime';
 import AntiqueInfo from './AntiqueInfo';
 import { Page } from './styles';
 
@@ -17,10 +17,9 @@ import { Page } from './styles';
 export default function Antique ({ setRoomId }) {
   const { id } = useParams();
   const history = useHistory();
-  const [loading, setLoading] = useState(true);
+  const [loading, isDone] = useMinimumLoadingTime();
   const [antique, setAntique] = useState({});
   const directionRef = useRef('right');
-  const sequence = useRef(false);
 
   const handleClick = () => history.goBack();
 
@@ -35,10 +34,10 @@ export default function Antique ({ setRoomId }) {
       .get(`/antiques/${id}`, { withCredentials: true })
       .then(res => {
         setAntique(res.data);
-        loadingSequence({ condition: setLoading, ref: sequence, timeBeforeCheck: 1500 });
+        isDone();
       })
       .catch(err => console.error(err));
-  }, [id, setAntique, setLoading]);
+  }, [id, isDone, setAntique]);
 
   return (
     <PageTransition attr={{ direction: directionRef.current, exitTime: 2 }}>
