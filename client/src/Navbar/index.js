@@ -44,7 +44,6 @@ export default function Navbar () {
           showAvatar={handleModalChange}
         />
       </Nav>
-
     </>
   );
 }
