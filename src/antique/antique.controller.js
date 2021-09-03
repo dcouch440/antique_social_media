@@ -9,7 +9,7 @@ class AntiqueController {
       const antiques = await antiqueService
         .limitOffset(query);
       const serializedAntiques = await antiqueSerializer
-        .serializeWithRelations({ antique: antiques });
+        .serializeAllWithRelations({ antiques });
       res.status(200).json(serializedAntiques);
     } catch (err) {
       res.status(400).json({ message: err.message });
@@ -80,10 +80,10 @@ class AntiqueController {
     try {
       const { user_id } = req.params;
       const { query } = req;
-      const antique = await antiqueService
+      const antiques = await antiqueService
         .getAntiquesByUserId({ user_id, query });
       const antiquesWithImages = await antiqueSerializer
-        .serializeWithRelations({ antique });
+        .serializeAllWithRelations({ antiques });
       res.status(200).json(antiquesWithImages);
     } catch (err) {
       console.error(err);
