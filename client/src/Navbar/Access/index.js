@@ -8,9 +8,8 @@ export default function Access () {
   const handleToggle = () => setAccessChoice(prev => !prev);
 
   return (
-    accessChoice ?
-      <SignIn toggle={handleToggle} />
-      :
-      <SignUp toggle={handleToggle} />
+    accessChoice
+      ? <SignIn toggle={handleToggle} />
+      : <SignUp toggle={handleToggle} />
   );
 }
