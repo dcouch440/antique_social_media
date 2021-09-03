@@ -30,7 +30,7 @@ function ContextProvider (props) {
       })
       .then(res => setCurrentUser(res.data))
       .catch(err => console.error(err));
-  }, [setCurrentUser]);
+  }, []);
 
   return (
     <Context.Provider
