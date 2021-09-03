@@ -26,10 +26,7 @@ export default function useChatSocket (roomId) {
   const socketRef = useRef();
 
   useEffect(() => {
-    if (!currentUser.username) {
-      return;
-    }
-
+    if (!currentUser.username) { return; }
 
     // connection
     socketRef.current = io(urls.chatSocket.localHost, {
