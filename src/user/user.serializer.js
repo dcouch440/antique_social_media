@@ -1,15 +1,22 @@
 const avatarService = require('../avatar/avatar.service');
-const getAvatarIfNotPresent = require('../../lib/get-avatar-if-no-present');
+const getAvatarIfNotPresent = require('../../lib/attachAvatarIfNotPresent');
 
 class UserSerializer {
   async serializeWithUserAvatar (user) {
-    return Array.isArray(user)
-      ? await this.attachAvatarToUsers(user)
-      : await this.attachAvatarToUser(user);
+    try {
+      const avatar = await this._getAvatarAndVerify(user);
+      return {
+        username: user.username,
+        avatar,
+        online: user.online
+      };
+    } catch (err) {
+      console.error(err);
+    }
   }
-  async attachAvatarToUsers (users) {
+  async serializeAllWithUserAvatar (users) {
     const usersWithAttachedAvatars = users.map(async user => {
-      const avatar = await this.getAvatarAndVerify(user);
+      const avatar = await this._getAvatarAndVerify(user);
       return {
         username: user.username,
         avatar,
@@ -18,18 +25,14 @@ class UserSerializer {
     });
     return Promise.all(usersWithAttachedAvatars);
   }
-  async attachAvatarToUser (user) {
-    const avatar = await this.getAvatarAndVerify(user);
-    return {
-      username: user.username,
-      avatar,
-      online: user.online
-    };
-  }
-  async getAvatarAndVerify (user) {
-    const { id } = user;
-    const avatar = await avatarService.getAvatarByUserId(id);
-    return getAvatarIfNotPresent(avatar);
+  async _getAvatarAndVerify (user) {
+    try {
+      const { id } = user;
+      const avatar = await avatarService.getAvatarByUserId(id);
+      return getAvatarIfNotPresent(avatar);
+    } catch (err) {
+      console.error(err);
+    }
   }
 }
 
