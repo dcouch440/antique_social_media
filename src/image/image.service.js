@@ -1,4 +1,4 @@
-const attachImageIfNotPresent = require('../../lib/attach-image-if-not-present');
+const attachImageIfNotPresent = require('../../lib/attachImageIfNotPresent');
 const imageDAO = require('./image.dao');
 
 class ImageService {
