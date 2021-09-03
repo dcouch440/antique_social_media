@@ -41,10 +41,9 @@ export default function AntiqueLikes ({ antiqueId, likesChange }) {
     <AntLikes>
       <LikesCount>Likes: <span className='number'>{count}</span></LikesCount>
       {
-        mappedLikes.length ?
-          mappedLikes
-          :
-          <NoLikes>Like This Post? Like it!</NoLikes>
+        mappedLikes.length
+          ? mappedLikes
+          : <NoLikes>Like This Post? Like it!</NoLikes>
       }
     </AntLikes>
   );
