@@ -3,7 +3,7 @@ const jwt = require('../auth/auth.jwt');
 const { hashPassword , compareHash } = require('../auth/auth.bcrypt');
 const { newUserParams, userIdParams } = require('./user.params');
 const cookieExpiration = require('../../constant/cookie-time');
-const attachAvatarIfNotPresent = require('../../lib/get-avatar-if-no-present');
+const attachAvatarIfNotPresent = require('../../lib/attachAvatarIfNotPresent');
 const userSerializer = require('./user.serializer');
 
 class UserService {
@@ -40,8 +40,7 @@ class UserService {
       return payload;
     } catch (err) {
       const { message } = err;
-      // change to 403 and check error kickbaack
-      res.status(400).json({ errors: [message] });
+      res.status(403).json({ errors: [message] });
     }
   }
   async signUp ({ res, username, password, email }) {
@@ -71,8 +70,7 @@ class UserService {
       return payload;
     } catch (err) {
       const { message } = err;
-      // change to 403 and check error kickbaack
-      res.status(400).json({ errors: [message] });
+      res.status(403).json({ errors: [message] });
     }
   }
   async getUsersByIds (id) {
