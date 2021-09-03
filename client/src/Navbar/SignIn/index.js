@@ -7,6 +7,7 @@ import {
   useState
 } from 'react';
 import { Context } from '../../Context';
+import useLoginErrors from '../../hooks/useLoginErrors';
 import {
   DropDownButton,
   DropDownButtonContainer,
@@ -19,7 +20,9 @@ export default function SignIn ({ toggle }) {
   const { setCurrentUser } = useContext(Context);
   const [{ password, email }, setCredentials] = useState({ password: '', email: '' });
   const [payload, setPayload] = useState({});
-  const [error, setError] = useState(false);
+  const [loginHasError, setLoginHasError] = useState(false);
+  const { setErrors, showErrors } = useLoginErrors();
+
 
   const isRequest = useRef(false);
 
@@ -52,16 +55,19 @@ export default function SignIn ({ toggle }) {
         setCurrentUser(res.data);
       })
       .catch(error => {
-        setError(true);
+        setLoginHasError(true);
+        console.log(error.response);
+        setErrors([...error.response.data.errors]);
         console.log(error);
       });
 
-  }, [email, password, payload, setCurrentUser]);
+  }, [email, loginHasError, password, payload, setCurrentUser, setErrors]);
 
 
   return (
     <SignedIn>
-      <SignIngTitle>{error ? 'Something went wrong.. try again' : 'Please Sign In'}</SignIngTitle>
+      <SignIngTitle>{loginHasError ? 'Something went wrong.. try again' : 'Please Sign In'}</SignIngTitle>
+      {showErrors()}
       <form onSubmit={onSubmit}>
         <StyledInput
           name={'email'}
@@ -80,7 +86,9 @@ export default function SignIn ({ toggle }) {
           <DropDownButton
             type='button'
             onClick={toggle}
-          >Sign Up</DropDownButton>
+          >
+            Sign Up
+          </DropDownButton>
           <DropDownButton type={'submit'}>Sign In</DropDownButton>
         </DropDownButtonContainer>
       </form>
