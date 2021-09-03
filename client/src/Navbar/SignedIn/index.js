@@ -19,9 +19,7 @@ export default function SingedIn ({ user, showAvatar }) {
 
   const handleClick = (e, route) => {
     e.stopPropagation();
-    if (sleeping.current) {
-      return;
-    }
+    if (sleeping.current) { return; }
     sleeping.current = true;
     history.push(route);
     setTimeout(() => {
