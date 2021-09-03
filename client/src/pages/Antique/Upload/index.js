@@ -31,7 +31,7 @@ export default function Upload ({ antique, afterUpload, setPreviewSource, setMes
 
   const handleFileSubmit = e => {
     e.preventDefault();
-    if (!selectedFile) {
+    if (!selectedFile || (antique.user_id !== currentUser.id)) {
       return;
     }
     if (antique.user_id !== currentUser.id) {
