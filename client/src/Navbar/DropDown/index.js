@@ -9,13 +9,12 @@ export default function DropDown ({ display, showAvatar, currentUser }) {
   return (
     <DropMenuPlate display={display}>
       {
-        signedIn ?
-          <SignedIn
+        signedIn
+          ? <SignedIn
             showAvatar={showAvatar}
             user={currentUser.username}
           />
-          :
-          <Access />
+          : <Access />
       }
     </DropMenuPlate>
   );
