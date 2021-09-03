@@ -25,6 +25,6 @@ NewPage.defaultProps = {
 
 NewPage.propTypes = {
   children: PropTypes.object.isRequired,
-  direction: PropTypes.any,
-  transition: PropTypes.any
+  direction: PropTypes.string,
+  transition: PropTypes.object
 };
