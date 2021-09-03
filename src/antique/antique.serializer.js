@@ -4,17 +4,21 @@ const userService = require('../user/user.service');
 class AntiqueSerializer {
   async serializeWithRelations ({ antique }) {
     try {
-      const { user_id :owner_id } = antique;
-      return Array.isArray(antique)
-        ? await this.attachImageToAntiqueAndMerge({ antique })
-        : await this.mergeObject({ antique, owner_id });
+      const { id, user_id } = antique;
+      const { resources } = await imageService.getFirstImage(id);
+      return Object.assign(
+        {},
+        antique,
+        { images: resources },
+        await this._getOwnerRelations({ user_id })
+      );
     } catch (err) {
       console.error(err);
     }
   }
-  async attachImageToAntiqueAndMerge ({ antique }) {
+  async serializeAllWithRelations ({ antiques }) {
     try {
-      const attachmentTasks = antique.map(async antique => {
+      const attachmentTasks = antiques.map(async antique => {
         const { id } = antique;
         const { resources } = await imageService.getFirstImage(id);
         return Object.assign(
@@ -28,23 +32,9 @@ class AntiqueSerializer {
       console.error(err);
     }
   }
-  async mergeObject ({ antique, owner_id }) {
+  async _getOwnerRelations ({ user_id }) {
     try {
-      const { id } = antique;
-      const { resources } = await imageService.getFirstImage(id);
-      return Object.assign(
-        {},
-        antique,
-        { images: resources },
-        await this.getOwnerRelations({ owner_id })
-      );
-    } catch (err) {
-      console.error(err);
-    }
-  }
-  async getOwnerRelations ({ owner_id }) {
-    try {
-      return await userService.showOvert(owner_id);
+      return await userService.showOvert(user_id);
     } catch (err) {
       console.error(err);
     }
