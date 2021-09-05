@@ -15,6 +15,17 @@ import likedVariants from './variants';
 
 
 export default function Liked ({ antiqueId, onLikesChange }) {
+  /*
+    Problem:
+      Likes and dislikes did not reflect the new status so individual-
+      states where added to reflect the new status of the likes.
+
+    FIX:
+      return graph fetched likes as before.
+      Each Like will still have access to like/unlike toggle but,
+      After a request is made it will update the local like/disliked value-
+      to reflect the new status of the like.
+  */
   const [liked, setLiked] = useState(false);
   const { currentUser } = useContext(Context);
   const like = likeImage;
@@ -22,6 +33,8 @@ export default function Liked ({ antiqueId, onLikesChange }) {
   const loading = useRef(false);
 
   useEffect(() => {
+    if (!currentUser.id) { return; }
+
     axios
       .get(
         `/likes/${antiqueId}`, {},
@@ -43,7 +56,8 @@ export default function Liked ({ antiqueId, onLikesChange }) {
 
     !liked && axios
       .post(
-        `/likes/${antiqueId}`, {},
+        `/likes/${antiqueId}`,
+        { user_id: currentUser.id },
         { withCredentials: true }
       )
       .then(res => {
@@ -57,7 +71,8 @@ export default function Liked ({ antiqueId, onLikesChange }) {
 
     liked && axios
       .delete(
-        `/likes/${antiqueId}`, {},
+        `/likes/${antiqueId}`,
+        { user_id: currentUser.id },
         { withCredentials: true }
       )
       .then(res => {
