@@ -7,11 +7,12 @@ import { useCallback } from 'react';
 
 export default function useAdvancePage () {
   return useCallback(({ node, setPage }) => {
-    new IntersectionObserver(
-      entries => entries.forEach(en => {
-        en.intersectionRatio > 0 && setPage(prev => prev += 1);
-      })
-    )
+    new IntersectionObserver(entries => {
+      const [first] = entries;
+      if (first.intersectionRatio > 0) {
+        setPage(prev => prev += 1);
+      }
+    })
       .observe(node);
   }, []);
 }
