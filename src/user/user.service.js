@@ -2,20 +2,24 @@ const userDAO = require('./user.doa');
 const jwt = require('../auth/auth.jwt');
 const { hashPassword , compareHash } = require('../auth/auth.bcrypt');
 const { newUserParams, userIdParams } = require('./user.params');
-const cookieExpiration = require('../../constant/cookie-time');
 const attachAvatarIfNotPresent = require('../../lib/attachAvatarIfNotPresent');
 const userSerializer = require('./user.serializer');
+const deSign = require('../../lib/de-sign');
 
 class UserService {
-  async signIn ({ res, password, email }) {
+  async signIn ({ reqToken }) {
     try {
+      const { email, password } = deSign(reqToken);
       const user = await userDAO.findByEmail(email);
+
       if (!user) {
         throw new Error('Invalid username or Password');
       }
+
       const isValid = await compareHash({
         inputPassword: password, userPassword: user.password_digest
       });
+
       if (!isValid) {
         throw new Error('Bad Username or Password');
       }
@@ -29,29 +33,24 @@ class UserService {
 
       const token = await jwt.sign(payload);
 
-      res.cookie('token', token, {
-        sameSite: 'strict',
-        path: '/',
-        expires: cookieExpiration,
-        httpOnly: true,
-        // secure: true,
-      });
-
-      return payload;
+      return { token, payload };
     } catch (err) {
-      const { message } = err;
-      res.status(403).json({ errors: [message] });
+      throw new Error(err.message);
     }
   }
-  async signUp ({ res, username, password, email }) {
+  async signUp ({ reqToken }) {
     try {
+      const { username, password, email } = deSign(reqToken);
+
       const user = await userDAO.findByEmail(email);
+
       if (user) {
         throw new Error('Invalid username or Password');
       }
+
       const userParams = { username, password, email };
       await newUserParams.validate(userParams, { abortEarly: false });
-      const hashedPasswordUser = await hashPassword({ res, username, email, password });
+      const hashedPasswordUser = await hashPassword({ username, email, password });
 
       const createdUser = await userDAO.create(hashedPasswordUser);
       delete createdUser.password_digest;
@@ -59,18 +58,9 @@ class UserService {
       const payload = { id: createdUser.id, username, email, admin: false };
       const token = await jwt.sign(payload);
 
-      res.cookie('token', token, {
-        sameSite: 'strict',
-        path: '/',
-        expires: cookieExpiration,
-        httpOnly: true,
-        // secure: true,
-      });
-
-      return payload;
+      return { payload, token };
     } catch (err) {
-      const { message } = err;
-      res.status(403).json({ errors: [message] });
+      throw new Error(err.message);
     }
   }
   async getUsersByIds (id) {
@@ -81,7 +71,7 @@ class UserService {
         return { username: user.username, avatar };
       });
     } catch (err) {
-      console.error(err);
+      throw new Error(err.message);
     }
   }
   all () {
@@ -101,7 +91,7 @@ class UserService {
         }
       };
     } catch (err) {
-      console.error(err);
+      throw new Error(err.message);
     }
   }
   async destroy (id) {
@@ -109,7 +99,7 @@ class UserService {
       await userIdParams.validate({ id });
       return userDAO.destroy(id);
     } catch (err) {
-      console.error(err);
+      throw new Error(err.message);
     }
   }
 }

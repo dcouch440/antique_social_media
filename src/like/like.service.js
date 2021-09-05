@@ -7,12 +7,11 @@ class LikeService {
       const liked = await likeDAO.isPresent(params);
       return liked ? true : false;
     } catch (err) {
-      console.error(err);
+      throw new Error(err.message);
     }
   }
-  async like ({ req, antique_id }) {
+  async like ({ antique_id, username, user_id }) {
     try {
-      const { username, user_id } = req.currentUser;
       const parsedAntiqueId = parseInt(antique_id);
       return likeDAO.create({
         username,
@@ -23,9 +22,8 @@ class LikeService {
       throw new Error(err);
     }
   }
-  async unlike ({ req, antique_id }) {
+  async unlike ({ antique_id, username, user_id }) {
     try {
-      const { username, user_id } = req.currentUser;
       const parsedAntiqueId = parseInt(antique_id);
       return likeDAO.destroy({
         username,
@@ -33,7 +31,7 @@ class LikeService {
         user_id
       });
     } catch (err) {
-      throw new Error(err);
+      throw new Error(err.message);
     }
   }
   async getLikesCountByAntiqueId (antique_id) {
@@ -41,23 +39,22 @@ class LikeService {
       const { count } = await likeDAO.countByAntiqueId(antique_id);
       return parseInt(count);
     } catch (err) {
-      console.error(err);
+      throw new Error(err.message);
     }
   }
-  async likes ({ req }) {
+  async likes (user_id) {
     try {
-      const { user_id } = req.currentUser;
       const likes = (await likeDAO.likes(user_id)).map(data => data.antique_id);
       return AntiqueDAO.findManyById(likes);
     } catch (err) {
-      console.error(err);
+      throw new Error(err.message);
     }
   }
   async getLikesByAntiqueId (antique_id) {
     try {
       return likeDAO.findByAntiqueId(antique_id);
     } catch (err) {
-      console.error(err);
+      throw new Error(err.message);
     }
   }
 }

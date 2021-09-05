@@ -19,7 +19,7 @@ class AntiqueService {
       await imageService.destroyDependencyById(id);
       return await antiqueDAO.destroy(id);
     } catch (err) {
-      throw new Error(err);
+      throw new Error(err.message);
     }
   }
   async limitOffset ({ ...query }) {
@@ -29,7 +29,7 @@ class AntiqueService {
       await queryParams.validate(parsedQuery, { abortEarly: false });
       return antiqueDAO.limitedList(parsedQuery);
     } catch (err) {
-      console.error(err);
+      throw new Error(err.message);
     }
   }
   async create ({ ...params }) {
@@ -38,7 +38,7 @@ class AntiqueService {
       await antiqueParams.validate(parsedParams, { abortEarly: false });
       return antiqueDAO.create(parsedParams);
     } catch (err) {
-      throw new Error(err);
+      throw new Error(err.message);
     }
   }
   queryCategory ({ category }) {
@@ -48,14 +48,14 @@ class AntiqueService {
     try {
       return antiqueDAO.findManyById(id);
     } catch (err) {
-      console.error(err);
+      throw new Error(err.message);
     }
   }
   async getUserAntiques (user_id) {
     try {
       return antiqueDAO.findAntiquesByUserId(user_id);
     } catch (err) {
-      console.error(err);
+      throw new Error(err.message);
     }
   }
   async antiquesWithLikes (id) {
@@ -68,7 +68,7 @@ class AntiqueService {
       const parsedCount = parseInt(count);
       return { likes: usersWithAttachedAvatars, count: parsedCount };
     } catch (err) {
-      console.error(err);
+      throw new Error(err.message);
     }
   }
   async getAntiquesByUserId ({ user_id, query }) {
@@ -81,7 +81,7 @@ class AntiqueService {
       await queryParams.validate(parsedQuery, { abortEarly: false });
       return antiqueDAO.findByUserId({ user_id, ...parsedQuery });
     } catch (err) {
-      console.error(err);
+      throw new Error(err.message);
     }
   }
 }
