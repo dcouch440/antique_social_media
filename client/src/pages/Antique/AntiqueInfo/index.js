@@ -18,7 +18,6 @@ import {
   Tag
 } from './styles';
 
-
 export default function AntiqueInfo ({ antique, setRoom }) {
   const history = useHistory();
   const { year, name, antique_owner, body, id } = antique;
@@ -88,8 +87,7 @@ AntiqueInfo.propTypes = {
     images: PropTypes.array,
     name: PropTypes.string,
     year: PropTypes.number,
-    string: PropTypes.string,
-    id: PropTypes.string
+    id: PropTypes.number
   }),
   setRoom: PropTypes.any
 };
