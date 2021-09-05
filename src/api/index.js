@@ -5,12 +5,9 @@ const antiques = require('../antique/antique.routes');
 const likes = require('../like/like.routes');
 const avatars = require('../avatar/avatar.routes');
 const routesConstants = require('../../constant/routes');
-const getCurrentUser = require('../../middleware/get-current-user');
 // const log = require('../../middleware/log');
 const api = express.Router();
 
-// ----------- first ---
-api.use(getCurrentUser);
 
 // api.use(log);
 api.use('/images', images);
