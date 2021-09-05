@@ -1,6 +1,9 @@
 import PropTypes from "prop-types";
 import { useHistory } from 'react-router';
+import attachImageIfNotPresent from "../../../utils/attachImageIfNotPresent";
+import imageSizer from "../../../utils/imageSizer";
 import { Antique } from './styles';
+
 
 export default function Antiques ({ antiques }) {
   const history = useHistory();
@@ -12,6 +15,8 @@ export default function Antiques ({ antiques }) {
 
   const mappedAntiques = antiques.map((antique, index) => {
     const { images } = antique;
+    const { secure_url, width, height } = images[0] ?? attachImageIfNotPresent(antique);
+    const smallerImage = imageSizer({ url: secure_url, width, height, decreesBy: 5 });
     return (
       <Antique
         key={index}
@@ -19,7 +24,7 @@ export default function Antiques ({ antiques }) {
       >
         <img
           alt="antique"
-          src={images[0].secure_url}
+          src={smallerImage}
         />
       </Antique>
     );
@@ -29,5 +34,5 @@ export default function Antiques ({ antiques }) {
 }
 
 Antiques.propTypes = {
-  antiques: PropTypes.object
+  antiques: PropTypes.array
 };
