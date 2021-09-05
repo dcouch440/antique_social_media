@@ -1,6 +1,11 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, {
+  useContext,
+  useEffect,
+  useState
+} from 'react';
 import { useHistory } from 'react-router';
+import { Context } from '../../Context';
 import PageTransition from '../../Framer/PageTransition';
 import Form from './Form';
 import {
@@ -21,6 +26,7 @@ export default function Post () {
   const [selectedFile, setSelectedFile] = useState('');
   const [{ uploading, message }, setMessage] = useState({ uploading: false, message: '' });
   const history = useHistory();
+  const { currentUser } = useContext(Context);
 
   useEffect(() => {
     if (!uploading && message.length) {
@@ -80,7 +86,8 @@ export default function Post () {
     reader.onload = () => {
       uploadImage({
         file64: reader.result,
-        ...formData
+        ...formData,
+        user_id: currentUser.id
       });
     };
   };
