@@ -19,11 +19,10 @@ export default function useChatSocket (roomId) {
   const [messages, setMessages] = useState([]);
   const [users, setUsers] = useState([]);
   const { currentUser } = useContext(Context);
+  const socketRef = useRef();
   const [roomData, setRoomData] = useState({
     activeUserRooms: [], activeRooms: []
   });
-
-  const socketRef = useRef();
 
   useEffect(() => {
     if (!currentUser.username) { return; }
@@ -32,7 +31,6 @@ export default function useChatSocket (roomId) {
     socketRef.current = io(urls.chatSocket.localHost, {
       withCredentials: true
     });
-
 
     // messages
     socketRef.current.on(MESSAGE, msg => {
@@ -44,11 +42,11 @@ export default function useChatSocket (roomId) {
       setMessages(prevMsgs => [...prevMsgs, data.message]);
     });
 
-
     // room logging
     socketRef.current.emit(JOIN_ROOM, {
       roomId, ...currentUser
     });
+
     socketRef.current.on(JOIN_ROOM, data => {
       setUsers(data.users);
       setMessages(prevMsgs => [...prevMsgs, data.message]);
@@ -60,15 +58,12 @@ export default function useChatSocket (roomId) {
       setRoomData(data);
     });
 
-
     // get room count event
     socketRef.current.on(SHOW_ROOM_USER_COUNT, data => {
       setRoomData(data);
     });
 
-    return () => {
-      socketRef.current.disconnect();
-    };
+    return () => { socketRef.current.disconnect(); };
 
   }, [currentUser, roomId]);
 
