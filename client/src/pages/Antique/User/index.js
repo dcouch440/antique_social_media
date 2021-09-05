@@ -39,6 +39,6 @@ User.propTypes = {
     }),
     online: PropTypes.bool,
     username: PropTypes.string,
-    id: PropTypes.string
+    id: PropTypes.number
   })
 };
