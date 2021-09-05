@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import * as include from '../styled-mixens';
 
 export const Nav = styled.div`
   position: fixed;
@@ -17,6 +18,21 @@ export const Nav = styled.div`
   -moz-user-select: none;     /* Firefox all */
   -ms-user-select: none;      /* IE 10+ */
   user-select: none;
+`;
+
+export const Page = styled.div`
+  ${include.screenAdapt}
+  ${include.noInteraction}
+  position: absolute;
+  height: inherit;
+  padding: 5px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  @media (max-width: 1400px) {
+    width: 100%;
+  }
 `;
 
 export const Menu = styled.div`

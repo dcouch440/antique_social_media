@@ -3,11 +3,14 @@ import React, {
   useRef,
   useState
 } from 'react';
+import UploadModal from '../components/UploadModal';
 import { Context } from '../Context';
-import Avatar from './Avatar';
 import DropDown from './DropDown';
-import { Menu, Nav } from './styles';
-
+import {
+  Menu,
+  Nav,
+  Page
+} from './styles';
 
 export default function Navbar () {
   const [menu, setMenu] = useState('none');
@@ -26,10 +29,17 @@ export default function Navbar () {
 
   return (
     <>
-      { show && <Avatar
-        currentUser={currentUser}
-        hideAvatar={handleModalChange}
-      /> }
+      { show &&
+        <Page>
+          <UploadModal
+            currentUser={currentUser}
+            modalShowChange={handleModalChange}
+            route='/avatars'
+            startMessageText='Upload your avatar.'
+          />
+
+        </Page>
+      }
       <Nav>
         <Menu
           className={'menu-button'}
