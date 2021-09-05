@@ -27,5 +27,5 @@ export default function OnlineUserSidebar ({ users }) {
   );
 }
 OnlineUserSidebar.propTypes = {
-  users: PropTypes.any
+  users: PropTypes.array
 };
