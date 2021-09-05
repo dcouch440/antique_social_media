@@ -16,14 +16,10 @@ export default function ChatInput ({ sendMessage }) {
 
   const handleSubmit = e => {
     e.preventDefault();
-
-    if (message.trim().split('<br>').join('') === '') {
-      return;
-    }
+    if (message.trim().split('<br>').join('') === '') { return; }
 
     sendMessage(message);
     setMessage({ message: '' });
-
   };
 
   const onEnterPress = e => {
@@ -48,10 +44,12 @@ export default function ChatInput ({ sendMessage }) {
   };
 
   return (
-    <ChatBox>
+    <ChatBox >
       <EmojiContainer>
-        <RelativeContainer onClick={handleDisplayChange}>
-            Emoji
+        <RelativeContainer
+          onClick={handleDisplayChange}
+        >
+          Emoji
         </RelativeContainer>
         <Emoji
           handleClick={handleClick}
