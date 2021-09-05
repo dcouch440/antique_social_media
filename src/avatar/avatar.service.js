@@ -6,7 +6,7 @@ class AvatarService {
     try {
       return avatarDAO.destroyById(public_id);
     } catch (err) {
-      throw new Error(err);
+      throw new Error(err.message);
     }
   }
   //  CALL AVATAR ON CREATION
@@ -16,14 +16,14 @@ class AvatarService {
       await avatarDAO.destroyById(avatarPublicId);
       return avatarDAO.storeUrl({ file64, avatarPublicId });
     } catch (err) {
-      throw new Error(err);
+      throw new Error(err.message);
     }
   }
   async getAvatarByUserId (id) {
     try {
       return avatarDAO.findById(id);
     } catch (err) {
-      console.error(err);
+      throw new Error(err.message);
     }
   }
 }
