@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import RenderSmoothImage from 'render-smooth-image-react';
 import 'render-smooth-image-react/build/style.css';
 import Liked from '../../../components/Liked';
+import attachImageIfNotPresent from '../../../utils/attachImageIfNotPresent';
 import imageSizer from '../../../utils/imageSizer';
 import {
   AntiqueContainer,
@@ -14,7 +15,8 @@ import {
 
 export default function Antique ({ antique }) {
   const history = useHistory();
-  const [image] = antique.images;
+  const image = antique.images[0] ?? attachImageIfNotPresent(antique);
+
   const { secure_url, height, width } = image;
   const handleClick = id => history.push(`/antiques/${id}`);
   const downsizedUrl = imageSizer({
@@ -24,7 +26,8 @@ export default function Antique ({ antique }) {
   return (
     <AntiqueContainer
       dimensions={{
-        height, width
+        height,
+        width
       }}
       onClick={() => handleClick(antique.id)}
     >
