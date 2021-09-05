@@ -22,7 +22,7 @@ export default function AntiquesPage ({ route }) {
   const history = useHistory();
   const [slider, setSlider] = useState(3);
   const [bottomBoundaryRef, antiques] = useEverScroll({
-    limit: 1,
+    limit: 25,
     route: user_id ? route + user_id : route
   });
 
