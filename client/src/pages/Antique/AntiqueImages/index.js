@@ -8,9 +8,7 @@ export default function AntiqueImages ({ antiqueId, newUpload, setNewUpload }) {
 
   useEffect(() => {
     axios
-      .get(`/images/${antiqueId}`, {
-        withCredentials: true
-      })
+      .get(`/images/${antiqueId}`, { withCredentials: true })
       .then(res => {
         if (res.status === 200) {
           setImages([...res.data]);
