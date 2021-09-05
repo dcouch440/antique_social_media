@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import { useContext } from "react";
+import UploadModal from "../../../components/UploadModal";
 import { Context } from "../../../Context";
 import checkUser from "../../../utils/checkUser";
-import Modal from '../Modal';
 import { UploadModalButton } from './styles';
 
 
@@ -18,10 +18,13 @@ export default function UploadIfCurrentUser ({ show, antique, handleModalShowCha
   );
 
   const showIfModal = () => show&& (
-    <Modal
+    <UploadModal
       antique={antique}
+      currentUser={currentUser}
       modalShowChange={handleModalShowChange}
+      route='/images'
       setNewUpload={setNewUpload}
+      startMessageText='Upload an image of your antique.'
     />
   );
 
@@ -40,6 +43,6 @@ UploadIfCurrentUser.propTypes = {
     user_id: PropTypes.number
   }),
   handleModalShowChange: PropTypes.func,
-  setNewUpload: PropTypes.bool,
+  setNewUpload: PropTypes.func,
   show: PropTypes.bool
 };
