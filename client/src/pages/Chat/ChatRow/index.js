@@ -32,7 +32,9 @@ export default function ChatRows ({ messages, socketRef }) {
     if (socketRef.current) {
       socketRef.current.disconnect();
     }
-    history.goBack();
+    if (!history.goBack()) {
+      history.push('/antiques');
+    }
   };
 
   const chatRow = messages.map((message, key) => {
@@ -54,7 +56,7 @@ export default function ChatRows ({ messages, socketRef }) {
           />
           <Username>{message.username}: </Username>
           <Message>{message.message}</Message>
-          <Time>{ moment(message.timestamp).fromNow() }</Time>
+          <Time>{moment(message.timestamp).fromNow()}</Time>
         </MessageContainer>
       </Row>
     );
@@ -73,10 +75,7 @@ export default function ChatRows ({ messages, socketRef }) {
 
 ChatRows.propTypes = {
   messages: PropTypes.array,
-
   socketRef: PropTypes.shape({
-
     current: PropTypes.any
-    
   })
 };
