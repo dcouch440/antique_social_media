@@ -12,6 +12,7 @@ class AntiqueController {
         .serializeAllWithRelations({ antiques });
       res.status(200).json(serializedAntiques);
     } catch (err) {
+      console.error(err);
       res.status(400).json({ message: err.message });
     }
   }
@@ -23,6 +24,7 @@ class AntiqueController {
       res.status(200).json(antiqueLikesWithAvatarsAndCount);
     } catch (err) {
       console.error(err);
+      res.status(400).json({ message: err.message });
     }
   }
   async show (req, res) {
@@ -34,7 +36,7 @@ class AntiqueController {
       res.status(200).json(serializedAntiques);
     } catch (err) {
       console.error(err);
-      res.json({ message: err.message });
+      res.status(400).json({ message: err.message });
     }
   }
   async destroy (req, res) {
@@ -49,9 +51,9 @@ class AntiqueController {
   }
   async create (req, res) {
     try {
-      const { file64, ...params } = req.body;
+      const { file64, user_id, ...params } = req.body;
       const antique = await antiqueService.create({
-        user_id: req.currentUser.user_id,
+        user_id,
         ...params
       });
       try {
@@ -62,7 +64,8 @@ class AntiqueController {
       }
       res.status(201).json(antique);
     } catch (err) {
-      res.status(200).json({ message: err.message });
+      console.error(err);
+      res.status(400).json({ message: err.message });
     }
   }
   async queryCategory (req,res) {
@@ -87,7 +90,7 @@ class AntiqueController {
       res.status(200).json(antiquesWithImages);
     } catch (err) {
       console.error(err);
-      res.json({ message: err.message });
+      res.status(400).json({ message: err.message });
     }
   }
 }
