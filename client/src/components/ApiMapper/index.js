@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-export default function ApiMapper ({ callData, component :Component }) {
+export default function ApiMapper ({ callData, component: Component }) {
   return callData.map((antique, i) => (
     <Component
       antique={antique}
