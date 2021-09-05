@@ -1,36 +1,15 @@
-import axios from 'axios';
 import PropTypes from 'prop-types';
-import {
-  createContext,
-  useEffect,
-  useState
-} from 'react';
-import useOnlineStatus from './hooks/useOnlineStatus';
+import { createContext } from 'react';
+import useScrollBehavior from './hooks/useScrollBehavior';
+import useSession from './hooks/useSession';
+import axiosSetup from './utils/axiosSetup';
 const Context = createContext();
 
 function ContextProvider (props) {
-  const [scrollBehavior, setScrollBehavior] = useState(true);
-  const [currentUser, setCurrentUser] = useState({
-    id: null,
-    username: null,
-    email: null,
-    admin: false
-  });
-  useOnlineStatus({ currentUser });
+  const [scrollCSSValue, setScrollBehavior] = useScrollBehavior();
+  const [currentUser, setCurrentUser] = useSession();
 
-  const scroll = scrollBehavior ? 'scroll' : 'hidden';
-  axios.defaults.baseURL = '/api';
-  axios.defaults.headers.user_id = currentUser.id;
-
-  // LOAD SESSION
-  useEffect(() => {
-    axios
-      .get('/users/session', {
-        withCredentials: true
-      })
-      .then(res => setCurrentUser(res.data))
-      .catch(err => console.error(err));
-  }, []);
+  axiosSetup(currentUser);
 
   return (
     <Context.Provider
@@ -38,7 +17,7 @@ function ContextProvider (props) {
         currentUser,
         setCurrentUser,
         setScrollBehavior,
-        scroll
+        scrollCSSValue
       }}
     >
       {props.children}
