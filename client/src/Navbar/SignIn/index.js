@@ -1,13 +1,9 @@
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import {
-  useContext,
-  useEffect,
-  useRef,
-  useState
-} from 'react';
+import { useContext, useState } from 'react';
 import { Context } from '../../Context';
 import useLoginErrors from '../../hooks/useLoginErrors';
+import sign from '../../utils/sign';
 import {
   DropDownButton,
   DropDownButtonContainer,
@@ -15,16 +11,11 @@ import {
 } from '../styled';
 import { SignedIn, SignIngTitle } from './styles';
 
-
 export default function SignIn ({ toggle }) {
   const { setCurrentUser } = useContext(Context);
   const [{ password, email }, setCredentials] = useState({ password: '', email: '' });
-  const [payload, setPayload] = useState({});
   const [loginHasError, setLoginHasError] = useState(false);
   const { setErrors, showErrors } = useLoginErrors();
-
-
-  const isRequest = useRef(false);
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -35,34 +26,24 @@ export default function SignIn ({ toggle }) {
 
   const onSubmit = e => {
     e.preventDefault();
-    isRequest.current = true;
-    setPayload({ password, email });
-  };
+    const token = sign({ email, password });
 
-  useEffect(() => {
-    if (!isRequest.current) {
-      return;
+    try {
+      axios
+        .post(
+          '/users/signin',
+          { token },
+          { withCredentials: true }
+        )
+        .then(res => {
+          setCurrentUser(res.data);
+        });
+    } catch (err) {
+      setLoginHasError(true);
+      setErrors([...err.response.data.errors]);
+      console.log(err);
     }
-    isRequest.current = false;
-
-    axios
-      .post(
-        '/users/signin',
-        { email, password },
-        { withCredentials: true }
-      )
-      .then(res => {
-        setCurrentUser(res.data);
-      })
-      .catch(error => {
-        setLoginHasError(true);
-        console.log(error.response);
-        setErrors([...error.response.data.errors]);
-        console.log(error);
-      });
-
-  }, [email, loginHasError, password, payload, setCurrentUser, setErrors]);
-
+  };
 
   return (
     <SignedIn>
