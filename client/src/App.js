@@ -20,11 +20,11 @@ import Rooms from './pages/Rooms';
 export default function App () {
   const location = useLocation();
   const [roomId, setRoomId] = useState('GLOBAL_CHAT');
-  const { scroll } = useContext(Context);
+  const { scrollCSSValue } = useContext(Context);
 
   return (
     <>
-      <GlobalStyles scroll={scroll} />
+      <GlobalStyles scroll={scrollCSSValue} />
       <Navbar />
       <AnimatePresence>
         <Switch
