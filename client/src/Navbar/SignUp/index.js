@@ -1,13 +1,9 @@
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import {
-  useContext,
-  useEffect,
-  useRef,
-  useState
-} from 'react';
+import { useContext, useState } from 'react';
 import { Context } from '../../Context';
 import useLoginErrors from '../../hooks/useLoginErrors';
+import sign from '../../utils/sign';
 import {
   DropDownButton,
   DropDownButtonContainer,
@@ -18,10 +14,8 @@ import { Form, SignUpTitle } from './styles';
 
 export default function SignUp ({ toggle }) {
   const { setCurrentUser } = useContext(Context);
-  const [payload, setPayload] = useState({});
   const [message, setMessage] = useState('Sign Up');
   const { setErrors, showErrors } = useLoginErrors();
-  const isRequest = useRef(false);
   const [credentials, setCredentials] = useState({
     password: '',
     email: '',
@@ -44,23 +38,18 @@ export default function SignUp ({ toggle }) {
       email
     } = credentials;
 
-    e.stopPropagation();
     e.preventDefault();
+    e.stopPropagation();
 
-    if (password === passwordConfirmation) {
-      isRequest.current = true;
-      setPayload({ password, email, username });
-    } else {
+    if (password !== passwordConfirmation) {
       setMessage('Passwords Must Match');
+      return;
     }
-  };
 
-  useEffect(() => {
-    if (isRequest.current === false) { return; }
-    isRequest.current = false;
-    axios.post(
-      '/users/signup',
-      payload,
+    const token = sign({ username, email, password });
+
+    axios.post('/users/signup',
+      { token },
       { withCredentials: true }
     )
       .then(res => {
@@ -75,10 +64,7 @@ export default function SignUp ({ toggle }) {
         setErrors([...error.response.data.errors]);
       });
 
-    /// THE DATA IS KICKING BECAUSE ITS a 403?
-
-  }, [payload, setCurrentUser, setErrors]);
-
+  };
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -123,8 +109,10 @@ export default function SignUp ({ toggle }) {
         <DropDownButton
           type="submit"
           onClick={toggle}
-        >Sign In</DropDownButton>
-        <DropDownButton >Sign Up</DropDownButton>
+        >
+          Sign In
+        </DropDownButton>
+        <DropDownButton>Sign Up</DropDownButton>
       </DropDownButtonContainer>
 
     </Form>
