@@ -2,7 +2,7 @@ const avatarService = require('./avatar.service');
 
 class AvatarController {
   async destroy (req,res) {
-    const user_id = req.currentUser.user_id;
+    const { user_id } = req.body;
     try {
       await avatarService.deleteByPublicId(user_id);
       res.status(204).json({ message: 'Deleted' });
@@ -13,10 +13,11 @@ class AvatarController {
   }
   async upload (req,res) {
     try {
+      const { user_id } = req.body;
       const { file64 } = req.body;
       const uploaded = await avatarService.upload({
         file64,
-        user_id: req.currentUser.user_id
+        user_id
       });
       res.status(201).json(uploaded);
     } catch (err) {
