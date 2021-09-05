@@ -6,7 +6,7 @@
   "scripts": {
     "gen-image-array": "npx node ./db/seeds/utils/image-directory-mapper.js",
     "make-migration": "npx knex migrate:make init --migrations-directory ./db/migrations",
-    "dev": "nodemon index.js",
+    "dev": "nodemon index.js -L",
     "start": "node index.js",
     "heroku-postbuild": "cd client && npm install && npm run build",
     "seed": "npx knex seed:run --knexfile ./knexfile.js",
@@ -19,7 +19,7 @@
     "test-detect": "jest --watch --runInBand --detectOpenHandles"
   },
   "engines": {
-    "node": "12.18.1"
+    "node": "14.16.0"
   },
   "keywords": [],
   "author": "",
@@ -43,7 +43,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-fileupload": "^1.2.1",
-    "express-jwt": "^6.0.0",
+    "express-jwt": "^6.1.0",
     "express-pino-logger": "^6.0.0",
     "factory-bot": "^6.2.1",
     "jsonwebtoken": "^8.5.1",
