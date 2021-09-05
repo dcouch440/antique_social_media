@@ -1,6 +1,6 @@
 import * as emojis from 'emojis-list';
 import PropTypes from "prop-types";
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import {
   ButtonContainer,
   EmojiContainer,
@@ -11,8 +11,9 @@ import {
 
 export default function Emoji ({ handleClick, show }) {
   const [page, setPage] = useState(6);
+  const toggleDisplay = show ? 'initial' : 'none';
 
-  const filterAndSetEmojis = () => {
+  const emojiPages = useMemo(() => {
     const emojiArray = [...emojis];
     const emojiArrayPages = [];
     for (let i = 100; i < emojiArray.length; i += 100) {
@@ -20,16 +21,14 @@ export default function Emoji ({ handleClick, show }) {
       emojiArrayPages.push([...currentPage]);
     }
     return emojiArrayPages;
-  };
-  const emojiArrays = filterAndSetEmojis();
-
+  }, []);
 
   const handlePageChange = e => {
     const { name } = e.target;
     e.stopPropagation();
     if (name === 'plus') {
       setPage(prev => {
-        if (prev < emojiArrays.length - 1) {
+        if (prev < emojiPages.length - 1) {
           return prev += 1;
         } else {
           return prev;
@@ -59,7 +58,6 @@ export default function Emoji ({ handleClick, show }) {
     );
   });
 
-  const toggleDisplay = show ? 'initial' : 'none';
 
   return (
     <>
@@ -79,7 +77,7 @@ export default function Emoji ({ handleClick, show }) {
           </PageSelect>
         </ButtonContainer>
         <EmojiContainer>
-          {emojiMapper(emojiArrays[page])}
+          {emojiMapper(emojiPages[page])}
         </EmojiContainer>
       </EmojiDisplayContainer>
     </>
