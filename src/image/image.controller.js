@@ -9,19 +9,18 @@ class ImageController {
       res.status(200).json(antiqueImages);
     } catch (err) {
       console.error(err);
+      res.status(400).json({ message: err.message });
     }
   }
   async upload (req,res) {
     try {
       const { file64, antique_id } = req.body;
-      const uploaded = await imageService.upload({
-        file64,
-        antique_id
-      });
+      const uploaded = await imageService
+        .upload({ file64,antique_id });
       res.status(201).json(uploaded);
     } catch (err) {
-      res.status(400).json({ message: err.message });
       console.error(err);
+      res.status(400).json({ message: err.message });
     }
   }
   async destroy (req,res) {
@@ -30,6 +29,7 @@ class ImageController {
       await imageService.destroyFolderByAntiqueId(antique_id);
       res.status(204).json({ message: 'Deleted' });
     } catch (err) {
+      res.status(400).json({ message: err.message });
       console.error(err);
     }
   }
