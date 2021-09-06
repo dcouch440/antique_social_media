@@ -17,6 +17,7 @@ import {
 } from './styles';
 import UserRooms from './UserRooms';
 
+
 export default function Rooms ({ setRoomId }) {
   const history = useHistory();
   const { currentUser } = useContext(Context);
@@ -25,9 +26,7 @@ export default function Rooms ({ setRoomId }) {
   const { activeUserRooms, activeRooms } = roomData;
 
   useEffect(() => {
-    if (!currentUser.id) {
-      return;
-    }
+    if (!currentUser.id) { return; }
     socketRef.current.emit(SHOW_ROOM_USER_COUNT, { currentUser });
   }, [currentUser, socketRef]);
 

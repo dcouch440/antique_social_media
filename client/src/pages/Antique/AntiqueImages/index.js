@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import AntiquesSlideShow from "../AntiqueSlideShow";
 
+
 export default function AntiqueImages ({ antiqueId, newUpload, setNewUpload }) {
   const [images, setImages] = useState([]);
 

@@ -9,7 +9,6 @@ import {
 export default function ActiveUserRooms ({ handleClick, rooms }) {
 
   const mappedRooms =  rooms.map((data, key) => {
-
     return (
       <Room
         key={key}

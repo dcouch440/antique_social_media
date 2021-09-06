@@ -49,9 +49,7 @@ export default function Liked ({ antiqueId, onLikesChange }) {
 
   const handleClick = e => {
     e.stopPropagation();
-    if (loading.current) {
-      return;
-    }
+    if (loading.current) { return; }
     loading.current = true;
 
     !liked && axios

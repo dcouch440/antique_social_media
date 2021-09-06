@@ -73,24 +73,27 @@ export default function SignUp ({ toggle }) {
 
       <StyledInput
         required
-        name={'email'}
-        placeholder={'Email'}
+        autoComplete='email'
+        name='email'
+        placeholder='Email'
         value={credentials.email}
         onChange={handleChange}
       />
 
       <StyledInput
         required
-        name={'username'}
-        placeholder={'Username'}
+        autoComplete='username'
+        name='username'
+        placeholder='Username'
         value={credentials.username}
         onChange={handleChange}
       />
 
       <StyledInput
         required
-        name={'password'}
-        placeholder={'password'}
+        autoComplete='current-password'
+        name='password'
+        placeholder='password'
         type={'password'}
         value={credentials.password}
         onChange={handleChange}
@@ -98,9 +101,10 @@ export default function SignUp ({ toggle }) {
 
       <StyledInput
         required
-        name={'passwordConfirmation'}
-        placeholder={'password Confirmation'}
-        type={'password'}
+        autoComplete='current-password'
+        name='passwordConfirmation'
+        placeholder='password Confirmation'
+        type='password'
         value={credentials.passwordConfirmation}
         onChange={handleChange}
       />

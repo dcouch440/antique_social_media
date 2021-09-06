@@ -18,6 +18,7 @@ import {
   Tag
 } from './styles';
 
+
 export default function AntiqueInfo ({ antique, setRoom }) {
   const history = useHistory();
   const { year, name, antique_owner, body, id } = antique;

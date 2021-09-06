@@ -51,7 +51,7 @@ export default function ChatRows ({ messages, socketRef }) {
       >
         <MessageContainer>
           <Avatar
-            alt={'avatar'}
+            alt='avatar'
             src={message.avatar.secure_url}
           />
           <Username>{message.username}: </Username>

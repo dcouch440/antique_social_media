@@ -9,6 +9,7 @@ import {
   Page
 } from './styles';
 
+
 export default function Likes () {
   const [antiques, setAntiques] = useState([]);
 

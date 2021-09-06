@@ -1,4 +1,6 @@
-const imageSizer = ({ url, width, height, decreesBy }) => {
+// resizes the image based on its height and width.
+// decreased by value decreesBy.
+const imageSizer = ({ url, width, height, decreesBy, checkSmall }) => {
 
   const setDimensions = () => {
     if (width > 2000 || height > 3000) {

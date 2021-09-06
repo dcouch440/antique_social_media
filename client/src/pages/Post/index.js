@@ -53,8 +53,7 @@ export default function Post () {
 
   const uploadImage = async uploadData => {
     await axios
-      .post(
-        '/antiques',
+      .post('/antiques',
         uploadData,
         { withCredentials: true }
       )
@@ -70,7 +69,7 @@ export default function Post () {
         if (err.response.status === 401) {
           setMessage({ uploading: false, message: 'Unauthorized' });
         } else {
-          setMessage({ uploading: false, message: 'Something went wrong...' });
+          setMessage({ uploading: false, message: err.response.data.message });
         }
         console.log(err);
       });

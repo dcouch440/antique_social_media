@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken');
 
+// signs the payload for user login and sign up.
+
 const sign = userCredentials => {
 
   const privateKey = process.env.REACT_APP_PRIVATE_KEY;

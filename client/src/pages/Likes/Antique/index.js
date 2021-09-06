@@ -9,6 +9,7 @@ import {
   Image
 } from './styles';
 
+
 export default function Antique ({ antique }) {
   const history = useHistory();
   const [image] = antique.images;

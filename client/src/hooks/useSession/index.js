@@ -16,8 +16,13 @@ export default function useSession () {
   useEffect(() => {
     axios
       .get('/users/session', { withCredentials: true })
-      .then(res => setCurrentUser(res.data))
-      .catch(err => console.error(err));
+      .then(res => {
+        if (res.status === 200) { setCurrentUser(res.data); }
+      })
+      .catch(err => {
+        if (err.response.status === 401) { return; }
+        console.log(err);
+      });
   }, []);
 
   // MAKE CONNECTION

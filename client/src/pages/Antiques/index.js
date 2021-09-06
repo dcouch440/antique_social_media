@@ -9,6 +9,7 @@ import capitalize from '../../utils/capitalize';
 import Antique from './Antique';
 import Controls from './Controls';
 import {
+  BottomBoundaryDiv,
   Grid,
   GridContainer,
   Header,
@@ -21,7 +22,7 @@ export default function AntiquesPage ({ route }) {
   const { user_id } = useParams();
   const history = useHistory();
   const [slider, setSlider] = useState(3);
-  const [bottomBoundaryRef, antiques] = useEverScroll({
+  const [BBRef, antiques] = useEverScroll({
     limit: 25,
     route: user_id ? route + user_id : route
   });
@@ -47,15 +48,7 @@ export default function AntiquesPage ({ route }) {
             />
           </Grid>
         </GridContainer>
-        <div
-          ref={bottomBoundaryRef}
-          style={{
-            background: '',
-            width: '1px',
-            height: '250px',
-            marginTop: ''
-          }}
-        />
+        <BottomBoundaryDiv ref={BBRef} />
       </PageContainer>
     </PageTransition>
   );

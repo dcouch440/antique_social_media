@@ -58,3 +58,8 @@ export const HeaderImage = styled.img`
     display: none;
   }
 `;
+
+export const BottomBoundaryDiv = styled.div`
+  width: 1px;
+  height: 250px;
+`;

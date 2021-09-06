@@ -26,12 +26,12 @@ export default function SignIn ({ toggle }) {
 
   const onSubmit = e => {
     e.preventDefault();
+    e.stopPropagation();
     const token = sign({ email, password });
 
     try {
       axios
-        .post(
-          '/users/signin',
+        .post('/users/signin',
           { token },
           { withCredentials: true }
         )
@@ -51,15 +51,17 @@ export default function SignIn ({ toggle }) {
       {showErrors()}
       <form onSubmit={onSubmit}>
         <StyledInput
-          name={'email'}
-          placeholder={'Email'}
+          autoComplete='email'
+          name='email'
+          placeholder='Email'
           value={email}
           onChange={handleChange}
         />
         <StyledInput
-          name={'password'}
-          placeholder={'password'}
-          type={'password'}
+          autoComplete='current-password'
+          name='password'
+          placeholder='password'
+          type='password'
           value={password}
           onChange={handleChange}
         />
@@ -70,7 +72,7 @@ export default function SignIn ({ toggle }) {
           >
             Sign Up
           </DropDownButton>
-          <DropDownButton type={'submit'}>Sign In</DropDownButton>
+          <DropDownButton type='submit'>Sign In</DropDownButton>
         </DropDownButtonContainer>
       </form>
     </SignedIn>

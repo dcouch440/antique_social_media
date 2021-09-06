@@ -68,17 +68,23 @@ export default function UploadModal ({
     };
   };
 
-  const handleFileSubmit = e => {
-    e.preventDefault();
-
+  const isNotAValidSubmission = () => {
     // if no selected file or no current user return
-    if (!selectedFile && currentUser.id) { return; }
+    const fileOrUserNotFound = !selectedFile && currentUser.id;
+    if (fileOrUserNotFound) { return true; }
 
     // if this is an antique upload
     if (antique) {
       // antique user_id must match the current user that iss logged in.
-      if ((antique.user_id !== currentUser.id)) { return; }
+      if (antique.user_id !== currentUser.id) { return true; }
     }
+    return false;
+  };
+
+  const handleFileSubmit = e => {
+    e.preventDefault();
+
+    if (isNotAValidSubmission()) { return; }
 
     setMessage('Uploading, one moment please...');
     const reader = new FileReader();
@@ -94,39 +100,28 @@ export default function UploadModal ({
   };
 
   const uploadImage = base64EncodedImage => {
-    try {
-      let send = {};
+    const send = {
+      file64: base64EncodedImage,
+      user_id: currentUser.id
+    };
 
-      // checking route
-      if (route === '/avatars') {
-        send = {
-          file64: base64EncodedImage,
-          user_id: currentUser.id
-        };
-      }
-      // checking route
-      if (route === '/images') {
-        send = {
-          file64: base64EncodedImage,
-          user_id: currentUser.id,
-          antique_id: antique.id
-        };
-      }
-
-      axios
-        .post(route, send)
-        .then(res => {
-          if (res.status === 201) {
-            setPreviewSource('');
-            handleAfterUpload({ uploaded: true, message: 'Success!' });
-          } else {
-            setPreviewSource('');
-            handleAfterUpload({ uploaded: false, message: res.message });
-          }
-        });
-    } catch (err) {
-      console.log(err);
+    // checking route
+    if (route === '/images') {
+      send.antique_id = antique.id;
     }
+
+    axios
+      .post(route, send)
+      .then(res => {
+        if (res.status === 201) {
+          setPreviewSource('');
+          handleAfterUpload({ uploaded: true, message: 'Success!' });
+        } else {
+          setPreviewSource('');
+          handleAfterUpload({ uploaded: false, message: res.message });
+        }
+      })
+      .catch(err => console.log(err));
   };
 
   return (

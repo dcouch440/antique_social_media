@@ -1,4 +1,3 @@
-
 // attach avatar if the user comes back from the cloud without an image.
 
 const attachImageIfNotPresent = ({ antique_id }) => {
