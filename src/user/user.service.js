@@ -34,8 +34,8 @@ class UserService {
       const token = await jwt.sign(payload);
 
       return { token, payload };
-    } catch (err) {
-      throw new Error(err.message);
+    } catch ({ message }) {
+      throw new Error(message);
     }
   }
   async signUp ({ reqToken }) {
@@ -59,8 +59,8 @@ class UserService {
       const token = await jwt.sign(payload);
 
       return { payload, token };
-    } catch (err) {
-      throw new Error(err.message);
+    } catch ({ message }) {
+      throw new Error(message);
     }
   }
   async getUsersByIds (id) {
@@ -70,8 +70,8 @@ class UserService {
         const avatar = attachAvatarIfNotPresent(user.avatar);
         return { username: user.username, avatar };
       });
-    } catch (err) {
-      throw new Error(err.message);
+    } catch ({ message }) {
+      throw new Error(message);
     }
   }
   all () {
@@ -79,8 +79,9 @@ class UserService {
   }
   async showOvert (id) {
     try {
-      await userIdParams.validate({ id });
-      const user = await userDAO.find(id);
+      const parsedID = parseInt(id);
+      await userIdParams.validate({ id: parsedID });
+      const user = await userDAO.find(parsedID);
       const { username, avatar, online } = await userSerializer.serializeWithUserAvatar(user);
       return {
         antique_owner: {
@@ -90,16 +91,16 @@ class UserService {
           online
         }
       };
-    } catch (err) {
-      throw new Error(err.message);
+    } catch ({ message }) {
+      throw new Error(message);
     }
   }
   async destroy (id) {
     try {
       await userIdParams.validate({ id });
       return userDAO.destroy(id);
-    } catch (err) {
-      throw new Error(err.message);
+    } catch ({ message }) {
+      throw new Error(message);
     }
   }
 }

@@ -20,7 +20,7 @@ class UserController {
       res.status(200).json(payload);
     } catch (err) {
       console.error(err);
-      res.status(403).json({ message: err.message });
+      res.status(401).json({ message: err.message });
     }
   }
   async signUp (req,res) {
@@ -39,7 +39,7 @@ class UserController {
       res.status(201).json(payload);
     } catch (err) {
       console.err(err);
-      res.status(403).json({ message: err.message });
+      res.status(401).json({ message: err.message });
     }
   }
   async showByUsername (req,res) {
@@ -71,9 +71,7 @@ class UserController {
     try {
       const { id } = req.params;
       const user = await userService.showOvert(id);
-      const serializedUsers = await userSerializer
-        .serializeWithUserAvatar(user);
-      res.json(serializedUsers);
+      res.json(user);
     } catch (err) {
       console.error(err);
       res.status(400).json({ message: err.message });
@@ -94,7 +92,7 @@ class UserController {
       const { user_id: id, ...currentUser } = getCurrentUser(req);
       await res.status(200).json({ id, ...currentUser });
     } catch (err) {
-      // no action taken if their is not a current user for sessions;
+      res.status(401).json();
     }
   }
   async destroy (req,res) {
