@@ -14,6 +14,7 @@ module.exports = function authorizeRequest (req, res, next) {
     const { id: decryptedId } = jwt.verify(
       token, process.env.JWT_SECRET
     );
+
     if (user_id !== decryptedId) {
       throw new Error('Unauthorized');
     } else {

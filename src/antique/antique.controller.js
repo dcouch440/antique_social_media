@@ -3,7 +3,7 @@ const antiqueSerializer = require('./antique.serializer');
 const imageService = require('../image/image.service');
 
 class AntiqueController {
-  async index (req, res) {
+  async index (req, res, next) {
     try {
       const { query } = req;
       const antiques = await antiqueService
@@ -12,8 +12,7 @@ class AntiqueController {
         .serializeAllWithRelations({ antiques });
       res.status(200).json(serializedAntiques);
     } catch (err) {
-      console.error(err);
-      res.status(400).json({ message: err.message });
+      next(err);
     }
   }
   async likes (req, res) {
@@ -52,10 +51,7 @@ class AntiqueController {
   async create (req, res) {
     try {
       const { file64, user_id, ...params } = req.body;
-      const antique = await antiqueService.create({
-        user_id,
-        ...params
-      });
+      const antique = await antiqueService.create({ user_id,...params });
       try {
         await imageService.upload({ file64, antique_id: antique.id });
       } catch (err) {

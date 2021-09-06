@@ -15,10 +15,7 @@ class AvatarController {
     try {
       const { user_id } = req.body;
       const { file64 } = req.body;
-      const uploaded = await avatarService.upload({
-        file64,
-        user_id
-      });
+      const uploaded = await avatarService.upload({ file64, user_id });
       res.status(201).json(uploaded);
     } catch (err) {
       console.error(err);

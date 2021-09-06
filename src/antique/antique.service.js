@@ -18,8 +18,8 @@ class AntiqueService {
     try {
       await imageService.destroyDependencyById(id);
       return await antiqueDAO.destroy(id);
-    } catch (err) {
-      throw new Error(err.message);
+    } catch ({ message }) {
+      throw new Error(message);
     }
   }
   async limitOffset ({ ...query }) {
@@ -28,8 +28,8 @@ class AntiqueService {
       const parsedQuery = parseObjectInts(queries);
       await queryParams.validate(parsedQuery, { abortEarly: false });
       return antiqueDAO.limitedList(parsedQuery);
-    } catch (err) {
-      throw new Error(err.message);
+    } catch ({ message }) {
+      throw new Error(message);
     }
   }
   async create ({ ...params }) {
@@ -37,8 +37,8 @@ class AntiqueService {
       const parsedParams = parseObjectInts(params);
       await antiqueParams.validate(parsedParams, { abortEarly: false });
       return antiqueDAO.create(parsedParams);
-    } catch (err) {
-      throw new Error(err.message);
+    } catch ({ message }) {
+      throw new Error(message);
     }
   }
   queryCategory ({ category }) {
@@ -47,15 +47,15 @@ class AntiqueService {
   async findMany (id) {
     try {
       return antiqueDAO.findManyById(id);
-    } catch (err) {
-      throw new Error(err.message);
+    } catch ({ message }) {
+      throw new Error(message);
     }
   }
   async getUserAntiques (user_id) {
     try {
       return antiqueDAO.findAntiquesByUserId(user_id);
-    } catch (err) {
-      throw new Error(err.message);
+    } catch ({ message }) {
+      throw new Error(message);
     }
   }
   async antiquesWithLikes (id) {
@@ -63,12 +63,13 @@ class AntiqueService {
       const antiqueLikes = await likeDAO.findByAntiqueId(id);
       const user_ids = antiqueLikes.map(like => like.user_id);
       const users = await userDAO.getUsersByIds(user_ids);
-      const usersWithAttachedAvatars = await userSerializer.serializeAllWithUserAvatar(users);
+      const usersWithAttachedAvatars = await userSerializer
+        .serializeAllWithUserAvatar(users);
       const { count } = await likeDAO.countByAntiqueId(id);
       const parsedCount = parseInt(count);
       return { likes: usersWithAttachedAvatars, count: parsedCount };
-    } catch (err) {
-      throw new Error(err.message);
+    } catch ({ message }) {
+      throw new Error(message);
     }
   }
   async getAntiquesByUserId ({ user_id, query }) {
@@ -80,8 +81,8 @@ class AntiqueService {
       const parsedQuery = parseObjectInts(queries);
       await queryParams.validate(parsedQuery, { abortEarly: false });
       return antiqueDAO.findByUserId({ user_id, ...parsedQuery });
-    } catch (err) {
-      throw new Error(err.message);
+    } catch ({ message }) {
+      throw new Error(message);
     }
   }
 }
