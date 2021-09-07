@@ -47,8 +47,9 @@ export default function Liked ({ antiqueId, onLikesChange }) {
 
   }, [antiqueId, currentUser]);
 
-  const handleClick = e => {
+  const handleClick = async e => {
     e.stopPropagation();
+
     if (loading.current) { return; }
     loading.current = true;
 
@@ -65,7 +66,10 @@ export default function Liked ({ antiqueId, onLikesChange }) {
           onLikesChange && onLikesChange(prev => prev += 1);
         }
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        loading.current = false;
+        console.log(err);
+      });
 
     liked && axios
       .delete(
@@ -80,7 +84,10 @@ export default function Liked ({ antiqueId, onLikesChange }) {
           onLikesChange && onLikesChange(prev => prev += 1);
         }
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        loading.current = false;
+        console.log(err);
+      });
   };
 
   return (
