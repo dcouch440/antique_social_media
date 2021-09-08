@@ -3,7 +3,7 @@ import { useCallback } from 'react';
 import * as A from '../actions';
 
 /**
- * @module usePagination is not intended to be used as a global hook.
+ * @description usePagination is not intended to be used as a global hook.
  * This module has the intended use of being used with useEverScroll.
  */
 

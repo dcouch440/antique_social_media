@@ -9,11 +9,11 @@ import useAdvancePage from './useAdvancePage';
 import usePagination from './usePagination';
 
 /**
- * Returns images based on the.
+ * @description Returns images based on the specifications.
  * @param {number} limit the limit of items the request should ask for.
  * @param {string} route the route where the images should be requested from.1
  *
- * @returns {MutableRefObject<any>} bottom boundary for jsx ref.
+ * @returns {MutableRefObject} bottom boundary for jsx ref.
  * @returns {Array} stacked images from request.
  * @returns {boolean} weather the hook is actively fetching.
  */

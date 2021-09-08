@@ -15,6 +15,15 @@ import {
 } from '../../constant';
 import { Context } from '../../Context';
 
+/**
+ * @description used to make a connection to a chat socket server.
+ * @param {string|number} roomId
+ * @returns {Array} messages - the messages received from the API.
+ * @returns {Array} users - the users in the current room.
+ * @returns {Array} socketRef - the socket that will be used to send a message.
+ * @returns {Object} roomData - {activeUserRooms: the rooms that the user owns that are occupied, activeRooms: static rooms and users}
+ */
+
 export default function useChatSocket (roomId) {
   const [messages, setMessages] = useState([]);
   const [users, setUsers] = useState([]);
