@@ -5,6 +5,8 @@ const { newUserParams, userIdParams } = require('./user.params');
 const attachAvatarIfNotPresent = require('../../lib/attachAvatarIfNotPresent');
 const userSerializer = require('./user.serializer');
 const deSign = require('../../lib/de-sign');
+const { UNAUTHORIZED } = require('../../constant/exceptions');
+const ServiceError = require('../../lib/service-error');
 
 class UserService {
   async signIn ({ reqToken }) {
@@ -13,7 +15,7 @@ class UserService {
       const user = await userDAO.findByEmail(email);
 
       if (!user) {
-        throw new Error('Invalid username or Password');
+        throw { name: UNAUTHORIZED };
       }
 
       const isValid = await compareHash({
@@ -21,7 +23,7 @@ class UserService {
       });
 
       if (!isValid) {
-        throw new Error('Bad Username or Password');
+        throw { name: UNAUTHORIZED };
       }
 
       const payload = {
@@ -34,8 +36,8 @@ class UserService {
       const token = await jwt.sign(payload);
 
       return { token, payload };
-    } catch ({ message }) {
-      throw new Error(message);
+    } catch (err) {
+      throw new ServiceError(err);
     }
   }
   async signUp ({ reqToken }) {
@@ -45,7 +47,7 @@ class UserService {
       const user = await userDAO.findByEmail(email);
 
       if (user) {
-        throw new Error('Invalid username or Password');
+        throw { name: UNAUTHORIZED };
       }
 
       const userParams = { username, password, email };
@@ -59,8 +61,8 @@ class UserService {
       const token = await jwt.sign(payload);
 
       return { payload, token };
-    } catch ({ message }) {
-      throw new Error(message);
+    } catch (err) {
+      throw new ServiceError(err);
     }
   }
   async getUsersByIds (id) {
@@ -70,8 +72,8 @@ class UserService {
         const avatar = attachAvatarIfNotPresent(user.avatar);
         return { username: user.username, avatar };
       });
-    } catch ({ message }) {
-      throw new Error(message);
+    } catch (err) {
+      throw new ServiceError(err);
     }
   }
   all () {
@@ -82,7 +84,8 @@ class UserService {
       const parsedID = parseInt(id);
       await userIdParams.validate({ id: parsedID });
       const user = await userDAO.find(parsedID);
-      const { username, avatar, online } = await userSerializer.serializeWithUserAvatar(user);
+      const { username, avatar, online } = await userSerializer
+        .serializeWithUserAvatar(user);
       return {
         antique_owner: {
           id,
@@ -91,16 +94,16 @@ class UserService {
           online
         }
       };
-    } catch ({ message }) {
-      throw new Error(message);
+    } catch (err) {
+      throw new ServiceError(err);
     }
   }
   async destroy (id) {
     try {
       await userIdParams.validate({ id });
       return userDAO.destroy(id);
-    } catch ({ message }) {
-      throw new Error(message);
+    } catch (err) {
+      throw new ServiceError(err);
     }
   }
 }
