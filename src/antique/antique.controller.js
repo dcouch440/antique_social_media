@@ -1,6 +1,5 @@
 const antiqueService = require('./antique.service');
 const antiqueSerializer = require('./antique.serializer');
-const imageService = require('../image/image.service');
 
 class AntiqueController {
   async index (req, res, next) {
@@ -15,18 +14,17 @@ class AntiqueController {
       next(err);
     }
   }
-  async likes (req, res) {
+  async likes (req, res, next) {
     try {
       const { id } = req.params;
       const antiqueLikesWithAvatarsAndCount = await antiqueService
         .antiquesWithLikes(id);
       res.status(200).json(antiqueLikesWithAvatarsAndCount);
     } catch (err) {
-      console.error(err);
-      res.status(400).json({ message: err.message });
+      next(err);
     }
   }
-  async show (req, res) {
+  async show (req, res, next) {
     try {
       const { id } = req.params;
       const antique = await antiqueService.show(id);
@@ -34,48 +32,38 @@ class AntiqueController {
         .serializeWithRelations({ antique });
       res.status(200).json(serializedAntiques);
     } catch (err) {
-      console.error(err);
-      res.status(400).json({ message: err.message });
+      next(err);
     }
   }
-  async destroy (req, res) {
+  async destroy (req, res, next) {
     try {
       const { id } = req.params;
       const deleted = await antiqueService.destroy(id);
       res.status(204).json(deleted);
     } catch (err) {
-      console.error(err);
-      res.status(422).json({ message: err.message });
+      next(err);
     }
   }
-  async create (req, res) {
+  async create (req, res, next) {
     try {
-      const { file64, user_id, ...params } = req.body;
-      const antique = await antiqueService.create({ user_id,...params });
-      try {
-        await imageService.upload({ file64, antique_id: antique.id });
-      } catch (err) {
-        await antiqueService.destroy(antique.id);
-        throw new Error(err.message);
-      }
+      const { file64, ...params } = req.body;
+      const antique = await antiqueService.create({ file64, ...params });
       res.status(201).json(antique);
     } catch (err) {
-      console.error(err);
-      res.status(400).json({ message: err.message });
+      next(err);
     }
   }
-  async queryCategory (req,res) {
+  async queryCategory (req, res, next) {
     try {
       const { category } = req.params;
       const response = await antiqueService
         .queryCategory({ category });
       res.status(200).json(response);
     } catch (err) {
-      console.error(err);
-      res.status(400).json({ message: err.message });
+      next(err);
     }
   }
-  async usersAntiques (req,res) {
+  async usersAntiques (req, res, next) {
     try {
       const { user_id } = req.params;
       const { query } = req;
@@ -85,8 +73,7 @@ class AntiqueController {
         .serializeAllWithRelations({ antiques });
       res.status(200).json(antiquesWithImages);
     } catch (err) {
-      console.error(err);
-      res.status(400).json({ message: err.message });
+      next(err);
     }
   }
 }
