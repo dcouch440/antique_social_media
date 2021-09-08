@@ -1,42 +1,52 @@
 const {
   UNAUTHORIZED,
   UNIQUE_VIOLATION,
-  VALIDATION_ERROR
+  VALIDATION_ERROR,
 } = require('../constant/exceptions');
 
-const status = {
-  [UNAUTHORIZED]: 422,
-  [UNIQUE_VIOLATION]: 409,
-  [VALIDATION_ERROR]: 401
-};
 
-const errorMessages = {
-  UniqueViolationError: 'Already exists.',
-  Unauthorized: 'Invalid username or password'
-};
-
-const notFound = (req, res, next) => {
-  const error = new Error(`Not found - ${req.originalUrl}`);
-  res.status(404);
-  next(error);
-};
-
-const handleError = (error, _, res, next) => {
+function handleError (error, _, res, next) {
 
   if (!error) {
-    next();
+    return next();
   }
 
-  const statusCode = res.statusCode === 200
-    ? (status[error.name] || 500)
-    : res.statusCode;
+  process.env.NODE_ENV === 'development' && console.error(error);
 
-  res.status(statusCode);
+  const status = {
+    [UNAUTHORIZED]: 401,
+    [UNIQUE_VIOLATION]: 409,
+    [VALIDATION_ERROR]: 400,
+  };
 
-  res.json({
-    message: errorMessages[error.name] || error.message,
-  });
+  const errorMessages = {
+    [UNAUTHORIZED]: 'Invalid username or password'
+  };
+  // grabbing errors from validation error
+  const { errors } = error;
+  // check if status code is attached.
+  const hasHttpStatusAttached = typeof error.http_code === 'number';
+  // status code has not been updated yet.
+  const hasNotBeenSet = res.statusCode === 200;
+  // set new status code or return a 500
+  const newStatusCode = status[error.name] ?? 500;
+  // check if a message is available or return the original message.
+  const message = errorMessages[error.name] ?? error.message;
+  // set status code for the outgoing error message.
+  const statusCode = hasHttpStatusAttached
+    // if http code is present return http code.
+    ? error.http_code
+    // check if status has not already been set
+    : hasNotBeenSet
+      // update status with new code
+      ? newStatusCode
+      // else return the original status code.
+      : res.statusCode;
 
-};
 
-module.exports = { notFound, handleError };
+  res.status(statusCode).json({ message, errors });
+
+}
+
+
+module.exports = handleError;
