@@ -1,36 +1,33 @@
 const imageService = require('./image.service');
 
 class ImageController {
-  async show (req,res) {
+  async show (req, res, next) {
     try {
       const { antique_id } = req.params;
       const antiqueImages = await imageService
         .findByAntiqueId(antique_id);
       res.status(200).json(antiqueImages);
     } catch (err) {
-      console.error(err);
-      res.status(400).json({ message: err.message });
+      next(err);
     }
   }
-  async upload (req,res) {
+  async upload (req, res, next) {
     try {
       const { file64, antique_id } = req.body;
       const uploaded = await imageService
-        .upload({ file64,antique_id });
+        .upload({ file64, antique_id });
       res.status(201).json(uploaded);
     } catch (err) {
-      console.error(err);
-      res.status(400).json({ message: err.message });
+      next(err);
     }
   }
-  async destroy (req,res) {
+  async destroy (req, res, next) {
     const { antiqueId :antique_id } = req.body;
     try {
       await imageService.destroyFolderByAntiqueId(antique_id);
       res.status(204).json({ message: 'Deleted' });
     } catch (err) {
-      res.status(400).json({ message: err.message });
-      console.error(err);
+      next(err);
     }
   }
 }
