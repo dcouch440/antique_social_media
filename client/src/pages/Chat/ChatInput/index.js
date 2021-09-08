@@ -16,6 +16,8 @@ export default function ChatInput ({ sendMessage }) {
 
   const handleSubmit = e => {
     e.preventDefault();
+
+    // checking if message is valid.
     if (message.trim().split('<br>').join('') === '') { return; }
 
     sendMessage(message);
