@@ -6,6 +6,7 @@ const imageService = require('../image/image.service');
 const userDAO = require('../user/user.doa');
 const likeDAO = require('../like/like.dao');
 const userSerializer = require('../user/user.serializer');
+const ServiceError = require('../../lib/service-error');
 
 class AntiqueService {
   all () {
@@ -18,8 +19,8 @@ class AntiqueService {
     try {
       await imageService.destroyDependencyById(id);
       return await antiqueDAO.destroy(id);
-    } catch ({ message }) {
-      throw new Error(message);
+    } catch (err) {
+      throw new ServiceError(err);
     }
   }
   async limitOffset ({ ...query }) {
@@ -28,34 +29,41 @@ class AntiqueService {
       const parsedQuery = parseObjectInts(queries);
       await queryParams.validate(parsedQuery, { abortEarly: false });
       return antiqueDAO.limitedList(parsedQuery);
-    } catch ({ message }) {
-      throw new Error(message);
+    } catch (err) {
+      throw new ServiceError(err);
     }
   }
-  async create ({ ...params }) {
+  async create ({ file64, ...params }) {
     try {
       const parsedParams = parseObjectInts(params);
       await antiqueParams.validate(parsedParams, { abortEarly: false });
-      return antiqueDAO.create(parsedParams);
-    } catch ({ message }) {
-      throw new Error(message);
+      const antique = await antiqueDAO.create(parsedParams);
+      try {
+        await imageService.upload({ file64, antique_id: antique.id });
+      } catch (err) {
+        await this.destroy(antique.id);
+        throw err;
+      }
+      return antique;
+    } catch (err) {
+      throw new ServiceError(err);
     }
   }
-  queryCategory ({ category }) {
+  async queryCategory ({ category }) {
     return antiqueDAO.showUniques({ category });
   }
   async findMany (id) {
     try {
       return antiqueDAO.findManyById(id);
-    } catch ({ message }) {
-      throw new Error(message);
+    } catch (err) {
+      throw new ServiceError(err);
     }
   }
   async getUserAntiques (user_id) {
     try {
       return antiqueDAO.findAntiquesByUserId(user_id);
-    } catch ({ message }) {
-      throw new Error(message);
+    } catch (err) {
+      throw new ServiceError(err);
     }
   }
   async antiquesWithLikes (id) {
@@ -68,8 +76,8 @@ class AntiqueService {
       const { count } = await likeDAO.countByAntiqueId(id);
       const parsedCount = parseInt(count);
       return { likes: usersWithAttachedAvatars, count: parsedCount };
-    } catch ({ message }) {
-      throw new Error(message);
+    } catch (err) {
+      throw new ServiceError(err);
     }
   }
   async getAntiquesByUserId ({ user_id, query }) {
@@ -81,8 +89,8 @@ class AntiqueService {
       const parsedQuery = parseObjectInts(queries);
       await queryParams.validate(parsedQuery, { abortEarly: false });
       return antiqueDAO.findByUserId({ user_id, ...parsedQuery });
-    } catch ({ message }) {
-      throw new Error(message);
+    } catch (err) {
+      throw new ServiceError(err);
     }
   }
 }
