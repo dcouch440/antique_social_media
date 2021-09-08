@@ -15,7 +15,7 @@ export default function Antiques ({ antiques }) {
 
   const mappedAntiques = antiques.map((antique, index) => {
     const { images } = antique;
-    const { secure_url, width, height } = images[0] ?? attachImageIfNotPresent(antique);
+    const { secure_url, width, height } = images?.[0] ?? attachImageIfNotPresent(antique);
     const smallerImage = imageSizer({ url: secure_url, width, height, decreesBy: 5 });
     return (
       <Antique
