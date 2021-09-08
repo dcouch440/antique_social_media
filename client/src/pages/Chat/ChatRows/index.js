@@ -20,11 +20,11 @@ export default function ChatRows ({ messages, socketRef }) {
   const messagesEndRef = useRef();
 
   useEffect(() => {
-    scrollToBottom();
+    handleScrollToBottom();
   }, [messages]);
 
 
-  const scrollToBottom = () => {
+  const handleScrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
