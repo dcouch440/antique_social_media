@@ -4,6 +4,12 @@ import {
   useState
 } from "react";
 
+/**
+ *
+ * @param {number} min - minimum number to wait before loading.
+ * @returns [ loading: boolean, isDone: func ]
+ */
+
 export default function useMinimumLoadingTime ({ min = 1500 } = {}) {
   // standard loading bool
   const [loading, setLoading] = useState(true);
@@ -13,6 +19,7 @@ export default function useMinimumLoadingTime ({ min = 1500 } = {}) {
   const apiRequestIsDone = useRef(false);
   // invoke when apiRequestIsDone
 
+  // is done can be invoked isDone() to notify the loading sequence.
   const isDone = useCallback(() => {
     apiRequestIsDone.current = true;
   }, []);
