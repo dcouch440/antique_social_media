@@ -53,41 +53,38 @@ export default function Liked ({ antiqueId, onLikesChange }) {
     if (loading.current) { return; }
     loading.current = true;
 
-    !liked && axios
-      .post(
-        `/likes/${antiqueId}`,
-        { user_id: currentUser.id },
-        { withCredentials: true }
-      )
-      .then(res => {
-        loading.current = false;
-        if (res.status === 201) {
-          setLiked(true);
-          onLikesChange && onLikesChange(prev => prev += 1);
-        }
-      })
-      .catch(err => {
-        loading.current = false;
-        console.log(err);
-      });
+    try {
+      !liked && await axios
+        .post(
+          `/likes/${antiqueId}`,
+          { user_id: currentUser.id },
+          { withCredentials: true }
+        )
+        .then(res => {
+          loading.current = false;
+          if (res.status === 201) {
+            setLiked(true);
+            onLikesChange && onLikesChange(prev => prev += 1);
+          }
+        });
 
-    liked && axios
-      .delete(
-        `/likes/${antiqueId}`,
-        { user_id: currentUser.id },
-        { withCredentials: true }
-      )
-      .then(res => {
-        loading.current = false;
-        if (res.status === 204) {
-          setLiked(false);
-          onLikesChange && onLikesChange(prev => prev += 1);
-        }
-      })
-      .catch(err => {
-        loading.current = false;
-        console.log(err);
-      });
+      liked && await axios
+        .delete(
+          `/likes/${antiqueId}`,
+          { user_id: currentUser.id },
+          { withCredentials: true }
+        )
+        .then(res => {
+          loading.current = false;
+          if (res.status === 204) {
+            setLiked(false);
+            onLikesChange && onLikesChange(prev => prev += 1);
+          }
+        });
+    } catch (err) {
+      loading.current = false;
+      console.log(err);
+    }
   };
 
   return (
