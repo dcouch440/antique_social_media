@@ -3,7 +3,7 @@ const likeSerializer = require('./like.serializer');
 const likeService = require('./like.service');
 
 class LikeController {
-  async liked (req,res) {
+  async liked (req, res, next) {
     try {
       const { antique_id } = req.params;
       const { user_id } = getCurrentUser(req);
@@ -11,11 +11,10 @@ class LikeController {
         .liked({ antique_id, user_id });
       res.status(200).json({ isLiked });
     } catch (err) {
-      console.error(err);
-      res.status(422).json({ message: err.message });
+      next(err);
     }
   }
-  async like (req,res) {
+  async like (req, res, next) {
     try {
       const { antique_id } = req.params;
       const { username, user_id } = getCurrentUser(req);
@@ -23,11 +22,10 @@ class LikeController {
         .like({ username, user_id, antique_id });
       res.status(201).json(liked);
     } catch (err) {
-      console.error(err);
-      res.status(422).json({ message: err.message });
+      next(err);
     }
   }
-  async unlike (req,res) {
+  async unlike (req, res, next) {
     try {
       const { antique_id } = req.params;
       const { username, user_id } = getCurrentUser(req);
@@ -35,11 +33,10 @@ class LikeController {
         .unlike({ username, user_id, antique_id });
       res.status(204).json(liked);
     } catch (err) {
-      console.error(err);
-      res.status(422).json({ message: err.message });
+      next(err);
     }
   }
-  async likes (req, res) {
+  async likes (req, res, next) {
     try {
       const { user_id } = getCurrentUser(req);
       const likes = await likeService.likes(user_id);
@@ -47,8 +44,7 @@ class LikeController {
         .serializeLikesWithImages(likes);
       res.status(200).json(likesWithImages);
     } catch (err) {
-      console.error(err);
-      res.status(422).json({ message: err.message });
+      next(err);
     }
   }
 }
