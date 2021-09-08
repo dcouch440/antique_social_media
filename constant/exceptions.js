@@ -1,6 +1,6 @@
 const UNAUTHORIZED = 'Unauthorized';
 const UNIQUE_VIOLATION = 'UniqueViolationError';
-const VALIDATION_ERROR = 'Unauthorized';
+const VALIDATION_ERROR = 'ValidationError';
 
 module.exports = {
   UNAUTHORIZED,
