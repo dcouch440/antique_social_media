@@ -4,7 +4,7 @@ const userService = require('./user.service');
 const cookieExpiration = require('../../constant/cookie-time');
 
 class UserController {
-  async signIn (req,res) {
+  async signIn (req, res, next) {
     try {
       const reqToken = req.body.token;
       const { token, payload } = await userService.signIn({ reqToken });
@@ -19,11 +19,10 @@ class UserController {
 
       res.status(200).json(payload);
     } catch (err) {
-      console.error(err);
-      res.status(401).json({ message: err.message });
+      next(err);
     }
   }
-  async signUp (req,res) {
+  async signUp (req, res, next) {
     try {
       const reqToken = req.body.token;
       const { payload, token } = await userService.signUp({ reqToken });
@@ -38,11 +37,10 @@ class UserController {
 
       res.status(201).json(payload);
     } catch (err) {
-      console.err(err);
-      res.status(401).json({ message: err.message });
+      next(err);
     }
   }
-  async showByUsername (req,res) {
+  async showByUsername (req, res, next) {
     try {
       const { usernames } = req.body;
       const users = await userService
@@ -51,68 +49,59 @@ class UserController {
         .serializeAllWithUserAvatar(users);
       res.status(200).json(serializedUsers);
     } catch (err) {
-      console.error(err);
-      res.status(400).json({ message: err.message });
+      next(err);
     }
   }
-  // for dev
-  async all (req,res) {
+  async all (req, res, next) {
     try {
       const users = await userService.all();
       const serializedUsers = await userSerializer
         .serializeAllWithUserAvatar(users);
       res.status(200).json(serializedUsers);
     } catch (err) {
-      console.error(err);
-      res.status(400).json({ message: err.message });
+      next(next);
     }
   }
-  async show (req,res) {
+  async show (req, res, next) {
     try {
       const { id } = req.params;
       const user = await userService.showOvert(id);
-      res.json(user);
+      res.status(200).json(user);
     } catch (err) {
-      console.error(err);
-      res.status(400).json({ message: err.message });
+      next(err);
     }
   }
-  async signOut (req, res) {
+  async signOut (req, res, next) {
     try {
-      await res
-        .status(202)
-        .clearCookie('token').send('cookie cleared');
+      await res.status(202).clearCookie('token').send('cookie cleared');
     } catch (err) {
-      console.error(err);
-      res.status(400).json({ message: err.message });
+      next(err);
     }
   }
-  async session (req,res) {
+  async session (req, res) {
     try {
       const { user_id: id, ...currentUser } = getCurrentUser(req);
       await res.status(200).json({ id, ...currentUser });
     } catch (err) {
-      res.status(401).json();
+      res.status(200).json();
     }
   }
-  async destroy (req,res) {
+  async destroy (req, res, next) {
     try {
       const { id } = req.params;
       await userService.destroy(id);
       res.status(204);
     } catch (err) {
-      console.error(err);
-      res.status(422).json({ message: err.message });
+      next(err);
     }
   }
-  async antiquesAll (req,res) {
+  async antiquesAll (req, res, next) {
     try {
       const { id } = req.params;
       const attachment = await userService.antiquesAll(id);
       res.status(200).json(attachment);
     } catch (err) {
-      console.error(err);
-      res.status(400).json({ message: err.message });
+      next(err);
     }
   }
 }
