@@ -24,13 +24,13 @@ export default function SignIn ({ toggle }) {
     ));
   };
 
-  const onSubmit = e => {
+  const onSubmit = async e => {
     e.preventDefault();
     e.stopPropagation();
     const token = sign({ email, password });
 
     try {
-      axios
+      await axios
         .post('/users/signin',
           { token },
           { withCredentials: true }
@@ -39,8 +39,9 @@ export default function SignIn ({ toggle }) {
           setCurrentUser(res.data);
         });
     } catch (err) {
+      const { data } = err.response;
       setLoginHasError(true);
-      setErrors([...err.response.data.errors]);
+      setErrors([...data.errors ?? [], data.message ?? '']);
       console.log(err);
     }
   };

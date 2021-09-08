@@ -30,7 +30,7 @@ export default function SignUp ({ toggle }) {
     }));
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     const {
       password,
       passwordConfirmation,
@@ -47,23 +47,22 @@ export default function SignUp ({ toggle }) {
     }
 
     const token = sign({ username, email, password });
-
-    axios.post('/users/signup',
-      { token },
-      { withCredentials: true }
-    )
-      .then(res => {
-        if (res.status === 201) {
-          setCurrentUser(res.data);
-        } else {
-          setErrors([...res.data.errors]);
-        }
-      })
-      .catch(error => {
-        console.log(error);
-        setErrors([...error.response.data.errors]);
-      });
-
+    try {
+      await axios.post('/users/signup',
+        { token },
+        { withCredentials: true }
+      )
+        .then(res => {
+          if (res.status === 201) {
+            setCurrentUser(res.data);
+          } else {
+            setErrors([...res.data.errors]);
+          }
+        });
+    } catch (err) {
+      const { data } = err.response;
+      setErrors([...data.errors ?? [], data.message ?? '']);
+    }
   };
 
   return (
