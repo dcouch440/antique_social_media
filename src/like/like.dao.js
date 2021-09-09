@@ -18,9 +18,9 @@ class LikeDAO {
       .count()
       .first();
   }
-  destroy ({ username, antique_id, user_id }) {
+  destroy ({ antique_id, user_id }) {
     return Like.query()
-      .where({ username, antique_id, user_id })
+      .where({ antique_id, user_id })
       .delete();
   }
   create (params) {

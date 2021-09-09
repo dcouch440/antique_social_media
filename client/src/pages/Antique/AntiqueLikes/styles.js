@@ -31,6 +31,7 @@ export const AntLikes = styled.div`
 export const NoLikes = styled.div`
   font-family: monospace;
   font-size: 14px;
+  color: white;
 `;
 export const LikesCount = styled.span`
   ${include.cursiveFont}

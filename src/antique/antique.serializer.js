@@ -1,6 +1,10 @@
 const imageService = require('../image/image.service');
 const userService = require('../user/user.service');
 
+/**
+ * move to cloud with key value.
+ */
+
 class AntiqueSerializer {
   async serializeWithRelations ({ antique }) {
     try {

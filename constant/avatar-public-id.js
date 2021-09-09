@@ -1,3 +1,5 @@
+// gets the current env folder name.
+
 module.exports = user_id => {
   const env = process.env.NODE_ENV;
   if (env === 'test') {

@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { Errors } from './styles';
 
+/**
+ * @description used to check if input errors are thrown.
+ * @returns a div element that displays errors from yup.
+ */
 
 export default function useLoginErrors () {
   const [errors, setErrors] = useState([]);

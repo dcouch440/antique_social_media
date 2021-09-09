@@ -11,20 +11,20 @@ class LikeService {
       throw new ServiceError(err);
     }
   }
-  async like ({ antique_id, username, user_id }) {
+  async like ({ antique_id, user_id }) {
     try {
       const parsedAntiqueId = parseInt(antique_id);
       return likeDAO
-        .create({ username, antique_id: parsedAntiqueId, user_id });
+        .create({ antique_id: parsedAntiqueId, user_id });
     } catch (err) {
       throw new ServiceError(err);
     }
   }
-  async unlike ({ antique_id, username, user_id }) {
+  async unlike ({ antique_id, user_id }) {
     try {
       const parsedAntiqueId = parseInt(antique_id);
       return likeDAO
-        .destroy({ username, antique_id: parsedAntiqueId, user_id });
+        .destroy({ antique_id: parsedAntiqueId, user_id });
     } catch (err) {
       throw new ServiceError(err);
     }

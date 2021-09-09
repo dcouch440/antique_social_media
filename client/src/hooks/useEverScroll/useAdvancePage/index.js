@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 
 /**
- * @module useAdvancePage is not intended to be used as a global hook.
+ * @description useAdvancePage is not intended to be used as a global hook.
  * This module has the intended use of being used with useEverScroll.
  */
 

@@ -26,9 +26,9 @@ export default function AntiqueLikes ({ antiqueId, likesChange }) {
       .catch(err => console.log(err));
   }, [antiqueId, likesChange]);
 
-  const mappedLikes = likes.map(data => {
+  const mappedLikes = likes.map((data, i) => {
     return (
-      <Like key={data.username}>
+      <Like key={i}>
         <Avatar
           alt='avatar'
           src={data.avatar.secure_url}
