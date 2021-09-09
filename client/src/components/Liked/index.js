@@ -25,6 +25,10 @@ export default function Liked ({ antiqueId, onLikesChange }) {
       Each Like will still have access to like/unlike toggle but,
       After a request is made it will update the local like/disliked value-
       to reflect the new status of the like.
+
+      on login a for-in search for likes can be made and the existing data can be added or merged to the array of images.
+
+      a separate request can be made for users logged in and not logged in?
   */
   const [liked, setLiked] = useState(false);
   const { currentUser } = useContext(Context);
