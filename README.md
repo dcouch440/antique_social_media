@@ -146,7 +146,6 @@ Github:
 
 ## `LIKES`
 
-<img src='img/back-end/likes_like.PNG' alt='a route call'>
 <img src='img/back-end/likes_dislike.PNG' alt='a route call'>
 <img src='img/back-end/likes_likes.PNG' alt='a route call'>
 
