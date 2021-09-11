@@ -6,11 +6,11 @@ import {
 
 /**
  *
- * @param {number} min - minimum number to wait before loading.
+ * @param {number} ms - minimum number to wait before loading.
  * @returns [ loading: boolean, isDone: func ]
  */
 
-export default function useMinimumLoadingTime ({ min = 1500 } = {}) {
+export default function useMinimumLoadingTime ({ ms = 500 } = {}) {
   // standard loading bool
   const [loading, setLoading] = useState(true);
   // makes sure the minimum value is met
@@ -39,7 +39,7 @@ export default function useMinimumLoadingTime ({ min = 1500 } = {}) {
 
     setTimeout(() => {
       minimumTimeIsMet.current = true;
-    }, min);
+    }, ms);
 
   }, []);
 
