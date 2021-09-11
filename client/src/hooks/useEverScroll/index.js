@@ -1,9 +1,11 @@
+import axios from 'axios';
 import {
   useEffect,
   useReducer,
   useRef,
   useState
 } from 'react';
+import * as A from './actions';
 import reducer from './reducer';
 import useAdvancePage from './useAdvancePage';
 import usePagination from './usePagination';
@@ -28,11 +30,28 @@ export default function useEverScroll ({ limit, route }) {
   );
 
   useEffect(() => {
-    advancePage({ node: BBRef.current, setPage });
+    new IntersectionObserver(entries => {
+      const [first] = entries;
+      if (first.intersectionRatio > 0) {
+        setPage(prev => prev += 1);
+      }
+    })
+      .observe(BBRef.current);
   }, [BBRef, advancePage]);
 
   useEffect(() => {
-    getImages({ dispatch, route, limit, page });
+    const url = `${route}?LIMIT=${limit}&OFFSET=${limit * page}`;
+    dispatch({ type: A.FETCHING_DATA, fetching: true });
+    axios
+      .get(url, { withCredentials: true })
+      .then(resp => {
+        dispatch({ type: A.STACK_DATA, data: resp.data });
+        dispatch({ type: A.FETCHING_DATA, fetching: false });
+      })
+      .catch(err => {
+        dispatch({ type: 'FETCHING_DATA', fetching: false });
+        console.error(err);
+      });
   }, [
     getImages,
     limit,
