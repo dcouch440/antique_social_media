@@ -7,8 +7,6 @@ import {
 } from 'react';
 import * as A from './actions';
 import reducer from './reducer';
-import useAdvancePage from './useAdvancePage';
-import usePagination from './usePagination';
 
 /**
  * @description Returns images based on the specifications.
@@ -22,8 +20,6 @@ import usePagination from './usePagination';
 
 export default function useEverScroll ({ limit, route }) {
   const [page, setPage] = useState(0);
-  const getImages = usePagination();
-  const advancePage = useAdvancePage();
   const BBRef = useRef(null);
   const [{ data, fetching }, dispatch] = useReducer(
     reducer, { data:[], fetching: false }
@@ -37,7 +33,7 @@ export default function useEverScroll ({ limit, route }) {
       }
     })
       .observe(BBRef.current);
-  }, [BBRef, advancePage]);
+  }, [BBRef]);
 
   useEffect(() => {
     const url = `${route}?LIMIT=${limit}&OFFSET=${limit * page}`;
@@ -52,12 +48,7 @@ export default function useEverScroll ({ limit, route }) {
         dispatch({ type: 'FETCHING_DATA', fetching: false });
         console.error(err);
       });
-  }, [
-    getImages,
-    limit,
-    page,
-    route
-  ]);
+  }, [limit, page, route]);
 
   return [BBRef, data, fetching];
 }
