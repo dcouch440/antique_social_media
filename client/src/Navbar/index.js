@@ -37,7 +37,6 @@ export default function Navbar () {
             route='/avatars'
             startMessageText='Upload your avatar.'
           />
-
         </Page>
       }
       <Nav>
