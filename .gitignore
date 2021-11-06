@@ -2,3 +2,4 @@
 /node_modules
 # misc
 .env
+/db/seeds/image-map-folder/**
