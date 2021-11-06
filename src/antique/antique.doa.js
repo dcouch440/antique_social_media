@@ -2,11 +2,13 @@ const Antique = require('./antique.model');
 
 class AntiqueDAO {
   all () {
-    return Antique.query();
+    return Antique.query()
+      .withGraphFetched('images');
   }
   find (id) {
     return Antique.query()
-      .findById(id);
+      .findById(id)
+      .withGraphFetched('images');
   }
   getLikes (id) {
     return Antique.query()
@@ -24,25 +26,25 @@ class AntiqueDAO {
   limitedList ({ OFFSET, LIMIT }) {
     return Antique.query()
       .offset(OFFSET)
-      .limit(LIMIT);
+      .limit(LIMIT)
+      .withGraphFetched('images');
   }
-  findManyById (id) {
+  findManyByIds (ids) {
     return Antique.query()
-      .where(builder => builder.whereIn('id', id));
+      .where(builder => builder.whereIn('id', ids))
+      .withGraphFetched('images');
   }
   findAntiquesByUserId (user_id) {
     return Antique.query()
-      .where('user_id', user_id);
-  }
-  showUniques ({ category }) {
-    return Antique.query()
-      .distinct(category, 'id');
+      .where('user_id', user_id)
+      .withGraphFetched('images');
   }
   findByUserId ({ user_id, OFFSET, LIMIT }) {
     return Antique.query()
       .where('user_id', user_id)
       .offset(OFFSET)
-      .limit(LIMIT);
+      .limit(LIMIT)
+      .withGraphFetched('images');
   }
 }
 

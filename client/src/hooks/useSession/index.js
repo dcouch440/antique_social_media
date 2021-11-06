@@ -1,8 +1,9 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
+
+import { LOGIN } from "../../constant";
+import axios from "axios";
 import { io } from "socket.io-client";
 import { urls } from "../../config";
-import { LOGIN } from "../../constant";
 
 export default function useSession () {
   const [currentUser, setCurrentUser] = useState({
@@ -16,8 +17,8 @@ export default function useSession () {
   useEffect(() => {
     axios
       .get('/users/session', { withCredentials: true })
-      .then(res => {
-        if (res.status === 200) { setCurrentUser(res.data); }
+      .then(({ status, data }) => {
+        if (status === 200) { setCurrentUser(data); }
       })
       .catch(err => {
         if (err.response.status === 401) { return; }

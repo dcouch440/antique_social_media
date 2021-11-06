@@ -1,10 +1,10 @@
-const imageService = require('../../../src/image/image.service');
+const AntiqueImageService = require('../../../src/image/image.service');
 const avatarService = require('../../../src/avatar/avatar.service');
 
 const cleanupAntiqueImages = async knex => {
   const antique_ids = await knex('image').distinct('antique_id');
   const destroyImages = antique_ids.map(ids => {
-    return imageService.destroyDependencyById(ids.antique_id);
+    return AntiqueImageService.destroyDependencyById(ids.antique_id);
   });
   return Promise.all(destroyImages);
 };

@@ -1,26 +1,35 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import ApiMapper from '../../components/ApiMapper';
-import PageTransition from '../../Framer/PageTransition';
-import Antique from './Antique';
 import {
   AntiqueRows,
   LikesHeader,
   Page
 } from './styles';
+import {
+  useContext,
+  useEffect,
+  useState
+} from 'react';
 
+import Antique from './Antique';
+import ApiMapper from '../../components/ApiMapper';
+import { Context } from '../../Context';
+import PageTransition from '../../Framer/PageTransition';
+import axios from 'axios';
 
 export default function Likes () {
   const [antiques, setAntiques] = useState([]);
+  const { currentUser } = useContext(Context);
 
   useEffect(() => {
+    if (!currentUser.id) {
+      return;
+    }
     axios
       .get('/likes', { withCredentials: true })
       .then(res => {
         setAntiques([...res.data]);
       })
       .catch(err => console.log(err));
-  }, []);
+  }, [currentUser]);
 
   return (
     <PageTransition>

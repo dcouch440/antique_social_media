@@ -76,13 +76,6 @@ exports.up = async knex => {
           .onUpdate('CASCADE')
           .notNullable();
         table
-          .string('username')
-          .references('username')
-          .inTable('user')
-          .onDelete('CASCADE')
-          .onUpdate('CASCADE')
-          .notNullable();
-        table
           .unique(['antique_id', 'user_id']);
         table
           .timestamps(true, true);

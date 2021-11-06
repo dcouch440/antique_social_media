@@ -1,12 +1,3 @@
-import { PropTypes } from 'prop-types';
-import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import Liked from '../../../components/Liked';
-import AntiqueImages from '../AntiqueImages';
-import AntiqueLikes from '../AntiqueLikes';
-import DeleteAntique from '../DeleteAntique';
-import UploadIfCurrentUser from '../UploadIfCurrentUser';
-import User from '../User';
 import {
   About,
   Blog,
@@ -18,6 +9,15 @@ import {
   Tag
 } from './styles';
 
+import AntiqueImages from '../AntiqueImages';
+import AntiqueLikes from '../AntiqueLikes';
+import DeleteAntique from '../DeleteAntique';
+import Liked from '../../../components/Liked';
+import { PropTypes } from 'prop-types';
+import UploadIfCurrentUser from '../UploadIfCurrentUser';
+import User from '../User';
+import { useHistory } from 'react-router-dom';
+import { useState } from 'react';
 
 export default function AntiqueInfo ({ antique, setRoom }) {
   const history = useHistory();
@@ -45,7 +45,7 @@ export default function AntiqueInfo ({ antique, setRoom }) {
           />
         </LikedComponentContainer>
         <AntiqueImages
-          antiqueId={id}
+          images={antique.images}
           newUpload={newUpload}
           setNewUpload={setNewUpload}
         />

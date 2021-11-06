@@ -7,9 +7,7 @@ class AntiqueController {
       const { query } = req;
       const antiques = await antiqueService
         .limitOffset(query);
-      const serializedAntiques = await antiqueSerializer
-        .serializeAllWithRelations({ antiques });
-      res.status(200).json(serializedAntiques);
+      res.status(200).json(antiques);
     } catch (err) {
       next(err);
     }
@@ -53,25 +51,13 @@ class AntiqueController {
       next(err);
     }
   }
-  async queryCategory (req, res, next) {
-    try {
-      const { category } = req.params;
-      const response = await antiqueService
-        .queryCategory({ category });
-      res.status(200).json(response);
-    } catch (err) {
-      next(err);
-    }
-  }
   async usersAntiques (req, res, next) {
     try {
       const { user_id } = req.params;
       const { query } = req;
       const antiques = await antiqueService
         .getAntiquesByUserId({ user_id, query });
-      const antiquesWithImages = await antiqueSerializer
-        .serializeAllWithRelations({ antiques });
-      res.status(200).json(antiquesWithImages);
+      res.status(200).json(antiques);
     } catch (err) {
       next(err);
     }

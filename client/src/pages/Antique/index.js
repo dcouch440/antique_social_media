@@ -1,18 +1,18 @@
-import axios from 'axios';
-import PropTypes from 'prop-types';
 import {
   useEffect,
   useRef,
   useState
 } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
+
+import AntiqueInfo from './AntiqueInfo';
 import GoBackButton from '../../components/GoBackButton';
 import Loading from '../../Framer/LoadingModules/Loading';
-import PageTransition from '../../Framer/PageTransition';
-import useMinimumLoadingTime from '../../hooks/useMinimumLoadingTime';
-import AntiqueInfo from './AntiqueInfo';
 import { Page } from './styles';
-
+import PageTransition from '../../Framer/PageTransition';
+import PropTypes from 'prop-types';
+import axios from 'axios';
+import useMinimumLoadingTime from '../../hooks/useMinimumLoadingTime';
 
 export default function Antique ({ setRoomId }) {
   const { id } = useParams();

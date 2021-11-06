@@ -1,9 +1,8 @@
+import { Antique } from './styles';
 import PropTypes from "prop-types";
-import { useHistory } from 'react-router';
 import attachImageIfNotPresent from "../../../utils/attachImageIfNotPresent";
 import imageSizer from "../../../utils/imageSizer";
-import { Antique } from './styles';
-
+import { useHistory } from 'react-router';
 
 export default function Antiques ({ antiques }) {
   const history = useHistory();

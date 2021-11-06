@@ -25,6 +25,7 @@ export default function Antique ({ antique }) {
 
   return (
     <AntiqueContainer
+      data-testid='antiques-page-component'
       dimensions={{
         height,
         width

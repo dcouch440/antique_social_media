@@ -1,5 +1,5 @@
 const addToTable = require('./utils/add-to-table');
-const imageService = require('../../src/image/image.service');
+const AntiqueImageService = require('../../src/image/image.service');
 const devImageArray = require('./utils/mapped-image-data');
 const testImageArray = require('./utils/test-mapped-image-data');
 const { randomUser, randomAntique, staticUser } = require('../../lib/seed-data');
@@ -45,7 +45,7 @@ exports.seed = async knex => {
             const antique_id = await addToTable({
               table: 'antique', obj: randomAntique(user_id)
             });
-            await imageService.upload({
+            await AntiqueImageService.upload({
               file64: antiqueImage,
               antique_id
             });
