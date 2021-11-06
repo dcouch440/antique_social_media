@@ -12,6 +12,7 @@ export default function AntiqueImages ({ images, newUpload, setNewUpload }) {
     />
   );
 }
+
 AntiqueImages.propTypes = {
   images: PropTypes.array,
   newUpload: PropTypes.bool,
