@@ -12,6 +12,7 @@ const GlobalStyles = createGlobalStyle`
 	}
 	html, body {
     height: calc(100vh - 60px);
+    min-height: 640px;
     width: 100%;
     margin: 0;
     background-color: antiquewhite;

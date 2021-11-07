@@ -1,5 +1,6 @@
-import styled from 'styled-components';
 import * as include from '../../../styled-mixens';
+
+import styled from 'styled-components';
 
 export const Online = styled.div`
   position: absolute;
@@ -13,15 +14,11 @@ export const Online = styled.div`
 export const AboutMe = styled.div`
   font-family: monospace;
   color: white;
-  @media(max-width: 1000px) {
-    color: black
-  }
   ${include.textInteraction}
 `;
 
 export const AvatarContainer = styled.div`
   position: relative;
-  margin: 20px 0;
   display: flex;
   align-items: flex-end;
   flex: 1;
