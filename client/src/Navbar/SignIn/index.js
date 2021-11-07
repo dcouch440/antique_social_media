@@ -1,15 +1,15 @@
-import axios from 'axios';
-import PropTypes from 'prop-types';
-import { useContext, useState } from 'react';
-import { Context } from '../../Context';
-import useLoginErrors from '../../hooks/useLoginErrors';
-import sign from '../../utils/sign';
 import {
   DropDownButton,
   DropDownButtonContainer,
   StyledInput
 } from '../styled';
-import { SignedIn, SignIngTitle } from './styles';
+import { SignIngTitle, SignedIn } from './styles';
+import { useContext, useState } from 'react';
+
+import { Context } from '../../Context';
+import PropTypes from 'prop-types';
+import axios from 'axios';
+import useLoginErrors from '../../hooks/useLoginErrors';
 
 export default function SignIn ({ toggle }) {
   const { setCurrentUser } = useContext(Context);
@@ -27,12 +27,11 @@ export default function SignIn ({ toggle }) {
   const onSubmit = async e => {
     e.preventDefault();
     e.stopPropagation();
-    const token = sign({ email, password });
 
     try {
       await axios
         .post('/users/signin',
-          { token },
+          { email, password },
           { withCredentials: true }
         )
         .then(res => {

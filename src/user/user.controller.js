@@ -6,8 +6,7 @@ const cookieExpiration = require('../../constant/cookie-time');
 class UserController {
   async signIn (req, res, next) {
     try {
-      const reqToken = req.body.token;
-      const { token, payload } = await userService.signIn({ reqToken });
+      const { token, payload } = await userService.signIn(req.body);
 
       res.cookie('token', token, {
         sameSite: 'strict',
@@ -24,8 +23,7 @@ class UserController {
   }
   async signUp (req, res, next) {
     try {
-      const reqToken = req.body.token;
-      const { payload, token } = await userService.signUp({ reqToken });
+      const { token, payload } = await userService.signUp(req.body);
 
       res.cookie('token', token, {
         sameSite: 'strict',

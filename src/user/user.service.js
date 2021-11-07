@@ -4,14 +4,12 @@ const { hashPassword , compareHash } = require('../auth/auth.bcrypt');
 const { newUserParams, userIdParams } = require('./user.params');
 const attachAvatarIfNotPresent = require('../../lib/attachAvatarIfNotPresent');
 const userSerializer = require('./user.serializer');
-const deSign = require('../../lib/de-sign');
 const { UNAUTHORIZED } = require('../../constant/exceptions');
 const ServiceError = require('../../lib/service-error');
 
 class UserService {
-  async signIn ({ reqToken }) {
+  async signIn ({ email, password }) {
     try {
-      const { email, password } = deSign(reqToken);
       const user = await userDAO.findByEmail(email);
 
       if (!user) {
@@ -40,9 +38,8 @@ class UserService {
       throw new ServiceError(err);
     }
   }
-  async signUp ({ reqToken }) {
+  async signUp ({ username, password, email }) {
     try {
-      const { username, password, email } = deSign(reqToken);
 
       const user = await userDAO.findByEmail(email);
 
@@ -57,7 +54,12 @@ class UserService {
       const createdUser = await userDAO.create(hashedPasswordUser);
       delete createdUser.password_digest;
 
-      const payload = { id: createdUser.id, username, email, admin: false };
+      const payload = {
+        id: createdUser.id,
+        username, email,
+        admin: false
+      };
+
       const token = await jwt.sign(payload);
 
       return { payload, token };
