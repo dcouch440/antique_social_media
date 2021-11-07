@@ -1,8 +1,9 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
+
+import { LOGIN } from "../../constant";
+import axios from "axios";
 import { io } from "socket.io-client";
 import { urls } from "../../config";
-import { LOGIN } from "../../constant";
 
 export default function useSession () {
   const [currentUser, setCurrentUser] = useState({
@@ -29,7 +30,7 @@ export default function useSession () {
   useEffect(() => {
     if (!currentUser.id) { return; }
     const { id, username } = currentUser;
-    const socket = io(urls.statusSocket.localHost, { withCredentials: true });
+    const socket = io(urls.statusSocket.url, { withCredentials: true });
 
     socket.emit(LOGIN, { id, username });
 

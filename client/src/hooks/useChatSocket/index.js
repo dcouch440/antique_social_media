@@ -1,19 +1,20 @@
 import {
-  useContext,
-  useEffect,
-  useRef,
-  useState
-} from 'react';
-import { io } from 'socket.io-client';
-import { urls } from '../../config';
-import {
   DISCONNECTION,
   JOIN_ROOM,
   MESSAGE,
   SHOW_ROOM_USER_COUNT,
   USER_JOINED
 } from '../../constant';
+import {
+  useContext,
+  useEffect,
+  useRef,
+  useState
+} from 'react';
+
 import { Context } from '../../Context';
+import { io } from 'socket.io-client';
+import { urls } from '../../config';
 
 /**
  * @description used to make a connection to a chat socket server.
@@ -37,7 +38,7 @@ export default function useChatSocket (roomId) {
     if (!currentUser.username) { return; }
 
     // connection
-    socketRef.current = io(urls.chatSocket.localHost, {
+    socketRef.current = io(urls.chatSocket.url, {
       withCredentials: true
     });
 
