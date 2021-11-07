@@ -6,7 +6,6 @@ import {
 import { useHistory, useParams } from 'react-router-dom';
 
 import AntiqueInfo from './AntiqueInfo';
-import GoBackButton from '../../components/GoBackButton';
 import Loading from '../../Framer/LoadingModules/Loading';
 import { Page } from './styles';
 import PageTransition from '../../Framer/PageTransition';
