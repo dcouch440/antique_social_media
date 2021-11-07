@@ -11,7 +11,8 @@ function handleError (error, _, res, next) {
     return next();
   }
 
-  process.env.NODE_ENV === 'development' && console.error(error);
+  // process.env.NODE_ENV === 'development' && console.error(error);
+  console.error(error);
 
   const status = {
     [UNAUTHORIZED]: 401,

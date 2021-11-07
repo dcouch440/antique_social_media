@@ -1,18 +1,18 @@
-import axios from 'axios';
-import { motion } from 'framer-motion';
-import PropTypes from 'prop-types';
 import React, {
   useContext,
   useEffect,
   useRef,
   useState
 } from 'react';
+
+import { Check } from './styles';
 import { Context } from '../../Context';
+import PropTypes from 'prop-types';
+import axios from 'axios';
 import dislikeImage from '../../img/assets/waxSealGrey50.png';
 import likeImage from '../../img/assets/waxSealImg.png';
-import { Check } from './styles';
 import likedVariants from './variants';
-
+import { motion } from 'framer-motion';
 
 export default function Liked ({ antiqueId, onLikesChange }) {
   /*
@@ -56,7 +56,6 @@ export default function Liked ({ antiqueId, onLikesChange }) {
 
     if (loading.current) { return; }
     loading.current = true;
-
     try {
       !liked && await axios
         .post(
