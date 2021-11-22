@@ -1,8 +1,17 @@
 const { cloudinary } = require('../config/cloudinary.config');
 const antiqueFolderFormat = require('../../constant/image-file');
+const Image = require('./antiqueImage.model');
 
-class ImageDAO {
-  storeUrl ({ file64, antique_id }) {
+class AntiqueImageDAO {
+  saveUrl ({ secure_url, width, height, antique_id }) {
+    return Image.query().insert({
+      antique_id,
+      secure_url,
+      width,
+      height,
+    });
+  }
+  uploadToCloud ({ file64, antique_id }) {
     return cloudinary.uploader.upload( file64 , {
       upload_preset: 'ml_default',
       folder: antiqueFolderFormat(antique_id)
@@ -24,12 +33,6 @@ class ImageDAO {
       console.error(err);
     }
   }
-  findByIdLimitOne (antique_id) {
-    return cloudinary.search
-      .expression(`folder:${antiqueFolderFormat(antique_id)}`)
-      .max_results(1)
-      .execute();
-  }
 }
 
-module.exports = new ImageDAO();
+module.exports = new AntiqueImageDAO();

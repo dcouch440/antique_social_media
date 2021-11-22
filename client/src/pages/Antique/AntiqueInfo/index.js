@@ -47,7 +47,7 @@ export default function AntiqueInfo ({ antique, setRoom }) {
           />
         </LikedComponentContainer>
         <AntiqueImages
-          antiqueId={id}
+          images={antique.images}
           newUpload={newUpload}
           setNewUpload={setNewUpload}
         />

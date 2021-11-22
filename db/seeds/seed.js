@@ -1,9 +1,9 @@
 const addToTable = require('./utils/add-to-table');
-const imageService = require('../../src/image/image.service');
+const AntiqueImageService = require('../../src/antiqueImage/antiqueImage.service');
 const devImageArray = require('./utils/mapped-image-data');
 const testImageArray = require('./utils/test-mapped-image-data');
 const { randomUser, randomAntique, staticUser } = require('../../lib/seed-data');
-const { cleanupAvatarImages, cleanupAntiqueImages } = require('./utils/cleanup-cloudinary-images');
+const { cleanupAntiqueImages } = require('./utils/cleanup-cloudinary-images');
 const avatarService = require('../../src/avatar/avatar.service');
 const { hashPassword } = require('../../src/auth/auth.bcrypt');
 const truncateTables = require('./utils/truncate-tables');
@@ -14,7 +14,6 @@ exports.seed = async knex => {
   try {
     // cleanup
     await cleanupAntiqueImages(knex);
-    await cleanupAvatarImages(knex);
     await truncateTables(knex);
     const ENV = process.env.NODE_ENV;
     const imageArray = ENV === 'test' ? testImageArray : devImageArray;
@@ -45,16 +44,15 @@ exports.seed = async knex => {
             const antique_id = await addToTable({
               table: 'antique', obj: randomAntique(user_id)
             });
-            await imageService.upload({
+            await AntiqueImageService.upload({
               file64: antiqueImage,
               antique_id
             });
             await knex('like').insert({
-              user_id, antique_id, username: randomUserHash.username
+              user_id, antique_id,
             });
             await knex('like').insert({
               user_id: static_user_id, antique_id,
-              username: staticUserHash.username
             });
 
           } catch (err) {

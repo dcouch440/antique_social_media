@@ -41,7 +41,7 @@ class LikeService {
     try {
       const likes = (await likeDAO.likes(user_id))
         .map(data => data.antique_id);
-      return AntiqueDAO.findManyById(likes);
+      return AntiqueDAO.findManyByIds(likes);
     } catch (err) {
       throw new ServiceError(err);
     }

@@ -37,7 +37,10 @@ export default function AntiquesPage ({ route }) {
           setSlider={setSlider}
         />
         <Header>
-          <HeaderImage src={bottleTyeDye} />
+          <HeaderImage
+            data-testid='wax-seal-image'
+            src={bottleTyeDye}
+          />
           { getHeader(history) }
         </Header>
         <GridContainer>

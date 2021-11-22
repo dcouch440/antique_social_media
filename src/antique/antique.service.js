@@ -2,7 +2,7 @@ const antiqueDAO = require('./antique.doa');
 const { limitOffset } = require('./antique.constant');
 const { antiqueParams, queryParams } = require('./antique.params');
 const { objLength, parseObjectInts } = require('../../lib/utils');
-const imageService = require('../image/image.service');
+const AntiqueImageService = require('../antiqueImage/antiqueImage.service');
 const userDAO = require('../user/user.doa');
 const likeDAO = require('../like/like.dao');
 const userSerializer = require('../user/user.serializer');
@@ -12,12 +12,12 @@ class AntiqueService {
   all () {
     return antiqueDAO.all();
   }
-  show (id) {
+  async show (id) {
     return antiqueDAO.find(id);
   }
   async destroy (id) {
     try {
-      await imageService.destroyDependencyById(id);
+      await AntiqueImageService.destroyDependencyById(id);
       return await antiqueDAO.destroy(id);
     } catch (err) {
       throw new ServiceError(err);
@@ -28,7 +28,8 @@ class AntiqueService {
       const queries = objLength(query) === 2 ? query : limitOffset;
       const parsedQuery = parseObjectInts(queries);
       await queryParams.validate(parsedQuery, { abortEarly: false });
-      return antiqueDAO.limitedList(parsedQuery);
+      const antiques = await antiqueDAO.limitedList(parsedQuery);
+      return this.grabFirstImage(antiques);
     } catch (err) {
       throw new ServiceError(err);
     }
@@ -39,7 +40,7 @@ class AntiqueService {
       await antiqueParams.validate(parsedParams, { abortEarly: false });
       const antique = await antiqueDAO.create(parsedParams);
       try {
-        await imageService.upload({ file64, antique_id: antique.id });
+        await AntiqueImageService.upload({ file64, antique_id: antique.id });
       } catch (err) {
         await this.destroy(antique.id);
         throw err;
@@ -49,19 +50,10 @@ class AntiqueService {
       throw new ServiceError(err);
     }
   }
-  async queryCategory ({ category }) {
-    return antiqueDAO.showUniques({ category });
-  }
-  async findMany (id) {
+  async findManyByIds (ids) {
     try {
-      return antiqueDAO.findManyById(id);
-    } catch (err) {
-      throw new ServiceError(err);
-    }
-  }
-  async getUserAntiques (user_id) {
-    try {
-      return antiqueDAO.findAntiquesByUserId(user_id);
+      const antiques = await antiqueDAO.findManyByIds(ids);
+      return this.grabFirstImage(antiques);
     } catch (err) {
       throw new ServiceError(err);
     }
@@ -88,10 +80,17 @@ class AntiqueService {
       const queries = objLength(query) === 2 ? query : limitOffset;
       const parsedQuery = parseObjectInts(queries);
       await queryParams.validate(parsedQuery, { abortEarly: false });
-      return antiqueDAO.findByUserId({ user_id, ...parsedQuery });
+      const antiques = await antiqueDAO.findByUserId({ user_id, ...parsedQuery });
+      return this.grabFirstImage(antiques);
     } catch (err) {
       throw new ServiceError(err);
     }
+  }
+  grabFirstImage (antiques) {
+    return antiques.map(antique => ({
+      ...antique,
+      images: [antique.images[0]]
+    }));
   }
 }
 

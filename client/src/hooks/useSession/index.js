@@ -17,8 +17,8 @@ export default function useSession () {
   useEffect(() => {
     axios
       .get('/users/session', { withCredentials: true })
-      .then(res => {
-        if (res.status === 200) { setCurrentUser(res.data); }
+      .then(({ status, data }) => {
+        if (status === 200) { setCurrentUser(data); }
       })
       .catch(err => {
         if (err.response.status === 401) { return; }
