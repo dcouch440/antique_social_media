@@ -43,3 +43,9 @@ export const OverlayText = styled.div`
     margin: 0 5px;
   }
 `;
+
+export const LikedContainer = styled.div`
+  position: absolute;
+  top: 12px;
+  right: 12px;
+`;

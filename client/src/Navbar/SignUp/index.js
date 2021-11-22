@@ -1,16 +1,15 @@
-import axios from 'axios';
-import PropTypes from 'prop-types';
-import { useContext, useState } from 'react';
-import { Context } from '../../Context';
-import useLoginErrors from '../../hooks/useLoginErrors';
-import sign from '../../utils/sign';
 import {
   DropDownButton,
   DropDownButtonContainer,
   StyledInput
 } from '../styled';
 import { Form, SignUpTitle } from './styles';
+import { useContext, useState } from 'react';
 
+import { Context } from '../../Context';
+import PropTypes from 'prop-types';
+import axios from 'axios';
+import useLoginErrors from '../../hooks/useLoginErrors';
 
 export default function SignUp ({ toggle }) {
   const { setCurrentUser } = useContext(Context);
@@ -46,10 +45,9 @@ export default function SignUp ({ toggle }) {
       return;
     }
 
-    const token = sign({ username, email, password });
     try {
       await axios.post('/users/signup',
-        { token },
+        { username, email, password },
         { withCredentials: true }
       )
         .then(res => {

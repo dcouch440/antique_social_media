@@ -13,7 +13,6 @@
     "react-app/jest"
   ],
   "plugins": [
-    "import-newlines"
   ],
   "env": {
     "node": true,
@@ -21,11 +20,6 @@
   },
   "root": true,
   "rules": {
-    "import-newlines/enforce": ["error", {
-      "items": 2,
-      "max-len": 100,
-      "semi": true
-    }],
     "react/jsx-sort-props": ["error", {
       "callbacksLast": true,
       "shorthandFirst": true,

@@ -1,17 +1,19 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-import { useHistory } from 'react-router-dom';
-import RenderSmoothImage from 'render-smooth-image-react';
 import 'render-smooth-image-react/build/style.css';
-import Liked from '../../../components/Liked';
-import attachImageIfNotPresent from '../../../utils/attachImageIfNotPresent';
-import imageSizer from '../../../utils/imageSizer';
+
 import {
   AntiqueContainer,
   AntiqueOverlay,
+  LikedContainer,
   OverlayText
 } from './styles';
 
+import Liked from '../../../components/Liked';
+import PropTypes from 'prop-types';
+import React from 'react';
+import RenderSmoothImage from 'render-smooth-image-react';
+import attachImageIfNotPresent from '../../../utils/attachImageIfNotPresent';
+import imageSizer from '../../../utils/imageSizer';
+import { useHistory } from 'react-router-dom';
 
 export default function Antique ({ antique }) {
   const history = useHistory();
@@ -43,7 +45,9 @@ export default function Antique ({ antique }) {
           <div>{antique.name}</div>
           <div>{antique.year}</div>
         </OverlayText>
-        <Liked antiqueId={antique.id} />
+        <LikedContainer>
+          <Liked antiqueId={antique.id} />
+        </LikedContainer>
       </AntiqueOverlay>
     </AntiqueContainer>
   );

@@ -5,8 +5,8 @@ export const GoBackButton = styled.button`
   background-color: transparent;
   border: none;
   cursor: pointer;
+  align-self: end;
   color: white;
-  position: absolute;
   top: 5px;
   right: 10px;
 `;

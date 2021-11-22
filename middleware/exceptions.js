@@ -13,6 +13,7 @@ function handleError (error, _, res, next) {
 
   process.env.NODE_ENV === 'development' && console.error(error);
 
+
   const status = {
     [UNAUTHORIZED]: 401,
     [UNIQUE_VIOLATION]: 409,

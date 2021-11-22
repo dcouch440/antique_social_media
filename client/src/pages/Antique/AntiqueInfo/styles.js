@@ -1,15 +1,17 @@
-import styled from 'styled-components';
 import * as include from '../../../styled-mixens';
+
+import styled from 'styled-components';
 
 export const Page = styled.div`
   position: inherit;
   display: grid;
-  height: inherit;
+  min-height: 100%;
   grid-auto-rows: 50%;
   width: 100%;
   grid-template-columns: repeat(2,1fr);
   @media (max-width: 1000px) {
     grid-template-columns: repeat(1,1fr);
+    grid-auto-rows: unset;
   }
 `;
 
@@ -18,9 +20,10 @@ export const About = styled.div`
   box-shadow: inset 0 0 4px #ffffff0d;
   background-color: #0088ff03;
   color: black;
-  height: 100%;
+  height: 100vh;
+  min-height: 100%;
   width: 100%;
-  padding: 15px;
+  padding: 30px;
   grid-row: span 2;
   display: flex;
   flex-direction: column;
@@ -51,42 +54,15 @@ export const Tag = styled.span`
   font: message-box;
 `;
 
-export const StartChatting = styled.button`
-  z-index: 9999;
-  position: absolute;
-  top: 50px;
-  right: 10px;
-  cursor: pointer;
-  background-color: transparent;
-  border-radius: 7px;
-  border: none;
-  font-family: 'Pacifico', cursive;
-  color: black;
-  font-weight: bold;
-  color: white;
-  transition: .2s;
-  @media (max-width: 1500px) {
-    top: 2%;
-    right: 10%
-  }
-  @media (max-width: 1000px) {
-    top: 10%;
-    right: 2%;
-    background-color: #00000090;
-    border: 1px solid white;
-    border-radius: 15px;
-    padding: 7px;
-  }
-  :hover {
-    background-color: white;
-    color: black;
-  }
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
 `;
 
-export const CollectionsButton = styled.button`
+export const RouteButton = styled.button`
   all: unset;
   z-index: 5;
-  position: absolute;
   cursor: pointer;
   ${include.cursiveFont}
   border: 1px solid white;
@@ -106,6 +82,8 @@ export const CollectionsButton = styled.button`
     background-color: #00000090;
     border: 1px solid white;
     border-radius: 15px;
+    font-size: 12px;
+    padding: 7px;
   }
   :hover {
     background-color: white;
@@ -117,18 +95,14 @@ export const SlideShowSide = styled.div`
   position: relative;
   overflow: hidden;
   grid-row: span 2;
-  height: 100%;
+  height: 100vh;
   width: 100%;
 `;
 
 export const LikedComponentContainer = styled.div`
   position: absolute;
-  top: 5px;
-  right: 5px;
-  height: 50px;
-  color: red;
-  @media (max-width: 1000px) {
-    right: 90%;
-  }
+  z-index: 2;
+  right: 15px;
+  top: 15px;
 `;
 
