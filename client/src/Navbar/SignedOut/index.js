@@ -27,7 +27,7 @@ export default function SingedOut ({ handleShowLogin }) {
   return (
     <DropdownGrid>
       <DropdownUsername><span>Please Sign In</span></DropdownUsername>
-      <DropdownHubLink onClick={e => handleClick(e, '/antiques')}><span >antiques</span></DropdownHubLink>
+      <DropdownHubLink onClick={e => handleClick(e, '/antiques')}><span>antiques</span></DropdownHubLink>
       <DropdownHubLink onClick={e => handleClick(e, '/rooms')}><span>rooms</span></DropdownHubLink>
       <DropdownHubLink onClick={e => handleClick(e, '/chat')}><span>global chat</span></DropdownHubLink>
       <DropdownBottomLink
