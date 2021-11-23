@@ -1,13 +1,12 @@
 import PropTypes from "prop-types";
-import { useContext } from "react";
+import { SessionContext } from "../../../context/Session";
 import UploadModal from "../../../components/UploadModal";
-import { Context } from "../../../Context";
-import checkUser from "../../../utils/checkUser";
 import { UploadModalButton } from './styles';
-
+import checkUser from "../../../utils/checkUser";
+import { useContext } from "react";
 
 export default function UploadIfCurrentUser ({ show, antique, handleModalShowChange, setNewUpload }) {
-  const { currentUser } = useContext(Context);
+  const { currentUser } = useContext(SessionContext);
 
   const hideIfModal = () => !show&& (
     <UploadModalButton

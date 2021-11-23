@@ -1,13 +1,3 @@
-import axios from 'axios';
-import React, {
-  useContext,
-  useEffect,
-  useState
-} from 'react';
-import { useHistory } from 'react-router';
-import { Context } from '../../Context';
-import PageTransition from '../../Framer/PageTransition';
-import Form from './Form';
 import {
   ErrorMessage,
   FormContainer,
@@ -18,7 +8,17 @@ import {
   Page,
   PreviewImage
 } from './styles';
+import React, {
+  useContext,
+  useEffect,
+  useState
+} from 'react';
 
+import Form from './Form';
+import PageTransition from '../../Framer/PageTransition';
+import { SessionContext } from '../../context/Session';
+import axios from 'axios';
+import { useHistory } from 'react-router';
 
 export default function Post () {
   const [fileInputState, setFileInputState] = useState('');
@@ -26,7 +26,7 @@ export default function Post () {
   const [selectedFile, setSelectedFile] = useState('');
   const [{ uploading, message }, setMessage] = useState({ uploading: false, message: '' });
   const history = useHistory();
-  const { currentUser } = useContext(Context);
+  const { currentUser } = useContext(SessionContext);
 
   useEffect(() => {
     if (!uploading && message.length) {

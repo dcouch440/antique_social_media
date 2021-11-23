@@ -1,26 +1,26 @@
-import { AnimatePresence } from 'framer-motion';
-import { useContext, useState } from 'react';
 import {
   Redirect,
   Route,
   Switch,
   useLocation
 } from 'react-router';
-import { Context } from './Context';
-import GlobalStyles from './GlobalStyles';
-import Navbar from './Navbar';
+
+import { AnimatePresence } from 'framer-motion';
 import Antique from './pages/Antique';
 import Antiques from './pages/Antiques';
 import Chat from './pages/Chat';
+import GlobalStyles from './GlobalStyles';
 import Likes from './pages/Likes';
+import Navbar from './Navbar';
 import Post from './pages/Post';
 import Posts from './pages/Posts';
 import Rooms from './pages/Rooms';
+import { UIContext } from './context/UI';
+import { useContext } from 'react';
 
 export default function App () {
   const location = useLocation();
-  const [roomId, setRoomId] = useState('GLOBAL_CHAT');
-  const { scrollCSSValue } = useContext(Context);
+  const { scrollCSSValue } = useContext(UIContext);
 
   return (
     <>
@@ -59,7 +59,7 @@ export default function App () {
             exact
             path="/antiques/:id"
           >
-            <Antique setRoomId={setRoomId} />
+            <Antique />
           </Route>
           <Route
             exact
@@ -71,13 +71,13 @@ export default function App () {
             exact
             path="/chat"
           >
-            <Chat roomId={roomId} />
+            <Chat />
           </Route>
           <Route
             exact
             path="/rooms"
           >
-            <Rooms setRoomId={setRoomId} />
+            <Rooms />
           </Route>
           <Route
             exact

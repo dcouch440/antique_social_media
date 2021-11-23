@@ -1,26 +1,28 @@
-import PropTypes from 'prop-types';
-import {
-  useContext,
-  useEffect,
-  useState
-} from 'react';
-import { useHistory } from 'react-router';
-import { SHOW_ROOM_USER_COUNT } from '../../constant';
-import { Context } from '../../Context';
-import PageTransition from '../../Framer/PageTransition';
-import useChatSocket from '../../hooks/useChatSocket';
-import StaticRooms from './StaticRooms';
 import {
   RoomHeaders,
   RoomsContainer,
   Toggle
 } from './styles';
+import {
+  useContext,
+  useEffect,
+  useState
+} from 'react';
+
+import PageTransition from '../../Framer/PageTransition';
+import PropTypes from 'prop-types';
+import { RoomContext } from '../../context/Room';
+import { SHOW_ROOM_USER_COUNT } from '../../constant';
+import { SessionContext } from '../../context/Session';
+import StaticRooms from './StaticRooms';
 import UserRooms from './UserRooms';
+import useChatSocket from '../../hooks/useChatSocket';
+import { useHistory } from 'react-router';
 
-
-export default function Rooms ({ setRoomId }) {
+export default function Rooms () {
   const history = useHistory();
-  const { currentUser } = useContext(Context);
+  const { currentUser } = useContext(SessionContext);
+  const { setRoomId } = useContext(RoomContext);
   const { socketRef, roomData } = useChatSocket();
   const [showUserRooms, setShowUserRooms] = useState(false);
   const { activeUserRooms, activeRooms } = roomData;

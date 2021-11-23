@@ -1,14 +1,14 @@
-import axios from "axios";
-import PropTypes from "prop-types";
 import { useContext, useRef } from "react";
-import { useHistory } from "react-router";
-import { Context } from "../../../Context";
-import checkUser from "../../../utils/checkUser";
-import { DeleteButton } from './styles';
 
+import { DeleteButton } from './styles';
+import PropTypes from "prop-types";
+import { SessionContext } from "../../../context/Session";
+import axios from "axios";
+import checkUser from "../../../utils/checkUser";
+import { useHistory } from "react-router";
 
 export default function DeleteAntique ({ antique }) {
-  const { currentUser } = useContext(Context);
+  const { currentUser } = useContext(SessionContext);
   const history = useHistory();
   const requestActive = useRef(false);
 

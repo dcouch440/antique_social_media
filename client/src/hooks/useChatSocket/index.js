@@ -12,7 +12,8 @@ import {
   useState
 } from 'react';
 
-import { Context } from '../../Context';
+import { RoomContext } from '../../context/Room';
+import { SessionContext } from '../../context/Session';
 import { io } from 'socket.io-client';
 import { urls } from '../../config';
 
@@ -25,10 +26,11 @@ import { urls } from '../../config';
  * @returns {Object} roomData - {activeUserRooms: the rooms that the user owns that are occupied, activeRooms: static rooms and users}
  */
 
-export default function useChatSocket (roomId) {
+export default function useChatSocket () {
   const [messages, setMessages] = useState([]);
   const [users, setUsers] = useState([]);
-  const { currentUser } = useContext(Context);
+  const { currentUser } = useContext(SessionContext);
+  const { roomId } = useContext(RoomContext);
   const socketRef = useRef();
   const [roomData, setRoomData] = useState({
     activeUserRooms: [], activeRooms: []

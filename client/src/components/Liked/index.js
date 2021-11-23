@@ -6,8 +6,8 @@ import React, {
 } from 'react';
 
 import { Check } from './styles';
-import { Context } from '../../Context';
 import PropTypes from 'prop-types';
+import { SessionContext } from '../../context/Session';
 import axios from 'axios';
 import dislikeImage from '../../img/assets/waxSealGrey50.png';
 import likeImage from '../../img/assets/waxSealImg.png';
@@ -15,23 +15,8 @@ import likedVariants from './variants';
 import { motion } from 'framer-motion';
 
 export default function Liked ({ antiqueId, onLikesChange }) {
-  /*
-    Problem:
-      Likes and dislikes did not reflect the new status so individual-
-      states where added to reflect the new status of the likes.
-
-    FIX:
-      return graph fetched likes as before.
-      Each Like will still have access to like/unlike toggle but,
-      After a request is made it will update the local like/disliked value-
-      to reflect the new status of the like.
-
-      on login a for-in search for likes can be made and the existing data can be added or merged to the array of images.
-
-      a separate request can be made for users logged in and not logged in?
-  */
   const [liked, setLiked] = useState(false);
-  const { currentUser } = useContext(Context);
+  const { currentUser } = useContext(SessionContext);
   const like = likeImage;
   const display = liked ? like : dislikeImage;
   const loading = useRef(false);

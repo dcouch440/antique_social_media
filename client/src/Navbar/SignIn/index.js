@@ -1,33 +1,17 @@
-import {
-  DropDownButton,
-  DropDownButtonContainer,
-  StyledInput
-} from '../styled';
-import { SignIngTitle, SignedIn } from './styles';
 import { useContext, useState } from 'react';
 
-import { Context } from '../../Context';
+import AuthorizeForm from '../AuthorizeForm';
 import PropTypes from 'prop-types';
+import { SessionContext } from '../../context/Session';
 import axios from 'axios';
 import useLoginErrors from '../../hooks/useLoginErrors';
 
-export default function SignIn ({ toggle }) {
-  const { setCurrentUser } = useContext(Context);
-  const [{ password, email }, setCredentials] = useState({ password: '', email: '' });
+export default function SignIn ({ toggle, authType }) {
+  const { setCurrentUser } = useContext(SessionContext);
   const [loginHasError, setLoginHasError] = useState(false);
   const { setErrors, showErrors } = useLoginErrors();
 
-  const handleChange = e => {
-    const { name, value } = e.target;
-    setCredentials(Object.assign({ password, email },
-      { [name]:value }
-    ));
-  };
-
-  const onSubmit = async e => {
-    e.preventDefault();
-    e.stopPropagation();
-
+  const handleSubmit = async ({ email, password }) => {
     try {
       await axios
         .post('/users/signin',
@@ -46,39 +30,17 @@ export default function SignIn ({ toggle }) {
   };
 
   return (
-    <SignedIn>
-      <SignIngTitle>{loginHasError ? 'Something went wrong.. try again' : 'Please Sign In'}</SignIngTitle>
-      {showErrors()}
-      <form onSubmit={onSubmit}>
-        <StyledInput
-          autoComplete='email'
-          name='email'
-          placeholder='Email'
-          value={email}
-          onChange={handleChange}
-        />
-        <StyledInput
-          autoComplete='current-password'
-          name='password'
-          placeholder='password'
-          type='password'
-          value={password}
-          onChange={handleChange}
-        />
-        <DropDownButtonContainer>
-          <DropDownButton
-            type='button'
-            onClick={toggle}
-          >
-            Sign Up
-          </DropDownButton>
-          <DropDownButton type='submit'>Sign In</DropDownButton>
-        </DropDownButtonContainer>
-      </form>
-    </SignedIn>
+    <AuthorizeForm
+      authType={authType}
+      errors={showErrors}
+      formTitle={loginHasError ? 'Something went wrong.. try again' : 'Please Sign In'}
+      toggle={toggle}
+      onSubmit={handleSubmit}
+    />
   );
 }
 
 SignIn.propTypes = {
+  authType: PropTypes.bool,
   toggle: PropTypes.func
 };

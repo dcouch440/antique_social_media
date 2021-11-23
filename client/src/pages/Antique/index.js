@@ -9,15 +9,17 @@ import AntiqueInfo from './AntiqueInfo';
 import Loading from '../../Framer/LoadingModules/Loading';
 import { Page } from './styles';
 import PageTransition from '../../Framer/PageTransition';
-import PropTypes from 'prop-types';
+import { RoomContext } from '../../context/Room';
 import axios from 'axios';
+import { useContext } from 'react';
 import useMinimumLoadingTime from '../../hooks/useMinimumLoadingTime';
 
-export default function Antique ({ setRoomId }) {
+export default function Antique () {
   const { id } = useParams();
   const history = useHistory();
   const [loading, isDone] = useMinimumLoadingTime();
   const [antique, setAntique] = useState({});
+  const { setRoomId }  = useContext(RoomContext);
   const directionRef = useRef('right');
 
   const handleRoomChange = () => {
@@ -53,7 +55,3 @@ export default function Antique ({ setRoomId }) {
     </PageTransition>
   );
 }
-
-Antique.propTypes = {
-  setRoomId: PropTypes.func
-};

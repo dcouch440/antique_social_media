@@ -1,33 +1,36 @@
-import React, {
-  useContext,
-  useRef,
-  useState
-} from 'react';
-import UploadModal from '../components/UploadModal';
-import { Context } from '../Context';
-import DropDown from './DropDown';
 import {
   Menu,
   Nav,
   Page
 } from './styles';
+import React, {
+  useContext,
+  useRef,
+  useState
+} from 'react';
+
+import DropDown from './DropDown';
+import { SessionContext } from '../context/Session';
+import { UIContext } from '../context/UI';
+import UploadModal from '../components/UploadModal';
+import { useCallback } from 'react';
+import { useMemo } from 'react';
 
 export default function Navbar () {
   const [menu, setMenu] = useState('none');
   const menuButton = useRef();
-  const { setScrollBehavior, currentUser } = useContext(Context);
+  const { setScrollBehavior } = useContext(UIContext);
+  const { currentUser } = useContext(SessionContext);
   const [show, setShow] = useState(false);
 
-  const handleClick = () => {
-    setMenu(prev => prev === 'none' ? 'initial' : 'none');
-  };
+  const handleClick = () => setMenu(prev => prev === 'none' ? 'initial' : 'none');
 
-  const handleModalChange = () => {
+  const handleModalChange = useCallback(() => {
     setScrollBehavior(prev => !prev);
     setShow(prev => !prev);
-  };
+  }, [setScrollBehavior]);
 
-  return (
+  return useMemo(() => (
     <>
       { show &&
         <Page>
@@ -41,11 +44,11 @@ export default function Navbar () {
       }
       <Nav>
         <Menu
-          className={'menu-button'}
+          className='menu-button'
           ref={menuButton}
           onClick={handleClick}
         >
-            ☰
+          ☰
         </Menu>
         <DropDown
           currentUser={currentUser}
@@ -54,5 +57,5 @@ export default function Navbar () {
         />
       </Nav>
     </>
-  );
+  ), [currentUser, handleModalChange, menu, show]);
 }

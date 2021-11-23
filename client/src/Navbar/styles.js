@@ -1,5 +1,7 @@
-import styled from 'styled-components';
 import * as include from '../styled-mixens';
+
+import styled from 'styled-components';
+import theme from '../theme';
 
 export const Nav = styled.div`
   position: fixed;
@@ -7,8 +9,7 @@ export const Nav = styled.div`
   height: 60px;
   z-index: 9999999;
   top: 0;
-  /* background: linear-gradient(180deg ,rgb(0 0 0 / 35%) 0%,rgb(0 0 0 / 57%) 74%); */
-  background: linear-gradient(180deg ,rgb(32 30 26) 0%,rgb(23 22 21) 74%);
+  background: ${theme.palette.black.lightGradient};
   box-shadow: 0px 0px 20px 2px #0000008f, inset 0px -1px 90px -1px #ffffff29;
   color: whitesmoke;
   display: flex;
@@ -39,7 +40,7 @@ export const Menu = styled.div`
     cursor: pointer;
     user-select: none;
     margin-right: 30px;
-    text-shadow: -1px -1px 3px rgb(255 255 255 / 20%), 1px 1px 1px rgb(0 0 0);
+    text-shadow: -1px -1px 3px ${theme.palette.white.transparent}, 1px 1px 1px ${theme.palette.black.main};
     color: #0000008c;
     font-size: 17px;
     border-radius: 5px;

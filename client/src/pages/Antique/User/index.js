@@ -1,7 +1,3 @@
-import PropTypes from 'prop-types';
-import { useContext } from 'react';
-import { Context } from '../../../Context';
-import OnlineAnimation from '../../../Framer/OnlineAnimation';
 import {
   AboutMe,
   Avatar,
@@ -9,9 +5,13 @@ import {
   Online
 } from './styles';
 
+import OnlineAnimation from '../../../Framer/OnlineAnimation';
+import PropTypes from 'prop-types';
+import { SessionContext } from '../../../context/Session';
+import { useContext } from 'react';
 
 export default function User ({ ownerInfo }) {
-  const { currentUser: { id } } = useContext(Context);
+  const { currentUser: { id } } = useContext(SessionContext);
   const isCurrentUserPostOrUserOnline = (id === ownerInfo.id && id) ? true : ownerInfo.online;
   const onlineOfflineText = isCurrentUserPostOrUserOnline ? 'Online' : 'Offline';
 

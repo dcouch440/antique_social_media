@@ -1,11 +1,10 @@
+import { DropdownBottomLink } from '../styles';
+import { SessionContext } from '../../context/Session';
 import axios from 'axios';
 import { useContext } from 'react';
-import { Context } from '../../Context';
-import { DropdownBottomLink } from '../styles';
-
 
 export default function SignOut () {
-  const { setCurrentUser } = useContext(Context);
+  const { setCurrentUser } = useContext(SessionContext);
 
   const requestLogout = async () => {
     try {

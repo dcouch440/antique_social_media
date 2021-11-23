@@ -1,21 +1,21 @@
-import axios from 'axios';
-import {
-  useContext,
-  useEffect,
-  useState
-} from 'react';
-import { Context } from '../../Context';
-import PageTransition from '../../Framer/PageTransition';
-import Antiques from './Antiques';
 import {
   AntiquesList,
   Page,
   PostsHeader
 } from './styles';
+import {
+  useContext,
+  useEffect,
+  useState
+} from 'react';
 
+import Antiques from './Antiques';
+import PageTransition from '../../Framer/PageTransition';
+import { SessionContext } from '../../context/Session';
+import axios from 'axios';
 
 export default function Posts () {
-  const { currentUser } = useContext(Context);
+  const { currentUser } = useContext(SessionContext);
   const [antiques, setAntiques] = useState([]);
 
   useEffect(() => {

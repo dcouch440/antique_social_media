@@ -1,15 +1,14 @@
-import PropTypes from 'prop-types';
-import { MESSAGE } from '../../constant/index';
-import PageTransition from '../../Framer/PageTransition';
-import useChatSocket from '../../hooks/useChatSocket';
 import ChatInput from './ChatInput';
 import ChatRows from './ChatRows';
-import OnlineUserSidebar from './OnlineUserSidebar';
 import { ChatWindow } from './styles';
+import { MESSAGE } from '../../constant/index';
+import OnlineUserSidebar from './OnlineUserSidebar';
+import PageTransition from '../../Framer/PageTransition';
+import PropTypes from 'prop-types';
+import useChatSocket from '../../hooks/useChatSocket';
 
-
-export default function Chat ({ roomId }) {
-  const { messages, users, socketRef } = useChatSocket(roomId);
+export default function Chat () {
+  const { messages, users, socketRef } = useChatSocket();
 
   const sendMessage = message => {
     socketRef.current.emit(MESSAGE, message);
