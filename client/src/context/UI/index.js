@@ -10,7 +10,6 @@ function UIProvider ({ children }) {
 
   return (
     <UIContext.Provider
-      Context={UIContext}
       value={{
         scrollCSSValue,
         setScrollBehavior
