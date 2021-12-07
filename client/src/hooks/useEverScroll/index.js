@@ -1,11 +1,13 @@
-import axios from 'axios';
+import * as A from './actions';
+
 import {
   useEffect,
   useReducer,
   useRef,
   useState
 } from 'react';
-import * as A from './actions';
+
+import axios from 'axios';
 import reducer from './reducer';
 
 /**

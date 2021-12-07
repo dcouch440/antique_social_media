@@ -44,6 +44,7 @@ exports.seed = async knex => {
             const antique_id = await addToTable({
               table: 'antique', obj: randomAntique(user_id)
             });
+
             await AntiqueImageService.upload({
               file64: antiqueImage,
               antique_id
