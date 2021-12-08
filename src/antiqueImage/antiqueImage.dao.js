@@ -1,5 +1,4 @@
 const { cloudinary } = require('../config/cloudinary.config');
-const antiqueFolderFormat = require('../../constant/image-file');
 const Image = require('./antiqueImage.model');
 
 class AntiqueImageDAO {
@@ -16,12 +15,6 @@ class AntiqueImageDAO {
     return cloudinary.uploader.upload( file64 , {
       upload_preset: 'ml_default',
     });
-  }
-  findByAntiqueId (antique_id) {
-    return cloudinary.search
-      .expression(
-        `folder:${antiqueFolderFormat(antique_id)}`
-      ).execute();
   }
   destroyByPublicIds (public_ids) {
     return cloudinary.api.delete_resources(public_ids);
