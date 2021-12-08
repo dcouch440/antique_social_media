@@ -2,12 +2,14 @@
 exports.up = function (knex) {
   return knex.schema.alterTable(
     'antique_image', table => {
-      table.string('public_id');
+      table
+        .string('public_id')
+        .notNullable();
     });
 };
 
-exports.down = function (knex) {
-  return knex.schema.alterTable('antique_image', table => {
-    table.dropColumn('public_id');
+exports.down = async function (knex) {
+  return knex.schema.alterTable('antique_image', async table => {
+    await table.dropColumn('public_id');
   });
 };

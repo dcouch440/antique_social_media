@@ -1,10 +1,10 @@
-const AntiqueImageService = require('../../../src/antiqueImage/antiqueImage.service');
+const antiqueImageDao = require('../../../src/antiqueImage/antiqueImage.dao');
 
 
 const cleanupAntiqueImages = async knex => {
-  const antique_ids = await knex('image').distinct('antique_id');
-  const destroyImages = antique_ids.map(ids => {
-    return AntiqueImageService.destroyDependencyById(ids.antique_id);
+  const public_ids = await knex('antique_image').distinct('public_id');
+  const destroyImages = public_ids.map(public_id => {
+    return antiqueImageDao.destroyByPublicIds(public_id);
   });
   return Promise.all(destroyImages);
 };

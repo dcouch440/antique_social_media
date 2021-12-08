@@ -3,8 +3,9 @@ const antiqueFolderFormat = require('../../constant/image-file');
 const Image = require('./antiqueImage.model');
 
 class AntiqueImageDAO {
-  saveUrl ({ secure_url, width, height, antique_id }) {
+  saveUrl ({ secure_url, width, height, public_id, antique_id }) {
     return Image.query().insert({
+      public_id,
       antique_id,
       secure_url,
       width,
@@ -22,15 +23,13 @@ class AntiqueImageDAO {
         `folder:${antiqueFolderFormat(antique_id)}`
       ).execute();
   }
-  async destroyAllRelations (antique_id) {
-    try {
-      const folder = antiqueFolderFormat(antique_id);
-      await cloudinary.api.delete_resources_by_prefix(folder);
-      await cloudinary.api.delete_folder(folder);
-      return 204;
-    } catch (err) {
-      console.error(err);
-    }
+  destroyByPublicIds (public_ids) {
+    return cloudinary.api.delete_resources(public_ids);
+  }
+  getAllAntiquePublicIds (antique_id) {
+    return Image.query()
+      .select('public_id')
+      .where('antique_id', '=', antique_id);
   }
 }
 

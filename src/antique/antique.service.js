@@ -24,7 +24,7 @@ class AntiqueService {
   }
   async destroy (id) {
     try {
-      await AntiqueImageService.destroyDependencyById(id);
+      await AntiqueImageService.destroyByPublicIds(id);
       return await antiqueDAO.destroy(id);
     } catch (err) {
       throw new ServiceError(err);
