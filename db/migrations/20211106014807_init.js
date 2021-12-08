@@ -28,6 +28,6 @@ exports.up = function (knex) {
 };
 
 exports.down = function (knex) {
-  knex.schema
+  return knex.schema
     .dropTableIfExists('antique_image');
 };

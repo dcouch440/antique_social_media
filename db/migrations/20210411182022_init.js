@@ -23,6 +23,10 @@ exports.up = async knex => {
       table
         .timestamps(true, true);
       table
+        .string('avatar');
+      table
+        .string('avatar_public_id');
+      table
         .datetime('deleted_at');
     }
   )
@@ -86,8 +90,9 @@ exports.up = async knex => {
 };
 
 exports.down = async knex => {
-  return knex.schema
-    .dropTableIfExists('like')
-    .dropTableIfExists('antique')
-    .dropTableIfExists('user');
+  return Promise.all([
+    'user','antique', 'like'
+  ].map(async table => {
+    await knex.raw(`DROP TABLE IF EXISTS "${table}" CASCADE`);
+  }));
 };

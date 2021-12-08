@@ -38,6 +38,16 @@ class UserController {
       next(err);
     }
   }
+  async uploadAvatar (req, res, next) {
+    try {
+      const { user_id } = req.body;
+      const { file64 } = req.body;
+      const uploaded = await userService.uploadAvatar({ file64, user_id });
+      res.status(201).json(uploaded);
+    } catch (err) {
+      next(err);
+    }
+  }
   async showByUsername (req, res, next) {
     try {
       const { usernames } = req.body;

@@ -1,5 +1,4 @@
 const avatarDAO = require('./avatar.dao');
-const avatarPublicIdFormat = require('../../constant/avatar-public-id');
 const ServiceError = require('../../lib/service-error');
 
 class AvatarService {
@@ -10,11 +9,10 @@ class AvatarService {
       throw new ServiceError(err);
     }
   }
-  async upload ({ file64, user_id }) {
+  async upload ({ file64 }) {
     try {
-      const avatarPublicId = avatarPublicIdFormat(user_id);
-      await avatarDAO.destroyById(avatarPublicId);
-      return avatarDAO.uploadFile64({ file64, avatarPublicId });
+      await avatarDAO.destroyById();
+      return avatarDAO.uploadFile64({ file64 });
     } catch (err) {
       throw new ServiceError(err);
     }

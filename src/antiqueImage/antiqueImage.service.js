@@ -11,17 +11,10 @@ class AntiqueImageService {
       throw new ServiceError(err);
     }
   }
-  async upload ({ file64, antique_id }) {
-    let image;
+  async upload ({ file64 }) {
     try {
-      image = await AntiqueImageDAO.uploadToCloud({ file64, antique_id });
+      return AntiqueImageDAO.uploadToCloud({ file64 });
     } catch (err) {
-      throw new ServiceError(err);
-    }
-    try {
-      await AntiqueImageDAO.saveUrl({ antique_id, ...image });
-    } catch (err) {
-      await this.destroyDependencyById(antique_id);
       throw new ServiceError(err);
     }
   }

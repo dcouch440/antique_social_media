@@ -1,8 +1,3 @@
-import { motion } from 'framer-motion';
-import PropTypes from 'prop-types';
-import { useEffect, useRef } from 'react';
-import { useHistory } from 'react-router';
-import Timestamp from '../Timestamp';
 import {
   Avatar,
   GoBack,
@@ -12,8 +7,13 @@ import {
   Rows,
   Username
 } from './styles';
-import { variants } from './variants';
+import { useEffect, useRef } from 'react';
 
+import PropTypes from 'prop-types';
+import Timestamp from '../Timestamp';
+import { motion } from 'framer-motion';
+import { useHistory } from 'react-router';
+import { variants } from './variants';
 
 export default function ChatRows ({ messages, socketRef }) {
   const history = useHistory();
@@ -53,7 +53,7 @@ export default function ChatRows ({ messages, socketRef }) {
         <MessageContainer>
           <Avatar
             alt='avatar'
-            src={message.avatar.secure_url}
+            src={message.avatar}
           />
           <Username>{message.username}: </Username>
           <Message>{message.message}</Message>

@@ -67,11 +67,26 @@ class UserService {
       throw new ServiceError(err);
     }
   }
+  async uploadAvatar ({ file64, user_id }) {
+    try {
+      const { avatar_public_id } = await userDAO.find(user_id) ?? {};
+      // if public id exists destroy the old image.
+      if (avatar_public_id) {
+        await userDAO.destroyById(avatar_public_id);
+      }
+      // upload new image
+      const { public_id, secure_url } = await userDAO.uploadAvatar({ file64 });
+      // save response in database
+      return userDAO.saveAvatarInfo({ public_id, secure_url, user_id });
+    } catch (err) {
+      throw new ServiceError(err);
+    }
+  }
   async getUsersByIds (id) {
     try {
       const users = await userDAO.getUsersByIds(id);
       return users.map(user => {
-        const avatar = attachAvatarIfNotPresent(user.avatar);
+        const avatar = attachAvatarIfNotPresent(user);
         return { username: user.username, avatar };
       });
     } catch (err) {

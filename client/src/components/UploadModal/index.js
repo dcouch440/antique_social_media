@@ -1,6 +1,3 @@
-import axios from "axios";
-import PropTypes from "prop-types";
-import { useState } from "react";
 import {
   BlurContainer,
   CloseButton,
@@ -12,6 +9,9 @@ import {
   UploadButton
 } from './styles';
 
+import PropTypes from "prop-types";
+import axios from "axios";
+import { useState } from "react";
 
 export default function UploadModal ({
   modalShowChange,
@@ -99,18 +99,18 @@ export default function UploadModal ({
     setFileInputState('');
   };
 
-  const uploadImage = base64EncodedImage => {
+  const uploadImage = async base64EncodedImage => {
     const send = {
       file64: base64EncodedImage,
       user_id: currentUser.id
     };
 
     // checking route
-    if (route === '/images') {
+    if (route === '/antiques/images') {
       send.antique_id = antique.id;
     }
 
-    axios
+    await axios
       .post(route, send)
       .then(res => {
         if (res.status === 201) {

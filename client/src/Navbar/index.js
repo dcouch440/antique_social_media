@@ -1,16 +1,17 @@
-import React, {
-  useContext,
-  useRef,
-  useState
-} from 'react';
-import UploadModal from '../components/UploadModal';
-import { Context } from '../Context';
-import DropDown from './DropDown';
 import {
   Menu,
   Nav,
   Page
 } from './styles';
+import React, {
+  useContext,
+  useRef,
+  useState
+} from 'react';
+
+import { Context } from '../Context';
+import DropDown from './DropDown';
+import UploadModal from '../components/UploadModal';
 
 export default function Navbar () {
   const [menu, setMenu] = useState('none');
@@ -34,7 +35,7 @@ export default function Navbar () {
           <UploadModal
             currentUser={currentUser}
             modalShowChange={handleModalChange}
-            route='/avatars'
+            route='/users/avatars'
             startMessageText='Upload your avatar.'
           />
         </Page>

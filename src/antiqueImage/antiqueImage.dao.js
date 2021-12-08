@@ -11,10 +11,9 @@ class AntiqueImageDAO {
       height,
     });
   }
-  uploadToCloud ({ file64, antique_id }) {
+  uploadToCloud ({ file64 }) {
     return cloudinary.uploader.upload( file64 , {
       upload_preset: 'ml_default',
-      folder: antiqueFolderFormat(antique_id)
     });
   }
   findByAntiqueId (antique_id) {

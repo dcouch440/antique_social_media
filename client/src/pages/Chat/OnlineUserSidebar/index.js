@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import {
   Avatar,
   AvatarContainer,
@@ -6,6 +5,7 @@ import {
   Username
 } from './styles';
 
+import PropTypes from "prop-types";
 
 export default function OnlineUserSidebar ({ users }) {
   const mappedUsers = users && users.map(user => {
@@ -13,7 +13,7 @@ export default function OnlineUserSidebar ({ users }) {
       <AvatarContainer key={user.username}>
         <Avatar
           alt='avatar'
-          src={user.avatar.secure_url}
+          src={user.avatar}
         />
         <Username>{user.username}</Username>
       </AvatarContainer>
