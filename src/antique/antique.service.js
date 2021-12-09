@@ -5,19 +5,20 @@ const { objLength, parseObjectInts } = require('../../lib/utils');
 const AntiqueImageService = require('../antiqueImage/antiqueImage.service');
 const userDAO = require('../user/user.doa');
 const likeDAO = require('../like/like.dao');
-const userSerializer = require('../user/user.serializer');
 const ServiceError = require('../../lib/service-error');
+const antiqueImageDAO = require('../antiqueImage/antiqueImage.dao');
 
 class AntiqueService {
   all () {
     return antiqueDAO.all();
   }
   async show (id) {
-    return antiqueDAO.find(id);
+    const { users, ...antique } = await antiqueDAO.find(id);
+    return { antique_owner: users, ...antique, };
   }
   async destroy (id) {
     try {
-      await AntiqueImageService.destroyDependencyById(id);
+      await AntiqueImageService.destroyByPublicIds(id);
       return await antiqueDAO.destroy(id);
     } catch (err) {
       throw new ServiceError(err);
@@ -38,14 +39,8 @@ class AntiqueService {
     try {
       const parsedParams = parseObjectInts(params);
       await antiqueParams.validate(parsedParams, { abortEarly: false });
-      const antique = await antiqueDAO.create(parsedParams);
-      try {
-        await AntiqueImageService.upload({ file64, antique_id: antique.id });
-      } catch (err) {
-        await this.destroy(antique.id);
-        throw err;
-      }
-      return antique;
+      const image = await AntiqueImageService.upload({ file64 });
+      return antiqueDAO.create({ parsedParams, image });
     } catch (err) {
       throw new ServiceError(err);
     }
@@ -63,11 +58,17 @@ class AntiqueService {
       const antiqueLikes = await likeDAO.findByAntiqueId(id);
       const user_ids = antiqueLikes.map(like => like.user_id);
       const users = await userDAO.getUsersByIds(user_ids);
-      const usersWithAttachedAvatars = await userSerializer
-        .serializeAllWithUserAvatar(users);
-      const { count } = await likeDAO.countByAntiqueId(id);
-      const parsedCount = parseInt(count);
-      return { likes: usersWithAttachedAvatars, count: parsedCount };
+      const count = users.length ?? 0;
+      return { likes: users, count };
+    } catch (err) {
+      throw new ServiceError(err);
+    }
+  }
+  async uploadAntiqueImage ({ file64, antique_id }) {
+    try {
+      const image = await antiqueImageDAO.uploadToCloud({ file64 });
+      await antiqueImageDAO.saveUrl({ ...image, antique_id });
+      return image;
     } catch (err) {
       throw new ServiceError(err);
     }

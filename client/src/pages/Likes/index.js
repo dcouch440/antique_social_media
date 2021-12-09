@@ -44,7 +44,7 @@ export default function Likes () {
                 callData={antiques}
                 component={Antique}
               />:
-              <h1>No Antiques?  Get liking..</h1>
+              <h2 style={{ color: 'white', fontFamily: 'sans-serif' }}>No Antiques?  Get liking..</h2>
           }
         </AntiqueRows>
       </Page>

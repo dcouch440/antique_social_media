@@ -10,7 +10,7 @@ import {
  * @returns [ loading: boolean, isDone: func ]
  */
 
-export default function useMinimumLoadingTime ({ ms = 500 } = {}) {
+export default function useMinimumLoadingTime ({ ms = 1000 } = {}) {
   // standard loading bool
   const [loading, setLoading] = useState(true);
   // makes sure the minimum value is met
@@ -41,7 +41,7 @@ export default function useMinimumLoadingTime ({ ms = 500 } = {}) {
       minimumTimeIsMet.current = true;
     }, ms);
 
-  }, []);
+  }, [ms]);
 
   return [loading, isDone];
 }

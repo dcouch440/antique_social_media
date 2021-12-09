@@ -27,7 +27,6 @@ exports.up = function (knex) {
     });
 };
 
-exports.down = function (knex) {
-  knex.schema
-    .dropTableIfExists('antique_image');
+exports.down = async function (knex) {
+  return knex.raw('DROP TABLE IF EXISTS "antique_image" CASCADE');
 };

@@ -1,10 +1,9 @@
-import PropTypes from "prop-types";
-import { useContext } from "react";
-import UploadModal from "../../../components/UploadModal";
 import { Context } from "../../../Context";
-import checkUser from "../../../utils/checkUser";
+import PropTypes from "prop-types";
+import UploadModal from "../../../components/UploadModal";
 import { UploadModalButton } from './styles';
-
+import checkUser from "../../../utils/checkUser";
+import { useContext } from "react";
 
 export default function UploadIfCurrentUser ({ show, antique, handleModalShowChange, setNewUpload }) {
   const { currentUser } = useContext(Context);
@@ -22,7 +21,7 @@ export default function UploadIfCurrentUser ({ show, antique, handleModalShowCha
       antique={antique}
       currentUser={currentUser}
       modalShowChange={handleModalShowChange}
-      route='/images'
+      route='/antiques/images'
       setNewUpload={setNewUpload}
       startMessageText='Upload an image of your antique.'
     />

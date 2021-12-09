@@ -38,7 +38,7 @@ export default function useChatSocket (roomId) {
     if (!currentUser.username) { return; }
 
     // connection
-    socketRef.current = io(urls.chatSocket.url, {
+    socketRef.current = io(urls.chatSocket.localHost, {
       withCredentials: true
     });
 

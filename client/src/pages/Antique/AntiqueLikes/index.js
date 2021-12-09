@@ -1,6 +1,3 @@
-import axios from "axios";
-import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
 import {
   AntLikes,
   Avatar,
@@ -8,7 +5,10 @@ import {
   LikesCount,
   NoLikes
 } from './styles';
+import { useEffect, useState } from "react";
 
+import PropTypes from "prop-types";
+import axios from "axios";
 
 export default function AntiqueLikes ({ antiqueId, likesChange }) {
   const [likes, setLikes] = useState([]);
@@ -31,7 +31,7 @@ export default function AntiqueLikes ({ antiqueId, likesChange }) {
       <Like key={i}>
         <Avatar
           alt='avatar'
-          src={data.avatar.secure_url}
+          src={data.avatar}
         />
       </Like>
     );

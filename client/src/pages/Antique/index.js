@@ -16,10 +16,9 @@ import useMinimumLoadingTime from '../../hooks/useMinimumLoadingTime';
 export default function Antique ({ setRoomId }) {
   const { id } = useParams();
   const history = useHistory();
-  const [loading, isDone] = useMinimumLoadingTime();
+  const [loading, isDone] = useMinimumLoadingTime({ ms: 2000 });
   const [antique, setAntique] = useState({});
   const directionRef = useRef('right');
-
   const handleRoomChange = () => {
     setRoomId(id);
     directionRef.current = 'top';

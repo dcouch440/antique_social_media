@@ -2,20 +2,21 @@ const userDAO = require('./user.doa');
 const jwt = require('../auth/auth.jwt');
 const { hashPassword , compareHash } = require('../auth/auth.bcrypt');
 const { newUserParams, userIdParams } = require('./user.params');
-const attachAvatarIfNotPresent = require('../../lib/attachAvatarIfNotPresent');
-const userSerializer = require('./user.serializer');
 const { UNAUTHORIZED } = require('../../constant/exceptions');
 const ServiceError = require('../../lib/service-error');
 
 class UserService {
   async signIn ({ email, password }) {
     try {
-      const user = await userDAO.findByEmail(email);
+      const downCasedEmail = email.toLowerCase();
+      const user = await userDAO.findByEmail(downCasedEmail);
 
+      // if user found, exit with error
       if (!user) {
         throw { name: UNAUTHORIZED };
       }
 
+      // check if user password is correct
       const isValid = await compareHash({
         inputPassword: password, userPassword: user.password_digest
       });
@@ -31,6 +32,7 @@ class UserService {
         admin: user.admin
       };
 
+      // sign token for http cookie
       const token = await jwt.sign(payload);
 
       return { token, payload };
@@ -40,17 +42,22 @@ class UserService {
   }
   async signUp ({ username, password, email }) {
     try {
+      // downcase before saving. Capitalization can be achieved on the front end.
+      const downCasedEmail = email.toLowerCase();
+      const downCasedUsername = username.toLowerCase();
+      const user = await userDAO.findByEmail(downCasedEmail);
 
-      const user = await userDAO.findByEmail(email);
-
+      // if user found, exit with error
       if (user) {
         throw { name: UNAUTHORIZED };
       }
 
-      const userParams = { username, password, email };
+      // validating data is correct
+      const userParams = { password, username: downCasedUsername, email: downCasedEmail };
       await newUserParams.validate(userParams, { abortEarly: false });
-      const hashedPasswordUser = await hashPassword({ username, email, password });
 
+      // hashing password for db.
+      const hashedPasswordUser = await hashPassword({ ...userParams });
       const createdUser = await userDAO.create(hashedPasswordUser);
       delete createdUser.password_digest;
 
@@ -59,7 +66,6 @@ class UserService {
         username, email,
         admin: false
       };
-
       const token = await jwt.sign(payload);
 
       return { payload, token };
@@ -67,35 +73,24 @@ class UserService {
       throw new ServiceError(err);
     }
   }
-  async getUsersByIds (id) {
+  async uploadAvatar ({ file64, user_id }) {
     try {
-      const users = await userDAO.getUsersByIds(id);
-      return users.map(user => {
-        const avatar = attachAvatarIfNotPresent(user.avatar);
-        return { username: user.username, avatar };
-      });
+      const { avatar_public_id } = await userDAO.find(user_id) ?? {};
+      // if public id exists destroy the old image.
+      if (avatar_public_id) {
+        await userDAO.destroyById(avatar_public_id);
+      }
+      // upload new image
+      const { public_id, secure_url } = await userDAO.uploadAvatar({ file64 });
+      // save response in database
+      return userDAO.saveAvatarInfo({ public_id, secure_url, user_id });
     } catch (err) {
       throw new ServiceError(err);
     }
   }
-  all () {
-    return userDAO.all();
-  }
-  async showOvert (id) {
+  async getUsersByIds (ids) {
     try {
-      const parsedID = parseInt(id);
-      await userIdParams.validate({ id: parsedID });
-      const user = await userDAO.find(parsedID);
-      const { username, avatar, online } = await userSerializer
-        .serializeWithUserAvatar(user);
-      return {
-        antique_owner: {
-          id,
-          username,
-          avatar,
-          online
-        }
-      };
+      return await userDAO.getUsersByIds(ids);
     } catch (err) {
       throw new ServiceError(err);
     }

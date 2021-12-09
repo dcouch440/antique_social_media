@@ -30,7 +30,7 @@ export default function useSession () {
   useEffect(() => {
     if (!currentUser.id) { return; }
     const { id, username } = currentUser;
-    const socket = io(urls.statusSocket.url, { withCredentials: true });
+    const socket = io(urls.statusSocket.localHost, { withCredentials: true });
 
     socket.emit(LOGIN, { id, username });
 

@@ -8,6 +8,7 @@ class AntiqueDAO {
   find (id) {
     return Antique.query()
       .findById(id)
+      .withGraphFetched('users')
       .withGraphFetched('images');
   }
   getLikes (id) {
@@ -19,9 +20,25 @@ class AntiqueDAO {
     return Antique.query()
       .deleteById(id);
   }
-  create (params) {
-    return Antique.query()
-      .insert(params);
+  create ({ parsedParams, image }) {
+    const {
+      secure_url,
+      width,
+      height,
+      public_id
+    } = image;
+
+    return Antique.query().insertGraph({
+      ...parsedParams,
+      images: [
+        {
+          secure_url,
+          width,
+          height,
+          public_id
+        }
+      ]
+    });
   }
   limitedList ({ OFFSET, LIMIT }) {
     return Antique.query()

@@ -1,7 +1,3 @@
-import PropTypes from 'prop-types';
-import { useContext } from 'react';
-import { Context } from '../../../Context';
-import OnlineAnimation from '../../../Framer/OnlineAnimation';
 import {
   AboutMe,
   Avatar,
@@ -9,6 +5,10 @@ import {
   Online
 } from './styles';
 
+import { Context } from '../../../Context';
+import OnlineAnimation from '../../../Framer/OnlineAnimation';
+import PropTypes from 'prop-types';
+import { useContext } from 'react';
 
 export default function User ({ ownerInfo }) {
   const { currentUser: { id } } = useContext(Context);
@@ -20,7 +20,7 @@ export default function User ({ ownerInfo }) {
       <AboutMe>{ownerInfo.username}</AboutMe>
       <Avatar
         alt='avatar'
-        src={ownerInfo.avatar?.secure_url}
+        src={ownerInfo.avatar}
         status={true}
       />
       <Online status={isCurrentUserPostOrUserOnline}>
@@ -33,10 +33,7 @@ export default function User ({ ownerInfo }) {
 
 User.propTypes = {
   ownerInfo: PropTypes.shape({
-    avatar: PropTypes.shape({
-      secure_url: PropTypes.string,
-      user_id: PropTypes.number,
-    }),
+    avatar: PropTypes.string.isRequired,
     online: PropTypes.bool,
     username: PropTypes.string,
     id: PropTypes.number

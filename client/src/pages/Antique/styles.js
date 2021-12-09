@@ -7,8 +7,7 @@ export const Page = styled.div`
   ${include.noInteraction}
   ${include.darkBackgroundColor}
   position: relative;
-  padding: 5px;
-  min-height: fit-content;
+  min-height: 100%;
   width: var(--max-page-width);
   margin: 0 auto;
   display: flex;

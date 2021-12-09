@@ -20,7 +20,7 @@ export const About = styled.div`
   box-shadow: inset 0 0 4px #ffffff0d;
   background-color: #0088ff03;
   color: black;
-  height: 100vh;
+  height: calc(100vh - 65px);
   min-height: 100%;
   width: 100%;
   padding: 30px;
@@ -95,7 +95,7 @@ export const SlideShowSide = styled.div`
   position: relative;
   overflow: hidden;
   grid-row: span 2;
-  height: 100vh;
+  height: calc(100vh - 65px);
   width: 100%;
 `;
 
