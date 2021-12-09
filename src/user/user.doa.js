@@ -2,9 +2,6 @@ const { cloudinary } = require('../config/cloudinary.config');
 const User = require('./user.model');
 
 class UserDAO {
-  all () {
-    return User.query();
-  }
   find (id) {
     return User.query()
       .findById(parseInt(id));
@@ -38,7 +35,7 @@ class UserDAO {
   }
   findByEmail (email) {
     return User.query()
-      .where('email', email).first();
+      .whereRaw('lower(email) = ?', email).first();
   }
   destroyById (public_id) {
     return cloudinary.api.delete_resources(public_id);

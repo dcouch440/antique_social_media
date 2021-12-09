@@ -5,9 +5,7 @@ const { objLength, parseObjectInts } = require('../../lib/utils');
 const AntiqueImageService = require('../antiqueImage/antiqueImage.service');
 const userDAO = require('../user/user.doa');
 const likeDAO = require('../like/like.dao');
-const userSerializer = require('../user/user.serializer');
 const ServiceError = require('../../lib/service-error');
-const getAvatarIfNotPresent = require('../../lib/attachAvatarIfNotPresent');
 const antiqueImageDAO = require('../antiqueImage/antiqueImage.dao');
 
 class AntiqueService {
@@ -16,11 +14,7 @@ class AntiqueService {
   }
   async show (id) {
     const { users, ...antique } = await antiqueDAO.find(id);
-    const checkedAvatar = getAvatarIfNotPresent(users);
-    return {
-      antique_owner: checkedAvatar,
-      ...antique,
-    };
+    return { antique_owner: users, ...antique, };
   }
   async destroy (id) {
     try {
@@ -64,10 +58,8 @@ class AntiqueService {
       const antiqueLikes = await likeDAO.findByAntiqueId(id);
       const user_ids = antiqueLikes.map(like => like.user_id);
       const users = await userDAO.getUsersByIds(user_ids);
-      const usersWithAttachedAvatars = await userSerializer
-        .serializeAllWithUserAvatar(users);
-      const count = usersWithAttachedAvatars.length ?? 0;
-      return { likes: usersWithAttachedAvatars, count };
+      const count = users.length ?? 0;
+      return { likes: users, count };
     } catch (err) {
       throw new ServiceError(err);
     }

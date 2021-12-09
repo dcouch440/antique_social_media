@@ -1,5 +1,4 @@
 const getCurrentUser = require('../../lib/get-current-user');
-const userSerializer = require('./user.serializer');
 const userService = require('./user.service');
 const cookieExpiration = require('../../constant/cookie-time');
 
@@ -46,28 +45,6 @@ class UserController {
       res.status(201).json(uploaded);
     } catch (err) {
       next(err);
-    }
-  }
-  async showByUsername (req, res, next) {
-    try {
-      const { usernames } = req.body;
-      const users = await userService
-        .getUsersByUsername({ usernames });
-      const serializedUsers = await userSerializer
-        .serializeAllWithUserAvatar(users);
-      res.status(200).json(serializedUsers);
-    } catch (err) {
-      next(err);
-    }
-  }
-  async all (req, res, next) {
-    try {
-      const users = await userService.all();
-      const serializedUsers = await userSerializer
-        .serializeAllWithUserAvatar(users);
-      res.status(200).json(serializedUsers);
-    } catch (err) {
-      next(next);
     }
   }
   async show (req, res, next) {
